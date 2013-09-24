@@ -65,13 +65,15 @@ a:hover {
 }
 
 header {
-	height: 200px;
-	margin-top: -100px;
+	background-color: #DDDDDD;
+	height: 220px;
+	left: 50%;
+	margin-left: -285px;
+	margin-top: -110px;
+	padding: 20px;
 	position: absolute;
 	top: 50%;
 	width: 550px;
-	left: 50%;
-	margin-left: -275px;
 }
 
 header h1 {
@@ -112,42 +114,9 @@ header #headshot {
 	margin: 0 auto;
 }
 
-code, pre {
-	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal;
-	color: #222;
-	margin-bottom: 30px;
-	font-size: 14px;
-}
-
-code {
-	background-color: #f2f2f2;
-	border: solid 1px #ddd;
-	padding: 0 3px;
-}
-
 img {
 		border: 1px solid #AAAAAA;
 }
-
-pre {
-	padding: 20px;
-	background: #303030;
-	color: #f2f2f2;
-	text-shadow: none;
-	overflow: auto;
-}
-
-pre code {
-	color: #f2f2f2;
-	background-color: #303030;
-	border: none;
-	padding: 0;
-}
-
-ul, ol, dl {
-	margin-bottom: 20px;
-}
-
 
 /* COMMON STYLES */
 
@@ -246,19 +215,22 @@ blockquote {
 	padding: 0 0 0 30px;
 }
 
+ul {
+	margin-top: 45px;
+}
+
 ul li {
 	list-style-type: none;
 }
 
-ol li {
-	list-style: decimal inside;
-	padding-left: 3px;
-}
+	li i {
+		padding-right: 10px;
+		width: 20px;
+	}
 
-li i {
-	padding-right: 10px;
-	width: 20px;
-}
+		.icon-fixed-width {
+			margin-right: 5px;
+		}
 
 dl dt {
 	color: #303030;
@@ -279,19 +251,6 @@ footer a {
 footer a:hover {
 	color: #444;
 }
-
-/* MISC */
-.clearfix:after {
-	clear: both;
-	content: '.';
-	display: block;
-	visibility: hidden;
-	height: 0;
-}
-
-.clearfix {display: inline-block;}
-* html .clearfix {height: 1%;}
-.clearfix {display: block;}
 
 /* #Media Queries
 ================================================== */
