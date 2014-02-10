@@ -72,7 +72,7 @@ header {
 	left: 50%;
 	margin-left: -295px;
 	margin-top: -130px;
-	padding: 20px;
+	padding: 20px 20px 10px;
 	position: absolute;
 	top: 50%;
 	width: 560px;
@@ -94,7 +94,8 @@ header h2 {
 }
 
 header #headshot {
-	float: right;
+	float: left;
+	margin-right: 20px;
 	width: 200px;
 }
 
@@ -207,7 +208,7 @@ blockquote {
 }
 
 ul {
-	margin-top: 60px;
+	margin-top: 42px;
 }
 
 ul li {
