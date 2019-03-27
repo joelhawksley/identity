@@ -1,4 +1,1 @@
-JH-Identity
-===========
-
-Static identity site for joelhawksley.com
+Source of [hawksley.org](https://hawksley.org)
