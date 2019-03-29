@@ -1624,7 +1624,7 @@ end
 
 ---
 
-# [fit] 6s
+# [fit] ~6s
 ### [fit] GET + assert
 
 ^ In our test suite, Controller tests take about six seconds for loading a page and asserting against its contents.
@@ -1633,7 +1633,7 @@ end
 
 ---
 
-# [fit] 50ms
+# [fit] ~25ms
 ### [fit] .render + assert
 
 ^ They clocked in at around 50 milliseconds each running in the same suite.
@@ -1642,15 +1642,15 @@ end
 
 ---
 
-# [fit] 120x
+# [fit] ~240x
 
-^ That’s a hundred and twenty times faster.
+^ That’s two-hundred and fourty times faster.
 
 ---
 
-# [fit] .5s vs 60s
+# [fit] .25s vs 60s
 
-^ This means that the ten unit tests we wrote for components that run in half a second would take a whole minute if they were controller tests.
+^ This means that the ten unit tests we wrote for our components that run in a quarter of a second would take a whole minute if they were controller tests.
 
 ^ PAUSE
 
