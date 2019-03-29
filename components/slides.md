@@ -149,10 +149,7 @@ DHH said in the announcement of Rails 5
 
 ---
 
-![40%](img/github.png)
-
-^
-- So what does the view layer look like at GitHub?
+^ So what does the view layer look like at GitHub?
 
 ---
 
@@ -225,10 +222,7 @@ All rendering on the server
 
 ---
 
-![40%](img/github.png)
-
-^
-- Let’s talk about building views at GitHub
+^ Let’s talk about building views at GitHub
 
 ---
 
@@ -324,7 +318,7 @@ $ ls -1 github/app/controllers | wc -l
 ---
 
 # [fit] 6s
-### (GET + assert)
+### [fit] GET + assert
 
 ^
 - Six second for single controller test
@@ -1077,3 +1071,676 @@ end
 ^ So what about those "magic strings"?
 
 ---
+
+[.code-highlight: all]
+[.code-highlight: 3,5,7,9,11]
+
+```ruby
+def state_octicon_label
+  if @pull&.merged?
+    return "State--purple", "git-merge",          "Merged"
+  elsif @pull&.closed?
+    return "State--red",    "git-pull-request",   "Closed"
+  elsif @pull
+    return "State--green",  "git-pull-request",   "Open"
+  elsif @issue&.closed?
+    return "State--red",    "issue-closed",       "Closed"
+  elsif @issue
+    return "State--green",  "issue-opened",       "Open"
+  end
+end
+```
+
+^ So there are at least three sets of magic strings in our component right now:
+
+^ CSS class names, which come from our Primer design system
+
+^ Octicon name, which comes from our icon library
+
+^ Label text, which is a humanized version of the current state
+
+---
+
+[.code-highlight: 3,5,7,9,11]
+[.code-highlight: all]
+
+```ruby
+def state_octicon_label
+  if @pull&.merged?
+    Primer::State::PURPLE, Icons::GIT_MERGE,          @pull.state.to_s.titleize
+  elsif @pull&.closed?
+    Primer::State::RED,    Icons::GIT_PULL_REQUEST,   @pull.state.to_s.titleize
+  elsif @pull
+    Primer::State::GREEN,  Icons::GIT_PULL_REQUEST,   @pull.state.to_s.titleize
+  elsif @issue&.closed?
+    Primer::State::RED,    Icons::ISSUE_CLOSED,       @issue.state.to_s.titleize
+  elsif @issue
+    Primer::State::GREEN,  Icons::ISSUE_OPENED,       @issue.state.to_s.titleize
+  end
+end
+```
+
+^ Expressing these facts makes it clear what our component is coupled to.
+
+^ So now we’ve ended up with this giant conditional statement. Let’s see what we can do about that.
+
+---
+
+```ruby
+def state_class
+  if @pull&.merged?
+    Primer::State::PURPLE
+  elsif @pull&.closed? || @issue.closed?
+    return Primer::State::RED
+  else
+    return Primer::State::GREEN
+  end
+end
+
+def octicon_name
+  if @pull&.merged?
+    Icons::GIT_MERGE
+  elsif @pull
+    Icons::GIT_PULL_REQUEST
+  elsif @issue.closed?
+    Icons::ISSUE_CLOSED
+  else
+    Icons::ISSUE_OPENED
+  end
+end
+
+def label
+  @pull ? @pull.state.to_s.titleize : @issue.state.to_s.titleize
+end
+```
+
+^ That’s getting simpler!
+
+^ But something looks off about that label method, and maybe it’s a sign of a bigger issue with our component.
+
+^ The reality is that the consumers of this view already know whether they are passing us a PR and an Issue, or just an issue.
+
+^ So what good are we doing handling this logic? Let’s factor it out.
+
+---
+
+```ruby
+def initialize(issue:, label:, pull: nil)
+  @issue = issue
+  @pull = pull
+end
+```
+
+^ So let’s make label a required argument.
+
+---
+
+```ruby
+test "renders the label" do
+  result = Issues::Badge.new(
+    issue: @merged_pr.issue,
+    label: "Label",
+    pull: @merged_pr
+  ).render
+
+  assert_includes result, "Label"
+end  
+```
+
+^ Now we need a single assertion to ensure that it is rendered
+
+^ This allows us to remove the label assertions from the state-specific tests.
+
+---
+
+# [Fit] Functional <br> Purity
+
+^ So what about functional purity?
+
+---
+
+```ruby
+def assert_no_queries(&block)
+  before = GitHub::MysqlInstrumenter.query_count
+  yield
+  after  = GitHub::MysqlInstrumenter.query_count
+
+  assert_equal before, after, "Block made unexpected database queries"
+end
+```
+
+^ One tool we use at GitHub to guard against unintentionally running queries is this assert_no_queries test helper.
+
+^ We use it to wrap code we want to make sure doesn’t result in queries to the database.
+
+---
+
+[.code-highlight: 8]
+
+```ruby
+test "it doesn't query the database when passed a PullRequest" do
+  component = Issues::Badge.new(
+    issue: @merged_pr.issue,
+    label: "Label",
+    pull: @merged_pr
+  )
+
+  assert_no_queries { component.render }
+end
+```
+
+^ Here's how we might use it in tests for our component
+
+---
+
+[.code-highlight: 8]
+
+```ruby
+test "it doesn't enqueue any jobs when passed a PullRequest" do
+  component = Issues::Badge.new(
+    issue: @merged_pr.issue,
+    label: "Label",
+    pull: @merged_pr
+  )
+
+  assert_no_enqueued_jobs { component.render }
+end
+```
+
+^ We use a similar ActiveJob test helper to make sure jobs aren’t triggered.
+
+^ Triggering jobs in a view? I've seen some things...
+
+---
+
+```ruby
+def state_class
+  if @pull&.merged?
+    Primer::State::PURPLE
+  elsif @pull&.closed? || @issue.closed?
+    return Primer::State::RED
+  else
+    return Primer::State::GREEN
+  end
+end
+
+def octicon_name
+  if @pull&.merged?
+    Icons::GIT_MERGE
+  elsif @pull
+    Icons::GIT_PULL_REQUEST
+  elsif @issue.closed?
+    Icons::ISSUE_CLOSED
+  else
+    Icons::ISSUE_OPENED
+  end
+end
+```
+
+^ So if we go back to the two conditional trees in our component, it seems to me like we might have two components here, not one.
+
+^ There’s a lot of switching here around whether we’re dealing with a pull request or not.
+
+^ So let’s try making a separate PullRequest badge and see what happens!
+
+---
+
+```ruby
+def initialize(pull:, label:)
+  @pull = pull
+  @label = label
+end
+
+def render
+  <<-html
+  <div class="#{Primer::State::BASE} #{state_class}">
+    #{octicon(octicon_name)} #{@label}
+  </div>
+  html
+end
+
+private
+
+def state_class
+  if @pull.merged?
+    Primer::State::PURPLE
+  elsif @pull.closed?
+    return Primer::State::RED
+  else
+    return Primer::State::GREEN
+  end
+end
+
+def octicon_name
+  @pull.merged? ? Icons::GIT_MERGE : Icons::GIT_PULL_REQUEST
+end
+```
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 8-10]
+
+^ With separate components, our conditionals are much simpler.
+
+```ruby
+def initialize(issue:, label:)
+  @issue = issue
+  @label = label
+end
+
+def render
+  <<-html
+  <div class="#{Primer::State::BASE} #{state_class}">
+    #{octicon(octicon_name)} #{@label}
+  </div>
+  html
+end
+
+private
+
+def state_class
+  if @issue.closed?
+    Primer::State::RED
+  else
+    Primer::State::GREEN
+  end
+end
+
+def octicon_name
+  if @issue.closed?
+    Icons::ISSUE_CLOSED
+  else
+    Icons::ISSUE_OPENED
+  end
+end
+```
+
+^ Our issues badge ends up being even simpler!
+
+^ But now there is some duplication. We’re still building the same element from our design system.
+
+^ So how about we extract the shared code?
+
+---
+
+```ruby
+module Primer
+  class Badge
+    include OcticonsHelper
+
+    def self.render(octicon_name:, color:, label:)
+      <<-html
+      <div class="#{Primer::State::BASE} #{color}">
+        #{octicon(octicon_name)} #{label}
+      </div>
+      html
+    end
+  end
+end
+```
+
+^ So here’s our new component, implemented as part of our design system. It no longer has any coupling to our app’s domain at all.
+
+^ You could imagine this being provided by the design system library, even so far as living outside of our app’s main codebase.
+
+---
+
+[.code-highlight: 9-13]
+
+```ruby
+module Issues
+  class Badge
+    def initialize(issue:, label:)
+      @issue = issue
+      @label = label
+    end
+
+    def render
+      Primer::Badge.render(
+        octicon_name: octicon_name,
+        color: color,
+        label: @label
+      )
+    end
+
+    private
+
+    def color; end
+    def octicon_name; end
+  end
+end
+```
+
+^ So let’s refactor our Issue and PullRequest badges to use our Primer badge.
+
+^ PAUSE
+
+^ But there’s still more we can do here.
+
+^ Let’s think about functional purity again.
+
+---
+
+```ruby
+test "it doesn't query the database when passed a PullRequest" do
+  component = Issues::Badge.new(
+    issue: @merged_pr.issue,
+    label: "Label",
+    pull: @merged_pr
+  )
+
+  assert_no_queries do
+    component.render
+  end
+end
+```
+
+^ We were mainly concerned with our component unintentionally querying the database.
+
+^ But what if we could avoid passing in ActiveRecord objects at all? That would basically eliminate the risk.
+
+---
+
+```ruby
+module Issues
+  class Badge
+    def color
+      if @issue.closed?
+        Primer::State::RED
+      else
+        Primer::State::GREEN
+      end
+    end
+
+    def octicon_name
+      if @issue.closed?
+        Icons::ISSUE_CLOSED
+      else
+        Icons::ISSUE_OPENED
+      end
+    end
+  end
+end
+```
+
+^ Looking back at our Issue badge, it looks like we’re only depending on a single boolean attribute on Issue.
+
+---
+
+```ruby
+module Issues
+  class Badge
+    def self.render(is_closed:, label:)
+      if is_closed
+        Primer::Badge.render(
+          octicon_name: Icons::ISSUE_CLOSED,
+          color: Primer::State::RED,
+          label: label
+        )
+      else
+        Primer::Badge.render(
+          octicon_name: Icons::ISSUE_OPENED,
+          color: Primer::State::GREEN,
+          label: label
+        )
+      end
+    end
+  end
+end
+```
+
+^ So let’s just pass in that single attribute instead!
+
+---
+
+```ruby
+module PullRequests
+  class Badge
+    def self.render(state:, label:)
+      case state
+      when PullRequest::States::MERGED
+        Primer::Badge.render(
+          octicon_name: Icons::GIT_MERGE,
+          color: Primer::State::PURPLE,
+          label: label
+        )
+      when PullRequest::States::CLOSED
+        Primer::Badge.render(
+          octicon_name: Icons::GIT_PULL_REQUEST,
+          color: Primer::State::RED,
+          label: label
+        )
+      when PullRequest::States::OPEN
+        Primer::Badge.render(
+          octicon_name: Icons::GIT_PULL_REQUEST,
+          color: Primer::State::GREEN,
+          label: label
+        )
+      end
+    end
+  end
+end
+```
+
+^ Looking at the PullRequest badge, it needs to know a little more about PullRequests, but not much.
+
+^ In this case it makes sense to use an existing state value instead of passing the entire PullRequest object in.
+
+---
+
+```ruby
+module Issues
+  class Badge
+    def self.render(state:, label:)
+      case state
+      when Issue::States::OPEN
+        Primer::Badge.render(
+          octicon_name: Icons::ISSUE_OPENED,
+          color: Primer::State::GREEN,
+          label: label
+        )
+      when Issue::States::CLOSED
+        Primer::Badge.render(
+          octicon_name: Icons::ISSUE_CLOSED,
+          color: Primer::State::RED,
+          label: label
+        )
+      end
+    end
+  end
+end
+```
+
+^ For consistency’s sake, let’s refactor the issue badge to use the same state argument.
+
+---
+
+```ruby
+module Issues
+  class Badge
+    def self.render(state:)
+      case state
+      when Issue::States::OPEN
+        Primer::Badge.render(
+          octicon_name: Icons::ISSUE_OPENED,
+          color: Primer::State::GREEN,
+          label: state.to_s.titleize
+        )
+      when Issue::States::CLOSED
+        Primer::Badge.render(
+          octicon_name: Icons::ISSUE_CLOSED,
+          color: Primer::State::RED,
+          label: state.to_s.titleize
+        )
+      end
+    end
+  end
+end
+```
+
+^ And finally, we can remove the label argument, as we were just using a titleized version of the state anyways.
+
+---
+
+# [fit] Types
+
+^ So what about types?
+
+---
+
+```ruby
+module Issues
+  class Badge
+    def self.render(state:)
+      case state
+      when Issue::States::OPEN
+        Primer::Badge.render(
+          octicon_name: Icons::ISSUE_OPENED,
+          color: Primer::State::GREEN,
+          label: state.to_s.titleize
+        )
+      when Issue::States::CLOSED
+        Primer::Badge.render(
+          octicon_name: Icons::ISSUE_CLOSED,
+          color: Primer::State::RED,
+          label: state.to_s.titleize
+        )
+      end
+    end
+  end
+end
+```
+
+^ Based on what we’ve come up with, they don’t look so necessary any more.
+
+^ By using constants for our expected values, we make it easy for consumers of our components to pass in a value we expect.
+
+---
+
+# [fit] Performance
+
+^ So let’s talk about performance.
+
+---
+
+# [fit] 6s
+### [fit] GET + assert
+
+^ In our test suite, Controller tests take about six seconds for loading a page and asserting against its contents.
+
+^ What about our new unit tests?
+
+---
+
+# [fit] 50ms
+### [fit] .render + assert
+
+^ They clocked in at around 50 milliseconds each running in the same suite.
+
+^ These measurements are independent of any setup routines.
+
+---
+
+# [fit] 120x
+
+^ That’s a hundred and twenty times faster.
+
+---
+
+# [fit] .5s vs 60s
+
+^ This means that the ten unit tests we wrote for components that run in half a second would take a whole minute if they were controller tests.
+
+^ PAUSE
+
+^ So to look back
+
+---
+
+```erb
+<% if pull && pull.merged? %>
+  <div class="State State--purple">
+    <%= octicon('git-merge') %> Merged
+  </div>
+<% elsif pull && pull.closed? %>
+  <div class="State State--red">
+    <%= octicon('git-pull-request') %> Closed
+  </div>
+<% elsif pull %>
+  <div class="State State--green">
+    <%= octicon('git-pull-request') %> Open
+  </div>
+<% elsif issue && issue.closed? %>
+  <div class="State State--red">
+    <%= octicon('issue-closed') %> Closed
+  </div>
+<% elsif issue %>
+  <div class="State State--green">
+    <%= octicon('issue-opened') %> Open
+  </div>
+<% end %>
+```
+
+^ So to recap, we started with this traditional embedded ruby template that:
+
+^ Was hard to test efficiently
+
+^ Was impossible to measure with code coverage tools
+
+^ Overfetched ActiveRecord objects
+
+^ Failed basic Ruby code standards
+
+---
+
+```ruby
+module Issues
+  class Badge
+    def self.render(state:)
+      case state
+      when Issue::States::OPEN
+        Primer::Badge.render(
+          octicon_name: Icons::ISSUE_OPENED,
+          color: Primer::State::GREEN,
+          label: state.to_s.titleize
+        )
+      when Issue::States::CLOSED
+        Primer::Badge.render(
+          octicon_name: Icons::ISSUE_CLOSED,
+          color: Primer::State::RED,
+          label: state.to_s.titleize
+        )
+      end
+    end
+  end
+end
+```
+
+^ And ended up with this, a set of Ruby objects that:
+
+^ Map our domain models into a standard component from our design system.
+
+^ Are tested efficiently, in isolation
+
+^ Are audited using code coverage tools
+
+^ Only receive the data they need
+
+^ Follow the code standards of the Ruby language
+
+---
+
+# [fit] MVC
+
+^ This gives us higher confidence about our views, and perhaps most importantly, makes them a first class citizen in Rails.
+
+---
+
+# [fit] Thanks
+
+---
+
+# [fit] Q & A
+
+^ Repeat questions
