@@ -14,8 +14,9 @@ Excited to be giving first conference talk
 # Joel Hawksley
 ## hawksley.org
 
-^ My name is Joel.
-I live in Colorado.
+^ Name is Joel
+
+^ I live in Colorado
 
 ---
 
@@ -36,13 +37,11 @@ Give us a new way of thinking about the world
 
 ^ Especially true for me with React
 
----
+^ Changed the way I look at Rails
 
-# [fit] Rethinking the View Layer <br> with Components
+^ Going to talk about that change in perspective
 
-^
-Changed the way I look at Rails
-Going to talk about that change in perspective
+^ How we took a template in the GitHub app
 
 ---
 
@@ -71,12 +70,11 @@ Going to talk about that change in perspective
 ```
 
 ^
-- Do this through an exercise
-- Take template from the GitHub app
 - Is hard to test efficiently
 - Is impossible to measure with code coverage tools
 - Overfetches ActiveRecord objects
 - Fails basic Ruby code standards
+- And refactored it into a new, experimental addition to ActionView
 
 ---
 
@@ -85,19 +83,17 @@ Going to talk about that change in perspective
 ```
 
 ^
-- Refactor into Ruby classes
-- Are tested efficiently, in isolation
-- Are audited using code coverage tools
+- That allows us to test our views efficiently, in isolation
+- Use code coverage tools
 - Only receive the data they need
 - Follow the code standards of the Ruby language
 - And perhaps most importantly
 
 ---
 
-# [fit] >100x
+# [fit] >200x
 
-^
-Are over 100x faster to test
+^ Are over 200x faster to test
 
 ---
 
@@ -165,9 +161,12 @@ DHH said in the announcement of Rails 5
 
 ^
 - Progressive enhancement.
-- GitHub is built to be usable without Javascript enabled.
-- It’s easy to forget about users in developing countries
+- We like to say that we write our Javascript like it's 2005. It makes the site more pleasant to use, but at its core, most workflows work with it turned off.
+- While most of us here at RailsConf are lucky enough to be using modern, powerful devices
+- A lot of our new users are in developing countries
 - Low powered netbooks, chrome books, or tablets, which buckle under heavy Javascript.
+- At our scale, even a small percentage of users is a large number of people
+- For those using GitHub in the enterprise, there might be users on older browsers, and we don't want to abandon them either
 - Allows graceful fallback support for older browsers
 
 ---
@@ -197,6 +196,7 @@ DHH said in the announcement of Rails 5
 - Polyfills to second tier that need it.
 - Unsupported -> ONLY smaller set of polyfills
 - Deprecate browsers -> tiers of support
+- Because we can afford to only serve JS to the most modern browsers, we can be really strict about compatibility
 
 ---
 
@@ -288,32 +288,50 @@ All rendering on the server
 - State of issue or PR
 - PAUSE
 - Reuse for sticky headers
-- Only found a single happy path controller test
-- Not right
+- Deleted the contents of the view, pushed to CI, nothing failed
+- Not so simple at GitHub
+
+---
+
+# [fit] Rails 5.2
+
+^ 10-year-old Rails monolith
+
+^ Currently running on the latest version
 
 ---
 
 ```bash
 
-$ ls -1 github/app/models | wc -l
+$ ls -1 app/models | wc -l
 556
 
-$ find github/app/views -print | wc -l
-3718
+```
 
-$ ls -1 github/app/controllers | wc -l
+^ We have almost 600 models
+^ (And and additional 1500 or so concerns)
+
+---
+
+```bash
+$ ls -1 app/controllers | wc -l
 209
 ```
 
-^
-- Not so simple at GitHub
-- 10-year-old Rails monolith
-- 500 models
-- 3700 views
-- 200 controllers
-- Not including API
-- PAUSE
-- Affect approach to testing views?
+^ Over 200 controllers, not including our API
+
+---
+
+```bash
+$ find app/views -print | wc -l
+3718
+```
+
+^ And over 3700 views!
+
+^ PAUSE
+
+^ Affect how we test our views?
 
 ---
 
@@ -321,8 +339,8 @@ $ ls -1 github/app/controllers | wc -l
 ### [fit] GET + assert
 
 ^
-- Six second for single controller test
-- One minute for suite of ten tests just to get feedback
+- Six seconds for single controller test
+- One minute for ten test cases just to get feedback
 
 ---
 
@@ -331,7 +349,8 @@ $ ls -1 github/app/controllers | wc -l
 - Imagine that, every time you make a change.
 - DRAMATIC PAUSE
 - Ok, you get the point
-
+- When your view tests take six seconds per test case, that might make you write less tests
+- That's not good for anyone
 
 ---
 
