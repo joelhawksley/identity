@@ -209,11 +209,19 @@ All rendering on the server
 
 [.hide-footer]
 
-![fit](img/pjax.png)
+![fit](img/pjax-1.png)
 
 ^
 - New issue comment
 - JS intercepts click
+
+---
+
+[.hide-footer]
+
+![fit](img/pjax-2.png)
+
+^
 - AJAX request returns DOM nodes for sidebar, comment form, timeline
 - Inject results into page
 - Using PJAX, like Turbolinks
@@ -358,7 +366,7 @@ $ find app/views -print | wc -l
 
 ^
 - So why isn’t testing our views thoroughly a more common practice?
-- PAUSE
+- LONG PAUSE
 
 ---
 
@@ -373,8 +381,9 @@ $ find app/views -print | wc -l
 
 ^
 - Unit testing views isn’t common practice
-- Didn’t even know views could be tested directly before I starting researching this talk
-- Never seen it done in any of the Rails apps I’ve worked on
+- Never seen it done in any of the Rails apps I’ve worked on before GitHub
+- Nearly all of our view tests are those six-second controller tests
+- These costs discourage you from writing as many tests as you might otherwise write
 
 ---
 
@@ -599,7 +608,7 @@ end
 ^
 - If this was a method on a class, what aspects might we object to in a code review?
 - PAUSE - Ask audience
-- I can think of a couple:
+- Besides it being super long, I can think of a couple:
 
 ---
 
@@ -636,6 +645,14 @@ end
 ![fit](img/code-review-4.png)
 
 ^ What should we do when neither pull nor issue is passed?
+
+^ PAUSE
+
+---
+
+# [fit] Standards
+
+^ The reality is that we regularly do things in our templates that we’d never do in a Ruby class
 
 ^ PAUSE
 
@@ -703,7 +720,34 @@ end
 
 # [fit] Components
 
-^ React gives us a conceptual model that components should be simple, small, and reusable.
+^ React is all about components.
+
+^ A component encapsulates a piece of user interface.
+
+^ Multiple components are composed together to create a view.
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 2-4]
+[.code-highlight: 7]
+[.code-highlight: 3, 7]
+
+```jsx
+class Greeting extends React.Component {
+  render() {
+    return <div>Hello, {this.props.name}!</div>;
+  }
+}
+
+React.render(<Greeting name="World" />, document.getElementById('example'));
+```
+
+^ Here's one way of writing "Hello, World" in a React component.
+
+^ React components, at a minimum, implement a render method that returns HTML.
+
+^ Arguments passed to a component are assigned to the `props` object, which is accessible within the component's instance methods.
 
 ---
 
@@ -717,48 +761,13 @@ class IssueBadge extends React.Component {
     )
   }
 
-  _icon() {
-  }
-
-  _stateClass() {
-  }
-
-  _label() {
-  }
+  _icon() { ... }
+  _stateClass() { ... }
+  _label() { ... }
 }
 ```
 
 ^ Here’s an example of what the issue badge might look like as a React component.
-
-^ All react components expose a Render function that returns HTML.
-
----
-
-```ruby
-# badge_view.rb
-
-module Issues
-  class BadgeView
-    def initialize(issue, pull)
-      @issue = issue
-      @pull = pull
-    end
-
-    def state_class; end
-    def octicon_name; end
-    def label; end
-  end
-end
-```
-
-```erb
-<div class="State #{view.state_class}">
-  <%= octicon(view.octicon_name) %>
-  <%= view.label %>
-</div>
-```
-
-^ Kind of looks like what we had in our View Model example, but in a single file!
 
 ---
 
@@ -768,25 +777,9 @@ end
 
 ---
 
-```jsx
-class IssueBadge extends React.Component {
-  render() {
-    return (
-      <div className={ "State " + this._stateClass() }>
-        <i className={this._icon()} /> {this._label()}
-      </div>
-    )
-  }
-
-  _icon() { return this.props.issue.isClosed… }
-
-  _stateClass() {
-  }
-
-  _label() {
-  }
-}
-```
+[.code-highlight: all]
+[.code-highlight: 2-4]
+[.code-highlight: 5-8]
 
 ```javascript
 IssueBadge.propTypes = {
@@ -808,7 +801,29 @@ IssueBadge.propTypes = {
 
 ^ And a pull to sometimes be provided, and if so, with the boolean isClosed and isMerged attributes.
 
+---
+
+[.code-highlight: 10]
+
+```jsx
+class IssueBadge extends React.Component {
+  render() {
+    return (
+      <div className={ "State " + this._stateClass() }>
+        <i className={this._icon()} /> {this._label()}
+      </div>
+    )
+  }
+
+  _icon() { return this.props.issue.isClosed ... }
+  _stateClass() { ... }
+  _label() { ... }
+}
+```
+
 ^ When can then write code without checking for the presence of the issue object, as our type check will guarantee that it is present.
+
+^ PAUSE
 
 ---
 
@@ -833,19 +848,15 @@ IssueBadge.propTypes = {
 ---
 
 ```jsx
-describe('IssueBadge', function() {
-  it('should render the closed issue badge', function() {
-    expect(
-     shallow(<IssueBadge props={{ issue: { isClosed: true }}} />
-    ).
-    contains(<div className="State State--red">Closed</div>)).toBe(true);
-  });
+it('should render the closed issue badge', function() {
+  expect(shallow(<IssueBadge props={{ issue: { isClosed: true }}} />).
+  contains(<div className="State State--red">Closed</div>)).toBe(true);
 });
 ```
 
 ^ Here’s an example test that asserts against the output of our component.
 
-^ What’s great is that this test runs without touching the controller layer and without spinning up a browser.
+^ What’s great is that this test runs without touching the database and without spinning up a browser.
 
 ^ Which means that it's wicked fast.
 
@@ -853,21 +864,48 @@ describe('IssueBadge', function() {
 
 # [fit] React
 
-^ So React has components, types, functional purity, and lightweight testing in isolation
+^ So React has:
+
+---
+
+# [fit] Components
+
+^ Components
+
+---
+
+# [fit] Types
+^ Types
+
+---
+
+# [fit] Functional purity
+
+^ Functional purity
+
+---
+
+# [fit] Testing
+
+^ And lightweight testing in isolation
+
+---
+
+^ While React has a lot of advantages, it’s not compatible with our progressive enhancement architecture at GitHub.
+
+^ But I'm not so sure we should give up there.
 
 ---
 
 # [fit] Rails
 
-^ While I really wish we could use React at GitHub, it’s not compatible with our progressive enhancement approach.
+^ What might it look like to use these lessons from React to improve the Rails view layer?
 
-^ But there are plenty of ways we can use these lessons from React to improve the Rails view layer.
-
-^ So let’s see if we can use some of the techniques from React, and perhaps address address some of those code review comments.
+^ Let's give it a shot! Perhaps we can address some of those code review comments along the way.
 
 ---
 
-# Components
+# [fit] Components
 
 ^ So what might it look like to have components in Rails?
 
@@ -880,21 +918,95 @@ module Issues
 end
 ```
 
-^ We could express our views as objects, like everything else in Ruby!
+^ I think it would make sense to make it a class, like everything else in Ruby! Let's call it Badge, inside the Issues module.
+
+^ And since it's part of the view layer
 
 ---
 
 ```ruby
-test "requires an issue to be passed" do
-  assert_raises ArgumentError, "missing keyword: issue" do
-    Issues::Badge.new
+module Issues
+  class Badge < ActionView::Component
   end
 end
 ```
 
+^ Let's put it inside of ActionView!
+
+---
+
+# [fit] API
+
+^ And how might we call it?
+
+---
+
+```erb
+<%= render Issues::Badge %>
+```
+
+^ ActionView gives us the `render` entry point, so I think it makes sense to use that.
+
 ^ So let’s do some test driven development.
 
+---
+
+[.code-highlight: all]
+[.code-highlight: 3]
+
+```ruby
+test "requires an issue to be passed" do
+  assert_raises ArgumentError, "missing keyword: issue" do
+    render_string("<%= render Issues::Badge %>")
+  end
+end
+```
+
 ^ First, let’s require that an issue is always passed to our component.
+
+^ To make this work, we'll first need a way of rendering a piece of a template by itself, so let's write a `render_string` helper.
+
+---
+
+```ruby
+def render_string(string)
+  html = ApplicationController.new.view_context.render(inline: string)
+
+  Nokogiri::HTML(html)
+end
+```
+
+^ Rails gives us the tools to render an inline template without too much work.
+
+^ And returning a rich Nokogiri object gives us something to dig into in our test assertions later.
+
+---
+
+```erb
+<%= render Issues::Badge %>
+```
+
+^ So coming back to our API sketch, we need ActionView's render method to support our new Component argument type
+
+---
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component)
+      return super unless component < ActionView::Component
+
+      component.html
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ Luckily we're writing Ruby, so we can monkey patch!
+
+^ With this code, we'll call the `html` class method on a component if
 
 ---
 
