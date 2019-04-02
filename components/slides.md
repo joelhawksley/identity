@@ -58,7 +58,7 @@ Give us a new way of thinking about the world
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% else %>
+<% elsif pull %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -284,7 +284,7 @@ All rendering on the server
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% else %>
+<% elsif pull %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -409,7 +409,7 @@ $ find app/views -print | wc -l
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% else %>
+<% elsif pull %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -467,7 +467,7 @@ $ find app/views -print | wc -l
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% else %>
+<% elsif pull %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -561,7 +561,7 @@ end
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% else %>
+<% elsif pull %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -605,7 +605,7 @@ end
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% else %>
+<% elsif pull %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -1157,7 +1157,7 @@ end
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% else %>
+<% elsif pull %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -1831,7 +1831,7 @@ end
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% else %>
+<% elsif pull %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
