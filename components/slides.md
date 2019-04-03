@@ -54,7 +54,7 @@ Give us a new way of thinking about the world
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull.draft? %>
+<% elsif pull && pull.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
@@ -280,7 +280,7 @@ All rendering on the server
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull.draft? %>
+<% elsif pull && pull.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
@@ -405,7 +405,7 @@ $ find app/views -print | wc -l
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull.draft? %>
+<% elsif pull && pull.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
@@ -463,7 +463,7 @@ $ find app/views -print | wc -l
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull.draft? %>
+<% elsif pull && pull.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
@@ -557,7 +557,7 @@ end
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull.draft? %>
+<% elsif pull && pull.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
@@ -601,7 +601,7 @@ end
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull.draft? %>
+<% elsif pull && pull.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
@@ -1153,7 +1153,7 @@ end
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull.draft? %>
+<% elsif pull && pull.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
@@ -1827,7 +1827,7 @@ end
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull.draft? %>
+<% elsif pull && pull.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
