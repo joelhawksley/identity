@@ -936,6 +936,81 @@ it('should render the closed issue badge', function() {
 
 ---
 
+# [fit] Tests
+
+^ Before we start refactoring, we're going to need some tests.
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 2-4]
+[.code-highlight: 2]
+[.code-highlight: 3]
+
+```erb
+<% if pull && pull.merged? %>
+  <div class="State State--purple">
+    <%= octicon('git-merge') %> Merged
+  </div>
+<% elsif pull && pull.closed? %>
+  <div class="State State--red">
+    <%= octicon('git-pull-request') %> Closed
+  </div>
+<% elsif pull && pull.draft? %>
+  <div class="State">
+  <%= octicon('git-pull-request') %> Draft
+  </div>
+<% elsif pull %>
+  <div class="State State--green">
+    <%= octicon('git-pull-request') %> Open
+  </div>
+<% elsif issue && issue.closed? %>
+  <div class="State State--red">
+    <%= octicon('issue-closed') %> Closed
+  </div>
+<% elsif issue %>
+  <div class="State State--green">
+    <%= octicon('issue-opened') %> Open
+  </div>
+<% end %>
+```
+
+^ What might it look like to test our view here?
+
+^ In each case, we're doing three things: assigning a class name, picking an icon, and setting a label.
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 6]
+[.code-highlight: 7]
+[.code-highlight: 8]
+
+```ruby
+it "renders the open issue badge" do
+  create(:issue, :open)
+
+  get :index
+
+  assert_select(".State.State--green")
+  assert_select(".octicon-issue-opened")
+  assert_includes(response.body, "Open")
+end
+
+it "renders the closed issue badge"
+it "renders the open pull request badge"
+it "renders the closed pull request badge"
+it "renders the merged pull request badge"
+it "renders the draft pull request badge"
+it "renders the closed pull request badge for a closed draft pull request"
+```
+
+^ So to start, let's add some of those slow controller tests to assert these three things for each state.
+
+^ We'll assert that we have the correct class name, icon, and label
+
+---
+
 ```ruby
 module Issues
   class Badge
