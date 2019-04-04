@@ -938,7 +938,7 @@ it('should render the closed issue badge', function() {
 
 # [fit] Tests
 
-^ Before we start refactoring, we're going to need some tests.
+^ Before we start refactoring, we're going to need some tests so we can make sure we aren't breaking anything.
 
 ---
 
@@ -975,7 +975,7 @@ it('should render the closed issue badge', function() {
 <% end %>
 ```
 
-^ What might it look like to test our view here?
+^ What might it look like to test the partial?
 
 ^ In each case, we're doing three things: assigning a class name, picking an icon, and setting a label.
 
@@ -1005,66 +1005,125 @@ it "renders the draft pull request badge"
 it "renders the closed pull request badge for a closed draft pull request"
 ```
 
-^ So to start, let's add some of those slow controller tests to assert these three things for each state.
+^ To start, let's add some of those slow controller tests to assert these three things for each state.
 
 ^ We'll assert that we have the correct class name, icon, and label
 
 ---
 
+[.background-color: #008000]
+[.header: #ffffff]
+
+# [fit] 7 examples, 0 failures
+
+^ And now we have test coverage.
+
+^ Now, like I did before, let's delete the issue badge partial.
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] 7 examples, 7 failures
+
+^ We have failing tests!
+
+^ I think we're ready to start refactoring.
+
+---
+
+^ So what might a component look like in the Rails world?
+
+---
+
 ```ruby
+# app/components/issues/badge.rb
+
 module Issues
   class Badge
   end
 end
 ```
 
-^ I think it would make sense to make it a class, like everything else in Ruby! Let's call it Badge, inside the Issues module.
-
-^ And since it's part of the view layer
-
----
-
-```ruby
-module Issues
-  class Badge < ActionView::Component
-  end
-end
-```
-
-^ Let's put it inside of ActionView!
+^ I think it would make sense to make it a class, like everything else in Ruby! Let's call it badge, inside the Issues module.
 
 ---
 
 # [fit] API
 
-^ And how might we call it?
+^ And how might we call it in our view?
 
 ---
 
 ```erb
-<%= render Issues::Badge %>
+<%= render partial: "issue_badge", locals: { issue: issue, pull: issue.pull_request } %>
+```
+
+^ Right now we're rendering the issue badge partial the traditional way,
+
+---
+
+```erb
+<%= render Issues::Badge, issue: issue, pull: issue.pull_request %>
 ```
 
 ^ ActionView gives us the `render` entry point, so I think it makes sense to use that.
 
-^ So let’s do some test driven development.
+^ So let’s see if we can get our first test to pass.
 
 ---
 
-[.code-highlight: all]
-[.code-highlight: 3]
+[.code-highlight: 3-9]
 
 ```ruby
-test "requires an issue to be passed" do
-  assert_raises ArgumentError, "missing keyword: issue" do
-    render_string("<%= render Issues::Badge %>")
+module Issues
+  class Badge
+    def render
+      <<-html
+      <div class="State State--green">
+        #{octicon('issue-opened')} Open
+      </div>
+      html
+    end
   end
 end
 ```
 
-^ First, let’s require that an issue is always passed to our component.
+^ For now, let's mimic React and add a #render method to our component that returns the open issue badge from our partial.
 
-^ To make this work, we'll first need a way of rendering a piece of a template by itself, so let's write a `render_string` helper.
+---
+
+[.code-highlight: all]
+
+```ruby
+it "renders the open issue badge" do
+  create(:issue, :open)
+
+  get :index
+
+  assert_select(".State.State--green")
+  assert_select(".octicon-issue-opened")
+  assert_includes(response.body, "Open")
+end
+```
+
+^ Let's give it a run.
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] 'Issues::Badge' is not an ActiveModel-compatible object.
+
+^ Interesting. It looks like ActionView#render doesn't like being passed our component.
+
+^ So let's teach it how to
+
+---
+
+
 
 ---
 
@@ -1083,7 +1142,7 @@ end
 ---
 
 ```erb
-<%= render Issues::Badge %>
+<%= render Issues::state %>
 ```
 
 ^ So coming back to our API sketch, we need ActionView's render method to support our new Component argument type
@@ -1112,7 +1171,7 @@ end
 
 ```ruby
 module Issues
-  class Badge
+  class State
     def initialize(issue:)
     end
   end
@@ -1130,8 +1189,8 @@ end
 ---
 
 ```ruby
-test "returns the merged badge for a merged PullRequest" do
-  result = Issues::Badge.new(issue: @merged.issue, pull: @merged).render
+test "returns the merged state for a merged PullRequest" do
+  result = Issues::state.new(issue: @merged.issue, pull: @merged).render
 
   assert_includes result, "Merged"
   assert_includes result, "State--purple"
@@ -1147,7 +1206,7 @@ end
 
 ```ruby
 module Issues
-  class Badge
+  class State
     include OcticonsHelper
 
     def initialize(issue:)
@@ -1171,8 +1230,8 @@ end
 ---
 
 ```ruby
-test "returns the merged badge for a merged PullRequest" do
-  result = Issues::Badge.new(issue: @merged_pr.issue, pull: @merged_pr).render
+test "returns the merged state for a merged PullRequest" do
+  result = Issues::state.new(issue: @merged_pr.issue, pull: @merged_pr).render
 
   assert_includes result, "Merged"
   assert_includes result, "State--purple"
@@ -1181,8 +1240,8 @@ end
 
 # ...
 
-test "returns the open badge for an open issue" do
-  result = Issues::Badge.new(issue: @open_issue).render
+test "returns the open state for an open issue" do
+  result = Issues::state.new(issue: @open_issue).render
 
   assert_includes result, "Open"
   assert_includes result, "State--green"
@@ -1412,7 +1471,7 @@ end
 
 ```ruby
 test "renders the label" do
-  result = Issues::Badge.new(
+  result = Issues::state.new(
     issue: @merged_pr.issue,
     label: "Label",
     pull: @merged_pr
@@ -1454,7 +1513,7 @@ end
 
 ```ruby
 test "it doesn't query the database when passed a PullRequest" do
-  component = Issues::Badge.new(
+  component = Issues::state.new(
     issue: @merged_pr.issue,
     label: "Label",
     pull: @merged_pr
@@ -1472,7 +1531,7 @@ end
 
 ```ruby
 test "it doesn't enqueue any jobs when passed a PullRequest" do
-  component = Issues::Badge.new(
+  component = Issues::state.new(
     issue: @merged_pr.issue,
     label: "Label",
     pull: @merged_pr
@@ -1516,7 +1575,7 @@ end
 
 ^ There’s a lot of switching here around whether we’re dealing with a pull request or not.
 
-^ So let’s try making a separate PullRequest badge and see what happens!
+^ So let’s try making a separate PullRequest state and see what happens!
 
 ---
 
@@ -1591,7 +1650,7 @@ def octicon_name
 end
 ```
 
-^ Our issues badge ends up being even simpler!
+^ Our issues state ends up being even simpler!
 
 ^ But now there is some duplication. We’re still building the same element from our design system.
 
@@ -1601,7 +1660,7 @@ end
 
 ```ruby
 module Primer
-  class Badge
+  class State
     include OcticonsHelper
 
     def self.render(octicon_name:, color:, label:)
@@ -1625,14 +1684,14 @@ end
 
 ```ruby
 module Issues
-  class Badge
+  class State
     def initialize(issue:, label:)
       @issue = issue
       @label = label
     end
 
     def render
-      Primer::Badge.render(
+      Primer::state.render(
         octicon_name: octicon_name,
         color: color,
         label: @label
@@ -1647,7 +1706,7 @@ module Issues
 end
 ```
 
-^ So let’s refactor our Issue and PullRequest badges to use our Primer badge.
+^ So let’s refactor our Issue and PullRequest states to use our Primer badge.
 
 ^ PAUSE
 
@@ -1679,7 +1738,7 @@ end
 
 ```ruby
 module Issues
-  class Badge
+  class State
     def color
       if @issue.closed?
         Primer::State::RED
