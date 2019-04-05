@@ -1119,11 +1119,80 @@ end
 
 ^ Interesting. It looks like ActionView#render doesn't like being passed our component.
 
-^ So let's teach it how to
+^ So let's teach it how to handle it!
 
 ---
 
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args, &block)
+      return super unless component == Issues::Badge
 
+      component.new.render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ Short of forking Rails and changing the original definition of ActionView#render, a monkey patch will get us unblocked for now.
+
+^ Or will it?
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] undefined method octicon for Issues::Badge
+
+^ This error is interesting.
+
+---
+
+[.hide-footer]
+[.slidenumbers: false]
+[.slidecount: false]
+![fit](img/code-review-1.png)
+
+^ Remember our code review comment about not knowing where the octicon method came from?
+
+^ Now our component is asking the same thing.
+
+---
+
+[.code-highlight: 3]
+
+```ruby
+module Issues
+  class Badge
+    include OcticonsHelper
+
+    def render
+      <<-html
+      <div class="State State--green">
+        #{octicon('issue-opened')} Open
+      </div>
+      html
+    end
+  end
+end
+```
+
+^ So let's tell it where to find it!
+
+^ So let's run our test again.
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] Expected element matching ".State.State--green", found 0
+
+^ Darn. Not quite there yet.
 
 ---
 
