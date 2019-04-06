@@ -1027,7 +1027,7 @@ it "renders the closed pull request badge for a closed draft pull request"
 
 ^ We have failing tests!
 
-^ I think we're ready to start refactoring.
+^ Now we can start changing things and know if we’ve broken them
 
 ---
 
@@ -3552,7 +3552,7 @@ end
 
 ^ Are tested efficiently, in isolation
 
-^ Are audited using code coverage tools
+^ Encapsulate their dependencies
 
 ^ Only receive the data they need
 
@@ -3562,7 +3562,7 @@ end
 
 # [fit] MVC
 
-^ This gives us higher confidence about our views, and perhaps most importantly, makes them a first class citizen in Rails.
+^ All of these things give us higher confidence in our view layer, and perhaps most importantly, makes it a first class citizen in Rails.
 
 ---
 
