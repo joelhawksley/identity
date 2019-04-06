@@ -69,12 +69,16 @@ Excited to be giving first conference talk
 <% end %>
 ```
 
-^
-- Is hard to test efficiently
-- Is impossible to measure with code coverage tools
-- Makes it easy to query the database in a view
-- Fails basic Ruby code standards
-- And refactored it into a new, experimental addition to ActionView
+^ Is hard to test efficiently
+
+^ Is impossible to measure with code coverage tools
+
+^ Makes it easy to query the database in a view
+
+^ Fails basic Ruby code standards
+
+^ And refactored it into a new, experimental addition to ActionView
+
 
 ---
 
@@ -125,10 +129,11 @@ Excited to be giving first conference talk
 
 # [fit] Data -> HTML
 
-^
-- Views are programs
-- They input (data), and return an output, HTML.
-- Rails over the years?
+^ Views are functions
+
+^ They input (data), and return an output, HTML.
+
+^ Rails over the years?
 
 ---
 
@@ -137,11 +142,14 @@ Excited to be giving first conference talk
 # [fit] 2012 **Turbolinks**
 # [fit] 2016 **API Mode**
 
-^
-- Things haven’t changed much
-- Rails still using embedded ruby templates
-- Rails 4 partial page reloads with Turbolinks
-- And Rails 5 API mode
+^ Things haven’t changed much
+
+^ Rails still ships with ERB
+
+^ Rails 4 partial page reloads with Turbolinks
+
+^ And Rails 5 API mode
+
 
 ---
 
@@ -158,8 +166,7 @@ DHH said in the announcement of Rails 5
 # [fit] 2012 **Turbolinks**
 # [fit] 2016 **API Mode**
 
-^
-- The history of the Rails view layer is one of most of us moving away from it
+^ The history of the Rails view layer is one of most of us moving away from it
 
 ---
 
@@ -169,23 +176,30 @@ DHH said in the announcement of Rails 5
 
 # [fit] ERB
 
-^
-- Still using embedded ruby
-- Why isn’t GitHub a single page app like everything else these days?
+^ Still using embedded ruby
+
+^ Why isn’t GitHub a single page app like everything else these days?
 
 ---
 
 # [fit] Progressive <br> Enhancement
 
-^
-- Progressive enhancement.
-- We like to say that we write our Javascript like it's 2005. It makes the site more pleasant to use, but at its core, most workflows work with it turned off.
-- While most of us here at RailsConf are lucky enough to be using modern, powerful devices
-- A lot of our new users are in developing countries
-- Low powered netbooks, chrome books, or tablets, which buckle under heavy Javascript.
-- At our scale, even a small percentage of users is a large number of people
-- For those using GitHub in the enterprise, there might be users on older browsers, and we don't want to abandon them either
-- Allows graceful fallback support for older browsers
+^ Progressive enhancement.
+
+^ We like to say that we write our Javascript like it's 2005. It makes the site more pleasant to use, but at its
+ core, most workflows work with it turned off.
+^ While most of us here at RailsConf are lucky enough to be using modern, powerful devices
+
+^ A lot of our new users are in developing countries
+
+^ Low powered netbooks, chrome books, or tablets, which buckle under heavy Javascript.
+
+^ At our scale, even a small percentage of users is a large number of people
+
+^ For those using GitHub in the enterprise, there might be users on older browsers, and we don't want to abandon
+ them either
+^ Allows graceful fallback support for older browsers
+
 
 ---
 
@@ -207,14 +221,20 @@ DHH said in the announcement of Rails 5
 <% end %>
 ```
 
-^
-- How do we do it?
-- Couple tiers of Javascript bundles
-- Fully supported browsers -> normal bundles.
-- Polyfills to second tier that need it.
-- Unsupported -> ONLY smaller set of polyfills
-- Deprecate browsers -> tiers of support
-- Because we can afford to only serve JS to the most modern browsers, we can be really strict about compatibility
+^ How do we do it?
+
+^ Couple tiers of Javascript bundles
+
+^ S Fully supported browsers -> normal bundles.
+
+^ S Polyfills to second tier that need it.
+
+^ S Unsupported -> ONLY smaller set of polyfills
+
+^ Deprecate browsers -> tiers of support
+
+^ Because we only serve JS to the most modern browsers, we can be really strict about compatibility
+
 
 ---
 
@@ -227,20 +247,25 @@ All rendering on the server
 
 ![fit](img/pjax-1.png)
 
-^
-- New issue comment
-- JS intercepts click
+^ New issue comment
+
+^ JS intercepts click
+
 
 ---
 
 ![fit](img/pjax-2.png)
 
-^
-- AJAX request returns DOM nodes for sidebar, comment form, timeline
-- Inject results into page
-- Using PJAX, like Turbolinks
-- Javascript turned off -> normal page request and reload
-- PAUSE
+^ AJAX request returns DOM nodes for sidebar, comment form, timeline
+
+^ Inject results into page
+
+^ Using PJAX, like Turbolinks
+
+^ Javascript turned off -> normal page request and reload
+
+^ PAUSE
+
 
 ---
 
@@ -250,20 +275,25 @@ All rendering on the server
 
 ![fit](img/sticky.gif)
 
-^
-- Project paper cuts
-- Make GitHub better through incorporating community feedback
-- Over a hundred releases in the past year
-- Recently shipped sticky headers
+^ Project paper cuts
+
+^ Make GitHub better through incorporating community feedback
+
+^ Over a hundred releases in the past year
+
+^ Recently shipped sticky headers
+
 
 ---
 
 ![fit](img/issue-status-highlight.png)
 
-^
-- This is the issue badge
-- Display the status of Issues and PRs
-- We use it all over our app
+^ This is the issue badge
+
+^ Display the status of Issues and PRs
+
+^ We use it all over our app
+
 
 ---
 
@@ -277,9 +307,9 @@ All rendering on the server
 # [fit] belongs_to:
 # [fit] PullRequest
 
-^
-- In GitHub data model
-- PR is just an issue with an associated PullRequest object.
+^ In GitHub data model
+
+^ PR is just an issue with an associated PullRequest object.
 
 ---
 
@@ -311,22 +341,26 @@ All rendering on the server
 <% end %>
 ```
 
-^
-- Shared issue badge partial
-- Renders icon, label, color
-- State of issue or PR
-- PAUSE
-- Reuse for sticky headers
-- Deleted the contents of the view, pushed to CI, nothing failed
-- Not so simple at GitHub
+^ Shared issue badge partial
+
+^ Renders icon, label, color
+
+^ State of issue or PR
+
+^ PAUSE
+
+^ Reuse for sticky headers
+
+^ Deleted the contents of the view, pushed to CI, nothing failed
+
+^ Not so simple at GitHub
+
 
 ---
 
 # [fit] Rails 5.2
 
-^ 10-year-old Rails monolith
-
-^ Currently running on the latest version
+^ GitHub is a Rails monolith that has been growing and evolving for over 10 years
 
 ---
 
@@ -367,11 +401,12 @@ $ find app/views -print | wc -l
 # [fit] 6s
 ### [fit] GET + assert
 
-^
-- Six seconds for single controller test
-- One minute for ten test cases just to get feedback
+^ Six seconds for single controller test
+^ One minute for ten test cases just to get feedback
 
 ---
+
+![fit](img/jeopardy.jpg)
 
 ^ So you know how long the Jeopardy theme song is?
 
@@ -387,9 +422,9 @@ $ find app/views -print | wc -l
 
 # [fit] ?
 
-^
-- So why isn’t testing our views thoroughly a more common practice?
-- LONG PAUSE
+^ So why isn’t testing our views thoroughly a more common practice?
+
+^ LONG PAUSE
 
 ---
 
@@ -453,11 +488,13 @@ $ find app/views -print | wc -l
 
 # [fit] Unit <br> Testing
 
-^
-- Unit testing views isn’t common practice
-- Never seen it done in any of the Rails apps I’ve worked on before GitHub
-- Nearly all of our view tests are those six-second controller tests
-- These costs discourage you from writing as many tests as you might otherwise write
+^ Unit testing views isn’t common practice
+
+^ Never seen it done in any of the Rails apps I’ve worked on before GitHub
+
+^ Nearly all of our view tests are those six-second controller tests
+
+^ These costs discourage you from writing as many tests as you might otherwise write
 
 ---
 
@@ -489,33 +526,34 @@ $ find app/views -print | wc -l
 <% end %>
 ```
 
-^
-- Partials often end up being tested for each of the views they are included in
-- Leads to duplication of tests
-- Cheapens benefit of reusing the partial in the first place
+^ Partials often end up being tested for each of the views they are included in
+
+^ Leads to duplication of tests
+
+^ Cheapens benefit of reusing the partial in the first place
+
 
 ---
 
 # [fit] Code <br> Coverage
 
-^
-- Another problem is measuring code coverage
+^ Another problem is measuring code coverage
 
 ---
 
 # [fit] ~~SimpleCov <br> Coveralls~~
 
-^
-- Neither SimpleCov nor Coveralls support view code
-- Combined with testing friction puts views in blind spot
+^ Neither SimpleCov nor Coveralls support view code
+
+^ Combined with testing friction puts views in blind spot
 
 ---
 
 # [fit] Implicit <br> Arguments
 
-^
-- Another weakness is the lack of a method signature
-- Unlike a method declaration on an object, views do not expose the values they are expected to receive
+^ Another weakness is the lack of a method signature
+
+^ Unlike a method declaration on an object, views do not expose the values they are expected to receive
 
 ---
 
@@ -551,9 +589,9 @@ $ find app/views -print | wc -l
 
 ^ What data does this view need to render?
 
-^ A “pull”?
+^ A "pull"?
 
-^ An “issue”?
+^ An "issue"?
 
 ^ Should I be able to pass in both? Neither?
 
@@ -599,11 +637,13 @@ end
 
 # [fit] View Models
 
-^
-- That’s much better, right?
-- I’ve seen a couple problems with this approach:
-- We end up with two files that are more or less interlocked. One can’t exist without the other.
-- Testing the view model makes us feel like we’re testing the view, when we’re not.
+^ That’s much better, right?
+
+^ I’ve seen a couple problems with this approach:
+
+^ We end up with two files that are more or less interlocked. One can’t exist without the other.
+
+^ Testing the view model makes us feel like we’re testing the view, when we’re not.
 
 ---
 
@@ -647,10 +687,11 @@ end
 
 ![fit](img/code-review.png)
 
-^
-- If this was a method on a class, what aspects might we object to in a code review?
-- PAUSE - Ask audience
-- Besides it being a super long method, I can think of a couple:
+^ If this was a method on a class, what aspects might we object to in a code review?
+
+^ PAUSE - Ask audience
+
+^ Besides it being a super long method, I can think of a couple:
 
 ---
 
