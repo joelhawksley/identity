@@ -2990,6 +2990,14 @@ end
 
 ---
 
+# [fit] Functional <br> Purity
+
+^ So remember how we saw how React encouraged functional purity, minimizing side-affects?
+
+^ By passing values into our components instead of objects, we're seeing similar benefits.
+
+---
+
 ^ But what about our pull request component? How might we decouple it from ActiveRecord?
 
 ---
@@ -3227,18 +3235,9 @@ class IssueBadge extends React.Component {
 
 ---
 
-# [fit] Functional <br> Purity
-
-^ So remember how we saw how React encouraged functional purity, minimizing side-affects?
-
-^ By passing values into our components instead of objects, we're seeing similar benefits.
-
----
-
 # [fit] Code <br> Coverage
 
 ^ And remember how we were unable to get coverage reports for our views?
-
 
 ---
 
