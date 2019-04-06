@@ -2046,6 +2046,46 @@ end
 
 ^ At that point, our component will know about the content, so we can render it.
 
+^ So since we're expecting all components to have a content accessor,
+
+---
+
+```ruby
+module ActionView
+  class Component
+    def render
+      eval(
+        "output_buffer = ActionView::OutputBuffer.new; " +
+        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
+      )
+    end
+  end
+end
+```
+
+^ Let's go back to ActionView::Component
+
+---
+
+[.code-highlight: 3]
+
+```ruby
+module ActionView
+  class Component
+    attr_accessor :content
+
+    def render
+      eval(
+        "output_buffer = ActionView::OutputBuffer.new; " +
+        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
+      )
+    end
+  end
+end
+```
+
+^ And declare it there.
+
 ---
 
 ```ruby
@@ -2065,14 +2105,11 @@ end
 
 ---
 
-[.code-highlight: 3]
-[.code-highlight: 8]
+[.code-highlight: 6]
 
 ```ruby
 module Primer
   class State < ActionView::Component
-    attr_accessor :content
-
     def template
       <<-erb
       <div class="State State--green">
@@ -2083,8 +2120,6 @@ module Primer
   end
 end
 ```
-
-^ Declaring an attribute accessor
 
 ^ And updating the template to reference it.
 
