@@ -263,6 +263,13 @@ All rendering on the server
 ^
 - This is the issue badge
 - Display the status of Issues and PRs
+- We use it all over our app
+
+---
+
+![fit](img/primer.png)
+
+^ It's part of our design system called Primer
 
 ---
 
@@ -366,13 +373,15 @@ $ find app/views -print | wc -l
 
 ---
 
-^
-- So you know when you’re at an event and they have a minute of silence?
-- Imagine that, every time you make a change.
-- DRAMATIC PAUSE
-- Ok, you get the point
-- When your view tests take six seconds per test case, that might make you write less tests
-- That's not good for anyone
+^ So you know how long the Jeopardy theme song is?
+
+^ It's 30 seconds.
+
+^ So imagine listening to it twice, every time you run a set of ten tests.
+
+^ When your view tests take six seconds per test case, that might make you write less tests
+
+^ That's not good for anyone
 
 ---
 
@@ -3141,6 +3150,28 @@ end
 
 ^ And extract the title, color, octicon name, and label into methods.
 
+---
+
+```jsx
+class IssueBadge extends React.Component {
+  render() {
+    return (
+      <div className={ "State " + this._stateClass() }>
+        <i className={this._icon()} /> {this._label()}
+      </div>
+    )
+  }
+
+  _icon() { ... }
+  _stateClass() { ... }
+  _label() { ... }
+}
+```
+
+^ Looking back at our original React mockup, it's almost uncanny how similar the two are!
+
+---
+
 ^ So let's see how our tests fare:
 
 ---
@@ -3181,6 +3212,68 @@ end
 
 ---
 
+# [fit] Production?
+
+^ So what are we waiting for, let's ship it!
+
+^ As it turns out, we already have!
+
+---
+
+# [fit] :ship: Mid-March
+
+^ The components we've written today have been running in production on GitHub for about a month and a half.
+
+^ So what have we learned since then?
+
+---
+
+# [fit] Linters
+
+^ First, we realized that we needed to encourage engineers to use the components we wrote.
+
+---
+
+```ruby
+class ComponentUsageTest
+  def test_primer_state_component_usage
+    state_component_regex = /(class\=\"State|State\-)/
+    expected_usage_count = 5
+    view_paths = [Rails.root.join("**/*.erb").to_s]
+
+    total_lines_count = grep(state_component_regex, paths: view_paths).lines.length
+
+    message =
+      if total_lines_count > expected_usage_count
+        "\nIt looks like you're adding a usage of the Primer State component. If you can, try and use Primer::State instead of building it manually. To ignore this message, increment the counter.\n"
+      else
+        "\nIt looks like you're removing a usage of the Primer State component. You rock! Please decrement the counter in this test.\n"
+      end
+
+    assert_equal total_lines_count, expected_usage_count, message
+  end
+end
+```
+
+^ By adding a linter to our test suite, we steered those building new UI towards our components.
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] ArgumentError: missing keyword: title
+
+^ As we implemented these components in numerous places throughout our views, we caught several cases where we weren't setting the title attribute as we were supposed to, much like the test failure we ran into earlier.
+
+---
+
+# [fit] Consistency
+
+^ As a result, we now have a single, standardized implementation for each UI pattern, giving us tight consistency across a sprawling codebase.
+
+---
+
 # [fit] Performance
 
 ^ So let’s talk about performance.
@@ -3214,8 +3307,6 @@ end
 # [fit] .25s vs 60s
 
 ^ This means that a suite of ten component tests that run in a quarter of a second would take a whole minute if they were controller tests.
-
-^ PAUSE
 
 ---
 
