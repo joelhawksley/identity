@@ -662,15 +662,6 @@ end
 
 ^ Where are pull and issue coming from?
 
----
-
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
-![fit](img/code-review-4.png)
-
-^ What should we do when neither pull nor issue is passed?
-
 ^ PAUSE
 
 ---
