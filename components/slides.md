@@ -1684,7 +1684,89 @@ module ActionView
 end
 ```
 
-^ So let's move that to ActionView::Component
+^ So let's move that to ActionView::Component.
+
+^ But what about our templates?
+
+---
+
+[.code-highlight: 2, 6]
+
+```erb
+<% if @issue.closed? %>
+  <div class="State State--red">
+    <%= octicon('issue-closed') %> Closed
+  </div>
+<% else %>
+  <div class="State State--green">
+    <%= octicon('issue-opened') %> Open
+  </div>
+<% end %>
+```
+
+^ Both our issue badge
+
+---
+
+[.code-highlight: 2, 6, 10, 14]
+
+```erb
+<% if @pull_request && @pull_request.merged? %>
+  <div class="State State--purple">
+    <%= octicon('git-merge') %> Merged
+  </div>
+<% elsif @pull_request && @pull_request.closed? %>
+  <div class="State State--red">
+    <%= octicon('git-pull-request') %> Closed
+  </div>
+<% elsif @pull_request && @pull_request.draft? %>
+  <div class="State">
+    <%= octicon('git-pull-request') %> Draft
+  </div>
+<% else %>
+  <div class="State State--green">
+    <%= octicon('git-pull-request') %> Open
+  </div>
+<% end %>
+```
+
+^ And our pull request badge are rendering the State component from our Primer design system.
+
+---
+
+^ So why not make that a component?
+
+^ PAUSE
+
+^ So let's think about what we might want that to look like.
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 1]
+
+```erb
+<div class="State State--green">
+  <%= octicon('git-pull-request') %> Open
+</div>
+```
+
+^ When we're rendering the State component, we're really just picking the color.
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 1]
+
+```erb
+<%= render Primer::State, color: :green do %>
+  <%= octicon('git-pull-request') %> Open
+<% end %>
+```
+
+^ Expressed instead as rendering a component, that might look something like this.
+
+^ So let's build it!
 
 ---
 
