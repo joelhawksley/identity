@@ -1081,7 +1081,7 @@ module Issues
 end
 ```
 
-^ For now, let's mimic React and add a #render method to our component that returns the open issue badge from our partial.
+^ Let's add a #html method to our component that returns the open issue badge from our partial.
 
 ---
 
@@ -1120,7 +1120,7 @@ class ActionView::Base
     def render(component, *_args)
       return super unless component == Issues::Badge
 
-      component.new.render
+      component.new.html
     end
   end
 
@@ -1163,7 +1163,7 @@ module Issues
   class Badge
     include OcticonsHelper
 
-    def render
+    def html
       <<-erb
       <div class="State State--green">
         #{octicon('issue-opened')} Open
@@ -1210,7 +1210,7 @@ module Issues
   class Badge
     include OcticonsHelper
 
-    def render
+    def html
       eval(
         "output_buffer = ActionView::OutputBuffer.new;" +
         ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
@@ -1314,7 +1314,7 @@ class ActionView::Base
     def render(component, *args)
       return super unless component == Issues::Badge
 
-      component.new(*args).render
+      component.new(*args).html
     end
   end
 
@@ -1337,7 +1337,7 @@ module Issues
       @issue = issue, @pull_request = pull_request
     end
 
-    def render; end
+    def html; end
     def template; end
   end
 end
@@ -1357,7 +1357,7 @@ module Issues
     include OcticonsHelper
 
     def initialize; end
-    def render; end
+    def html; end
 
     def template
       <<-erb
@@ -1508,7 +1508,7 @@ module PullRequests
       @pull_request = pull_request
     end
 
-    def render
+    def html
       eval(
         "output_buffer = ActionView::OutputBuffer.new; " +
         ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
@@ -1564,7 +1564,7 @@ class ActionView::Base
     def render(component, *args)
       return super unless [Issues::Badge, PullRequests::Badge].include?(component)
 
-      component.new(*args).render
+      component.new(*args).html
     end
   end
 
@@ -1695,7 +1695,7 @@ class ActionView::Base
     def render(component, *args)
       return super unless [Issues::Badge, PullRequests::Badge, Primer::State].include?(component)
 
-      component.new(*args).render
+      component.new(*args).html
     end
   end
 
@@ -1717,7 +1717,7 @@ end
 
 ```ruby
 module ActionView
-  class Component
+  class Component < ActionView::Base
   end
 end
 ```
@@ -1766,7 +1766,7 @@ end
 ```ruby
 module Issues
   class Badge
-    def render
+    def html
       eval(
         "output_buffer = ActionView::OutputBuffer.new; " +
         ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
@@ -1782,8 +1782,8 @@ end
 
 ```ruby
 module ActionView
-  class Component
-    def render
+  class Component < ActionView::Base
+    def html
       eval(
         "output_buffer = ActionView::OutputBuffer.new; " +
         ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
@@ -1805,7 +1805,7 @@ class ActionView::Base
     def render(component, *args)
       return super unless component < ActionView::Component
 
-      component.new(*args).render
+      component.new(*args).html
     end
   end
 
@@ -1913,7 +1913,7 @@ class ActionView::Base
     def render(component, *args)
       return super unless component.is_a?(Class) && component < ActionView::Component
 
-      component.new(*args).render
+      component.new(*args).html
     end
   end
 
@@ -1968,7 +1968,7 @@ class ActionView::Base
     def render(component, *args)
       return super unless component.is_a?(Class) && component < ActionView::Component
 
-      component.new(*args).render
+      component.new(*args).html
     end
   end
 
@@ -1988,7 +1988,7 @@ class ActionView::Base
     def render(component, *args, &block)
       return super unless component.is_a?(Class) && component < ActionView::Component
 
-      component.new(*args).render
+      component.new(*args).html
     end
   end
 
@@ -2008,7 +2008,7 @@ class ActionView::Base
     def render(component, *args, &block)
       return super unless component.is_a?(Class) && component < ActionView::Component
 
-      component.new(*args).render
+      component.new(*args).html
     end
   end
 
@@ -2032,7 +2032,7 @@ class ActionView::Base
 
       instance = component.new(*args)
       instance.content = self.capture(&block) if block_given?
-      instance.render
+      instance.html
     end
   end
 
@@ -2052,8 +2052,8 @@ end
 
 ```ruby
 module ActionView
-  class Component
-    def render
+  class Component < ActionView::Base
+    def html
       eval(
         "output_buffer = ActionView::OutputBuffer.new; " +
         ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
@@ -2071,10 +2071,10 @@ end
 
 ```ruby
 module ActionView
-  class Component
+  class Component < ActionView::Base
     attr_accessor :content
 
-    def render
+    def html
       eval(
         "output_buffer = ActionView::OutputBuffer.new; " +
         ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
@@ -2325,10 +2325,10 @@ end
 
 ```ruby
 module ActionView
-  class Component
+  class Component < ActionView::Base
     attr_accessor :content
 
-    def render
+    def html
       eval(
         "output_buffer = ActionView::OutputBuffer.new; " +
         ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
@@ -2346,11 +2346,11 @@ end
 
 ```ruby
 module ActionView
-  class Component
+  class Component < ActionView::Base
     include ActiveModel::Validations
     attr_accessor :content
 
-    def render
+    def html
       eval(
         "output_buffer = ActionView::OutputBuffer.new; " +
         ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
@@ -2395,7 +2395,7 @@ class ActionView::Base
       instance = component.new(*args)
       instance.content = self.capture(&block) if block_given?
       instance.validate!
-      instance.render
+      instance.html
     end
   end
 
@@ -2420,7 +2420,128 @@ end
 
 ---
 
-^ NEXT: check docs: valid values for color, check docs, oh wait, we are supposed to have a title! handle passing in content
+```ruby
+it "assigns the correct CSS class for color" do
+  result = render_string("<%= render Primer::State, color: :purple do %>content<% end %>")
+
+  assert result.css(".State.State--purple").any?
+end
+```
+
+^ So now let's make sure we're setting the right CSS class based on the color.
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] Expected false to be truthy.
+
+^ And that our test fails.
+
+---
+
+[.code-highlight: 12]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    COLOR_CLASS_MAPPINGS = {
+      default: "",
+      green: "State--green",
+      red: "State--red",
+      purple: "State--purple",
+    }.freeze
+
+    def template
+      <<-erb
+      <div class="State State--green">
+        <%= content %>
+      </div>
+      erb
+    end
+  end
+end
+```
+
+^ Previously, we just had the CSS class hardcoded.
+
+^ But now that we can be sure that color is one of the keys in our hash,
+
+---
+
+[.code-highlight: 18-20]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    COLOR_CLASS_MAPPINGS = {
+      default: "",
+      green: "State--green",
+      red: "State--red",
+      purple: "State--purple",
+    }.freeze
+
+    def template
+      <<-erb
+      <div class="State State--green">
+        <%= content %>
+      </div>
+      erb
+    end
+
+    def class_name
+      COLOR_CLASS_MAPPINGS[color]
+    end
+  end
+end
+```
+
+^ We can safely use the hash to look up the correct CSS class.
+
+---
+
+[.code-highlight: 12]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    COLOR_CLASS_MAPPINGS = {
+      default: "",
+      green: "State--green",
+      red: "State--red",
+      purple: "State--purple",
+    }.freeze
+
+    def template
+      <<-erb
+      <div class="State <%= class_name %>">
+        <%= content %>
+      </div>
+      erb
+    end
+
+    def class_name
+      COLOR_CLASS_MAPPINGS[color]
+    end
+  end
+end
+```
+
+^ And use it in our template.
+
+---
+
+[.background-color: #008000]
+[.header: #ffffff]
+
+# [fit] 1 example, 0 failures
+
+^ And we're back to green.
+
+---
+
+^ NEXT: check docs, oh wait, we are supposed to have a title! handle passing in content
 
 ---
 
@@ -2485,7 +2606,7 @@ module Issues
     def initialize(issue:)
     end
 
-    def render
+    def html
       <<-erb
       <div class="State State--purple">
         #{octicon('git-merge')} Merged
@@ -2527,7 +2648,7 @@ end
 ---
 
 ```ruby
-def render
+def html
   if @pull&.merged?
     <<~HTML
     <div class="State State--purple">
@@ -2599,7 +2720,7 @@ def initialize(issue:, pull: nil)
   @state, @octicon, @label = state_octicon_label
 end
 
-def render
+def html
   <<~HTML
   <div class="State #{@state}">
     #{octicon(@octicon)} #{@label}
@@ -2858,7 +2979,7 @@ def initialize(pull:, label:)
   @label = label
 end
 
-def render
+def html
   <<-html
   <div class="#{Primer::State::BASE} #{state_class}">
     #{octicon(octicon_name)} #{@label}
@@ -2896,7 +3017,7 @@ def initialize(issue:, label:)
   @label = label
 end
 
-def render
+def html
   <<-html
   <div class="#{Primer::State::BASE} #{state_class}">
     #{octicon(octicon_name)} #{@label}
@@ -2963,7 +3084,7 @@ module Issues
       @label = label
     end
 
-    def render
+    def html
       Primer::state.render(
         octicon_name: octicon_name,
         color: color,
