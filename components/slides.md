@@ -2136,6 +2136,290 @@ end
 
 ---
 
+```ruby
+module Primer
+  class State < ActionView::Component
+    def template
+      <<-erb
+      <div class="State State--green">
+        <%= content %>
+      </div>
+      erb
+    end
+  end
+end
+```
+
+^ So now let's take our new component,
+
+---
+
+[.code-highlight: 3-5]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    def initialize(color:)
+      @color = color
+    end
+
+    def template
+      <<-erb
+      <div class="State State--green">
+        <%= content %>
+      </div>
+      erb
+    end
+  end
+end
+```
+
+^ And update it to accept a color argument!
+
+^ But what values should we expect here?
+
+---
+
+[.hide-footer]
+[.slidenumbers: false]
+[.slidecount: false]
+![fit](img/primer-state-docs-colors.png)
+
+^ Let's look at the docs!
+
+---
+
+[.hide-footer]
+[.slidenumbers: false]
+[.slidecount: false]
+![fit](img/primer-state-docs-colors-highlighted.png)
+
+^ It looks like we can specify three: green, red, and purple. Otherwise, the component defaults to grey.
+
+---
+
+[.code-highlight: all]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    def initialize(color:)
+      @color = color
+    end
+
+    def template
+      <<-erb
+      <div class="State State--green">
+        <%= content %>
+      </div>
+      erb
+    end
+  end
+end
+```
+
+^ So let's go back to our component
+
+---
+
+[.code-highlight: 3-8]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    COLOR_CLASS_MAPPINGS = {
+      default: "",
+      green: "State--green",
+      red: "State--red",
+      purple: "State--purple",
+    }.freeze
+
+    def initialize; end
+    def template; end
+  end
+end
+```
+
+^ And capture those relationships in a constant.
+
+^ So how might we make sure we're only given a valid color?
+
+---
+
+```ruby
+it "raises an error when color is not one of valid values" do
+  exception = assert_raises ActionView::Template::Error do
+    render_string("<%= render Primer::State, color: :chartreuse do %>foo<% end %>")
+  end
+
+  assert_includes exception.message, "Color is not included in the list"
+end
+```
+
+^ Let's start with a test.
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] ActionView::Template::Error expected but nothing was raised.
+
+^ And make sure it fails.
+
+^ So how might we check that color is from a set of allowed values?
+
+---
+
+[.code-highlight: 10]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    COLOR_CLASS_MAPPINGS = {
+      default: "",
+      green: "State--green",
+      red: "State--red",
+      purple: "State--purple",
+    }.freeze
+
+    validates :color, inclusion: { in: COLOR_CLASS_MAPPINGS.keys }
+
+    def initialize; end
+    def template; end
+  end
+end
+```
+
+^ We're in Rails, so that's a solved problem: ActiveModel validations!
+
+^ We can use an inclusion validation to check that color is one of the valid values.
+
+
+---
+
+[.code-highlight: 10]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    COLOR_CLASS_MAPPINGS = {
+      default: "",
+      green: "State--green",
+      red: "State--red",
+      purple: "State--purple",
+    }.freeze
+
+    attr_reader :color
+    validates :color, inclusion: { in: COLOR_CLASS_MAPPINGS.keys }
+
+    def initialize; end
+    def template; end
+  end
+end
+```
+
+^ To allow the color attribute to be validated, we'll need to give it an attribute reader.
+
+---
+
+```ruby
+module ActionView
+  class Component
+    attr_accessor :content
+
+    def render
+      eval(
+        "output_buffer = ActionView::OutputBuffer.new; " +
+        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
+      )
+    end
+  end
+end
+```
+
+^ In ActionView::Component,
+
+---
+
+[.code-highlight: 3]
+
+```ruby
+module ActionView
+  class Component
+    include ActiveModel::Validations
+    attr_accessor :content
+
+    def render
+      eval(
+        "output_buffer = ActionView::OutputBuffer.new; " +
+        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
+      )
+    end
+  end
+end
+```
+
+^ We'll include ActiveModel Validations.
+
+---
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args, &block)
+      return super unless component.is_a?(Class) && component < ActionView::Component
+
+      instance = component.new(*args)
+      instance.content = self.capture(&block) if block_given?
+      instance.render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ All that's left is to go back to our monkey patch
+
+---
+
+[.code-highlight: 8]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args, &block)
+      return super unless component.is_a?(Class) && component < ActionView::Component
+
+      instance = component.new(*args)
+      instance.content = self.capture(&block) if block_given?
+      instance.validate!
+      instance.render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ And add a step to validate our component before we render it.
+
+^ PAUSE
+
+^ So let's run our test again.
+
+---
+
+[.background-color: #008000]
+[.header: #ffffff]
+
+# [fit] 1 example, 0 failures
+
+^ Back to green.
+
+---
+
 ^ NEXT: check docs: valid values for color, check docs, oh wait, we are supposed to have a title! handle passing in content
 
 ---
