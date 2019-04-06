@@ -76,7 +76,7 @@ Give us a new way of thinking about the world
 ^
 - Is hard to test efficiently
 - Is impossible to measure with code coverage tools
-- Overfetches ActiveRecord objects
+- Makes it easy to query the database in a view
 - Fails basic Ruby code standards
 - And refactored it into a new, experimental addition to ActionView
 
@@ -381,8 +381,59 @@ $ find app/views -print | wc -l
 
 # [fit] Flaws
 
-^
-- Believe symptom of several flaw in Rails view layer
+^ Believe symptom of several flaw in Rails view layer
+
+---
+
+# [fit] What trips you up with Rails views?
+
+^ In a statistically insignificant survey of the Boulder Ruby group, the number one response to this question was:
+
+---
+
+# [fit] Queries in views
+
+^ Queries in views, such as N+1s or just a particularly expensive lookup, were the most common response.
+
+---
+
+```erb
+<% if pull_request && pull_request.merged? %>
+  <div class="State State--purple">
+    <%= octicon('git-merge') %> Merged
+  </div>
+<% elsif pull_request && pull_request.closed? %>
+  <div class="State State--red">
+    <%= octicon('git-pull-request') %> Closed
+  </div>
+<% elsif pull_request && pull_request.draft? %>
+  <div class="State">
+  <%= octicon('git-pull-request') %> Draft
+  </div>
+<% elsif pull_request %>
+  <div class="State State--green">
+    <%= octicon('git-pull-request') %> Open
+  </div>
+<% elsif issue && issue.closed? %>
+  <div class="State State--red">
+    <%= octicon('issue-closed') %> Closed
+  </div>
+<% elsif issue %>
+  <div class="State State--green">
+    <%= octicon('issue-opened') %> Open
+  </div>
+<% end %>
+```
+
+^ Looking at our example:
+
+^ For “pull” and “issue”, what attributes do we need from each object?
+
+^ If these are active record objects, we’d be fetching their entire set of attributes, when we may in fact only need one or two for each object.
+
+^ This makes our requests unnecessarily slower.
+
+^ At GitHub, some of our fields are backed by Git storage, so we have to be especially careful with what we fetch.
 
 ---
 
@@ -542,50 +593,6 @@ end
 
 ---
 
-# [fit] Overfetching
-
-^ Another problem comes from using Activerecord: overfetching.
-
----
-
-```erb
-<% if pull_request && pull_request.merged? %>
-  <div class="State State--purple">
-    <%= octicon('git-merge') %> Merged
-  </div>
-<% elsif pull_request && pull_request.closed? %>
-  <div class="State State--red">
-    <%= octicon('git-pull-request') %> Closed
-  </div>
-<% elsif pull_request && pull_request.draft? %>
-  <div class="State">
-  <%= octicon('git-pull-request') %> Draft
-  </div>
-<% elsif pull_request %>
-  <div class="State State--green">
-    <%= octicon('git-pull-request') %> Open
-  </div>
-<% elsif issue && issue.closed? %>
-  <div class="State State--red">
-    <%= octicon('issue-closed') %> Closed
-  </div>
-<% elsif issue %>
-  <div class="State State--green">
-    <%= octicon('issue-opened') %> Open
-  </div>
-<% end %>
-```
-
-^ For “pull” and “issue” in this example, what attributes do we need from each object?
-
-^ If these are active record objects, we’d be fetching their entire set of attributes, when we may in fact only need one or two for each object.
-
-^ This makes our requests unnecessarily slower.
-
-^ On our objects, some fields are backed by Git storage, so we have to be careful with what we fetch.
-
----
-
 # [fit] Standards
 
 ^ The reality is that our views regularly fail even the most basic standards of code quality we expect out of our Ruby classes.
@@ -682,6 +689,12 @@ end
 
 ---
 
+# [fit] Queries in views
+
+^ Make it easy to accidentally run queries in our views
+
+---
+
 # [fit] Code <br> Coverage
 
 ^ Can’t be measured with code coverage tooling,
@@ -697,12 +710,6 @@ end
 # [fit] View Models
 
 ^ Don’t improve much with the use of view models
-
----
-
-# [fit] Overfetching
-
-^ Make it easy to over fetch data
 
 ---
 
@@ -2704,6 +2711,11 @@ end
 
 ---
 
+
+
+
+---
+
 ```ruby
 def assert_no_queries(&block)
   before = GitHub::MysqlInstrumenter.query_count
@@ -3036,7 +3048,7 @@ end
 
 ^ Was impossible to measure with code coverage tools
 
-^ Overfetched ActiveRecord objects
+^ Made it easy to accidentally query the database
 
 ^ Failed basic Ruby code standards
 
