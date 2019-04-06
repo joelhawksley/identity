@@ -1572,70 +1572,7 @@ class ActionView::Base
 end
 ```
 
-^ We'll also need to update our monkey patch to look for our new component.
-
-^ But wait, that doesn't feel right.
-
-^ Perhaps we're missing an abstraction here.
-
-^ What we're really trying to say here is: "Am I dealing with one of these newfangled components?"
-
-^ Perhaps it's time for a parent class!
-
----
-
-```ruby
-module ActionView
-  class Component
-  end
-end
-```
-
-^ Let's call it ActionView::Component.
-
----
-
-[.code-highlight: 2]
-
-```ruby
-module Issues
-  class Badge < ActionView::Component
-  end
-end
-```
-
-[.code-highlight: 2]
-
-```ruby
-module PullRequests
-  class Badge < ActionView::Component
-  end
-end
-```
-
-^ Then, let's update our existing components to inherit from it.
-
----
-
-[.code-highlight: 4]
-
-```ruby
-class ActionView::Base
-  module RenderMonkeyPatch
-    def render(component, *args)
-      return super unless component < ActionView::Component
-
-      component.new(*args).render
-    end
-  end
-
-  prepend RenderMonkeyPatch
-end
-```
-
-^ And then our monkey patch can instead check to see if the argument is a child of ActionView::Component.
-
-^ So let's run our tests again:
+^ So let's update our monkey patch to look for our new component, then run our tests.
 
 ---
 
@@ -1646,47 +1583,16 @@ end
 
 ^ Still green.
 
----
-
-^ So now that we have a parent class for our components, let's try and reduce some duplication.
+^ So let's go back to our code review.
 
 ---
 
-[.code-highlight: 3-8]
+[.hide-footer]
+[.slidenumbers: false]
+[.slidecount: false]
+![fit](img/code-review-2.png)
 
-```ruby
-module Issues
-  class Badge
-    def render
-      eval(
-        "output_buffer = ActionView::OutputBuffer.new; " +
-        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
-      )
-    end
-  end
-end
-```
-
-^ An easy candidate is our render method, which does not have any component specific logic.
-
----
-
-```ruby
-module ActionView
-  class Component
-    def render
-      eval(
-        "output_buffer = ActionView::OutputBuffer.new; " +
-        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
-      )
-    end
-  end
-end
-```
-
-^ So let's move that to ActionView::Component.
-
-^ But what about our templates?
+^ Remember that comment about magic strings?
 
 ---
 
@@ -1751,13 +1657,13 @@ end
 </div>
 ```
 
-^ When we're rendering the State component, we're really just picking the color.
+^ When we're rendering the State component,
+
+^ We're really just picking the color.
 
 ---
 
 [.code-highlight: all]
-[.code-highlight: 1]
-
 ```erb
 <%= render Primer::State, color: :green do %>
   <%= octicon('git-pull-request') %> Open
@@ -1767,6 +1673,439 @@ end
 ^ Expressed instead as rendering a component, that might look something like this.
 
 ^ So let's build it!
+
+---
+
+```ruby
+module Primer
+  class State
+  end
+end
+```
+
+^ We'll call it State, inside the Primer module, to reflect the hierarchy of our design system.
+
+---
+
+[.code-highlight: 4]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless [Issues::Badge, PullRequests::Badge, Primer::State].include?(component)
+
+      component.new(*args).render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ We'll also need to update our monkey patch to handle yet another component.
+
+^ But wait, that doesn't feel right.
+
+^ Perhaps we're missing an abstraction here.
+
+^ What we're really trying to say here is: "Am I dealing with one of these newfangled components?"
+
+^ Perhaps it's time for a parent class!
+
+---
+
+```ruby
+module ActionView
+  class Component
+  end
+end
+```
+
+^ Let's call it ActionView::Component.
+
+---
+
+[.code-highlight: 2]
+
+```ruby
+module Issues
+  class Badge < ActionView::Component
+  end
+end
+```
+
+[.code-highlight: 2]
+
+```ruby
+module PullRequests
+  class Badge < ActionView::Component
+  end
+end
+```
+
+[.code-highlight: 2]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+  end
+end
+```
+
+^ Then, let's update our existing components to inherit from it.
+
+---
+
+^ So now that we have a parent class for our components, let's try and reduce some duplication.
+
+---
+
+[.code-highlight: 3-8]
+
+```ruby
+module Issues
+  class Badge
+    def render
+      eval(
+        "output_buffer = ActionView::OutputBuffer.new; " +
+        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
+      )
+    end
+  end
+end
+```
+
+^ An easy candidate is our render method, which does not have any component specific logic.
+
+---
+
+```ruby
+module ActionView
+  class Component
+    def render
+      eval(
+        "output_buffer = ActionView::OutputBuffer.new; " +
+        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
+      )
+    end
+  end
+end
+```
+
+^ So let's move that to ActionView::Component.
+
+---
+
+[.code-highlight: 4]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless component < ActionView::Component
+
+      component.new(*args).render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ And then our monkey patch can instead check to see if the argument is a child of ActionView::Component.
+
+^ So let's run our tests again:
+
+---
+
+[.background-color: #008000]
+[.header: #ffffff]
+
+# [fit] 7 examples, 0 failures
+
+^ Still green.
+
+^ PAUSE
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 2]
+
+```erb
+<%= render Primer::State, color: :green do %>
+  <%= octicon('git-pull-request') %> Open
+<% end %>
+```
+
+```ruby
+module Primer
+  class State
+  end
+end
+```
+
+^ But as we start to think of how to write our template, we hit a wall:
+
+^ How will we pass in the content of the badge?
+
+^ Let's write a test first.
+
+---
+
+^ Now while we could probably just rely on the existing controller tests for this, wouldn't it be nice if we could test this new, nested component by itself?
+
+---
+
+[.code-highlight: 2]
+[.code-highlight: 4]
+
+```ruby
+it "renders content passed to it as a block" do
+  result = render_string("<%= render Primer::State do %>content<% end %>")
+
+  assert_includes result.css(".State.State--green").text, "content"
+end
+```
+
+^ In an ideal world, we'd be able to render the component directly in a test,
+
+^ and then assert against the resulting HTML.
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 2]
+
+```ruby
+def render_string(string)
+  html = ApplicationController.new.view_context.render(inline: string)
+
+  Nokogiri::HTML(html)
+end
+```
+
+^ And without too much work, we can! We can implement our render_string test helper that:
+
+^ Renders our template in the same code path as a normal view, and then
+
+^ Parses the result in Nokogiri for easier assertions.
+
+^ So let's run our test now.
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] no implicit conversion of Class into Hash
+
+^ That's not good!
+
+---
+
+[.code-highlight: 3]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless component.is_a?(Class) && component < ActionView::Component
+
+      component.new(*args).render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ It turns out that #render can be passed a hash
+
+^ So let's update our monkey patch's conditional to make sure we're dealing with a Class, then re-run our tests.
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] Expected "\n      " to include "content".
+
+^ There we go!
+
+^ Where we were expecting our content to be rendered, we just got an empty string.
+
+^ So let's think about how we might make this work.
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 2]
+[.code-highlight: 1,3]
+
+```erb
+<%= render Issues::Badge, color: :green do %>
+  <%= octicon('issue-opened') %> Open
+<% end %>
+```
+
+^ When we're passing content into our component, what we're effectively saying is:
+
+^ "render this block in the context of the current view", then
+
+^ "Wrap it in the component"
+
+^ So how might that look?
+
+---
+
+[.code-highlight: 3]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless component.is_a?(Class) && component < ActionView::Component
+
+      component.new(*args).render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ First, we'll need to update our monkey patch
+
+---
+
+[.code-highlight: 3]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args, &block)
+      return super unless component.is_a?(Class) && component < ActionView::Component
+
+      component.new(*args).render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ To accept a block.
+
+---
+
+[.code-highlight: 6]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args, &block)
+      return super unless component.is_a?(Class) && component < ActionView::Component
+
+      component.new(*args).render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ Then we'll need to update our render step
+
+---
+
+[.code-highlight: 6]
+[.code-highlight: 7]
+[.code-highlight: 8]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args, &block)
+      return super unless component.is_a?(Class) && component < ActionView::Component
+
+      instance = component.new(*args)
+      instance.content = self.capture(&block) if block_given?
+      instance.render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ To first instantiate the component
+
+^ Then render the block in the context of the current view, and assign the result to an accessor on our component, if a block has been passed.
+
+^ At that point, our component will know about the content, so we can render it.
+
+---
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    def template
+      <<-erb
+      <div class="State State--green">
+      </div>
+      erb
+    end
+  end
+end
+```
+
+^ Then, it's just a matter of taking our component
+
+---
+
+[.code-highlight: 3]
+[.code-highlight: 8]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    attr_accessor :content
+
+    def template
+      <<-erb
+      <div class="State State--green">
+        <%= content %>
+      </div>
+      erb
+    end
+  end
+end
+```
+
+^ Declaring an attribute accessor
+
+^ And updating the template to reference it.
+
+^ But let's see what our test says.
+
+---
+
+[.background-color: #008000]
+[.header: #ffffff]
+
+# [fit] 1 example, 0 failures
+
+^ We're back to green!
+
+---
+
+^ NEXT: check docs: valid values for color, check docs, oh wait, we are supposed to have a title! handle passing in content
+
+---
+
+^ But what about our templates?
 
 ---
 
