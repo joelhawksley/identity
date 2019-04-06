@@ -2554,9 +2554,80 @@ end
 
 ^ And we're back to green.
 
+^ PAUSE
+
+^ So let's take another look at our design system docs:
+
 ---
 
-^ NEXT: check docs, oh wait, we are supposed to have a title! handle passing in content
+[.hide-footer]
+[.slidenumbers: false]
+[.slidecount: false]
+
+![fit](img/primer-state-docs-title.png)
+
+^ I think we might have missed something.
+
+---
+
+[.hide-footer]
+[.slidenumbers: false]
+[.slidecount: false]
+
+![fit](img/primer-state-docs-title-highlighted.png)
+
+^ We're supposed to have a title attribute!
+
+^ The reality is that for most of our Primer components, CSS classes are not the only interface. But this is something our original partial never accounted for.
+
+^ So let's make sure that doesn't happen again.
+
+---
+
+```ruby
+it "raises an error when title is not present" do
+  exception = assert_raises ActionView::Template::Error do
+    render_string("<%= render Primer::State, title: '' do %>foo<% end %>")
+  end
+
+  assert_includes exception.message, "Title can't be blank"
+end
+```
+
+^ We'll do that with a test expecting a validation error.
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] Expected false to be truthy.
+
+^ And make sure it fails.
+
+---
+
+[.code-highlight: 3-4]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    attr_reader :title
+    validates :title, presence: true
+  end
+end
+```
+
+^ Then it's just a matter of adding a presence validation to the component.
+
+---
+
+[.background-color: #008000]
+[.header: #ffffff]
+
+# [fit] 1 example, 0 failures
+
+^ And we're back to green.
 
 ---
 
