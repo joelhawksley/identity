@@ -2711,8 +2711,251 @@ end
 
 ---
 
+^ So looking back We were mainly concerned with our component unintentionally querying the database.
 
+^ But what if we could avoid passing in ActiveRecord objects at all? That would basically eliminate the risk.
 
+^ Let's see what we can do about that.
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 5-7]
+[.code-highlight: 11]
+
+```ruby
+module Issues
+  class Badge < ActionView::Component
+    include OcticonsHelper
+
+    def initialize(issue:)
+      @issue = issue
+    end
+
+    def template
+      <<-erb
+      <% if @issue.closed? %>
+        <%= render Primer::State, color: :red, title: "Status: Closed" do %>
+          <%= octicon('issue-closed') %> Closed
+        <% end %>
+      <% else %>
+        <%= render Primer::State, color: :green, title: "Status: Open" do %>
+          <%= octicon('issue-opened') %> Open
+        <% end %>
+      <% end %>
+      erb
+    end
+  end
+end
+```
+
+^ Let's start with Issue::Badge.
+
+^ Right now, we're passing in an issue, which is an ActiveRecord object.
+
+^ But the only thing we're doing with it is calling #closed?
+
+^ As you can probably imagine, Issue's interface is more than just this one method.
+
+---
+
+```ruby
+class Issue < ApplicationRecord
+  def closed?
+    state == "closed"
+  end
+end
+```
+
+^ Looking at the implementation of the closed predicate method, it's just checking whether the state is "closed".
+
+^ What might our component look like if we passed in the State value instead of the whole issue object?
+
+---
+
+[.code-highlight: 5-7]
+
+```ruby
+module Issues
+  class Badge < ActionView::Component
+    include OcticonsHelper
+
+    def initialize(state:)
+      @state = state
+    end
+
+    def template
+      <<-erb
+      <% if @issue.closed? %>
+        <%= render Primer::State, color: :red, title: "Status: Closed" do %>
+          <%= octicon('issue-closed') %> Closed
+        <% end %>
+      <% else %>
+        <%= render Primer::State, color: :green, title: "Status: Open" do %>
+          <%= octicon('issue-opened') %> Open
+        <% end %>
+      <% end %>
+      erb
+    end
+  end
+end
+```
+
+^ We'd have to update the initialize method
+
+---
+
+[.code-highlight: 5-6]
+
+```ruby
+module Issues
+  class Badge < ActionView::Component
+    include OcticonsHelper
+
+    attr_reader :state
+    validates :state, inclusion: { in: [:open, :closed] }
+
+    def initialize(state:)
+      @state = state
+    end
+
+    def template
+      <<-erb
+      <% if @issue.closed? %>
+        <%= render Primer::State, color: :red, title: "Status: Closed" do %>
+          <%= octicon('issue-closed') %> Closed
+        <% end %>
+      <% else %>
+        <%= render Primer::State, color: :green, title: "Status: Open" do %>
+          <%= octicon('issue-opened') %> Open
+        <% end %>
+      <% end %>
+      erb
+    end
+  end
+end
+```
+
+^ And add a validation.
+
+^ But then the fun begins.
+
+---
+
+[.code-highlight: 3-16]
+
+```ruby
+module Issues
+  class Badge < ActionView::Component
+    def template
+      <<-erb
+      <% if @issue.closed? %>
+        <%= render Primer::State, color: :red, title: "Status: Closed" do %>
+          <%= octicon('issue-closed') %> Closed
+        <% end %>
+      <% else %>
+        <%= render Primer::State, color: :green, title: "Status: Open" do %>
+          <%= octicon('issue-opened') %> Open
+        <% end %>
+      <% end %>
+      erb
+    end
+  end
+end
+```
+
+^ Looking at our template, what if we extracted each branch to be derived from the value of state?
+
+---
+
+[.code-highlight: 5-16]
+
+```ruby
+module Issues
+  class Badge < ActionView::Component
+    include OcticonsHelper
+
+    STATES = {
+      open: {
+        color: :green,
+        octicon_name: "issue-opened",
+        label: "Open"
+      },
+      closed: {
+        color: :red,
+        octicon_name: "issue-closed",
+        label: "Closed"
+      }
+    }.freeze
+
+    attr_reader :state
+    validates :state, inclusion: { in: STATES.keys }
+
+    def initialize; end
+    def template; end
+  end
+end
+```
+
+^ We could clearly express the relationship between the stat and the combination of color, icon name, and label.
+
+---
+
+[.code-highlight: 3-15]
+
+```ruby
+module Issues
+  class Badge < ActionView::Component
+    def template
+      <<-erb
+      <% if @issue.closed? %>
+        <%= render Primer::State, color: :red, title: "Status: Closed" do %>
+          <%= octicon('issue-closed') %> Closed
+        <% end %>
+      <% else %>
+        <%= render Primer::State, color: :green, title: "Status: Open" do %>
+          <%= octicon('issue-opened') %> Open
+        <% end %>
+      <% end %>
+      erb
+    end
+  end
+end
+```
+
+^ Then, we can take our template,
+
+---
+
+[.code-highlight: 3-21]
+
+```ruby
+module Issues
+  class Badge < ActionView::Component
+    def template
+      <<-erb
+      <%= render Primer::State, color: color, title: "Status: #{label}" do %>
+        <%= octicon(octicon_name) %> <%= label %>
+      <% end %>
+      erb
+    end
+
+    def color
+      STATES[state][:color]
+    end
+
+    def octicon_name
+      STATES[state][:octicon_name]
+    end
+
+    def label
+      STATES[state][:label]
+    end
+  end
+end
+```
+
+^ And reference the constant instead.
 
 ---
 
