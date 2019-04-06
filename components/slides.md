@@ -19,14 +19,13 @@ Excited to be giving first conference talk
 
 ![40%](img/github.png)
 
-^
-Engineer at GitHub
+^ Engineer at GitHub
 
 ---
 
-^
-Learning new languages and frameworks
-Give us a new way of thinking about the world
+^ Learning new languages and frameworks
+
+^ Give us a new way of thinking about the world
 
 ---
 
@@ -38,7 +37,7 @@ Give us a new way of thinking about the world
 
 ^ Going to talk about that change in perspective
 
-^ How we took a template in the GitHub app
+^ How I took a template in the GitHub app
 
 ---
 
@@ -79,17 +78,30 @@ Give us a new way of thinking about the world
 
 ---
 
-```erb
-<%= render Issues::State, state: :open %>
-<%= render PullRequests::State, state: :merged %>
-```
+# [fit] Testing
 
-^
-- That allows us to test our views efficiently, in isolation
-- Use code coverage tools
-- Only receive the data they need
-- Follow the code standards of the Ruby language
-- And perhaps most importantly
+^ That allows us to test our views efficiently, in isolation
+
+---
+
+# [fit] Code <br> Coverage
+
+^ Use code coverage tools
+
+---
+
+# [fit] Data Flow
+
+^ Only receive the data they need
+
+---
+
+# [fit] Standards
+
+^ Follow the code standards of the Ruby language
+
+^ And perhaps most importantly
+
 
 ---
 
@@ -99,11 +111,15 @@ Give us a new way of thinking about the world
 
 ---
 
+^ PAUSE
+
+---
+
 # [fit] Views
 
-^
-- What even is a view?
-- Helpful to have a definition
+^ What even is a view?
+
+^ Helpful to have a definition
 
 ---
 
@@ -625,7 +641,7 @@ end
 ^
 - If this was a method on a class, what aspects might we object to in a code review?
 - PAUSE - Ask audience
-- Besides it being super long, I can think of a couple:
+- Besides it being a super long method, I can think of a couple:
 
 ---
 
@@ -3280,62 +3296,25 @@ end
 
 ---
 
-```erb
-<%= render Primer::State, color: color, title: "Status: Closed" do %>
-  <%= octicon(octicon_name) %> <%= label %>
-<% end %>
-```
+# [fit] Testing
 
-^ Map our domain models into a standard component from our design system.
+^ Are tested efficiently, at the right level of abstraction.
 
 ---
 
-```ruby
-it "renders the merged state" do
-  result = render_string("<%= render PullRequests::Badge, state: :merged, is_draft: false %>")
+# [fit] Code <br> Coverage
 
-  assert_includes result.text, "Merged"
-  assert result.css("[title='Status: Merged']").any?
-  assert result.css(".State--purple").any?
-  assert result.css(".octicon-git-merge").any?
-end
-```
-
-^ Are tested efficiently, in isolation
+^ Use code coverage tools
 
 ---
 
-[.code-highlight: 3]
-
-```
-module PullRequests
-  class Badge < ActionView::Component
-    include OcticonsHelper
-  end
-end
-```
-
-^ Expose their dependencies
-
----
-
-[.code-highlight: 3-5]
-
-```ruby
-module PullRequests
-  class Badge < ActionView::Component
-    def initialize(state:, is_draft:)
-      @state, @is_draft = state, is_draft
-    end
-  end
-end
-```
+# [fit] Data Flow
 
 ^ Only receive the data they need
 
 ---
 
-
+# [fit] Standards
 
 ^ Follow the code standards of the Ruby language
 
@@ -3349,7 +3328,7 @@ end
 
 # [fit] M V C
 
-^ And perhaps most importantly, makes it a first class citizen in Rails.
+^ And perhaps most importantly, make it a first class citizen in Rails.
 
 ---
 
@@ -3359,6 +3338,6 @@ end
 
 # [fit] Q & A
 
-## [fit] hawksley.org/components
+## [fit] Slides & source code: hawksley.org/components
 
 ^ Repeat questions
