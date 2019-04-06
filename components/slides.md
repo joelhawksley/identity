@@ -2629,6 +2629,79 @@ end
 
 ^ And we're back to green.
 
+^ But let's see how our integration tests fare:
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] 7 examples, 7 failures
+# [fit] ArgumentError: missing keyword: title
+
+^ Isn't unit testing views fun? We just caught a regression!
+
+---
+
+[.code-highlight: 6, 10]
+
+```erb
+module Issues
+  class Badge < ActionView::Component
+    def template
+      <<-erb
+      <% if @issue.closed? %>
+        <%= render Primer::State, color: :red do %>
+          <%= octicon('issue-closed') %> Closed
+        <% end %>
+      <% else %>
+        <%= render Primer::State, color: :green do %>
+          <%= octicon('issue-opened') %> Open
+        <% end %>
+      <% end %>
+      erb
+    end
+  end
+end
+```
+
+^ We never updated our consumers of Primer::State to pass in title!
+
+---
+
+[.code-highlight: 6, 10]
+
+```erb
+module Issues
+  class Badge < ActionView::Component
+    def template
+      <<-erb
+      <% if @issue.closed? %>
+        <%= render Primer::State, color: :red, title: "Status: Closed" do %>
+          <%= octicon('issue-closed') %> Closed
+        <% end %>
+      <% else %>
+        <%= render Primer::State, color: :green, title: "Status: Open" do %>
+          <%= octicon('issue-opened') %> Open
+        <% end %>
+      <% end %>
+      erb
+    end
+  end
+end
+```
+
+^ Luckily it's an easy fix.
+
+---
+
+[.background-color: #008000]
+[.header: #ffffff]
+
+# [fit] 7 examples, 0 failures
+
+^ And we're back to green.
+
 ---
 
 ```ruby
