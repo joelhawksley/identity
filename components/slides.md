@@ -1080,11 +1080,11 @@ end
 module Issues
   class Badge
     def render
-      <<-html
+      <<-erb
       <div class="State State--green">
         #{octicon('issue-opened')} Open
       </div>
-      html
+      erb
     end
   end
 end
@@ -1171,11 +1171,11 @@ module Issues
     include OcticonsHelper
 
     def render
-      <<-html
+      <<-erb
       <div class="State State--green">
         #{octicon('issue-opened')} Open
       </div>
-      html
+      erb
     end
   end
 end
@@ -1192,7 +1192,61 @@ end
 
 # [fit] Expected element matching ".State.State--green", found 0
 
-^ Darn. Not quite there yet.
+^ That's weird. Let's have a look at our output.
+
+---
+
+```html
+&lt;div class=&quot;State State--green&quot;...
+```
+
+^ It looks like our output is being escaped!
+
+^ While it might be tempting to throw an html_safe on the end and call it a day, this is a bad, bad idea.
+
+^ But wait, what if we just used the existing Rails template pipeline?
+
+---
+
+[.code-highlight: 12-18]
+
+```ruby
+module Issues
+  class Badge
+    include OcticonsHelper
+
+    def render
+      eval(
+        "output_buffer = ActionView::OutputBuffer.new;" +
+        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
+      )
+    end
+
+    def template
+      <<-erb
+      <div class="State State--green">
+        #{octicon('issue-opened')} Open
+      </div>
+      erb
+    end
+  end
+end
+```
+
+^ First, let's move our template into a method called template.
+
+^ And in our render method, we'll run our template through ActionView's ERB template handler, then call #src on the result. Evaluating the output of #src here effectively mirrors how traditional Rails templates are compiled and then executed.
+
+^ So let's run our tests again.
+
+---
+
+[.background-color: #008000]
+[.header: #ffffff]
+
+# [fit] 1 example, 0 failures
+
+^ There we go! 
 
 ---
 
@@ -1282,11 +1336,11 @@ module Issues
     end
 
     def render
-      <<-html
+      <<-erb
       <div class="State State--purple">
         #{octicon('git-merge')} Merged
       </div>
-      html
+      erb
     end
   end
 end
