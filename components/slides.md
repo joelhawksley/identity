@@ -3185,261 +3185,38 @@ end
 
 ---
 
-```ruby
-def assert_no_queries(&block)
-  before = GitHub::MysqlInstrumenter.query_count
-  yield
-  after  = GitHub::MysqlInstrumenter.query_count
+# [fit] Functional <br> Purity
 
-  assert_equal before, after, "Block made unexpected database queries"
-end
-```
+^ So remember how we saw how React encouraged functional purity, minimizing side-affects?
 
-^ One tool we use at GitHub to guard against unintentionally running queries is this assert_no_queries test helper.
-
-^ We use it to wrap code we want to make sure doesn’t result in queries to the database.
+^ By passing values into our components instead of objects, we're seeing similar benefits.
 
 ---
 
-[.code-highlight: 8]
+# [fit] Code <br> Coverage
 
-```ruby
-test "it doesn't query the database when passed a PullRequest" do
-  component = Issues::state.new(
-    issue: @merged_pr.issue,
-    label: "Label",
-    pull: @merged_pr
-  )
+^ And remember how we were unable to get coverage reports for our views?
 
-  assert_no_queries { component.render }
-end
-```
-
-^ Here's how we might use it in tests for our component
 
 ---
 
-[.code-highlight: 8]
+[.hide-footer]
+[.slidenumbers: false]
+[.slidecount: false]
 
-```ruby
-test "it doesn't enqueue any jobs when passed a PullRequest" do
-  component = Issues::state.new(
-    issue: @merged_pr.issue,
-    label: "Label",
-    pull: @merged_pr
-  )
+![fit](img/coverage-score.png)
 
-  assert_no_enqueued_jobs { component.render }
-end
-```
-
-^ We use a similar ActiveJob test helper to make sure jobs aren’t triggered.
-
-^ Triggering jobs in a view? I've seen some things...
+^ Our app now has a perfect score in SimpleCov.
 
 ---
 
-^ PAUSE
+[.hide-footer]
+[.slidenumbers: false]
+[.slidecount: false]
 
-^ But there’s still more we can do here.
+![fit](img/pull-request-component-coverage.png)
 
-^ Let’s think about functional purity again.
-
----
-
-```ruby
-test "it doesn't query the database when passed a PullRequest" do
-  component = Issues::Badge.new(
-    issue: @merged_pr.issue,
-    label: "Label",
-    pull: @merged_pr
-  )
-
-  assert_no_queries do
-    component.render
-  end
-end
-```
-
-^ We were mainly concerned with our component unintentionally querying the database.
-
-^ But what if we could avoid passing in ActiveRecord objects at all? That would basically eliminate the risk.
-
----
-
-```ruby
-module Issues
-  class State
-    def color
-      if @issue.closed?
-        Primer::State::RED
-      else
-        Primer::State::GREEN
-      end
-    end
-
-    def octicon_name
-      if @issue.closed?
-        Icons::ISSUE_CLOSED
-      else
-        Icons::ISSUE_OPENED
-      end
-    end
-  end
-end
-```
-
-^ Looking back at our Issue badge, it looks like we’re only depending on a single boolean attribute on Issue.
-
----
-
-```ruby
-module Issues
-  class Badge
-    def self.render(is_closed:, label:)
-      if is_closed
-        Primer::Badge.render(
-          octicon_name: Icons::ISSUE_CLOSED,
-          color: Primer::State::RED,
-          label: label
-        )
-      else
-        Primer::Badge.render(
-          octicon_name: Icons::ISSUE_OPENED,
-          color: Primer::State::GREEN,
-          label: label
-        )
-      end
-    end
-  end
-end
-```
-
-^ So let’s just pass in that single attribute instead!
-
----
-
-```ruby
-module PullRequests
-  class Badge
-    def self.render(state:, label:)
-      case state
-      when PullRequest::States::MERGED
-        Primer::Badge.render(
-          octicon_name: Icons::GIT_MERGE,
-          color: Primer::State::PURPLE,
-          label: label
-        )
-      when PullRequest::States::CLOSED
-        Primer::Badge.render(
-          octicon_name: Icons::GIT_PULL_REQUEST,
-          color: Primer::State::RED,
-          label: label
-        )
-      when PullRequest::States::OPEN
-        Primer::Badge.render(
-          octicon_name: Icons::GIT_PULL_REQUEST,
-          color: Primer::State::GREEN,
-          label: label
-        )
-      end
-    end
-  end
-end
-```
-
-^ Looking at the PullRequest badge, it needs to know a little more about PullRequests, but not much.
-
-^ In this case it makes sense to use an existing state value instead of passing the entire PullRequest object in.
-
----
-
-```ruby
-module Issues
-  class Badge
-    def self.render(state:, label:)
-      case state
-      when Issue::States::OPEN
-        Primer::Badge.render(
-          octicon_name: Icons::ISSUE_OPENED,
-          color: Primer::State::GREEN,
-          label: label
-        )
-      when Issue::States::CLOSED
-        Primer::Badge.render(
-          octicon_name: Icons::ISSUE_CLOSED,
-          color: Primer::State::RED,
-          label: label
-        )
-      end
-    end
-  end
-end
-```
-
-^ For consistency’s sake, let’s refactor the issue badge to use the same state argument.
-
----
-
-```ruby
-module Issues
-  class Badge
-    def self.render(state:)
-      case state
-      when Issue::States::OPEN
-        Primer::Badge.render(
-          octicon_name: Icons::ISSUE_OPENED,
-          color: Primer::State::GREEN,
-          label: state.to_s.titleize
-        )
-      when Issue::States::CLOSED
-        Primer::Badge.render(
-          octicon_name: Icons::ISSUE_CLOSED,
-          color: Primer::State::RED,
-          label: state.to_s.titleize
-        )
-      end
-    end
-  end
-end
-```
-
-^ And finally, we can remove the label argument, as we were just using a titleized version of the state anyways.
-
----
-
-# [fit] Types
-
-^ So what about types?
-
----
-
-```ruby
-module Issues
-  class Badge
-    def self.render(state:)
-      case state
-      when Issue::States::OPEN
-        Primer::Badge.render(
-          octicon_name: Icons::ISSUE_OPENED,
-          color: Primer::State::GREEN,
-          label: state.to_s.titleize
-        )
-      when Issue::States::CLOSED
-        Primer::Badge.render(
-          octicon_name: Icons::ISSUE_CLOSED,
-          color: Primer::State::RED,
-          label: state.to_s.titleize
-        )
-      end
-    end
-  end
-end
-```
-
-^ Based on what we’ve come up with, they don’t look so necessary any more.
-
-^ By using constants for our expected values, we make it easy for consumers of our components to pass in a value we expect.
+^ Digging into the report, we can see that all of the branching logic in our pull request component is being exercised.
 
 ---
 
