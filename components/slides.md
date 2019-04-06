@@ -1065,7 +1065,7 @@ end
 ---
 
 ```erb
-<%= render Issues::Badge, issue: issue, pull: issue.pull_request %>
+<%= render Issues::Badge, issue: issue, pull_request: issue.pull_request %>
 ```
 
 ^ ActionView gives us the `render` entry point, so I think it makes sense to use that.
@@ -1126,7 +1126,7 @@ end
 ```ruby
 class ActionView::Base
   module RenderMonkeyPatch
-    def render(component, *args, &block)
+    def render(component, *_args)
       return super unless component == Issues::Badge
 
       component.new.render
@@ -1138,6 +1138,8 @@ end
 ```
 
 ^ Short of forking Rails and changing the original definition of ActionView#render, a monkey patch will get us unblocked for now.
+
+^ We'll ignore all the args besides the component for now.
 
 ^ Or will it?
 
@@ -1246,7 +1248,182 @@ end
 
 # [fit] 1 example, 0 failures
 
-^ There we go! 
+^ There we go!
+
+^ PAUSE
+
+---
+
+```ruby
+it "renders the closed issue badge" do
+  create(:issue, :closed)
+
+  get :index
+
+  assert_select(".State.State--red")
+  assert_select(".octicon-issue-closed")
+  assert_includes(response.body, "Closed")
+end
+```
+
+^ Let's keep moving along.
+
+^ The next test is for a closed issue.
+
+---
+
+[.code-highlight: 2-5]
+
+```erb
+# ...
+<% elsif issue && issue.closed? %>
+  <div class="State State--red">
+    <%= octicon('issue-closed') %> Closed
+  </div>
+<% elsif issue %>
+  <div class="State State--green">
+    <%= octicon('issue-opened') %> Open
+  </div>
+<% end %>
+```
+
+^ If we look back at the original partial, in the case of a closed issue, we set a different CSS class, icon and label.
+
+^ Let's give it a run.
+
+---
+
+[.background-color: #FF0000]
+[.header: #ffffff]
+
+# [fit] Expected element matching ".State.State--red", found 0
+
+^ As expected, it fails, as we haven't handled this case yet.
+
+^ Let's go back to our template that renders the component.
+
+---
+
+```erb
+<%= render Issues::Badge, issue: issue, pull_request: issue.pull_request %>
+```
+
+^ Now we're already passing the issue into our component, but we aren't doing anything with it yet. Let's change that.
+
+---
+
+[.code-highlight: 3]
+[.code-highlight: 6]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless component == Issues::Badge
+
+      component.new(*args).render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ First, we'll need to update our monkey patch to pass the arguments through to our component.
+
+---
+
+[.code-highlight: 5-7]
+
+```ruby
+module Issues
+  class Badge
+    include OcticonsHelper
+
+    def initialize(issue:, pull_request: nil)
+      @issue = issue
+    end
+
+    def render; end
+    def template; end
+  end
+end
+```
+
+^ In addition, we'll need to define an initialize method on our component.
+
+^ We'll let pull_request be nil, as not all issues have pull requests.
+
+---
+
+[.code-highlight: 8-20]
+
+```ruby
+module Issues
+  class Badge
+    include OcticonsHelper
+
+    def initialize; end
+    def render; end
+
+    def template
+      <<-erb
+      <% if @issue.closed? %>
+        <div class="State State--red">
+          <%= octicon('issue-closed') %> Closed
+        </div>
+      <% else %>
+        <div class="State State--green">
+          <%= octicon('issue-opened') %> Open
+        </div>
+      <% end %>
+      erb
+    end
+  end
+end
+```
+
+^ Now that we have an issue, we can reference it in our template!
+
+^ So let's run our test again...
+
+---
+
+[.background-color: #008000]
+[.header: #ffffff]
+
+# [fit] 1 example, 0 failures
+
+^ Phew. We're back to green.
+
+^ But wait. Did you just see what we did there? We gave ourselves an interface!
+
+---
+
+# [fit] ~~Implicit <br> Arguments~~
+
+^ Which means no more implicit arguments.
+
+---
+
+[.code-highlight: 5-7]
+
+```ruby
+module Issues
+  class Badge
+    include OcticonsHelper
+
+    def initialize(issue:, pull_request: nil)
+      @issue = issue
+    end
+
+    def render; end
+    def template; end
+  end
+end
+```
+
+^ It's now clear that our component expects to always receive an issue, and that it might also receive a pull request.
 
 ---
 
@@ -1261,34 +1438,6 @@ end
 ^ Rails gives us the tools to render an inline template without too much work.
 
 ^ And returning a rich Nokogiri object gives us something to dig into in our test assertions later.
-
----
-
-```erb
-<%= render Issues::state %>
-```
-
-^ So coming back to our API sketch, we need ActionView's render method to support our new Component argument type
-
----
-
-```ruby
-class ActionView::Base
-  module RenderMonkeyPatch
-    def render(component)
-      return super unless component < ActionView::Component
-
-      component.html
-    end
-  end
-
-  prepend RenderMonkeyPatch
-end
-```
-
-^ Luckily we're writing Ruby, so we can monkey patch!
-
-^ With this code, we'll call the `html` class method on a component if
 
 ---
 
