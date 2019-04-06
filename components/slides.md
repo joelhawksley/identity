@@ -1,7 +1,4 @@
 autoscale: true
-slidenumbers: true
-slidecount: true
-footer: hawksley.org/components
 
 # [fit] Rethinking the View Layer <br> with Components
 
@@ -212,8 +209,6 @@ All rendering on the server
 
 ---
 
-[.hide-footer]
-
 ![fit](img/pjax-1.png)
 
 ^
@@ -221,8 +216,6 @@ All rendering on the server
 - JS intercepts click
 
 ---
-
-[.hide-footer]
 
 ![fit](img/pjax-2.png)
 
@@ -238,10 +231,6 @@ All rendering on the server
 ^ Let’s talk about building views at GitHub
 
 ---
-
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
 
 ![fit](img/sticky.gif)
 
@@ -631,10 +620,6 @@ end
 
 ---
 
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
-
 ![fit](img/code-review.png)
 
 ^
@@ -644,27 +629,18 @@ end
 
 ---
 
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
 ![fit](img/code-review-1.png)
 
 ^ Where is octicon defined?
 
 ---
 
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
 ![fit](img/code-review-2.png)
 
 ^ Where does this class attribute value come from? This feels like a magic string.
 
 ---
 
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
 ![fit](img/code-review-3.png)
 
 ^ Where are pull and issue coming from?
@@ -719,7 +695,7 @@ end
 
 ---
 
-# [fit] MvC
+# [fit] M v C
 
 ^ The reality is that the existing Rails view layer is a second-class citizen these days.
 
@@ -1152,9 +1128,6 @@ end
 
 ---
 
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
 ![fit](img/code-review-1.png)
 
 ^ Remember our code review comment about not knowing where the octicon method came from?
@@ -1406,9 +1379,6 @@ end
 
 ---
 
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
 ![fit](img/code-review-3.png)
 
 ^ And just like that, we're making progress on our code review!
@@ -1594,9 +1564,6 @@ end
 
 ---
 
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
 ![fit](img/code-review-2.png)
 
 ^ Remember that comment about magic strings?
@@ -2202,18 +2169,12 @@ end
 
 ---
 
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
 ![fit](img/primer-state-docs-colors.png)
 
 ^ Let's look at the docs!
 
 ---
 
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
 ![fit](img/primer-state-docs-colors-highlighted.png)
 
 ^ It looks like we can specify three: green, red, and purple. Otherwise, the component defaults to grey.
@@ -2567,19 +2528,11 @@ end
 
 ---
 
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
-
 ![fit](img/primer-state-docs-title.png)
 
 ^ I think we might have missed something.
 
 ---
-
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
 
 ![fit](img/primer-state-docs-title-highlighted.png)
 
@@ -3200,19 +3153,11 @@ end
 
 ---
 
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
-
 ![fit](img/coverage-score.png)
 
 ^ Our app now has a perfect score in SimpleCov.
 
 ---
-
-[.hide-footer]
-[.slidenumbers: false]
-[.slidecount: false]
 
 ![fit](img/pull-request-component-coverage.png)
 
@@ -3229,7 +3174,7 @@ end
 # [fit] ~6s
 ### [fit] GET + assert
 
-^ In our test suite, Controller tests take about six seconds for loading a page and asserting against its contents.
+^ In our monolith;s test suite, Controller tests take about six seconds for loading a page and asserting against its contents.
 
 ^ What about our new unit tests?
 
@@ -3238,7 +3183,7 @@ end
 # [fit] ~25ms
 ### [fit] .render + assert
 
-^ They clocked in at around 50 milliseconds each running in the same suite.
+^ They clocked in at around 50 milliseconds running in the same suite.
 
 ^ These measurements are independent of any setup routines.
 
@@ -3252,11 +3197,9 @@ end
 
 # [fit] .25s vs 60s
 
-^ This means that the ten unit tests we wrote for our components that run in a quarter of a second would take a whole minute if they were controller tests.
+^ This means that a suite of ten component tests that run in a quarter of a second would take a whole minute if they were controller tests.
 
 ^ PAUSE
-
-^ So to look back
 
 ---
 
@@ -3301,45 +3244,112 @@ end
 ---
 
 ```ruby
-module Issues
-  class Badge
-    def self.render(state:)
-      case state
-      when Issue::States::OPEN
-        Primer::Badge.render(
-          octicon_name: Icons::ISSUE_OPENED,
-          color: Primer::State::GREEN,
-          label: state.to_s.titleize
-        )
-      when Issue::States::CLOSED
-        Primer::Badge.render(
-          octicon_name: Icons::ISSUE_CLOSED,
-          color: Primer::State::RED,
-          label: state.to_s.titleize
-        )
-      end
+module Primer
+  class State < ActionView::Component
+    COLOR_CLASS_MAPPINGS = {
+      default: "",
+      green: "State--green",
+      red: "State--red",
+      purple: "State--purple",
+    }.freeze
+
+    attr_reader :color, :title
+    validates :color, inclusion: { in: COLOR_CLASS_MAPPINGS.keys }
+    validates :title, presence: true
+
+    def initialize(color: :default, title:)
+      @color, @title = color, title
+    end
+
+    def template
+      <<-erb
+      <div title="<%= title %>" class="State <%= class_name %>">
+        <%= content %>
+      </div>
+      erb
+    end
+
+    def class_name
+      COLOR_CLASS_MAPPINGS[color]
     end
   end
 end
 ```
 
-^ And ended up with this, a set of Ruby objects that:
+^ And ended up with a set of Ruby objects that:
+
+---
+
+```erb
+<%= render Primer::State, color: color, title: "Status: Closed" do %>
+  <%= octicon(octicon_name) %> <%= label %>
+<% end %>
+```
 
 ^ Map our domain models into a standard component from our design system.
 
+---
+
+```ruby
+it "renders the merged state" do
+  result = render_string("<%= render PullRequests::Badge, state: :merged, is_draft: false %>")
+
+  assert_includes result.text, "Merged"
+  assert result.css("[title='Status: Merged']").any?
+  assert result.css(".State--purple").any?
+  assert result.css(".octicon-git-merge").any?
+end
+```
+
 ^ Are tested efficiently, in isolation
 
-^ Encapsulate their dependencies
+---
+
+[.code-highlight: 3]
+
+```
+module PullRequests
+  class Badge < ActionView::Component
+    include OcticonsHelper
+  end
+end
+```
+
+^ Expose their dependencies
+
+---
+
+[.code-highlight: 3-5]
+
+```ruby
+module PullRequests
+  class Badge < ActionView::Component
+    def initialize(state:, is_draft:)
+      @state, @is_draft = state, is_draft
+    end
+  end
+end
+```
 
 ^ Only receive the data they need
+
+---
+
+
 
 ^ Follow the code standards of the Ruby language
 
 ---
 
-# [fit] MVC
+# [fit] M v C
 
-^ All of these things give us higher confidence in our view layer, and perhaps most importantly, makes it a first class citizen in Rails.
+^ All of these things give us higher confidence in our view layer,
+
+---
+
+# [fit] M V C
+
+^ And perhaps most importantly, makes it a first class citizen in Rails.
 
 ---
 
@@ -3348,5 +3358,7 @@ end
 ---
 
 # [fit] Q & A
+
+## [fit] hawksley.org/components
 
 ^ Repeat questions
