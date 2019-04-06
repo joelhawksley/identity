@@ -1648,6 +1648,46 @@ end
 
 ---
 
+^ So now that we have a parent class for our components, let's try and reduce some duplication.
+
+---
+
+[.code-highlight: 3-8]
+
+```ruby
+module Issues
+  class Badge
+    def render
+      eval(
+        "output_buffer = ActionView::OutputBuffer.new; " +
+        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
+      )
+    end
+  end
+end
+```
+
+^ An easy candidate is our render method, which does not have any component specific logic.
+
+---
+
+```ruby
+module ActionView
+  class Component
+    def render
+      eval(
+        "output_buffer = ActionView::OutputBuffer.new; " +
+        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
+      )
+    end
+  end
+end
+```
+
+^ So let's move that to ActionView::Component
+
+---
+
 ```ruby
 def render_string(string)
   html = ApplicationController.new.view_context.render(inline: string)
