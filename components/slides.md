@@ -46,19 +46,19 @@ Give us a new way of thinking about the world
 ---
 
 ```erb
-<% if pull && pull.merged? %>
+<% if pull_request && pull_request.merged? %>
   <div class="State State--purple">
     <%= octicon('git-merge') %> Merged
   </div>
-<% elsif pull && pull.closed? %>
+<% elsif pull_request && pull_request.closed? %>
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull && pull.draft? %>
+<% elsif pull_request && pull_request.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% elsif pull %>
+<% elsif pull_request %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -272,19 +272,19 @@ All rendering on the server
 ---
 
 ```erb
-<% if pull && pull.merged? %>
+<% if pull_request && pull_request.merged? %>
   <div class="State State--purple">
     <%= octicon('git-merge') %> Merged
   </div>
-<% elsif pull && pull.closed? %>
+<% elsif pull_request && pull_request.closed? %>
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull && pull.draft? %>
+<% elsif pull_request && pull_request.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% elsif pull %>
+<% elsif pull_request %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -397,19 +397,19 @@ $ find app/views -print | wc -l
 ---
 
 ```erb
-<% if pull && pull.merged? %>
+<% if pull_request && pull_request.merged? %>
   <div class="State State--purple">
     <%= octicon('git-merge') %> Merged
   </div>
-<% elsif pull && pull.closed? %>
+<% elsif pull_request && pull_request.closed? %>
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull && pull.draft? %>
+<% elsif pull_request && pull_request.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% elsif pull %>
+<% elsif pull_request %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -455,19 +455,19 @@ $ find app/views -print | wc -l
 ---
 
 ```erb
-<% if pull && pull.merged? %>
+<% if pull_request && pull_request.merged? %>
   <div class="State State--purple">
     <%= octicon('git-merge') %> Merged
   </div>
-<% elsif pull && pull.closed? %>
+<% elsif pull_request && pull_request.closed? %>
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull && pull.draft? %>
+<% elsif pull_request && pull_request.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% elsif pull %>
+<% elsif pull_request %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -549,19 +549,19 @@ end
 ---
 
 ```erb
-<% if pull && pull.merged? %>
+<% if pull_request && pull_request.merged? %>
   <div class="State State--purple">
     <%= octicon('git-merge') %> Merged
   </div>
-<% elsif pull && pull.closed? %>
+<% elsif pull_request && pull_request.closed? %>
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull && pull.draft? %>
+<% elsif pull_request && pull_request.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% elsif pull %>
+<% elsif pull_request %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -593,19 +593,19 @@ end
 ---
 
 ```erb
-<% if pull && pull.merged? %>
+<% if pull_request && pull_request.merged? %>
   <div class="State State--purple">
     <%= octicon('git-merge') %> Merged
   </div>
-<% elsif pull && pull.closed? %>
+<% elsif pull_request && pull_request.closed? %>
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull && pull.draft? %>
+<% elsif pull_request && pull_request.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% elsif pull %>
+<% elsif pull_request %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -811,7 +811,7 @@ IssueBadge.propTypes = {
   issue: PropTypes.exact({
     isClosed: PropTypes.bool.isRequired
   }).isRequired,
-  pull: PropTypes.exact({
+  pullRequest: PropTypes.exact({
     isClosed: PropTypes.bool.isRequired,
     isMerged: PropTypes.bool.isRequired
   }),
@@ -824,7 +824,7 @@ IssueBadge.propTypes = {
 
 ^ An issue with the boolean isClosed attribute to always be provided
 
-^ And a pull to sometimes be provided, and if so, with the boolean isClosed and isMerged attributes.
+^ And a pull request to sometimes be provided, and if so, with the boolean isClosed and isMerged attributes.
 
 ---
 
@@ -948,19 +948,19 @@ it('should render the closed issue badge', function() {
 [.code-highlight: 3]
 
 ```erb
-<% if pull && pull.merged? %>
+<% if pull_request && pull_request.merged? %>
   <div class="State State--purple">
     <%= octicon('git-merge') %> Merged
   </div>
-<% elsif pull && pull.closed? %>
+<% elsif pull_request && pull_request.closed? %>
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull && pull.draft? %>
+<% elsif pull_request && pull_request.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% elsif pull %>
+<% elsif pull_request %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -1057,7 +1057,7 @@ end
 ---
 
 ```erb
-<%= render partial: "issue_badge", locals: { issue: issue, pull: issue.pull_request } %>
+<%= render partial: "issue_badge", locals: { issue: issue, pull_request: issue.pull_request } %>
 ```
 
 ^ Right now we're rendering the issue badge partial the traditional way,
@@ -1204,6 +1204,8 @@ end
 
 ^ It looks like our output is being escaped!
 
+^ As it turns out, there view rendering is more than just string interpolation!
+
 ^ While it might be tempting to throw an html_safe on the end and call it a day, this is a bad, bad idea.
 
 ^ But wait, what if we just used the existing Rails template pipeline?
@@ -1341,7 +1343,7 @@ module Issues
     include OcticonsHelper
 
     def initialize(issue:, pull_request: nil)
-      @issue = issue
+      @issue = issue, @pull_request = pull_request
     end
 
     def render; end
@@ -1406,24 +1408,252 @@ end
 
 ---
 
-[.code-highlight: 5-7]
+[.hide-footer]
+[.slidenumbers: false]
+[.slidecount: false]
+![fit](img/code-review-3.png)
+
+^ And just like that, we're making progress on our code review!
+
+---
 
 ```ruby
-module Issues
+def template
+  <<-erb
+  <% if @pull_request && @pull_request.merged? %>
+    <div class="State State--purple">
+      <%= octicon('git-merge') %> Merged
+    </div>
+  <% elsif @pull_request && @pull_request.closed? %>
+    <div class="State State--red">
+      <%= octicon('git-pull-request') %> Closed
+    </div>
+  <% elsif @pull_request && @pull_request.draft? %>
+    <div class="State">
+    <%= octicon('git-pull-request') %> Draft
+    </div>
+  <% elsif @pull_request %>
+    <div class="State State--green">
+      <%= octicon('git-pull-request') %> Open
+    </div>
+  <% elsif @issue.closed? %>
+    <div class="State State--red">
+      <%= octicon('issue-closed') %> Closed
+    </div>
+  <% else %>
+    <div class="State State--green">
+      <%= octicon('issue-opened') %> Open
+    </div>
+  <% end %>
+  erb
+end
+```
+
+^ Next, we can drop in the rest of the original partial into our template method.
+
+^ Now, let's see how our tests do.
+
+---
+
+[.background-color: #008000]
+[.header: #ffffff]
+
+# [fit] 7 examples, 0 failures
+
+^ We're green! Let's ship it!
+
+^ Just kidding. This is just the start!
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 1-16]
+[.code-highlight: 17-25]
+
+```erb
+<% if @pull_request && @pull_request.merged? %>
+  <div class="State State--purple">
+    <%= octicon('git-merge') %> Merged
+  </div>
+<% elsif @pull_request && @pull_request.closed? %>
+  <div class="State State--red">
+    <%= octicon('git-pull-request') %> Closed
+  </div>
+<% elsif @pull_request && @pull_request.draft? %>
+  <div class="State">
+  <%= octicon('git-pull-request') %> Draft
+  </div>
+<% elsif @pull_request %>
+  <div class="State State--green">
+    <%= octicon('git-pull-request') %> Open
+  </div>
+<% elsif @issue.closed? %>
+  <div class="State State--red">
+    <%= octicon('issue-closed') %> Closed
+  </div>
+<% else %>
+  <div class="State State--green">
+    <%= octicon('issue-opened') %> Open
+  </div>
+<% end %>
+```
+
+^ Taking another look at our template, it seems as though we really have *two* components here, not one.
+
+^ The first two thirds handle various pull request states
+
+^ While the last third handles issue state.
+
+^ Now, since the view that calls our component knows whether it is dealing with a pull request or an issue, how about we split this out into two components and let it pick which one to use?
+
+---
+
+```ruby
+module PullRequests
   class Badge
     include OcticonsHelper
 
-    def initialize(issue:, pull_request: nil)
-      @issue = issue
+    def initialize(pull_request:)
+      @pull_request = pull_request
     end
 
-    def render; end
-    def template; end
+    def render
+      eval(
+        "output_buffer = ActionView::OutputBuffer.new; " +
+        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
+      )
+    end
+
+    def template
+      <<-erb
+      <% if @pull_request && @pull_request.merged? %>
+        <div class="State State--purple">
+          <%= octicon('git-merge') %> Merged
+        </div>
+      <% elsif @pull_request && @pull_request.closed? %>
+        <div class="State State--red">
+          <%= octicon('git-pull-request') %> Closed
+        </div>
+      <% elsif @pull_request && @pull_request.draft? %>
+        <div class="State">
+        <%= octicon('git-pull-request') %> Draft
+        </div>
+      <% else %>
+        <div class="State State--green">
+          <%= octicon('git-pull-request') %> Open
+        </div>
+      <% end %>
+      erb
+    end
   end
 end
 ```
 
-^ It's now clear that our component expects to always receive an issue, and that it might also receive a pull request.
+^ So let's move all the pull request portion to its own component.
+
+---
+
+```erb
+<% if issue.pull_request %>
+  <%= render PullRequests::Badge, pull_request: issue.pull_request %>
+<% else %>
+  <%= render Issues::Badge, issue: issue %>
+<% end %>
+```
+
+^ Then update our view to choose which component to render.
+
+---
+
+[.code-highlight: 4]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless [Issues::Badge, PullRequests::Badge].include?(component)
+
+      component.new(*args).render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ We'll also need to update our monkey patch to look for our new component.
+
+^ But wait, that doesn't feel right.
+
+^ Perhaps we're missing an abstraction here.
+
+^ What we're really trying to say here is: "Am I dealing with one of these newfangled components?"
+
+^ Perhaps it's time for a parent class!
+
+---
+
+```ruby
+module ActionView
+  class Component
+  end
+end
+```
+
+^ Let's call it ActionView::Component.
+
+---
+
+[.code-highlight: 2]
+
+```ruby
+module Issues
+  class Badge < ActionView::Component
+  end
+end
+```
+
+[.code-highlight: 2]
+
+```ruby
+module PullRequests
+  class Badge < ActionView::Component
+  end
+end
+```
+
+^ Then, let's update our existing components to inherit from it.
+
+---
+
+[.code-highlight: 4]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless component < ActionView::Component
+
+      component.new(*args).render
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ And then our monkey patch can instead check to see if the argument is a child of ActionView::Component.
+
+^ So let's run our tests again:
+
+---
+
+[.background-color: #008000]
+[.header: #ffffff]
+
+# [fit] 7 examples, 0 failures
+
+^ Still green.
 
 ---
 
@@ -1551,19 +1781,19 @@ end
 ---
 
 ```erb
-<% if pull && pull.merged? %>
+<% if pull_request && pull_request.merged? %>
   <div class="State State--purple">
     <%= octicon('git-merge') %> Merged
   </div>
-<% elsif pull && pull.closed? %>
+<% elsif pull_request && pull_request.closed? %>
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull && pull.draft? %>
+<% elsif pull_request && pull_request.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% elsif pull %>
+<% elsif pull_request %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
@@ -2225,19 +2455,19 @@ end
 ---
 
 ```erb
-<% if pull && pull.merged? %>
+<% if pull_request && pull_request.merged? %>
   <div class="State State--purple">
     <%= octicon('git-merge') %> Merged
   </div>
-<% elsif pull && pull.closed? %>
+<% elsif pull_request && pull_request.closed? %>
   <div class="State State--red">
     <%= octicon('git-pull-request') %> Closed
   </div>
-<% elsif pull && pull.draft? %>
+<% elsif pull_request && pull_request.draft? %>
   <div class="State">
   <%= octicon('git-pull-request') %> Draft
   </div>
-<% elsif pull %>
+<% elsif pull_request %>
   <div class="State State--green">
     <%= octicon('git-pull-request') %> Open
   </div>
