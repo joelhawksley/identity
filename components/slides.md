@@ -1,11 +1,12 @@
 autoscale: true
+slidenumbers: true
 theme: Simple, 1
 
 # [fit] Rethinking the View Layer <br> with Components
 
-^
-Thanks to the RailsConf organizers
-Excited to be giving first conference talk
+^ Thanks to the RailsConf organizers
+
+^ Excited to be giving first conference talk
 
 ---
 
