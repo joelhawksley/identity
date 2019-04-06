@@ -1,4 +1,5 @@
 autoscale: true
+theme: Simple, 1
 
 # [fit] Rethinking the View Layer <br> with Components
 
