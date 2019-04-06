@@ -1547,7 +1547,7 @@ module PullRequests
 end
 ```
 
-^ So let's move all the pull request portion to its own component.
+^ So let's move the pull request portion to its own component.
 
 ---
 
