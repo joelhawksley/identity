@@ -635,6 +635,13 @@ $ find app/views -print | wc -l
 
 ---
 
+[.code-highlight: all]
+[.code-highlight: 1, 5, 9, 13]
+[.code-highlight: 17, 21]
+[.code-highlight: 1, 5, 9, 13, 17, 21]
+[.code-highlight: none]
+[.code-highlight: 1, 5, 9, 13, 17, 21]
+
 ```erb
 <% if pull_request && pull_request.merged? %>
   <div class="State State--purple">
@@ -667,13 +674,15 @@ $ find app/views -print | wc -l
 
 ^ What data does this view need to render?
 
-^ A "pull"?
+^ S A pull request?
 
-^ An "issue"?
+^ S An issue?
 
-^ Should I be able to pass in both? Neither?
+^ S Should I be able to pass in both?
 
-^ Are these values passed in as locals, or do they come from a helper?
+^ S Neither?
+
+^ S Are these values passed in as locals, or do they come from a helper?
 
 ---
 
@@ -698,7 +707,7 @@ module Issues
 end
 ```
 
-^ We might write a class that looks something like this
+^ We'd have a class
 
 ---
 
@@ -709,55 +718,23 @@ end
 </div>
 ```
 
-^ And a template that looks like this.
+^ And a template that uses the class.
 
 ---
 
 # [fit] View Models
 
-^ That’s much better, right?
-
 ^ I’ve seen a couple problems with this approach:
 
 ^ We end up with two files that are more or less interlocked. One can’t exist without the other.
 
-^ Testing the view model makes us feel like we’re testing the view, when we’re not.
+^ Testing the view model makes us feel like we’re testing the template, when we’re not.
 
 ---
 
 # [fit] Standards
 
 ^ The reality is that our views regularly fail even the most basic standards of code quality we expect out of our Ruby classes.
-
----
-
-```erb
-<% if pull_request && pull_request.merged? %>
-  <div class="State State--purple">
-    <%= octicon('git-merge') %> Merged
-  </div>
-<% elsif pull_request && pull_request.closed? %>
-  <div class="State State--red">
-    <%= octicon('git-pull-request') %> Closed
-  </div>
-<% elsif pull_request && pull_request.draft? %>
-  <div class="State">
-  <%= octicon('git-pull-request') %> Draft
-  </div>
-<% elsif pull_request %>
-  <div class="State State--green">
-    <%= octicon('git-pull-request') %> Open
-  </div>
-<% elsif issue && issue.closed? %>
-  <div class="State State--red">
-    <%= octicon('issue-closed') %> Closed
-  </div>
-<% elsif issue %>
-  <div class="State State--green">
-    <%= octicon('issue-opened') %> Open
-  </div>
-<% end %>
-```
 
 ^ Let’s go back to our example.
 
@@ -807,6 +784,8 @@ end
 
 ^ Rails views are difficult to test
 
+---
+
 # [fit] Code <br> Coverage
 
 ^ Impossible to audit with code coverage tools, preventing us from knowing how thorough our tests are.
@@ -816,12 +795,6 @@ end
 # [fit] Data Flow
 
 ^ Make it difficult to reason about data flow
-
----
-
-# [fit] Code <br> Coverage
-
-^ Can’t be audited with code coverage tools
 
 ---
 
@@ -845,21 +818,23 @@ end
 
 # [fit] MVC
 
-^ The reality is that the existing Rails view layer is a second-class citizen these days.
-
-^ PAUSE
+^ The reality is that the existing Rails view layer
 
 ---
+
+# [fit] MvC
+
+^ is a second-class citizen these days.
+
+^ PAUSE
 
 ^ With all these shortcomings, perhaps it isn’t much of a surprise that a new way of building views has taken hold in the Rails community:
 
 ---
 
-# [fit] React
+![50%](img/react.png)
 
 ^ React.
-
-^ Let’s talk about what concepts React has made popular.
 
 ---
 
@@ -928,14 +903,14 @@ class IssueBadge extends React.Component {
 
 # [fit] Types
 
-^ But then things get interesting. React gives us type checking!
+^ Another dimension of the React architecture is types.
 
 ---
 
 [.code-highlight: all]
 [.code-highlight: 2-4]
-[.code-highlight: 5,8]
-[.code-highlight: 5-8]
+[.code-highlight: 5,9]
+[.code-highlight: 5-9]
 
 ```javascript
 IssueBadge.propTypes = {
@@ -950,9 +925,9 @@ IssueBadge.propTypes = {
 };
 ```
 
-^ The Prop Types library provides runtime type checking for React components.
+^ The Prop Types library allows us to express some expectations about the data we receive.
 
-^ This allows us to express some expectations about the data we receive. In this case, we are expecting:
+^ In this case, we are expecting:
 
 ^ S An issue with the isClosed boolean to always be provided
 
@@ -980,19 +955,15 @@ class IssueBadge extends React.Component {
 }
 ```
 
-^ When can then reference the issue without checking for nil, as our type check will guarantee that it is present.
+^ We can then reference the issue without fear, as our type check will guarantee that it is present.
 
 ^ PAUSE
 
 ---
 
-# [fit] Functional <br> Purity
+# [fit] Data Flow
 
 ^ Another advantage of React is how it encourages writing components as pure functions.
-
----
-
-# [fit] Data Flow
 
 ^ By passing data into views instead of rich objects, React encourages us to write functions without side-affects.
 
@@ -1006,6 +977,7 @@ class IssueBadge extends React.Component {
 
 ---
 
+[.code-highlight: all]
 [.code-highlight: 2]
 [.code-highlight: 3]
 [.code-highlight: all]
@@ -1017,17 +989,19 @@ it('should render the closed issue badge', function() {
 });
 ```
 
-^ Here’s an example test that renders the component directly
+^ Here’s an example test that
+
+^ S renders the component directly
 
 ^ S and then asserts against the output.
 
-^ S What’s great is that this test runs without touching the database and without spinning up a browser.
+^ S What’s great is that this test runs without touching the database or controller layer.
 
-^ Which means that it's wicked fast.
+^ Which means that really, really fast.
 
 ---
 
-# [fit] React
+![50%](img/react.png)
 
 ^ So React has:
 
@@ -1035,18 +1009,19 @@ it('should render the closed issue badge', function() {
 
 # [fit] Components
 
-^ Components
+^ Components that render HTML
 
 ---
 
 # [fit] Types
-^ Types
+
+^ Types that give us confidence in our inputs
 
 ---
 
-# [fit] Functional purity
+# [fit] Data flow
 
-^ Functional purity
+^ Data flow and with functional purity
 
 ---
 
@@ -1062,9 +1037,15 @@ it('should render the closed issue badge', function() {
 
 ---
 
-# [fit] Rails
+![50%](img/react.png)
 
-^ Perhaps we could find a way to incorporate some of the benefits of React into Rails.
+^ Perhaps we could find a way to incorporate some of the benefits of React
+
+---
+
+![50%](img/rails.png)
+
+^ into Rails.
 
 ^ Let's give it a shot!
 
@@ -1113,11 +1094,16 @@ it('should render the closed issue badge', function() {
 
 ^ What might it look like to test the partial?
 
-^ In each case, we're doing three things: assigning a class name, picking an icon, and setting a label.
+^ S In each case, we're doing three things:
+
+^ S assigning a class name,
+
+^ S picking an icon, and setting a label.
 
 ---
 
 [.code-highlight: all]
+[.code-highlight: 1-9]
 [.code-highlight: 6]
 [.code-highlight: 7]
 [.code-highlight: 8]
@@ -1141,9 +1127,17 @@ it "renders the draft pull request badge"
 it "renders the closed pull request badge for a closed draft pull request"
 ```
 
-^ To start, let's add some of those slow controller tests to assert these three things for each state.
+^ To start, let's add some traditional controller tests for each state.
 
-^ We'll assert that we have the correct class name, icon, and label
+^ S We'll start with a test for the open issue badge.
+
+^ We'll assert that we have the correct
+
+^ S class name,
+
+^ S icon,
+
+^ S and label
 
 ---
 
@@ -1228,23 +1222,7 @@ end
 
 ^ Let's add an #html method to our component that returns the open issue badge from our partial.
 
----
-
-[.code-highlight: all]
-
-```ruby
-it "renders the open issue badge" do
-  create(:issue, :open)
-
-  get :index
-
-  assert_select(".State.State--green")
-  assert_select(".octicon-issue-opened")
-  assert_includes(response.body, "Open")
-end
-```
-
-^ Let's give it a run.
+^ And then run our test.
 
 ---
 
