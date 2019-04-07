@@ -190,9 +190,21 @@ DHH said in the announcement of Rails 5
 
 ^ Progressive enhancement.
 
-^ We like to say that we write our Javascript like it's 2005. It makes the site more pleasant to use, but at its
- core, most workflows work with it turned off.
-^ While most of us here at RailsConf are lucky enough to be using modern, powerful devices
+^ We like to say that we write our Javascript like it's 2005. While it makes the user experience more pleasant, most of the site works without it.
+
+---
+
+# [fit] Why?
+
+^ But why?
+
+^ A couple reasons:
+
+---
+
+# [fit] Performance
+
+^ While most of us here are lucky enough to be using modern, powerful devices
 
 ^ A lot of our new users are in developing countries
 
@@ -200,10 +212,13 @@ DHH said in the announcement of Rails 5
 
 ^ At our scale, even a small percentage of users is a large number of people
 
-^ For those using GitHub in the enterprise, there might be users on older browsers, and we don't want to abandon
- them either
-^ Allows graceful fallback support for older browsers
+---
 
+# [fit] Browsers
+
+^ Since we don't *need* javascript to run our site, we can simply turn if off for older browsers that are hard to maintain compatibility with.
+
+^ How do we do it?
 
 ---
 
@@ -224,8 +239,6 @@ DHH said in the announcement of Rails 5
   <%= javascript_bundle 'unsupported' %>
 <% end %>
 ```
-
-^ How do we do it?
 
 ^ Couple tiers of Javascript bundles
 
