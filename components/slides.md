@@ -1518,8 +1518,8 @@ end
 
 ---
 
+[.code-highlight: all]
 [.code-highlight: 10]
-[.code-highlight: 8-20]
 
 ```ruby
 module Issues
@@ -1620,15 +1620,13 @@ end
 
 # [fit] 7 examples, 0 failures
 
-^ We're green! Let's ship it!
-
-^ Just kidding. This is just the start!
+^ We're green! Let's ship it! Maybe not yet.
 
 ---
 
 [.code-highlight: all]
-[.code-highlight: 1-16]
-[.code-highlight: 17-25]
+[.code-highlight: 1,5,9,13]
+[.code-highlight: 17, 21]
 
 ```erb
 <% if @pull_request && @pull_request.merged? %>
@@ -1803,9 +1801,11 @@ end
 </div>
 ```
 
-^ When we're rendering the State UI element,
+^ Our State UI element really just has one option:
 
-^ S We're really just picking the color.
+^ S color.
+
+^ So if it was a component,
 
 ---
 
@@ -1816,7 +1816,7 @@ end
 <% end %>
 ```
 
-^ Expressed instead as rendering a component, that might look something like this.
+^ That would be our single argument
 
 ^ So let's build it!
 
@@ -1854,6 +1854,26 @@ end
 class ActionView::Base
   module RenderMonkeyPatch
     def render(component, *args)
+      return super unless [Issues::Badge, PullRequests::Badge].include?(component)
+
+      component.new(*args).html
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ We'll also need to update our monkey patch
+
+---
+
+[.code-highlight: 4]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
       return super unless [Issues::Badge, PullRequests::Badge, Primer::State].include?(component)
 
       component.new(*args).html
@@ -1864,13 +1884,13 @@ class ActionView::Base
 end
 ```
 
-^ We'll also need to update our monkey patch to handle yet another component.
+^ to handle yet another component.
 
 ^ But wait, that doesn't feel right.
 
 ^ Perhaps we're missing an abstraction here.
 
-^ What we're really trying to say here is: "Am I dealing with one of these newfangled components?"
+^ What we're really trying to say is: "Am I dealing with one of these newfangled components?"
 
 ^ Perhaps it's time for a parent class!
 
@@ -1910,6 +1930,44 @@ end
 
 ---
 
+[.code-highlight: 4]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless [Issues::Badge, PullRequests::Badge, Primer::State].include?(component)
+
+      component.new(*args).html
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ Then, we can simplify the conditional in our monkey patch
+
+---
+
+[.code-highlight: 4]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless component < ActionView::Component
+
+      component.new(*args).html
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ To just check if the argument is a child of ActionView::Component.
+
 ^ So now that we have a parent class for our components, let's try and reduce some duplication.
 
 ---
@@ -1948,27 +2006,7 @@ end
 
 ^ So let's move that to ActionView::Component.
 
----
-
-[.code-highlight: 4]
-
-```ruby
-class ActionView::Base
-  module RenderMonkeyPatch
-    def render(component, *args)
-      return super unless component < ActionView::Component
-
-      component.new(*args).html
-    end
-  end
-
-  prepend RenderMonkeyPatch
-end
-```
-
-^ And then our monkey patch can instead check to see if the argument is a child of ActionView::Component.
-
-^ So let's run our tests again:
+^ And let's run our tests again:
 
 ---
 
@@ -1992,13 +2030,6 @@ end
 <% end %>
 ```
 
-```ruby
-module Primer
-  class State
-  end
-end
-```
-
 ^ But as we start to think of how to write our template, we hit a wall:
 
 ^ S How will we pass in the content of the badge?
@@ -2011,6 +2042,7 @@ end
 
 ---
 
+[.code-highlight: all]
 [.code-highlight: 2]
 [.code-highlight: 3]
 
@@ -2021,14 +2053,17 @@ it('should render the closed issue badge', function() {
 });
 ```
 
-^ In React, we were able to render our component directly,
+^ In React, our tests
+
+^ S were able to render our component directly,
 
 ^ S then assert against the resulting HTML.
 
-^ In an ideal world, we'd be able do the same in Rails:
+^ In an ideal world,
 
 ---
 
+[.code-highlight: all]
 [.code-highlight: 2]
 [.code-highlight: 4]
 [.code-highlight: 2]
@@ -2040,6 +2075,8 @@ it "renders content passed to it as a block" do
   assert_includes result.css(".State.State--green").text, "content"
 end
 ```
+
+^ we'd be able do the same in Rails:
 
 ^ S Render the component directly,
 
@@ -2139,7 +2176,7 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] Expected "\n      " to include "content".
+# [fit] Expected " " to include "content".
 
 ^ There we go!
 
@@ -2428,6 +2465,9 @@ end
 ---
 
 [.code-highlight: 3-8]
+[.code-highlight: 4]
+[.code-highlight: 5-7]
+[.code-highlight: 4-7]
 
 ```ruby
 module Primer
@@ -2447,7 +2487,15 @@ end
 
 ^ And capture those relationships in a constant.
 
-^ So how might we make sure we're only dealing with a valid color?
+^ This gives a clear mapping between the:
+
+^ S default value and not applying a CSS class, and between
+
+^ S the color values and their respective CSS classes.
+
+^ S This also captures the entirety of the values we should allow for the color argument
+
+^ So how can we enforce this in our component?
 
 ---
 
@@ -2485,15 +2533,20 @@ end
 
 ^ And make sure it fails.
 
----
-
 ^ So how might we ensure color is one of our expected values?
 
-^ We're in Rails, so that's a solved problem: ActiveModel validations!
+^ We're in Rails, so that's a solved problem:
 
 ---
 
-[.code-highlight: 10]
+# [fit] ActiveModel::Validation
+
+^ ActiveModel validations!
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 3-8, 10]
 
 ```ruby
 module Primer
@@ -2513,7 +2566,9 @@ module Primer
 end
 ```
 
-^ We can use an inclusion validation to check that color is one of the valid values.
+^ In our component,
+
+^ S We can use an inclusion validation to check that color is one of the valid values.
 
 ---
 
