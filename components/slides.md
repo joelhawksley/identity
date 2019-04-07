@@ -5,7 +5,7 @@ text: Avenir Next Medium, #24292e
 text-strong: Avenir Next Bold, #24292e
 header: Avenir Next Medium, #24292e
 header-strong: Avenir Next Bold, #24292e
-code: Courier Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
+code: Menlo Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
 background-color: #ffffff;
 
 # [fit] Rethinking the View Layer <br> with Components
@@ -33,93 +33,81 @@ background-color: #ffffff;
 
 ^ Learning new languages and frameworks
 
-^ Give us a new way of thinking about the world
+^ Gives me a new way of thinking about the world
 
 ---
 
 ![50%](img/react.png)
 
-^ Especially true for me with React
-
-^ Changed the way I look at Rails
+^ Learning React changed the way I look at Rails
 
 ^ Going to talk about that change in perspective
 
-^ How I took a template in the GitHub app
-
----
-
-```erb
-<% if pull_request && pull_request.merged? %>
-  <div class="State State--purple">
-    <%= octicon('git-merge') %> Merged
-  </div>
-<% elsif pull_request && pull_request.closed? %>
-  <div class="State State--red">
-    <%= octicon('git-pull-request') %> Closed
-  </div>
-<% elsif pull_request && pull_request.draft? %>
-  <div class="State">
-  <%= octicon('git-pull-request') %> Draft
-  </div>
-<% elsif pull_request %>
-  <div class="State State--green">
-    <%= octicon('git-pull-request') %> Open
-  </div>
-<% elsif issue && issue.closed? %>
-  <div class="State State--red">
-    <%= octicon('issue-closed') %> Closed
-  </div>
-<% elsif issue %>
-  <div class="State State--green">
-    <%= octicon('issue-opened') %> Open
-  </div>
-<% end %>
-```
-
-^ Is hard to test efficiently
-
-^ Is impossible to measure with code coverage tools
-
-^ Makes it easy to query the database in a view
-
-^ Fails basic Ruby code standards
-
-^ And refactored it into a new, experimental addition to ActionView
-
+^ And how it led to refactoring a template in our app that:
 
 ---
 
 # [fit] Testing
 
-^ That allows us to test our views efficiently, in isolation
+^ Was hard to test efficiently
 
 ---
 
-# [fit] Code <br> Coverage
+# [fit] Code Coverage
 
-^ Use code coverage tools
+^ Was impossible to audit with code coverage tools
 
 ---
 
 # [fit] Data Flow
 
-^ Only receive the data they need
+^ Made it difficult to reason about data flow
 
 ---
 
 # [fit] Standards
 
-^ Follow the code standards of the Ruby language
+^ And failed basic Ruby code standards
 
-^ And perhaps most importantly
+---
 
+# [fit] ActionView::Component
+
+^ And refactored it into a new, experimental addition to Rails we're calling ActionView::Component
+
+^ that
+
+---
+
+# [fit] Testing
+
+^ is tested efficiently in isolation
+
+---
+
+# [fit] Code <br> Coverage
+
+^ is audited with code coverage tools
+
+---
+
+# [fit] Data Flow
+
+^ only receives that data it needs
+
+---
+
+# [fit] Standards
+
+^ and follows the code standards of the Ruby language
+
+^ Oh, and is
 
 ---
 
 # [fit] >200x
 
-^ Are over 200x faster to test
+^ over 200x faster to test
 
 ---
 
@@ -128,6 +116,8 @@ background-color: #ffffff;
 ---
 
 # [fit] Views
+
+^ But first
 
 ^ What even is a view?
 
@@ -249,19 +239,13 @@ DHH said in the announcement of Rails 5
 
 ^ Because we only serve JS to the most modern browsers, we can be really strict about compatibility
 
-
----
-
-# [fit] Server <br> Rendering
-
-^
-All rendering on the server
+^ So how does this look in practice?
 
 ---
 
 ![fit](img/pjax-1.png)
 
-^ New issue comment
+^ Take for example posting a ew comment on an issue
 
 ^ JS intercepts click
 
@@ -280,40 +264,33 @@ All rendering on the server
 
 ^ PAUSE
 
-
 ---
 
 ^ Let’s talk about building views at GitHub
 
 ---
 
-![fit](img/sticky.gif)
+![fit](img/sticky.png)
 
-^ Project paper cuts
-
-^ Make GitHub better through incorporating community feedback
-
-^ Over a hundred releases in the past year
-
-^ Recently shipped sticky headers
-
+^ I recently worked on adding sticky headers to pull request and issue pages.
 
 ---
 
 ![fit](img/issue-status-highlight.png)
 
-^ This is the issue badge
+^ As part of that project, I got to know this little piece of our UI, called the Issue Badge, really well.
 
-^ Display the status of Issues and PRs
-
-^ We use it all over our app
-
+^ We use the issue badge to display the status of Issues and PRs
 
 ---
 
 ![fit](img/primer.png)
 
 ^ It's part of our design system called Primer
+
+^ We use it all over our app
+
+^ But before we dig into that let's talk about our data model.
 
 ---
 
@@ -323,9 +300,16 @@ All rendering on the server
 
 ^ In GitHub data model
 
-^ PR is just an issue with an associated PullRequest object.
+^ PR is just an issue with an associated pull request object.
+
+^ So all pull requests are issues, but not all issues are pull requests.
 
 ---
+
+[.code-highlight: all]
+[.code-highlight: 3]
+[.code-highlight: 2, 4]
+[.code-highlight: 2-4]
 
 ```erb
 <% if pull_request && pull_request.merged? %>
@@ -355,38 +339,49 @@ All rendering on the server
 <% end %>
 ```
 
-^ Shared issue badge partial
+^ Shared issue badge partial that I needed to reuse to build the sticky header.
 
-^ Renders icon, label, color
+^ S Renders icon, label,
 
-^ State of issue or PR
+^ S and color
 
-^ PAUSE
-
-^ Reuse for sticky headers
-
-^ Deleted the contents of the view, pushed to CI, nothing failed
-
-^ Not so simple at GitHub
-
+^ S together displaying the state of issue or pull request
 
 ---
 
-# [fit] Rails 5.2
+^ Wanting to know more about its behavior, I figured, why not just delete the file and see what tests fail!
+
+^ That's just what I did.
+
+^ And then I pushed to CI.
+
+---
+
+[.background-color: #28a745]
+[.header: #ffffff]
+
+^ The build was green.
+
+---
+
+^ How could this be?
+
+^ The reality is that things are, well, different here.
+
+---
+
+# [fit] Rails @ GitHub
 
 ^ GitHub is a Rails monolith that has been growing and evolving for over 10 years
 
 ---
 
 ```bash
-
 $ ls -1 app/models | wc -l
 556
-
 ```
 
-^ We have almost 600 models
-^ (And and additional 1500 or so concerns)
+^ We have over 550 models,
 
 ---
 
@@ -406,31 +401,32 @@ $ find app/views -print | wc -l
 
 ^ And over 3700 views!
 
-^ PAUSE
+---
 
-^ Affect how we test our views?
+^ So how might this scale affect our approach to testing our views?
 
 ---
 
 # [fit] 6s
 ### [fit] GET + assert
 
-^ Six seconds for single controller test
-^ One minute for ten test cases just to get feedback
+^ In our test suite, it takes six seconds to run a single controller test locally, not including any setup.
+
+^ One minute to run a set of ten cases.
 
 ---
 
 ![fit](img/jeopardy.jpg)
 
-^ So you know how long the Jeopardy theme song is?
+^ So does anyone here know how long the Jeopardy theme song is?
 
 ^ It's 30 seconds.
 
 ^ So imagine listening to it twice, every time you run a set of ten tests.
 
-^ When your view tests take six seconds per test case, that might make you write less tests
+---
 
-^ That's not good for anyone
+^ When your view tests cost you six seconds per case, that might make you write less of them!
 
 ---
 
@@ -454,11 +450,14 @@ $ find app/views -print | wc -l
 
 ---
 
-# [fit] Queries in views
+# [fit] Data Flow
 
-^ Queries in views, such as N+1s or just a particularly expensive lookup, were the most common response.
+^ Data flow. The risk of running queries in views, such as N+1s or just a particularly expensive lookup, was the most common response.
 
 ---
+
+[.code-highlight: all]
+[.code-highlight: 1, 5, 9, 13, 17, 21]
 
 ```erb
 <% if pull_request && pull_request.merged? %>
@@ -490,7 +489,7 @@ $ find app/views -print | wc -l
 
 ^ Looking at our example:
 
-^ For “pull” and “issue”, what attributes do we need from each object?
+^ S For "pull" and "issue", what attributes do we need from each object?
 
 ^ If these are active record objects, we’d be fetching their entire set of attributes, when we may in fact only need one or two for each object.
 
@@ -723,7 +722,7 @@ end
 
 ![fit](img/code-review-3.png)
 
-^ Where are pull and issue coming from?
+^ Where are pull_request and issue coming from?
 
 ^ PAUSE
 
@@ -741,19 +740,23 @@ end
 
 ^ So to recap,
 
-^ Rails views are difficult to test, putting our views in a bit of blind spot.
+^ Rails views are difficult to test
+
+# [fit] Code <br> Coverage
+
+^ Impossible to audit with code coverage tools, preventing us from knowing how thorough our tests are.
 
 ---
 
-# [fit] Queries in views
+# [fit] Data Flow
 
-^ Make it easy to accidentally run queries in our views
+^ Make it difficult to reason about data flow
 
 ---
 
 # [fit] Code <br> Coverage
 
-^ Can’t be measured with code coverage tooling,
+^ Can’t be audited with code coverage tools
 
 ---
 
@@ -775,7 +778,7 @@ end
 
 ---
 
-# [fit] M v C
+# [fit] MVC
 
 ^ The reality is that the existing Rails view layer is a second-class citizen these days.
 
@@ -824,11 +827,17 @@ React.render(<Greeting name="World" />, document.getElementById('example'));
 
 ^ Here's one way of writing "Hello, World" in a React component.
 
-^ React components, at a minimum, implement a render method that returns HTML.
+^ S React components, at a minimum, implement a render method that returns HTML.
 
-^ Arguments passed to a component are assigned to the `props` object, which is accessible within the component's instance methods.
+^ S Arguments passed to a component are assigned to the `props` object,
+
+^ S which is accessible within the component's instance methods.
 
 ---
+
+[.code-highlight: all]
+[.code-highlight: 5]
+[.code-highlight: 4-6]
 
 ```jsx
 class IssueBadge extends React.Component {
@@ -848,6 +857,10 @@ class IssueBadge extends React.Component {
 
 ^ Here’s an example of what the issue badge might look like as a React component.
 
+^ S Like our template, the component renders an icon and a label
+
+^ S Wrapped in a state-specific CSS class
+
 ---
 
 # [fit] Types
@@ -858,6 +871,7 @@ class IssueBadge extends React.Component {
 
 [.code-highlight: all]
 [.code-highlight: 2-4]
+[.code-highlight: 5,8]
 [.code-highlight: 5-8]
 
 ```javascript
@@ -867,7 +881,8 @@ IssueBadge.propTypes = {
   }).isRequired,
   pullRequest: PropTypes.exact({
     isClosed: PropTypes.bool.isRequired,
-    isMerged: PropTypes.bool.isRequired
+    isMerged: PropTypes.bool.isRequired,
+    isDraft: PropTypes.bool.isRequired
   }),
 };
 ```
@@ -876,9 +891,11 @@ IssueBadge.propTypes = {
 
 ^ This allows us to express some expectations about the data we receive. In this case, we are expecting:
 
-^ An issue with the boolean isClosed attribute to always be provided
+^ S An issue with the isClosed boolean to always be provided
 
-^ And a pull request to sometimes be provided, and if so, with the boolean isClosed and isMerged attributes.
+^ S And a pull request to sometimes be provided, and if so,
+
+^ S with the isClosed and isMerged, and isDraft booleans.
 
 ---
 
@@ -900,7 +917,7 @@ class IssueBadge extends React.Component {
 }
 ```
 
-^ When can then write code without checking for the presence of the issue object, as our type check will guarantee that it is present.
+^ When can then reference the issue without checking for nil, as our type check will guarantee that it is present.
 
 ^ PAUSE
 
@@ -912,7 +929,7 @@ class IssueBadge extends React.Component {
 
 ---
 
-# [fit] Data → Component
+# [fit] Data Flow
 
 ^ By passing data into views instead of rich objects, React encourages us to write functions without side-affects.
 
@@ -926,6 +943,10 @@ class IssueBadge extends React.Component {
 
 ---
 
+[.code-highlight: 2]
+[.code-highlight: 3]
+[.code-highlight: all]
+
 ```jsx
 it('should render the closed issue badge', function() {
   expect(shallow(<IssueBadge props={{ issue: { isClosed: true }}} />).
@@ -933,9 +954,11 @@ it('should render the closed issue badge', function() {
 });
 ```
 
-^ Here’s an example test that asserts against the output of our component.
+^ Here’s an example test that renders the component directly
 
-^ What’s great is that this test runs without touching the database and without spinning up a browser.
+^ S and then asserts against the output.
+
+^ S What’s great is that this test runs without touching the database and without spinning up a browser.
 
 ^ Which means that it's wicked fast.
 
@@ -970,23 +993,19 @@ it('should render the closed issue badge', function() {
 
 ---
 
-^ While React has a lot of advantages, it’s not compatible with our progressive enhancement architecture at GitHub.
+^ Which is too bad, because it’s not compatible with our progressive enhancement architecture at GitHub.
 
-^ But I'm not so sure we should give up there.
+^ But let's not give up just yet.
 
 ---
 
 # [fit] Rails
 
-^ What might it look like to use these lessons from React to improve the Rails view layer?
+^ Perhaps we could find a way to incorporate some of the benefits of React into Rails.
 
-^ Let's give it a shot! Perhaps we can address some of those code review comments along the way.
+^ Let's give it a shot!
 
----
-
-# [fit] Components
-
-^ So what might it look like to have components in Rails?
+^ Perhaps we can address some of those code review comments while we're at it.
 
 ---
 
@@ -1133,7 +1152,7 @@ end
 ```ruby
 module Issues
   class Badge
-    def render
+    def html
       <<-erb
       <div class="State State--green">
         #{octicon('issue-opened')} Open
@@ -1144,7 +1163,7 @@ module Issues
 end
 ```
 
-^ Let's add a #html method to our component that returns the open issue badge from our partial.
+^ Let's add an #html method to our component that returns the open issue badge from our partial.
 
 ---
 
@@ -1255,15 +1274,18 @@ end
 
 ^ It looks like our output is being escaped!
 
-^ As it turns out, there view rendering is more than just string interpolation!
+^ I guess there's more to view rendering than just string interpolation after all!
 
-^ While it might be tempting to throw an html_safe on the end and call it a day, this is a bad, bad idea.
+^ While it might be tempting to throw an html_safe on the end and call it a day, that would be the furthest thing from safe.
 
-^ But wait, what if we just used the existing Rails template pipeline?
+^ But what if we just used the existing Rails template rendering architecture?
 
 ---
 
 [.code-highlight: 12-18]
+[.code-highlight: 5-10]
+[.code-highlight: 8]
+[.code-highlight: 6-9]
 
 ```ruby
 module Issues
@@ -1290,7 +1312,11 @@ end
 
 ^ First, let's move our template into a method called template.
 
-^ And in our render method, we'll run our template through ActionView's ERB template handler, then call #src on the result. Evaluating the output of #src here effectively mirrors how traditional Rails templates are compiled and then executed.
+^ S And in our html method, we'll run our template through ActionView's ERB template handler,
+
+^ S then call #src on the result.
+
+^ S This effectively mirrors how regular Rails templates are compiled and then executed.
 
 ^ So let's run our tests again.
 
@@ -1307,6 +1333,11 @@ end
 
 ---
 
+[.code-highlight: 2]
+[.code-highlight: 6]
+[.code-highlight: 7]
+[.code-highlight: 8]
+
 ```ruby
 it "renders the closed issue badge" do
   create(:issue, :closed)
@@ -1321,26 +1352,13 @@ end
 
 ^ Let's keep moving along.
 
-^ The next test is for a closed issue.
+^ S The next test is for a closed issue.
 
----
+^ S Which should have a red background,
 
-[.code-highlight: 2-5]
+^ S closed icon,
 
-```erb
-# ...
-<% elsif issue && issue.closed? %>
-  <div class="State State--red">
-    <%= octicon('issue-closed') %> Closed
-  </div>
-<% elsif issue %>
-  <div class="State State--green">
-    <%= octicon('issue-opened') %> Open
-  </div>
-<% end %>
-```
-
-^ If we look back at the original partial, in the case of a closed issue, we set a different CSS class, icon and label.
+^ S and "closed" label
 
 ^ Let's give it a run.
 
@@ -1365,8 +1383,27 @@ end
 
 ---
 
-[.code-highlight: 3]
-[.code-highlight: 6]
+[.code-highlight: 3, 6]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless component == Issues::Badge
+
+      component.new.html
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ First, we'll need to update our monkey patch
+
+---
+
+[.code-highlight: 3, 6]
 
 ```ruby
 class ActionView::Base
@@ -1382,7 +1419,7 @@ class ActionView::Base
 end
 ```
 
-^ First, we'll need to update our monkey patch to pass the arguments through to our component.
+^ to pass the arguments through to our component's initializer.
 
 ---
 
@@ -1409,6 +1446,7 @@ end
 
 ---
 
+[.code-highlight: 10]
 [.code-highlight: 8-20]
 
 ```ruby
@@ -1436,7 +1474,9 @@ module Issues
 end
 ```
 
-^ Now that we have an issue, we can reference it in our template!
+^ Now that we have an issue,
+
+^ S we can reference it in our template!
 
 ^ So let's run our test again...
 
@@ -1548,56 +1588,17 @@ end
 
 ^ Taking another look at our template, it seems as though we really have *two* components here, not one.
 
-^ The first two thirds handle various pull request states
+^ S The first two thirds handle various pull request states
 
-^ While the last third handles issue state.
-
-^ Now, since the view that calls our component knows whether it is dealing with a pull request or an issue, how about we split this out into two components and let it pick which one to use?
+^ S While the last third handles issue state.
 
 ---
 
-```ruby
-module PullRequests
-  class Badge
-    include OcticonsHelper
-
-    def initialize(pull_request:)
-      @pull_request = pull_request
-    end
-
-    def html
-      eval(
-        "output_buffer = ActionView::OutputBuffer.new; " +
-        ActionView::Template::Handlers::ERB.erb_implementation.new(template, trim: true).src
-      )
-    end
-
-    def template
-      <<-erb
-      <% if @pull_request && @pull_request.merged? %>
-        <div class="State State--purple">
-          <%= octicon('git-merge') %> Merged
-        </div>
-      <% elsif @pull_request && @pull_request.closed? %>
-        <div class="State State--red">
-          <%= octicon('git-pull-request') %> Closed
-        </div>
-      <% elsif @pull_request && @pull_request.draft? %>
-        <div class="State">
-        <%= octicon('git-pull-request') %> Draft
-        </div>
-      <% else %>
-        <div class="State State--green">
-          <%= octicon('git-pull-request') %> Open
-        </div>
-      <% end %>
-      erb
-    end
-  end
-end
+```erb
+<%= render Issues::Badge, issue: issue, pull_request: issue.pull_request %>
 ```
 
-^ So let's move the pull request portion to its own component.
+^ Now, since the view that calls our component knows whether it is dealing with a pull request or an issue, how about we split this out into two components and let the view pick which one to use?
 
 ---
 
@@ -1609,7 +1610,30 @@ end
 <% end %>
 ```
 
-^ Then update our view to choose which component to render.
+^ That's not so bad!
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 4]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless component == Issues::Badge
+
+      component.new(*args).html
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ Back at our monkey patch
+
+^ S We'll need to update our conditional
 
 ---
 
@@ -1629,7 +1653,9 @@ class ActionView::Base
 end
 ```
 
-^ So let's update our monkey patch to look for our new component, then run our tests.
+^ To handle both components.
+
+^ Let's check in on our tests
 
 ---
 
@@ -1638,7 +1664,7 @@ end
 
 # [fit] 7 examples, 0 failures
 
-^ Still green.
+^ Still green!
 
 ^ So let's go back to our code review.
 
@@ -1690,15 +1716,9 @@ end
 <% end %>
 ```
 
-^ And our pull request badge are rendering the State component from our Primer design system.
-
----
+^ And our pull request badge are rendering the same State UI element from our Primer design system.
 
 ^ So why not make that a component?
-
-^ PAUSE
-
-^ So let's think about what we might want that to look like.
 
 ---
 
@@ -1711,13 +1731,13 @@ end
 </div>
 ```
 
-^ When we're rendering the State component,
+^ When we're rendering the State UI element,
 
-^ We're really just picking the color.
+^ S We're really just picking the color.
 
 ---
 
-[.code-highlight: all]
+[.code-highlight: 1]
 ```erb
 <%= render Primer::State, color: :green do %>
   <%= octicon('git-pull-request') %> Open
@@ -1795,27 +1815,19 @@ end
 
 ---
 
-[.code-highlight: 2]
+[.code-highlight: 2, 7, 12]
 
 ```ruby
 module Issues
   class Badge < ActionView::Component
   end
 end
-```
 
-[.code-highlight: 2]
-
-```ruby
 module PullRequests
   class Badge < ActionView::Component
   end
 end
-```
 
-[.code-highlight: 2]
-
-```ruby
 module Primer
   class State < ActionView::Component
   end
@@ -1917,7 +1929,7 @@ end
 
 ^ But as we start to think of how to write our template, we hit a wall:
 
-^ How will we pass in the content of the badge?
+^ S How will we pass in the content of the badge?
 
 ^ Let's write a test first.
 
@@ -1928,7 +1940,26 @@ end
 ---
 
 [.code-highlight: 2]
+[.code-highlight: 3]
+
+```jsx
+it('should render the closed issue badge', function() {
+  expect(shallow(<IssueBadge props={{ issue: { isClosed: true }}} />).
+  contains(<div className="State State--red">Closed</div>)).toBe(true);
+});
+```
+
+^ In React, we were able to render our component directly,
+
+^ S then assert against the resulting HTML.
+
+^ In an ideal world, we'd be able do the same in Rails:
+
+---
+
+[.code-highlight: 2]
 [.code-highlight: 4]
+[.code-highlight: 2]
 
 ```ruby
 it "renders content passed to it as a block" do
@@ -1938,14 +1969,17 @@ it "renders content passed to it as a block" do
 end
 ```
 
-^ In an ideal world, we'd be able to render the component directly in a test,
+^ S Render the component directly,
 
-^ and then assert against the resulting HTML.
+^ S and then assert against the resulting HTML.
+
+^ S All we need is a way to render a template inline.
 
 ---
 
 [.code-highlight: all]
 [.code-highlight: 2]
+[.code-highlight: 4]
 
 ```ruby
 def render_string(string)
@@ -1955,11 +1989,11 @@ def render_string(string)
 end
 ```
 
-^ And without too much work, we can! We can implement our render_string test helper that:
+^ And without too much work, we can! We can implement a render_string test helper that:
 
-^ Renders our template in the same code path as a normal view, and then
+^ S Renders our template in the same code path as a normal view, and then
 
-^ Parses the result in Nokogiri for easier assertions.
+^ S Parses the result in Nokogiri for easier assertions.
 
 ^ So let's run our test now.
 
@@ -1974,7 +2008,41 @@ end
 
 ---
 
-[.code-highlight: 3]
+[.code-highlight: 2]
+
+```ruby
+def render_string(string)
+  html = ApplicationController.new.view_context.render(inline: string)
+
+  Nokogiri::HTML(html)
+end
+```
+
+^ And it looks like our test helper is to blame, passing a hash to #render.
+
+---
+
+[.code-highlight: 3, 4]
+
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args)
+      return super unless component < ActionView::Component
+
+      component.new(*args).html
+    end
+  end
+
+  prepend RenderMonkeyPatch
+end
+```
+
+^ It turns out that ActionView's #render method accepts a couple different types of arguments,
+
+---
+
+[.code-highlight: 3, 4]
 
 ```ruby
 class ActionView::Base
@@ -1989,8 +2057,6 @@ class ActionView::Base
   prepend RenderMonkeyPatch
 end
 ```
-
-^ It turns out that #render can be passed a hash
 
 ^ So let's update our monkey patch's conditional to make sure we're dealing with a Class, then re-run our tests.
 
@@ -2021,9 +2087,9 @@ end
 
 ^ When we're passing content into our component, what we're effectively saying is:
 
-^ "render this block in the context of the current view", then
+^ S "render this block in the context of the current view", then
 
-^ "Wrap it in the component"
+^ S "Wrap it in the component"
 
 ^ So how might that look?
 
@@ -2065,7 +2131,7 @@ class ActionView::Base
 end
 ```
 
-^ To accept a block.
+^ To accept a block argument.
 
 ---
 
@@ -2111,9 +2177,11 @@ end
 
 ^ To first instantiate the component
 
-^ Then render the block in the context of the current view, and assign the result to an accessor on our component, if a block has been passed.
+^ S Then, if a block has been passed, render it in the context of the current view, and assign the result to an accessor on the component.
 
-^ At that point, our component will know about the content, so we can render it.
+^ At that point, our component will know about the content
+
+^ S so we can render it.
 
 ^ So since we're expecting all components to have a content accessor,
 
@@ -2190,7 +2258,7 @@ module Primer
 end
 ```
 
-^ And updating the template to reference it.
+^ And updating the template to reference the content accessor.
 
 ^ But let's see what our test says.
 
@@ -2219,7 +2287,7 @@ module Primer
 end
 ```
 
-^ So now let's take our new component,
+^ Now that we have content, what about setting the color?
 
 ---
 
@@ -2243,9 +2311,9 @@ module Primer
 end
 ```
 
-^ And update it to accept a color argument!
+^ Let's start by adding a color argument in an initializer.
 
-^ But what values should we expect here?
+^ But what values do we need to handle?
 
 ---
 
@@ -2305,9 +2373,14 @@ end
 
 ^ And capture those relationships in a constant.
 
-^ So how might we make sure we're only given a valid color?
+^ So how might we make sure we're only dealing with a valid color?
 
 ---
+
+[.code-highlight: all]
+[.code-highlight: 3]
+[.code-highlight: 2-4]
+[.code-highlight: 6]
 
 ```ruby
 it "raises an error when color is not one of valid values" do
@@ -2321,6 +2394,14 @@ end
 
 ^ Let's start with a test.
 
+^ S We'll assert that when passing in a color we're not expecting
+
+^ S an error will be raised
+
+^ S with a message in a format that is suspiciously familiar
+
+^ So let's run it.
+
 ---
 
 [.background-color: #d73a49]
@@ -2330,7 +2411,9 @@ end
 
 ^ And make sure it fails.
 
-^ So how might we check that color is from a set of allowed values?
+^ So how might we ensure color is one of our expected values?
+
+^ We're in Rails, so that's a solved problem:
 
 ---
 
@@ -2354,10 +2437,9 @@ module Primer
 end
 ```
 
-^ We're in Rails, so that's a solved problem: ActiveModel validations!
+^ ActiveModel validations!
 
 ^ We can use an inclusion validation to check that color is one of the valid values.
-
 
 ---
 
@@ -2448,6 +2530,7 @@ end
 ---
 
 [.code-highlight: 8]
+[.code-highlight: 8, 9]
 
 ```ruby
 class ActionView::Base
@@ -2466,7 +2549,9 @@ class ActionView::Base
 end
 ```
 
-^ And add a step to validate our component before we render it.
+^ And add a step to validate our component
+
+^ S before we render it.
 
 ^ PAUSE
 
@@ -2483,6 +2568,10 @@ end
 
 ---
 
+[.code-highlight: all]
+[.code-highlight: 4]
+[.code-highlight: 2]
+
 ```ruby
 it "assigns the correct CSS class for color" do
   result = render_string("<%= render Primer::State, color: :purple do %>content<% end %>")
@@ -2491,7 +2580,11 @@ it "assigns the correct CSS class for color" do
 end
 ```
 
-^ So now let's make sure we're setting the right CSS class based on the color.
+^ So now let's make sure we're
+
+^ S setting the right CSS class
+
+^ S based on the color
 
 ---
 
@@ -2624,6 +2717,9 @@ end
 
 ---
 
+[.code-highlight: 3]
+[.code-highlight: 6]
+
 ```ruby
 it "raises an error when title is not present" do
   exception = assert_raises ActionView::Template::Error do
@@ -2634,7 +2730,9 @@ it "raises an error when title is not present" do
 end
 ```
 
-^ We'll do that with a test expecting a validation error.
+^ We'll do that with a test that passes in an empty title
+
+^ S and then expexts a validation error.
 
 ---
 
@@ -2744,11 +2842,11 @@ end
 
 ---
 
+# [fit] Data Flow
+
 ^ So looking back We were mainly concerned with our component unintentionally querying the database.
 
 ^ But what if we could avoid passing in ActiveRecord objects at all? That would basically eliminate the risk.
-
-^ Let's see what we can do about that.
 
 ---
 
@@ -2784,13 +2882,16 @@ end
 
 ^ Let's start with Issue::Badge.
 
-^ Right now, we're passing in an issue, which is an ActiveRecord object.
+^ S Right now, we're passing in an issue, which is an ActiveRecord object.
 
-^ But the only thing we're doing with it is calling #closed?
+^ S But the only thing we're doing with it is calling #closed
 
-^ As you can probably imagine, Issue's interface is more than just this one method.
+^ As you can probably imagine, Issue's interface is much more than just this one method, but yet we're passing the entire object in just to get one value!
 
 ---
+
+[:.code-highlight: all]
+[:.code-highlight: 3]
 
 ```ruby
 class Issue < ApplicationRecord
@@ -2800,9 +2901,11 @@ class Issue < ApplicationRecord
 end
 ```
 
-^ Looking at the implementation of the closed predicate method, it's just checking whether the state is "closed".
+^ Looking at the implementation of the closed predicate method,
 
-^ What might our component look like if we passed in the State value instead of the whole issue object?
+^ S it's just checking whether the state is "closed".
+
+^ What might our component look like if we passed in the state value instead of the whole issue object?
 
 ---
 
@@ -3005,7 +3108,7 @@ end
 
 # [fit] Functional <br> Purity
 
-^ So remember how we saw how React encouraged functional purity, minimizing side-affects?
+^ So remember how React encouraged functional purity, minimizing side-affects?
 
 ^ By passing values into our components instead of objects, we're seeing similar benefits.
 
@@ -3045,6 +3148,7 @@ end
 [.code-highlight: all]
 [.code-highlight: 2-6]
 [.code-highlight: 8-11]
+[.code-highlight: 2-9]
 
 ```ruby
 class PullRequest < ApplicationRecord
@@ -3063,15 +3167,21 @@ end
 
 ^ Looking at our model, things aren't that simple.
 
-^ While we do have a state value,
+^ S While we do have a state value,
 
-^ Whether the pull request is a draft or not is independent of the state value.
+^ S Whether the pull request is a draft or not is independent of the state value.
 
-^ Which means we'll need both of these values to render the pull request component.
+^ S Which means we'll need both of these values to render the pull request component.
 
 ^ So let's start with some tests:
 
 ---
+
+[.code-highlight: all]
+[.code-highlight: 2]
+[.code-highlight: 4]
+[.code-highlight: 5]
+[.code-highlight: 6]
 
 ```ruby
 it "renders the draft state" do
@@ -3088,9 +3198,15 @@ it "renders the closed state"
 it "renders the open state"
 ```
 
-^ Luckily for us, it's easy to write unit tests for.
+^ Luckily for us, we now have an easy way to write unit tests. In this first one,
 
-^ In practice, we only want the draft state to be shown when the pull request is open.
+^ S we'll assert that when we pass in state and is_draft values,
+
+^ S We render the correct label
+
+^ S title attribute
+
+^ S and icon
 
 ^ Let's run them!
 
@@ -3102,11 +3218,13 @@ it "renders the open state"
 # [fit] 5 examples, 5 failures
 # [fit] ArgumentError: missing keyword: pull_request
 
-^ Time to update our component to take the new values!
+^ It looks like our component doesn't know to do with the new values.
+
+^ Let's go updated it!
 
 ---
 
-[.code-highlight: 3-5]
+[.code-highlight: 3]
 
 ```ruby
 module PullRequests
@@ -3122,7 +3240,7 @@ end
 
 ---
 
-[.code-highlight: 3-5]
+[.code-highlight: 3]
 
 ```ruby
 module PullRequests
@@ -3134,7 +3252,7 @@ module PullRequests
 end
 ```
 
-^ To accept the state and is_draft values.
+^ To instead accept the state and is_draft values.
 
 ---
 
@@ -3284,9 +3402,13 @@ class IssueBadge extends React.Component {
 
 # [fit] Linters
 
-^ First, we realized that we needed to encourage engineers to use the components we wrote.
+^ First, we've realized that we need to encourage engineers to use the components we wrote.
 
 ---
+
+[.code-highlight: all]
+[.code-highlight: 7]
+[.code-highlight: 4, 16]
 
 ```ruby
 class ComponentUsageTest
@@ -3299,9 +3421,9 @@ class ComponentUsageTest
 
     message =
       if total_lines_count > expected_usage_count
-        "\nIt looks like you're adding a usage of the Primer State component. If you can, try and use Primer::State instead of building it manually. To ignore this message, increment the counter.\n"
+        "\nTry to use Primer::State, or increment the counter.\n"
       else
-        "\nIt looks like you're removing a usage of the Primer State component. You rock! Please decrement the counter in this test.\n"
+        "\nYou're removing a usage of the Primer State component, please decrement the counter.\n"
       end
 
     assert_equal total_lines_count, expected_usage_count, message
@@ -3309,7 +3431,13 @@ class ComponentUsageTest
 end
 ```
 
-^ By adding a linter to our test suite, we steered those building new UI towards our components.
+^ So we wrote a linter.
+
+^ S First, we see count how many times the old CSS classes are being used,
+
+^ S Then assert that it matches the number we expect.
+
+^ By adding a linter to our test suite, we're guiding those building new UI towards our components.
 
 ---
 
@@ -3324,7 +3452,7 @@ end
 
 # [fit] Consistency
 
-^ As a result, we now have a single, standardized implementation for each UI pattern, giving us tight consistency across a sprawling codebase.
+^ As a result, we now have a single, standardized implementation for these UI patterns, giving us tight consistency across a sprawling codebase.
 
 ---
 
@@ -3337,7 +3465,7 @@ end
 # [fit] ~6s
 ### [fit] GET + assert
 
-^ In our monolith;s test suite, Controller tests take about six seconds for loading a page and asserting against its contents.
+^ In our monolith's test suite, Controller tests take about six seconds for loading a page and asserting against its content.
 
 ^ What about our new unit tests?
 
@@ -3346,9 +3474,7 @@ end
 # [fit] ~25ms
 ### [fit] .render + assert
 
-^ They clocked in at around 50 milliseconds running in the same suite.
-
-^ These measurements are independent of any setup routines.
+^ They clocked in at around 25 milliseconds running in the same suite.
 
 ---
 
@@ -3358,9 +3484,15 @@ end
 
 ---
 
+![fit](img/jeopardy.jpg)
+
+^ Said another way, our controller tests that used to take two Jeopardy theme songs to run
+
+---
+
 # [fit] .25s vs 60s
 
-^ This means that a suite of ten component tests that run in a quarter of a second would take a whole minute if they were controller tests.
+^ Now barely make it past the first note.
 
 ---
 
@@ -3396,11 +3528,11 @@ end
 
 ^ Was hard to test efficiently
 
-^ Was impossible to measure with code coverage tools
+^ Was impossible to audit with code coverage tools
 
-^ Made it easy to accidentally query the database
+^ Made it difficult to reason about data flow
 
-^ Failed basic Ruby code standards
+^ and Failed basic Ruby code standards
 
 ---
 
@@ -3449,7 +3581,7 @@ end
 
 # [fit] Code <br> Coverage
 
-^ Use code coverage tools
+^ Are audited with code coverage tools
 
 ---
 
@@ -3461,19 +3593,13 @@ end
 
 # [fit] Standards
 
-^ Follow the code standards of the Ruby language
+^ And follow the code standards of the Ruby language
 
 ---
 
-# [fit] M v C
+# [fit] MVC
 
-^ All of these things give us higher confidence in our view layer,
-
----
-
-# [fit] M V C
-
-^ And perhaps most importantly, make it a first class citizen in Rails.
+^ All of these things give us higher confidence in our view layer, And perhaps most importantly, make it a first class citizen in Rails.
 
 ---
 
