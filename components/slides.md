@@ -37,15 +37,13 @@ background-color: #ffffff;
 
 # [fit] Creativity
 
-^ Let's talk about creativity. What is it?
-
-^ One definition that I like in particular states:
+^ Let's talk about creativity.
 
 ---
 
 # [fit] Imagine
 
-^ "Creativity is the ability to imagine something new"
+^ "Creativity is the ability to imagine something new."
 
 ^ "It is not the ability to create"
 
@@ -71,13 +69,13 @@ background-color: #ffffff;
 
 # [fit] Combining
 
-^ Combining
+^ Combining,
 
 ---
 
 # [fit] Changing
 
-^ Changing
+^ Changing,
 
 ---
 
@@ -89,17 +87,13 @@ background-color: #ffffff;
 
 # [fit] Existing Ideas
 
-^ Existing ideas
-
----
-
-^ Today we're going to do just that.
+^ existing ideas.
 
 ---
 
 ![50%](img/react.png)
 
-^ We're going to take ideas from React,
+^ Today we're going to take ideas from React,
 
 ---
 
@@ -131,15 +125,15 @@ background-color: #ffffff;
 
 # [fit] Standards
 
-^ and fails basic Ruby code standards
+^ and fails basic Ruby code standards,
+
+^ And refactor it into a new, experimental addition to Rails
 
 ---
 
 # [fit] ActionView::Component
 
-^ And refactor it into a new, experimental addition to Rails we're calling ActionView::Component
-
-^ that
+^ that we're calling ActionView::Component that
 
 ---
 
@@ -185,8 +179,6 @@ background-color: #ffffff;
 
 ^ What even is a view?
 
-^ Helpful to have a definition
-
 ---
 
 # [fit] Data → HTML
@@ -217,10 +209,25 @@ background-color: #ffffff;
 
 ---
 
-[.quote: alignment(left)]
+[.code-highlight: 1, 9]
+[.code-highlight: 2, 9]
+[.code-highlight: 3, 9]
+[.code-highlight: 4, 9]
+[.code-highlight: 5, 9]
+[.code-highlight: 6, 9]
+[.code-highlight: 7, 9]
 
-> Rails is not only a great choice when you want to build a full-stack application that uses server-side rendering of HTML templates, but also a great companion for the new crop of client-side JavaScript or native applications that just needs the backend to speak JSON.
--- DHH
+```
+"Rails is not only a great choice when you want
+to build a full-stack application that uses
+server-side rendering of HTML templates,
+but also a great companion for the new
+crop of client-side JavaScript or
+native applications that
+just needs the backend to speak JSON."
+
+- DHH
+```
 
 ^
 DHH said in the announcement of Rails 5
@@ -290,6 +297,9 @@ DHH said in the announcement of Rails 5
 [.code-highlight: 3-6]
 [.code-highlight: 2-6]
 [.code-highlight: 8]
+[.code-highlight: 3-6]
+[.code-highlight: 2-6]
+[.code-highlight: 8]
 [.code-highlight: all]
 
 ```erb
@@ -312,17 +322,23 @@ DHH said in the announcement of Rails 5
 
 ^ S Unsupported -> ONLY smaller set of polyfills
 
-^ Deprecate browsers -> tiers of support
+^ So when we deprecate browsers, we move them through these
 
-^ Because we only serve JS to the most modern browsers, we can be really strict about compatibility
+^ S three
+^ S tiers
+^ S of support
 
-^ So how does this look in practice?
+---
+
+# [fit] Progressive <br> Enhancement
+
+^ So what does progressive enhancement look like in practice?
 
 ---
 
 ![fit](img/pjax-1.png)
 
-^ Take for example posting a ew comment on an issue
+^ Take for example posting a new comment on an issue
 
 ^ JS intercepts click
 
@@ -506,35 +522,33 @@ $ find app/views -print | wc -l
 
 ^ So imagine listening to it twice, every time you run a set of ten tests.
 
----
-
-^ When your view tests cost you six seconds per case, that might make you write less of them!
-
----
-
-# [fit] ?
-
-^ So why isn’t testing our views thoroughly a more common practice?
-
-^ LONG PAUSE
+^ That might make you write fewer tests!
 
 ---
 
 # [fit] Flaws
 
-^ Believe symptom of several flaw in Rails view layer
+^ This problem is a symptom of several flaws in the Rails view layer.
 
 ---
 
 # [fit] What trips you up with Rails views?
 
-^ In a statistically insignificant survey of the Boulder Ruby group, the number one response to this question was:
+^ In a survey of the Boulder Ruby group, the number one response to this question was:
 
 ---
 
 # [fit] Data Flow
 
-^ Data flow. The risk of running queries in views, such as N+1s or just a particularly expensive lookup, was the most common response.
+^ Data flow.
+
+---
+
+# [fit] N + 1
+
+^ A common data flow error we're probably all familiar with is the good old N + 1, where we accidentally generate an expensive query in a view.
+
+^ Our example code also has some data flow issues:
 
 ---
 
@@ -575,58 +589,27 @@ $ find app/views -print | wc -l
 
 ^ If these are active record objects, we’d be fetching their entire set of attributes, when we may in fact only need one or two for each object.
 
-^ This makes our requests unnecessarily slower.
-
 ^ At GitHub, some of our fields are backed by Git storage, so we have to be especially careful with what we fetch.
 
 ---
 
 # [fit] Unit <br> Testing
 
-^ Unit testing views isn’t common practice
-
-^ Never seen it done in any of the Rails apps I’ve worked on before GitHub
+^ Unit testing views isn’t common practice in Rails
 
 ^ Nearly all of our view tests are those six-second controller tests
 
-^ These costs discourage you from writing as many tests as you might otherwise write
-
 ---
 
-```erb
-<% if pull_request && pull_request.merged? %>
-  <div class="State State--purple">
-    <%= octicon('git-merge') %> Merged
-  </div>
-<% elsif pull_request && pull_request.closed? %>
-  <div class="State State--red">
-    <%= octicon('git-pull-request') %> Closed
-  </div>
-<% elsif pull_request && pull_request.draft? %>
-  <div class="State">
-  <%= octicon('git-pull-request') %> Draft
-  </div>
-<% elsif pull_request %>
-  <div class="State State--green">
-    <%= octicon('git-pull-request') %> Open
-  </div>
-<% elsif issue && issue.closed? %>
-  <div class="State State--red">
-    <%= octicon('issue-closed') %> Closed
-  </div>
-<% elsif issue %>
-  <div class="State State--green">
-    <%= octicon('issue-opened') %> Open
-  </div>
-<% end %>
-```
+# [fit] Partials
 
-^ Partials often end up being tested for each of the views they are included in
+^ This is especially painful for partials, as we
+
+^ often end up being tested for each of the views they are included in
 
 ^ Leads to duplication of tests
 
 ^ Cheapens benefit of reusing the partial in the first place
-
 
 ---
 
