@@ -1,8 +1,12 @@
 autoscale: true
 slidenumbers: true
 theme: Simple, 1
-
-[.text: #24292e, alignment(left), line-height(10), text-scale(2.0), Avenir Next Regular]
+text: Avenir Next Medium, #24292e
+text-strong: Avenir Next Bold, #24292e
+header: Avenir Next Medium, #24292e
+header-strong: Avenir Next Bold, #24292e
+code: Courier Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
+background-color: #ffffff;
 
 # [fit] Rethinking the View Layer <br> with Components
 
@@ -131,7 +135,7 @@ theme: Simple, 1
 
 ---
 
-# [fit] Data -> HTML
+# [fit] Data → HTML
 
 ^ Views are functions
 
@@ -140,6 +144,8 @@ theme: Simple, 1
 ^ Rails over the years?
 
 ---
+
+[.header: alignment(left)]
 
 # [fit] 2004 **ERB 1.0**
 # [fit] 2005 **Rails 1.0**
@@ -157,13 +163,17 @@ theme: Simple, 1
 
 ---
 
-> "Rails is not only a great choice when you want to build a full-stack application that uses server-side rendering of HTML templates, but also a great companion for the new crop of client-side JavaScript or native applications that just needs the backend to speak JSON."
+[.quote: alignment(left)]
+
+> Rails is not only a great choice when you want to build a full-stack application that uses server-side rendering of HTML templates, but also a great companion for the new crop of client-side JavaScript or native applications that just needs the backend to speak JSON.
 -- DHH
 
 ^
 DHH said in the announcement of Rails 5
 
 ---
+
+[.header: alignment(left)]
 
 # [fit] 2004 **ERB 1.0**
 # [fit] 2005 **Rails 1.0**
@@ -629,7 +639,7 @@ end
 ---
 
 ```erb
-<div class="State #{view.state_class}">
+<div class="State <%= view.state_class %>">
   <%= octicon(view.octicon_name) %>
   <%= view.label %>
 </div>
@@ -902,7 +912,7 @@ class IssueBadge extends React.Component {
 
 ---
 
-# [fit] Data -> Component
+# [fit] Data → Component
 
 ^ By passing data into views instead of rich objects, React encourages us to write functions without side-affects.
 
@@ -1055,7 +1065,7 @@ it "renders the closed pull request badge for a closed draft pull request"
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 7 examples, 0 failures
@@ -1066,7 +1076,7 @@ it "renders the closed pull request badge for a closed draft pull request"
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] 7 examples, 7 failures
@@ -1156,7 +1166,7 @@ end
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] 'Issues::Badge' is not an ActiveModel-compatible object.
@@ -1189,7 +1199,7 @@ end
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] undefined method octicon for Issues::Badge
@@ -1230,7 +1240,7 @@ end
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] Expected element matching ".State.State--green", found 0
@@ -1286,7 +1296,7 @@ end
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 1 example, 0 failures
@@ -1336,7 +1346,7 @@ end
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] Expected element matching ".State.State--red", found 0
@@ -1432,7 +1442,7 @@ end
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 1 example, 0 failures
@@ -1493,7 +1503,7 @@ end
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 7 examples, 0 failures
@@ -1623,7 +1633,7 @@ end
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 7 examples, 0 failures
@@ -1878,7 +1888,7 @@ end
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 7 examples, 0 failures
@@ -1955,7 +1965,7 @@ end
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] no implicit conversion of Class into Hash
@@ -1986,7 +1996,7 @@ end
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] Expected "\n      " to include "content".
@@ -2186,7 +2196,7 @@ end
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 1 example, 0 failures
@@ -2313,7 +2323,7 @@ end
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] ActionView::Template::Error expected but nothing was raised.
@@ -2464,7 +2474,7 @@ end
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 1 example, 0 failures
@@ -2485,7 +2495,7 @@ end
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] Expected false to be truthy.
@@ -2585,7 +2595,7 @@ end
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 1 example, 0 failures
@@ -2628,7 +2638,7 @@ end
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] Expected false to be truthy.
@@ -2652,7 +2662,7 @@ end
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 1 example, 0 failures
@@ -2663,7 +2673,7 @@ end
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] 7 examples, 7 failures
@@ -2725,7 +2735,7 @@ end
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 7 examples, 0 failures
@@ -2984,7 +2994,7 @@ end
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 7 examples, 0 failures
@@ -3086,7 +3096,7 @@ it "renders the open state"
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] 5 examples, 5 failures
@@ -3229,7 +3239,7 @@ class IssueBadge extends React.Component {
 
 ---
 
-[.background-color: #008000]
+[.background-color: #28a745]
 [.header: #ffffff]
 
 # [fit] 5 examples, 0 failures
@@ -3303,7 +3313,7 @@ end
 
 ---
 
-[.background-color: #FF0000]
+[.background-color: #d73a49]
 [.header: #ffffff]
 
 # [fit] ArgumentError: missing keyword: title
