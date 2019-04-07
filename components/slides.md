@@ -3722,7 +3722,9 @@ end
 
 ---
 
-# [fit] Thanks
+# [fit] Rethinking the View Layer <br> with Components
+
+^ Thanks
 
 ---
 
