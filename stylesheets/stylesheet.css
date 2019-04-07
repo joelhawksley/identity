@@ -67,6 +67,10 @@ h6 {
   line-height: 1.5;
 }
 
+footer {
+  font-size: .8rem;
+}
+
 img, video {
   border: 3px solid rgba(0,0,0,0.15);
   height: auto;
@@ -104,8 +108,7 @@ h1 a:hover {
 }
 
 ul.projects li {
-  margin: 1.5rem 0;
-  padding: 1.5rem 0 0;
+  margin: 2rem 0;
   position: relative;
 }
 
