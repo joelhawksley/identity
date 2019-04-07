@@ -133,7 +133,7 @@ background-color: #ffffff;
 
 # [fit] ActionView::Component
 
-^ that we're calling ActionView::Component that
+^ called ActionView::Component that
 
 ---
 
@@ -187,7 +187,7 @@ background-color: #ffffff;
 
 ^ They input (data), and return an output, HTML.
 
-^ Rails over the years?
+^ How has the Rails view layer evolved over the years?
 
 ---
 
