@@ -67,11 +67,6 @@ h6 {
   line-height: 1.5;
 }
 
-footer {
-  font-size: .8rem;
-}
-
-
 img, video {
   border: 3px solid rgba(0,0,0,0.15);
   height: auto;
@@ -134,4 +129,8 @@ dt {
 
 dd {
   font-size: .9rem;
+}
+
+footer {
+  font-size: .8rem;
 }
