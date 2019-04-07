@@ -288,6 +288,8 @@ DHH said in the announcement of Rails 5
 
 ^ It's part of our design system called Primer
 
+---
+
 ^ We use it all over our app
 
 ^ But before we dig into that let's talk about our data model.
@@ -307,6 +309,7 @@ DHH said in the announcement of Rails 5
 ---
 
 [.code-highlight: all]
+[.code-highlight: 1, 5, 9, 13, 17, 21]
 [.code-highlight: 3]
 [.code-highlight: 2, 4]
 [.code-highlight: 2-4]
@@ -339,9 +342,11 @@ DHH said in the announcement of Rails 5
 <% end %>
 ```
 
-^ Shared issue badge partial that I needed to reuse to build the sticky header.
+^ We render the issue badge with this partial.
 
-^ S Renders icon, label,
+^ S So depending on the state of the pull request or issue, we:
+
+^ S Render an icon, label,
 
 ^ S and color
 
@@ -796,8 +801,6 @@ end
 
 ^ Let’s talk about what concepts React has made popular.
 
-^ A small disclaimer here: there are a lot of different ways to use React, and it’s been about a year since I used it in depth.
-
 ---
 
 # [fit] Components
@@ -1221,9 +1224,9 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] undefined method octicon for Issues::Badge
+# [fit] undefined method 'octicon' for Issues::Badge
 
-^ This error is interesting.
+^ That's interesting.
 
 ---
 
@@ -1264,7 +1267,7 @@ end
 
 # [fit] Expected element matching ".State.State--green", found 0
 
-^ That's weird. Let's have a look at our output.
+^ Hmm. It can't find the CSS selectors we're looking for. I wonder what our component is rendering.
 
 ---
 
@@ -1369,7 +1372,7 @@ end
 
 # [fit] Expected element matching ".State.State--red", found 0
 
-^ As expected, it fails, as we haven't handled this case yet.
+^ As expected, it can't find the red CSS class, as we haven't handled this case yet.
 
 ^ Let's go back to our template that renders the component.
 
@@ -2004,7 +2007,7 @@ end
 
 # [fit] no implicit conversion of Class into Hash
 
-^ That's not good!
+^ No implicit conversion of Class into Hash? Sounds like we might be passing a Hash where we're expecting a Class.
 
 ---
 
@@ -2019,6 +2022,8 @@ end
 ```
 
 ^ And it looks like our test helper is to blame, passing a hash to #render.
+
+^ It turns out that ActionView's #render method accepts a couple different types of arguments
 
 ---
 
@@ -2038,7 +2043,7 @@ class ActionView::Base
 end
 ```
 
-^ It turns out that ActionView's #render method accepts a couple different types of arguments,
+^ So let's go back to our monkey patch,
 
 ---
 
@@ -2058,7 +2063,7 @@ class ActionView::Base
 end
 ```
 
-^ So let's update our monkey patch's conditional to make sure we're dealing with a Class, then re-run our tests.
+^ and update our conditional to make sure we're dealing with a Class, then re-run our tests.
 
 ---
 
@@ -2411,9 +2416,11 @@ end
 
 ^ And make sure it fails.
 
+---
+
 ^ So how might we ensure color is one of our expected values?
 
-^ We're in Rails, so that's a solved problem:
+^ We're in Rails, so that's a solved problem: ActiveModel validations!
 
 ---
 
@@ -2436,8 +2443,6 @@ module Primer
   end
 end
 ```
-
-^ ActiveModel validations!
 
 ^ We can use an inclusion validation to check that color is one of the valid values.
 
@@ -2777,7 +2782,7 @@ end
 # [fit] 7 examples, 7 failures
 # [fit] ArgumentError: missing keyword: title
 
-^ Isn't unit testing views fun? We just caught a regression!
+^ Missing keyword title? I think we just caught a regression!
 
 ---
 
@@ -2803,7 +2808,7 @@ module Issues
 end
 ```
 
-^ We never updated our consumers of Primer::State to pass in title!
+^ We never updated our consumers of Primer::State to pass in a title argument!
 
 ---
 
@@ -2844,7 +2849,7 @@ end
 
 # [fit] Data Flow
 
-^ So looking back We were mainly concerned with our component unintentionally querying the database.
+^ So looking back we were mainly concerned with our component unintentionally querying the database.
 
 ^ But what if we could avoid passing in ActiveRecord objects at all? That would basically eliminate the risk.
 
@@ -3218,9 +3223,9 @@ it "renders the open state"
 # [fit] 5 examples, 5 failures
 # [fit] ArgumentError: missing keyword: pull_request
 
-^ It looks like our component doesn't know to do with the new values.
+^ It looks like our component is still expecting the old arguments.
 
-^ Let's go updated it!
+^ Let's go update it!
 
 ---
 
@@ -3448,11 +3453,17 @@ end
 
 ^ As we implemented these components in numerous places throughout our views, we caught several cases where we weren't setting the title attribute as we were supposed to, much like the test failure we ran into earlier.
 
+^ By using standard Ruby constructs, we've been able to enforce the requirements of our components, and
+
 ---
 
 # [fit] Consistency
 
 ^ As a result, we now have a single, standardized implementation for these UI patterns, giving us tight consistency across a sprawling codebase.
+
+---
+
+^ PAUSE
 
 ---
 
@@ -3472,7 +3483,7 @@ end
 ---
 
 # [fit] ~25ms
-### [fit] .render + assert
+### [fit] #render + assert
 
 ^ They clocked in at around 25 milliseconds running in the same suite.
 
@@ -3490,11 +3501,13 @@ end
 
 ---
 
-# [fit] .25s vs 60s
+# [fit] .25s vs 1m
 
 ^ Now barely make it past the first note.
 
 ---
+
+[.code-highlight: none]
 
 ```erb
 <% if pull_request && pull_request.merged? %>
@@ -3532,7 +3545,7 @@ end
 
 ^ Made it difficult to reason about data flow
 
-^ and Failed basic Ruby code standards
+^ and failed basic Ruby code standards
 
 ---
 
