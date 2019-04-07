@@ -10,70 +10,134 @@ background-color: #ffffff;
 
 # [fit] Rethinking the View Layer <br> with Components
 
-^ Thanks to the RailsConf organizers
+^ Thanks to the organizers for putting on such a great conference this year
 
 ^ Excited to be giving first conference talk
 
 ---
 
-# Joel Hawksley
-## hawksley.org
+# [fit] Joel Hawksley
+# hawksley.org
 
 ^ Name is Joel
 
-^ I live in Colorado
+^ I live in Colorado and work as an...
 
 ---
 
 ![40%](img/github.png)
 
-^ Engineer at GitHub
+^ engineer at GitHub
 
 ---
 
-^ Learning new languages and frameworks
+^ PAUSE
 
-^ Gives me a new way of thinking about the world
+---
+
+# [fit] Creativity
+
+^ Let's talk about creativity. What is it?
+
+^ One definition that I like in particular states:
+
+---
+
+# [fit] Imagine
+
+^ "Creativity is the ability to imagine something new"
+
+^ "It is not the ability to create"
+
+---
+
+# [fit] Something
+
+^ Something out of
+
+---
+
+# [fit] Nothing
+
+^ Nothing, but the ability to generate
+
+---
+
+# [fit] New ideas
+
+^ New ideas by
+
+---
+
+# [fit] Combining
+
+^ Combining
+
+---
+
+# [fit] Changing
+
+^ Changing
+
+---
+
+# [fit] Reapplying
+
+^ or reapplying
+
+---
+
+# [fit] Existing Ideas
+
+^ Existing ideas
+
+---
+
+^ Today we're going to do just that.
 
 ---
 
 ![50%](img/react.png)
 
-^ Learning React changed the way I look at Rails
+^ We're going to take ideas from React,
 
-^ Going to talk about that change in perspective
+---
 
-^ And how it led to refactoring a template in our app that:
+![50%](img/rails.png)
+
+^ And apply them in Rails.
+
+^ In doing so, we we're going to take a template that
 
 ---
 
 # [fit] Testing
 
-^ Was hard to test efficiently
+^ is hard to test efficiently
 
 ---
 
 # [fit] Code Coverage
 
-^ Was impossible to audit with code coverage tools
+^ is impossible to audit with code coverage tools
 
 ---
 
 # [fit] Data Flow
 
-^ Made it difficult to reason about data flow
+^ makes it difficult to reason about data flow
 
 ---
 
 # [fit] Standards
 
-^ And failed basic Ruby code standards
+^ and fails basic Ruby code standards
 
 ---
 
 # [fit] ActionView::Component
 
-^ And refactored it into a new, experimental addition to Rails we're calling ActionView::Component
+^ And refactor it into a new, experimental addition to Rails we're calling ActionView::Component
 
 ^ that
 
