@@ -1235,7 +1235,14 @@ end
 
 ^ So let's teach it how to handle it!
 
+^ Short of forking Rails and changing the original definition of ActionView#render
+
 ---
+
+[.code-highlight: all]
+[.code-highlight: 3-7]
+[.code-highlight: 4]
+[.code-highlight: 6]
 
 ```ruby
 class ActionView::Base
@@ -1251,11 +1258,15 @@ class ActionView::Base
 end
 ```
 
-^ Short of forking Rails and changing the original definition of ActionView#render, a monkey patch will get us unblocked for now.
+^ a monkey patch will get us unblocked for now.
 
-^ We'll ignore all the args besides the component for now.
+^ S we'll re-define #render,
 
-^ Or will it?
+^ S So that when we pass in our component,
+
+^ S it calls our component's #html method
+
+^ So let's run our test again.
 
 ---
 
@@ -1264,7 +1275,7 @@ end
 
 # [fit] undefined method 'octicon' for Issues::Badge
 
-^ That's interesting.
+^ Undefined method octicon? That's interesting.
 
 ---
 
@@ -1272,7 +1283,25 @@ end
 
 ^ Remember our code review comment about not knowing where the octicon method came from?
 
-^ Now our component is asking the same thing.
+^ Now our component is asking the same question!
+
+---
+
+```ruby
+module Issues
+  class Badge
+    def html
+      <<-erb
+      <div class="State State--green">
+        #{octicon('issue-opened')} Open
+      </div>
+      erb
+    end
+  end
+end
+```
+
+^ Back in our component,
 
 ---
 
@@ -1294,9 +1323,9 @@ module Issues
 end
 ```
 
-^ So let's tell it where to find it!
+^ let's tell it where to find the octicon method!
 
-^ So let's run our test again.
+^ And run our test again.
 
 ---
 
@@ -1305,7 +1334,9 @@ end
 
 # [fit] Expected element matching ".State.State--green", found 0
 
-^ Hmm. It can't find the CSS selectors we're looking for. I wonder what our component is rendering.
+^ Hmm. It can't find the CSS selectors we're looking for.
+
+^ I wonder what our component is rendering.
 
 ---
 
