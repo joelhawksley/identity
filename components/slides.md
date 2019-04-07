@@ -2,6 +2,8 @@ autoscale: true
 slidenumbers: true
 theme: Simple, 1
 
+[.text: #24292e, alignment(left), line-height(10), text-scale(2.0), Avenir Next Regular]
+
 # [fit] Rethinking the View Layer <br> with Components
 
 ^ Thanks to the RailsConf organizers
