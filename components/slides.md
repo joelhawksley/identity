@@ -8,7 +8,7 @@ header-strong: Avenir Next Bold, #24292e
 code: Menlo Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
 background-color: #ffffff;
 
-# [fit] Rethinking the View Layer <br> with Components
+# [fit] Rethinking the View Layer<br>with Components
 
 ^ Thanks to the organizers for putting on such a great conference this year
 
@@ -111,7 +111,7 @@ background-color: #ffffff;
 
 ---
 
-# [fit] Code Coverage
+# [fit] Code<br>Coverage
 
 ^ is impossible to audit with code coverage tools
 
@@ -143,7 +143,7 @@ background-color: #ffffff;
 
 ---
 
-# [fit] Code <br> Coverage
+# [fit] Code<br>Coverage
 
 ^ is audited with code coverage tools
 
@@ -257,7 +257,7 @@ DHH said in the announcement of Rails 5
 
 ---
 
-# [fit] Progressive <br> Enhancement
+# [fit] Progressive<br>Enhancement
 
 ^ Progressive enhancement.
 
@@ -330,7 +330,7 @@ DHH said in the announcement of Rails 5
 
 ---
 
-# [fit] Progressive <br> Enhancement
+# [fit] Progressive<br>Enhancement
 
 ^ So what does progressive enhancement look like in practice?
 
@@ -583,7 +583,7 @@ DHH said in the announcement of Rails 5
 
 ---
 
-# [fit] Unit <br> Testing
+# [fit] Unit<br>Testing
 
 ^ Unit testing views isn’t common practice in Rails
 
@@ -603,13 +603,13 @@ DHH said in the announcement of Rails 5
 
 ---
 
-# [fit] Code <br> Coverage
+# [fit] Code<br>Coverage
 
 ^ Another problem is measuring code coverage
 
 ---
 
-# [fit] ~~SimpleCov <br> Coveralls~~
+# [fit] ~~SimpleCov<br>Coveralls~~
 
 ^ Neither SimpleCov nor Coveralls support view code
 
@@ -617,7 +617,7 @@ DHH said in the announcement of Rails 5
 
 ---
 
-# [fit] Implicit <br> Arguments
+# [fit] Implicit<br>Arguments
 
 ^ Another weakness is the lack of a method signature
 
@@ -776,7 +776,7 @@ end
 
 ---
 
-# [fit] Code <br> Coverage
+# [fit] Code<br>Coverage
 
 ^ Impossible to audit with code coverage tools, preventing us from knowing how thorough our tests are.
 
@@ -788,7 +788,7 @@ end
 
 ---
 
-# [fit] Implicit <br> Arguments
+# [fit] Implicit<br>Arguments
 
 ^ Have implicit method signatures
 
@@ -1143,6 +1143,8 @@ it "renders the closed pull request badge for a closed draft pull request"
 [.background-color: #d73a49]
 [.header: #ffffff]
 
+# [fit] 7 examples, 7 failures
+
 ^ We have failing tests!
 
 ^ Now we can start changing things and know if we’ve broken them
@@ -1215,9 +1217,7 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] 'Issues::Badge' is not an
-
-# [fit] ActiveModel-compatible object.
+# [fit] 'Issues::Badge' is not an<br>ActiveModel-compatible object.
 
 ^ Interesting. It looks like ActionView#render doesn't like being passed our component.
 
@@ -1261,9 +1261,7 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] undefined method 'octicon'
-
-# [fit] for Issues::Badge
+# [fit] undefined method 'octicon'<br>for Issues::Badge
 
 ^ Undefined method octicon? That's interesting.
 
@@ -1322,9 +1320,7 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] Expected element matching
-
-# [fit] ".State.State--green", found 0
+# [fit] Expected element matching<br>".State.State--green", found 0
 
 ^ Hmm. It can't find the CSS selectors we're looking for.
 
@@ -1429,9 +1425,7 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] Expected element matching
-
-# [fit] ".State.State--red", found 0
+# [fit] Expected element matching<br>".State.State--red", found 0
 
 ^ As expected, it can't find the red CSS class, as we haven't handled this case yet.
 
@@ -1555,7 +1549,7 @@ end
 
 ---
 
-# [fit] ~~Implicit <br> Arguments~~
+# [fit] ~~Implicit<br>Arguments~~
 
 ^ Which means no more implicit arguments.
 
@@ -2095,7 +2089,7 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] no implicit conversion of Class into Hash
+# [fit] no implicit conversion<br>of Class into Hash
 
 ^ No implicit conversion of Class into Hash? Sounds like we might be passing a Hash where we're expecting a Class.
 
@@ -2511,9 +2505,7 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] ActionView::Template::Error
-
-# [fit] expected but nothing was raised.
+# [fit] ActionView::Template::Error<br>expected but nothing was raised.
 
 ^ And make sure it fails.
 
@@ -3482,7 +3474,7 @@ class IssueBadge extends React.Component {
 
 ---
 
-# [fit] Code <br> Coverage
+# [fit] Code<br>Coverage
 
 ^ And remember how we were unable to get coverage reports for our views?
 
@@ -3626,7 +3618,7 @@ end
 
 ---
 
-# [fit] Code <br> Coverage
+# [fit] Code<br>Coverage
 
 ^ Was impossible to audit with code coverage tools
 
@@ -3658,7 +3650,7 @@ end
 
 ---
 
-# [fit] Code <br> Coverage
+# [fit] Code<br>Coverage
 
 ^ Audit with code coverage tools
 
@@ -3690,7 +3682,7 @@ end
 
 ---
 
-# [fit] Rethinking the View Layer <br> with Components
+# [fit] Rethinking the View Layer<br>with Components
 
 ^ Thanks
 
