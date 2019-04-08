@@ -474,28 +474,19 @@ DHH said in the announcement of Rails 5
 
 ---
 
-```bash
-$ ls -1 app/models | wc -l
-556
-```
+# [fit] 556
 
-^ We have over 550 models,
+^ We have over 550 models
 
 ---
 
-```bash
-$ ls -1 app/controllers | wc -l
-209
-```
+# [fit] 209
 
 ^ Over 200 controllers, not including our API
 
 ---
 
-```bash
-$ find app/views -print | wc -l
-3718
-```
+# [fit] 3718
 
 ^ And over 3700 views!
 
@@ -1144,8 +1135,6 @@ it "renders the closed pull request badge for a closed draft pull request"
 [.background-color: #28a745]
 [.header: #ffffff]
 
-# [fit] 7 examples, 0 failures
-
 ^ And now we have test coverage.
 
 ^ Now, like I did before, let's delete the issue badge partial.
@@ -1154,8 +1143,6 @@ it "renders the closed pull request badge for a closed draft pull request"
 
 [.background-color: #d73a49]
 [.header: #ffffff]
-
-# [fit] 7 examples, 7 failures
 
 ^ We have failing tests!
 
@@ -1229,7 +1216,9 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] 'Issues::Badge' is not an ActiveModel-compatible object.
+# [fit] 'Issues::Badge' is not an
+
+# [fit] ActiveModel-compatible object.
 
 ^ Interesting. It looks like ActionView#render doesn't like being passed our component.
 
@@ -1273,7 +1262,9 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] undefined method 'octicon' for Issues::Badge
+# [fit] undefined method 'octicon'
+
+# [fit] for Issues::Badge
 
 ^ Undefined method octicon? That's interesting.
 
@@ -1332,7 +1323,9 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] Expected element matching ".State.State--green", found 0
+# [fit] Expected element matching
+
+# [fit] ".State.State--green", found 0
 
 ^ Hmm. It can't find the CSS selectors we're looking for.
 
@@ -1397,8 +1390,6 @@ end
 [.background-color: #28a745]
 [.header: #ffffff]
 
-# [fit] 1 example, 0 failures
-
 ^ There we go!
 
 ^ PAUSE
@@ -1439,7 +1430,9 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] Expected element matching ".State.State--red", found 0
+# [fit] Expected element matching
+
+# [fit] ".State.State--red", found 0
 
 ^ As expected, it can't find the red CSS class, as we haven't handled this case yet.
 
@@ -1557,8 +1550,6 @@ end
 [.background-color: #28a745]
 [.header: #ffffff]
 
-# [fit] 1 example, 0 failures
-
 ^ Phew. We're back to green.
 
 ^ But wait. Did you just see what we did there? We gave ourselves an interface!
@@ -1617,8 +1608,6 @@ end
 
 [.background-color: #28a745]
 [.header: #ffffff]
-
-# [fit] 7 examples, 0 failures
 
 ^ We're green! Let's ship it! Maybe not yet.
 
@@ -1731,8 +1720,6 @@ end
 
 [.background-color: #28a745]
 [.header: #ffffff]
-
-# [fit] 7 examples, 0 failures
 
 ^ Still green!
 
@@ -2012,8 +1999,6 @@ end
 
 [.background-color: #28a745]
 [.header: #ffffff]
-
-# [fit] 7 examples, 0 failures
 
 ^ Still green.
 
@@ -2378,8 +2363,6 @@ end
 [.background-color: #28a745]
 [.header: #ffffff]
 
-# [fit] 1 example, 0 failures
-
 ^ We're back to green!
 
 ---
@@ -2529,7 +2512,9 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] ActionView::Template::Error expected but nothing was raised.
+# [fit] ActionView::Template::Error
+
+# [fit] expected but nothing was raised.
 
 ^ And make sure it fails.
 
@@ -2691,8 +2676,6 @@ end
 [.background-color: #28a745]
 [.header: #ffffff]
 
-# [fit] 1 example, 0 failures
-
 ^ Back to green.
 
 ---
@@ -2823,8 +2806,6 @@ end
 [.background-color: #28a745]
 [.header: #ffffff]
 
-# [fit] 1 example, 0 failures
-
 ^ And we're back to green.
 
 ^ PAUSE
@@ -2897,8 +2878,6 @@ end
 [.background-color: #28a745]
 [.header: #ffffff]
 
-# [fit] 1 example, 0 failures
-
 ^ And we're back to green.
 
 ^ But let's see how our integration tests fare:
@@ -2908,8 +2887,7 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] 7 examples, 7 failures
-# [fit] ArgumentError: missing keyword: title
+# [fit] missing keyword: title
 
 ^ Missing keyword: title?
 
@@ -2971,8 +2949,6 @@ end
 
 [.background-color: #28a745]
 [.header: #ffffff]
-
-# [fit] 7 examples, 0 failures
 
 ^ And we're back to green.
 
@@ -3243,8 +3219,6 @@ end
 [.background-color: #28a745]
 [.header: #ffffff]
 
-# [fit] 7 examples, 0 failures
-
 ^ And we're still green.
 
 ---
@@ -3361,8 +3335,7 @@ it "renders the open state"
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] 5 examples, 5 failures
-# [fit] ArgumentError: missing keyword: pull_request
+# [fit] missing keyword: pull_request
 
 ^ It looks like our component is still expecting the old arguments.
 
@@ -3506,8 +3479,6 @@ class IssueBadge extends React.Component {
 [.background-color: #28a745]
 [.header: #ffffff]
 
-# [fit] 5 examples, 0 failures
-
 ^ Back to green!
 
 ---
@@ -3588,7 +3559,7 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] ArgumentError: missing keyword: title
+# [fit] missing keyword: title
 
 ^ As we implemented these components in numerous places throughout our views,
 
