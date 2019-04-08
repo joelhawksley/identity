@@ -497,7 +497,6 @@ DHH said in the announcement of Rails 5
 ---
 
 # [fit] 6s
-### [fit] GET + assert
 
 ^ In our test suite, it takes six seconds to run a single controller test locally, not including any setup.
 
@@ -3433,7 +3432,7 @@ end
 module PullRequests
   class Badge < ActionView::Component
     def template
-      <<~erb
+      <<-erb
       <%= render Primer::State, title: title, color: color do %>
         <%= octicon(octicon_name) %> <%= label %>
       <% end %>
@@ -3587,8 +3586,7 @@ end
 
 ---
 
-# [fit] ~6s
-### [fit] GET + assert
+# [fit] 6s
 
 ^ In our monolith's test suite, Controller tests take about six seconds for loading a page and asserting against its content.
 
@@ -3596,14 +3594,13 @@ end
 
 ---
 
-# [fit] ~25ms
-### [fit] #render + assert
+# [fit] 25ms
 
 ^ They clocked in at around 25 milliseconds running in the same suite.
 
 ---
 
-# [fit] ~240x
+# [fit] 240x
 
 ^ That’s two-hundred and fourty times faster.
 
@@ -3615,7 +3612,7 @@ end
 
 ---
 
-# [fit] .25s vs 1m
+# [fit] .25s vs. 1m
 
 ^ Now barely make it past the first note.
 
