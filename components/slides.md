@@ -375,6 +375,8 @@ DHH said in the announcement of Rails 5
 
 ^ We use the issue badge to display the status of Issues and PRs
 
+^ We use it all over our app
+
 ---
 
 ![fit](img/primer.png)
@@ -382,8 +384,6 @@ DHH said in the announcement of Rails 5
 ^ It's part of our design system called Primer
 
 ---
-
-^ We use it all over our app
 
 ^ But before we dig into that let's talk about our data model.
 
