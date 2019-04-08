@@ -8,11 +8,9 @@ header-strong: Avenir Next Bold, #24292e
 code: Menlo Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
 background-color: #ffffff;
 
-# [fit] Rethinking the View Layer<br>with Components
+---
 
-^ Thanks to the organizers for putting on such a great conference this year
-
-^ Excited to be giving first conference talk
+^ Good morning everyone
 
 ---
 
@@ -37,13 +35,13 @@ background-color: #ffffff;
 
 # [fit] Creativity
 
-^ Let's talk about creativity.
+^ Creativity is the ability
 
 ---
 
 # [fit] Imagine
 
-^ "Creativity is the ability to imagine something new."
+^ "to imagine something new."
 
 ^ "It is not the ability to create"
 
@@ -359,7 +357,7 @@ DHH said in the announcement of Rails 5
 
 ---
 
-^ Let’s talk about building views at GitHub
+^ So what is it like to work on views at GitHub
 
 ---
 
@@ -393,9 +391,9 @@ DHH said in the announcement of Rails 5
 # [fit] belongs_to:
 # [fit] PullRequest
 
-^ In GitHub data model
+^ In the GitHub data model
 
-^ PR is just an issue with an associated pull request object.
+^ Pull request is just an issue with an associated pull request object.
 
 ^ So all pull requests are issues, but not all issues are pull requests.
 
@@ -575,7 +573,7 @@ DHH said in the announcement of Rails 5
 
 ^ Looking at our example:
 
-^ S For "pull" and "issue", what attributes do we need from each object?
+^ S For "pull request" and "issue", what attributes do we need from each object?
 
 ^ If these are active record objects, we’d be fetching their entire set of attributes, when we may in fact only need one or two for each object.
 
@@ -733,8 +731,6 @@ end
 ![fit](img/code-review.png)
 
 ^ If this was a method on a class, what aspects might we object to in a code review?
-
-^ PAUSE - Ask audience
 
 ^ Besides it being a super long method, I can think of a couple:
 
@@ -945,7 +941,7 @@ class IssueBadge extends React.Component {
 }
 ```
 
-^ We can then reference the issue without fear, as our type check will guarantee that it is present.
+^ We can then reference the isClosed boolean on issue without fear, as our type check will guarantee that it is present.
 
 ^ PAUSE
 
@@ -1029,15 +1025,13 @@ it('should render the closed issue badge', function() {
 
 ![50%](img/react.png)
 
-^ Perhaps we could find a way to incorporate some of the benefits of React
+^ Let's see if we can find a way to incorporate some of the benefits of React
 
 ---
 
 ![50%](img/rails.png)
 
 ^ into Rails.
-
-^ Let's give it a shot!
 
 ^ Perhaps we can address some of those code review comments while we're at it.
 
@@ -1271,7 +1265,7 @@ end
 
 ^ Remember our code review comment about not knowing where the octicon method came from?
 
-^ Now our component is asking the same question!
+^ Now our code is asking us the same question!
 
 ---
 
@@ -1813,21 +1807,6 @@ end
 
 ---
 
-[.code-highlight: 1]
-
-```ruby
-# lib/primer/state.rb
-
-module Primer
-  class State
-  end
-end
-```
-
-^ And since the Primer system exists outside of our Rails app, let's put it in lib.
-
----
-
 [.code-highlight: 4]
 
 ```ruby
@@ -1967,7 +1946,7 @@ module Issues
 end
 ```
 
-^ An easy candidate is our render method, which does not have any component specific logic.
+^ An easy candidate is our html method, which does not have any component specific logic.
 
 ---
 
@@ -3077,7 +3056,7 @@ end
 
 ^ And add a validation.
 
-^ But then the fun begins.
+^ So now,
 
 ---
 
@@ -3574,7 +3553,7 @@ end
 
 # [fit] Performance
 
-^ So let’s talk about performance.
+^ So what about performance.
 
 ---
 
