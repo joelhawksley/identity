@@ -508,7 +508,7 @@ DHH said in the announcement of Rails 5
 
 ^ It's 30 seconds.
 
-^ So imagine listening to it twice, every time you run a set of ten tests.
+^ So imagine listening to it twice, every time you run a set of ten cases.
 
 ^ That might make you write fewer tests!
 
@@ -1169,18 +1169,10 @@ end
 ---
 
 ```erb
-<%= render partial: "issue_badge", locals: { issue: issue, pull_request: issue.pull_request } %>
-```
-
-^ Right now we're rendering the issue badge partial the traditional way,
-
----
-
-```erb
 <%= render Issues::Badge, issue: issue, pull_request: issue.pull_request %>
 ```
 
-^ ActionView gives us the `render` entry point, so I think it makes sense to use that.
+^ The Rails way would be to use the existing `render` syntax.
 
 ^ So let’s see if we can get our first test to pass.
 
@@ -1328,11 +1320,9 @@ end
 
 ^ It looks like our output is being escaped!
 
-^ I guess there's more to view rendering than just string interpolation after all!
+^ While it might be tempting to use html_safe here, that would be the furthest thing from safe.
 
-^ While it might be tempting to throw an html_safe on the end and call it a day, that would be the furthest thing from safe.
-
-^ But what if we just used the existing Rails template rendering architecture?
+^ But what if we reused the existing Rails rendering architecture?
 
 ---
 
@@ -1385,6 +1375,7 @@ end
 
 ---
 
+[.code-highlight: all]
 [.code-highlight: 2]
 [.code-highlight: 6]
 [.code-highlight: 7]
@@ -1402,9 +1393,9 @@ it "renders the closed issue badge" do
 end
 ```
 
-^ Let's keep moving along.
+^ Let's keep moving along. The next test is
 
-^ S The next test is for a closed issue.
+^ S for a closed issue.
 
 ^ S Which should have a red background,
 
@@ -1421,7 +1412,7 @@ end
 
 # [fit] Expected element matching<br>".State.State--red", found 0
 
-^ As expected, it can't find the red CSS class, as we haven't handled this case yet.
+^ It can't find the red CSS class, as we haven't handled this case yet.
 
 ^ Let's go back to our template that renders the component.
 
@@ -2074,6 +2065,7 @@ end
 
 ---
 
+[.code-highlight: all]
 [.code-highlight: 2]
 
 ```ruby
@@ -2084,7 +2076,9 @@ def render_string(string)
 end
 ```
 
-^ And it looks like our test helper is to blame, passing a hash to #render.
+^ And it looks like our test helper is to blame,
+
+^ S passing a hash to #render.
 
 ^ It turns out that ActionView's #render method accepts a couple different types of arguments
 
@@ -2339,6 +2333,9 @@ end
 
 ---
 
+[.code-highlight: all]
+[.code-highlight: 5]
+
 ```ruby
 module Primer
   class State < ActionView::Component
@@ -2353,7 +2350,9 @@ module Primer
 end
 ```
 
-^ Now that we have content, what about setting the color?
+^ Now that we have content,
+
+^ S what about setting the color?
 
 ---
 
@@ -2802,6 +2801,7 @@ end
 
 ---
 
+[.code-highlight: all]
 [.code-highlight: 3]
 [.code-highlight: 6]
 
@@ -2815,7 +2815,9 @@ it "raises an error when title is not present" do
 end
 ```
 
-^ We'll do that with a test that passes in an empty title
+^ We'll do that with a test
+
+^ S that passes in an empty title
 
 ^ S and then expexts a validation error.
 
@@ -3487,42 +3489,11 @@ class IssueBadge extends React.Component {
 
 ---
 
-# [fit] Linters
+# [fit] implementation
 
-^ First, we've realized that we need to encourage engineers to use the components we wrote.
+^ As we implemented these components in numerous places throughout our views,
 
----
-
-[.code-highlight: all]
-[.code-highlight: 3]
-[.code-highlight: 5, 14]
-
-```ruby
-class ComponentUsageTest
-  def test_primer_state_component_usage
-    total_lines_count = grep(/(class\=\"State|State\-)/, paths:  [Rails.root.join("**/*.erb").to_s]).lines.length
-
-    expected_usage_count = 5
-
-    message =
-      if total_lines_count > expected_usage_count
-        "\nTry to use Primer::State, or increment the counter.\n"
-      else
-        "\nYou're removing a usage of the Primer State component, please decrement the counter.\n"
-      end
-
-    assert_equal total_lines_count, expected_usage_count, message
-  end
-end
-```
-
-^ So we wrote a linter.
-
-^ S First, we see count how many times the old CSS classes are being used,
-
-^ S Then assert that it matches the number we expect.
-
-^ By adding a linter to our test suite, we're guiding those building new UI towards our components.
+^ we caught several cases where we weren't setting the title attribute as we were supposed to
 
 ---
 
@@ -3531,13 +3502,10 @@ end
 
 # [fit] missing keyword: title
 
-^ As we implemented these components in numerous places throughout our views,
-
-^ we caught several cases where we weren't setting the title attribute as we were supposed to
 
 ^ much like the test failure we ran into earlier.
 
-^ By using standard Ruby constructs, we've been able to enforce the requirements of our components, and
+^ By using standard Ruby constructs like required arguments, we've been able to enforce the interfaces of our components, and
 
 ---
 
