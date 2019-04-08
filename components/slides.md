@@ -204,31 +204,43 @@ background-color: #ffffff;
 
 ^ And Rails 5 API mode
 
+^ It's telling that DHH said in the Rails 5 release notes:
 
 ---
 
-[.code-highlight: 1, 9]
-[.code-highlight: 2, 9]
-[.code-highlight: 3, 9]
-[.code-highlight: 4, 9]
-[.code-highlight: 5, 9]
-[.code-highlight: 6, 9]
-[.code-highlight: 7, 9]
+# [fit] Rails is not only a great choice when you
 
-```
-"Rails is not only a great choice when you want
-to build a full-stack application that uses
-server-side rendering of HTML templates,
-but also a great companion for the new
-crop of client-side JavaScript or
-native applications that
-just needs the backend to speak JSON."
+^ Rails is not only a great choice when you
 
-- DHH
-```
+---
 
-^
-DHH said in the announcement of Rails 5
+# [fit] want to build a full-stack application that uses
+
+^ want to build a full-stack application that uses
+
+---
+
+# [fit] server-side rendering of HTML templates
+
+^ server-side rendering of HTML templates,
+
+---
+
+# [fit] but also a great companion for the
+
+^ but also a great companion for the
+
+---
+
+# [fit] new crop of client-side JavaScript or native applications
+
+^ new crop of client-side JavaScript or native applications
+
+---
+
+# [fit] just needs the backend to speak JSON.
+
+^ just needs the backend to speak JSON.
 
 ---
 
