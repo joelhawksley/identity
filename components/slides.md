@@ -393,6 +393,8 @@ background-color: #ffffff;
 
 ^ It's part of our design system called Primer
 
+^ Think of it as our own version of Bootstrap.
+
 ---
 
 ^ But before we dig into that let's talk about our data model.
@@ -1244,7 +1246,11 @@ class ActionView::Base
 end
 ```
 
-^ a monkey patch will get us unblocked for now.
+^ let's write a monkey patch!
+
+^ Is everyone familiar with what a monkey patch is?
+
+^ So in our monkey patch:
 
 ^ S we'll re-define #render,
 
@@ -3207,18 +3213,6 @@ end
 
 ---
 
-# [fit] Data Flow
-
-^ So remember how React encouraged functional purity, minimizing side-affects?
-
----
-
-# [fit] Values > Objects
-
-^ By passing values into our components instead of objects, we're seeing similar benefits.
-
----
-
 ^ But what about our pull request component?
 
 ^ How might we decouple it from ActiveRecord?
@@ -3467,6 +3461,18 @@ class IssueBadge extends React.Component {
 
 ---
 
+# [fit] Data Flow
+
+^ So remember how React encouraged functional purity, minimizing side-affects?
+
+---
+
+# [fit] Values > Objects
+
+^ By passing values into our components instead of objects, we're seeing similar benefits.
+
+---
+
 # [fit] Code<br>Coverage
 
 ^ And remember how we were unable to get coverage reports for our views?
@@ -3495,7 +3501,7 @@ class IssueBadge extends React.Component {
 
 # [fit] :ship: Mid-March
 
-^ The components we've written today have been running in production on GitHub for about a month and a half.
+^ The components we've written today have been running in production on GitHub since mid-March.
 
 ^ So what have we learned since then?
 
