@@ -55,7 +55,7 @@ background-color: #ffffff;
 
 # [fit] Nothing
 
-^ Nothing, but the ability to generate
+^ Nothing, but to generate
 
 ---
 
@@ -183,7 +183,7 @@ background-color: #ffffff;
 
 ^ Views are functions
 
-^ They input (data), and return an output, HTML.
+^ They input (data), and return HTML.
 
 ^ How has the Rails view layer evolved over the years?
 
@@ -234,7 +234,7 @@ background-color: #ffffff;
 
 # [fit] new crop of client-side JavaScript or native applications
 
-^ new crop of client-side JavaScript or native applications
+^ new crop of client-side JavaScript or native applications that
 
 ---
 
