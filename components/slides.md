@@ -688,52 +688,6 @@ background-color: #ffffff;
 
 ---
 
-# [fit] View Models
-
-^ So what if we used a view model?
-
----
-
-```ruby
-module Issues
-  class BadgeView
-    def initialize(issue, pull)
-      @issue = issue
-      @pull = pull
-    end
-
-    def state_class; end
-    def octicon_name; end
-    def label; end
-  end
-end
-```
-
-^ We'd have a class
-
----
-
-```erb
-<div class="State <%= view.state_class %>">
-  <%= octicon(view.octicon_name) %>
-  <%= view.label %>
-</div>
-```
-
-^ And a template that uses the class.
-
----
-
-# [fit] View Models
-
-^ I’ve seen a couple problems with this approach:
-
-^ We end up with two files that are more or less interlocked. One can’t exist without the other.
-
-^ Testing the view model makes us feel like we’re testing the template, when we’re not.
-
----
-
 # [fit] Standards
 
 ^ The reality is that our views regularly fail even the most basic standards of code quality we expect out of our Ruby classes.
@@ -765,8 +719,6 @@ end
 ![fit](img/code-review-3.png)
 
 ^ Where are pull_request and issue coming from?
-
-^ PAUSE
 
 ---
 
@@ -801,12 +753,6 @@ end
 # [fit] Implicit<br>Arguments
 
 ^ Have implicit method signatures
-
----
-
-# [fit] View Models
-
-^ Don’t improve much with the use of view models
 
 ---
 
@@ -1389,8 +1335,6 @@ end
 
 ^ There we go!
 
-^ PAUSE
-
 ---
 
 [.code-highlight: all]
@@ -1411,7 +1355,11 @@ it "renders the closed issue badge" do
 end
 ```
 
-^ Let's keep moving along. The next test is
+^ Let's keep moving along.
+
+^ PAUSE
+
+^ The next test is
 
 ^ S for a closed issue.
 
@@ -1983,8 +1931,6 @@ end
 
 ^ Still green.
 
-^ PAUSE
-
 ---
 
 [.code-highlight: all]
@@ -1995,6 +1941,8 @@ end
   <%= octicon('git-pull-request') %> Open
 <% end %>
 ```
+
+^ PAUSE
 
 ^ But as we start to think of how to write our template, we hit a wall:
 
@@ -2795,13 +2743,13 @@ end
 
 ^ And we're back to green.
 
-^ PAUSE
-
 ^ So let's take another look at our design system docs:
 
 ---
 
 ![fit](img/primer-state-docs-title.png)
+
+^ PAUSE
 
 ^ I think we might have missed something.
 
@@ -2837,7 +2785,7 @@ end
 
 ^ S that passes in an empty title
 
-^ S and then expexts a validation error.
+^ S and then expects a validation error.
 
 ---
 
@@ -3539,7 +3487,7 @@ class IssueBadge extends React.Component {
 
 # [fit] Performance
 
-^ So what about performance.
+^ So what about performance?
 
 ---
 
