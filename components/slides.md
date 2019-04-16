@@ -19,13 +19,13 @@ background-color: #ffffff;
 
 ^ Name is Joel
 
-^ I live in Colorado and work as an...
+^ I live in Boulder, Colorado and...
 
 ---
 
 ![40%](img/github.png)
 
-^ engineer at GitHub
+^ work as an engineer at GitHub
 
 ---
 
@@ -41,9 +41,9 @@ background-color: #ffffff;
 
 # [fit] Imagine
 
-^ "to imagine something new."
+^ to imagine something new.
 
-^ "It is not the ability to create"
+^ It is not the ability to create
 
 ---
 
@@ -105,7 +105,7 @@ background-color: #ffffff;
 
 # [fit] Testing
 
-^ is hard to test efficiently
+^ is hard to test thoroughly
 
 ---
 
@@ -137,7 +137,7 @@ background-color: #ffffff;
 
 # [fit] Testing
 
-^ is tested efficiently in isolation
+^ is tested thoroughly in isolation
 
 ---
 
@@ -155,15 +155,13 @@ background-color: #ffffff;
 
 # [fit] Standards
 
-^ and follows the code standards of the Ruby language
-
-^ Oh, and is
+^ follows the code standards of the Ruby language
 
 ---
 
 # [fit] >200x
 
-^ over 200x faster to test
+^ and over 200x faster to test
 
 ---
 
@@ -198,9 +196,9 @@ background-color: #ffffff;
 
 ^ Things haven’t changed much
 
-^ Rails still ships with ERB
+^ Rails still ships with ERB like it did in 2005
 
-^ Rails 4 partial page reloads with Turbolinks
+^ Turbolinks shipped with Rails 4, giving us partial page reloads
 
 ^ And Rails 5 API mode
 
@@ -271,7 +269,7 @@ background-color: #ffffff;
 
 ^ Progressive enhancement.
 
-^ We like to say that we write our Javascript like it's 2005. While it makes the user experience more pleasant, most of the site works without it.
+^ We like to write our Javascript like it's 2005. While it makes the user experience more pleasant, most of the site works without it.
 
 ---
 
@@ -291,13 +289,13 @@ background-color: #ffffff;
 
 ^ Low powered netbooks, chrome books, or tablets, which buckle under heavy Javascript.
 
-^ At our scale, even a small percentage of users is a large number of people
-
 ---
 
 # [fit] Browsers
 
-^ Since we don't *need* javascript to run our site, we can simply turn if off for older browsers that are hard to maintain compatibility with.
+^ And since we don't *need* javascript to run our site, we can simply turn if off for older browsers that are hard to develop for
+
+^ which makes our javascript easier to maintain.
 
 ^ How do we do it?
 
@@ -310,7 +308,6 @@ background-color: #ffffff;
 [.code-highlight: 3-6]
 [.code-highlight: 2-6]
 [.code-highlight: 8]
-[.code-highlight: all]
 
 ```erb
 <% if supported_browser? %>
@@ -369,7 +366,7 @@ background-color: #ffffff;
 
 ---
 
-^ So what is it like to work on views at GitHub
+^ So what is it like to work on views at GitHub?
 
 ---
 
@@ -384,8 +381,6 @@ background-color: #ffffff;
 ^ As part of that project, I got to know this little piece of our UI, called the Issue Badge, really well.
 
 ^ We use the issue badge to display the status of Issues and PRs
-
-^ We use it all over our app
 
 ---
 
@@ -482,19 +477,19 @@ background-color: #ffffff;
 
 # [fit] Rails @ GitHub
 
-^ GitHub is a Rails monolith that has been growing and evolving for over 10 years
-
----
-
-# [fit] 556
-
-^ We have over 550 models
+^ GitHub is a Rails monolith that is just turned 11 years old.
 
 ---
 
 # [fit] 209
 
 ^ Over 200 controllers, not including our API
+
+---
+
+# [fit] 556
+
+^ We have over 550 models
 
 ---
 
@@ -510,7 +505,7 @@ background-color: #ffffff;
 
 # [fit] 6s
 
-^ In our test suite, it takes six seconds to run a single controller test locally, not including any setup.
+^ In our test suite, it takes six seconds to run a single controller test locally, not including setup.
 
 ^ One minute to run a set of ten cases.
 
@@ -524,7 +519,7 @@ background-color: #ffffff;
 
 ^ So imagine listening to it twice, every time you run a set of ten cases.
 
-^ That might make you write fewer tests!
+^ That might encourage you to write fewer tests!
 
 ---
 
@@ -591,13 +586,11 @@ background-color: #ffffff;
 
 ^ If these are active record objects, we’d be fetching their entire set of attributes, when we may in fact only need one or two for each object.
 
-^ At GitHub, some of our fields are backed by Git storage, so we have to be especially careful with what we fetch.
-
 ---
 
 # [fit] Unit<br>Testing
 
-^ Unit testing views isn’t common practice in Rails
+^ Another problem is that unit testing views isn’t common practice in Rails
 
 ^ Nearly all of our view tests are those six-second controller tests
 
@@ -605,7 +598,7 @@ background-color: #ffffff;
 
 # [fit] Partials
 
-^ This is especially painful for partials, as we
+^ This is especially painful for partials, as they
 
 ^ often end up being tested for each of the views they are included in
 
@@ -740,13 +733,13 @@ background-color: #ffffff;
 
 # [fit] Code<br>Coverage
 
-^ Impossible to audit with code coverage tools, preventing us from knowing how thorough our tests are.
+^ and those tests are impossible to audit with code coverage tools, preventing us from knowing how thorough they are
 
 ---
 
 # [fit] Data Flow
 
-^ Make it difficult to reason about data flow
+^ They make it difficult to reason about data flow
 
 ---
 
@@ -909,11 +902,9 @@ class IssueBadge extends React.Component {
 
 # [fit] Data Flow
 
-^ Another advantage of React is how it encourages writing components as pure functions.
+^ Another advantage of React is how it simplifies data flow.
 
-^ By passing data into views instead of rich objects, React encourages us to write functions without side-affects.
-
-^ In reality, most architectures that split the frontend from the backend benefit from this separation.
+^ By passing data into views instead of rich objects, React encourages us to write functions without side-effects.
 
 ---
 
@@ -967,7 +958,7 @@ it('should render the closed issue badge', function() {
 
 # [fit] Data flow
 
-^ Data flow and with functional purity
+^ Simplified data flow
 
 ---
 
@@ -977,7 +968,7 @@ it('should render the closed issue badge', function() {
 
 ---
 
-^ Which is too bad, because it’s not compatible with our progressive enhancement architecture at GitHub.
+^ Which is too bad, because it’s not compatible with our progressive enhancement architecture.
 
 ^ But let's not give up just yet.
 
@@ -999,7 +990,7 @@ it('should render the closed issue badge', function() {
 
 # [fit] Tests
 
-^ Before we start refactoring, we're going to need some tests so we can make sure we aren't breaking anything.
+^ Before we start refactoring, let's add some tests to make sure we don't break anything.
 
 ---
 
@@ -1036,7 +1027,7 @@ it('should render the closed issue badge', function() {
 <% end %>
 ```
 
-^ What might it look like to test the partial?
+^ What might it look like to test our view?
 
 ^ S In each case, we're doing three things:
 
@@ -1090,7 +1081,7 @@ it "renders the closed pull request badge for a closed draft pull request"
 
 ^ And now we have test coverage.
 
-^ Now, like I did before, let's delete the issue badge partial.
+^ So let's delete the view and see what happens.
 
 ---
 
@@ -1101,7 +1092,7 @@ it "renders the closed pull request badge for a closed draft pull request"
 
 ^ We have failing tests!
 
-^ Now we can start changing things and know if we’ve broken them
+^ Now we can refactor with confidence.
 
 ---
 
@@ -1194,10 +1185,6 @@ end
 
 ^ let's write a monkey patch!
 
-^ Is everyone familiar with what a monkey patch is?
-
-^ So in our monkey patch:
-
 ^ S we'll re-define #render,
 
 ^ S So that when we pass in our component,
@@ -1286,7 +1273,7 @@ end
 
 ^ While it might be tempting to use html_safe here, that would be the furthest thing from safe.
 
-^ But what if we reused the existing Rails rendering architecture?
+^ But what if we reused the existing Rails rendering pipeline?
 
 ---
 
@@ -1388,7 +1375,7 @@ end
 <%= render Issues::Badge, issue: issue, pull_request: issue.pull_request %>
 ```
 
-^ Now we're already passing the issue into our component, but we aren't doing anything with it yet. Let's change that.
+^ We're already passing the issue into our component, but we aren't doing anything with it yet. Let's change that.
 
 ---
 
@@ -1546,7 +1533,7 @@ end
 
 ^ Next, we can drop in the rest of the original partial into our template method.
 
-^ Now, let's see how our tests do.
+^ Now, let's see how the rest of our controller tests do.
 
 ---
 
@@ -1601,7 +1588,9 @@ end
 <%= render Issues::Badge, issue: issue, pull_request: issue.pull_request %>
 ```
 
-^ Now, since the view that calls our component knows whether it is dealing with a pull request or an issue, how about we split this out into two components and let the view pick which one to use?
+^ Since the view that calls our component knows whether it is dealing with a pull request or an issue
+
+^ How about we split this out into two components and let the view pick which one to use?
 
 ---
 
@@ -1717,7 +1706,7 @@ end
 <% end %>
 ```
 
-^ And our pull request badge are rendering the same State UI element from our Primer design system.
+^ And our pull request badge are rendering the same State UI element from our design system.
 
 ^ So why not make that a component?
 
@@ -1760,7 +1749,7 @@ module Primer
 end
 ```
 
-^ We'll call it State, inside the Primer module, to reflect the hierarchy of our design system.
+^ We'll call it State, inside the Primer module.
 
 ---
 
@@ -1842,7 +1831,7 @@ module Primer
 end
 ```
 
-^ Then, let's update our existing components to inherit from it.
+^ So let's update our existing components to inherit from it.
 
 ---
 
@@ -1882,9 +1871,9 @@ class ActionView::Base
 end
 ```
 
-^ To just check if the argument is a child of ActionView::Component.
+^ To just check if the argument is a subclass of ActionView::Component.
 
-^ So now that we have a parent class for our components, let's try and reduce some duplication.
+^ So now that we have a parent class for our components, let's try to reduce some duplication.
 
 ---
 
@@ -1952,7 +1941,9 @@ end
 
 ---
 
-^ Now while we could probably just rely on the existing controller tests for this, wouldn't it be nice if we could test this new, nested component by itself?
+^ Now while we could probably just rely on the existing controller tests for this
+
+^ Wouldn't it be nice if we could test this new, nested component by itself?
 
 ---
 
@@ -2205,7 +2196,7 @@ end
 
 ^ To first instantiate the component
 
-^ S Then, if a block has been passed, render it in the context of the current view, and assign the result to an accessor on the component.
+^ S Then, if a block has been passed, render it in the context of the current view, using ActionView's capture helper, and assign the result to an accessor on the component.
 
 ^ At that point, our component will know about the content
 
@@ -2342,7 +2333,7 @@ module Primer
 end
 ```
 
-^ Let's start by adding a color argument in an initializer.
+^ Let's start by adding a color argument to the initializer.
 
 ^ But what values do we need to handle?
 
@@ -2413,7 +2404,7 @@ end
 
 ^ S the color values and their respective CSS classes.
 
-^ S This also captures the entirety of the values we should allow for the color argument
+^ S The keys of our hash also represent the entirety of the values we should allow for the color argument
 
 ^ So how can we enforce this in our component?
 
@@ -2488,7 +2479,7 @@ end
 
 ^ In our component,
 
-^ S We can use an inclusion validation to check that color is one of the valid values.
+^ S We can use an inclusion validation to check that color is one of the keys in our constant.
 
 ---
 
@@ -2532,7 +2523,7 @@ module ActionView
 end
 ```
 
-^ In ActionView::Component,
+^ And in ActionView::Component,
 
 ---
 
@@ -2627,7 +2618,7 @@ it "assigns the correct CSS class for color" do
 end
 ```
 
-^ So now let's make sure we're
+^ So now let's add a test to make sure we're
 
 ^ S setting the right CSS class
 
@@ -2818,7 +2809,7 @@ end
 
 ^ And we're back to green.
 
-^ But let's see how our integration tests fare:
+^ But let's see how our controller tests fare:
 
 ---
 
@@ -2936,7 +2927,9 @@ end
 
 ^ S But the only thing we're doing with it is calling the #closed predicate method
 
-^ As you can probably imagine, Issue's interface is much more than just this one method, but yet we're passing the entire object in just to get one value!
+^ As you can probably imagine, Issue's interface is much more than just this one method
+
+^ but yet we're passing the entire object in just to get one value!
 
 ---
 
@@ -3024,7 +3017,7 @@ end
 
 ^ And add a validation.
 
-^ So now,
+^ PAUSE
 
 ---
 
@@ -3148,7 +3141,7 @@ module Issues
 end
 ```
 
-^ And reference the constant instead.
+^ And extract the values from the constant instead.
 
 ^ So let's run our tests...
 
@@ -3281,7 +3274,7 @@ module PullRequests
 end
 ```
 
-^ First, we'll need to update the initialize method
+^ First, we'll need to update the initializer
 
 ---
 
@@ -3297,7 +3290,7 @@ module PullRequests
 end
 ```
 
-^ To instead accept the state and is_draft values.
+^ To instead accept the state and is_draft *values*, instead of the pull request *object*.
 
 ---
 
@@ -3376,6 +3369,8 @@ end
 
 ^ And extract the title, color, octicon name, and label into methods.
 
+^ PAUSE
+
 ---
 
 ```jsx
@@ -3411,13 +3406,13 @@ class IssueBadge extends React.Component {
 
 # [fit] Data Flow
 
-^ So remember how React encouraged functional purity, minimizing side-affects?
+^ So remember how React encouraged simple data flow, minimizing side-affects?
 
 ---
 
 # [fit] Values > Objects
 
-^ By passing values into our components instead of objects, we're seeing similar benefits.
+^ By passing *values* into our components instead of *objects*, we're seeing similar benefits.
 
 ---
 
@@ -3449,13 +3444,13 @@ class IssueBadge extends React.Component {
 
 # [fit] :ship: Mid-March
 
-^ The components we've written today have been running in production on GitHub since mid-March.
+^ The components we've written today have been running in production since March.
 
 ^ So what have we learned since then?
 
 ---
 
-# [fit] implementation
+# [fit] Implementation
 
 ^ As we implemented these components in numerous places throughout our views,
 
@@ -3467,7 +3462,6 @@ class IssueBadge extends React.Component {
 [.header: #ffffff]
 
 # [fit] missing keyword: title
-
 
 ^ much like the test failure we ran into earlier.
 
@@ -3493,7 +3487,7 @@ class IssueBadge extends React.Component {
 
 # [fit] 6s
 
-^ In our monolith's test suite, Controller tests take about six seconds for loading a page and asserting against its content.
+^ In our test suite, controller tests take about six seconds for loading a page and asserting against the content.
 
 ^ What about our new unit tests?
 
@@ -3501,7 +3495,7 @@ class IssueBadge extends React.Component {
 
 # [fit] 25ms
 
-^ They clocked in at around 25 milliseconds running in the same suite.
+^ They clocked in at around 25 milliseconds, running in the same suite.
 
 ---
 
@@ -3565,7 +3559,7 @@ class IssueBadge extends React.Component {
 
 # [fit] Code<br>Coverage
 
-^ Audit with code coverage tools
+^ that are audited with code coverage tools
 
 ---
 
@@ -3595,7 +3589,7 @@ class IssueBadge extends React.Component {
 
 ---
 
-# [fit] Rethinking the View Layer<br>with Components
+# [fit] Thanks
 
 ^ Thanks
 
