@@ -91,13 +91,15 @@ background-color: #ffffff;
 
 ![50%](img/react.png)
 
-^ Today we're going to take ideas from React,
+^ Today we're going to do just that:
+
+^ We're going to take ideas from React,
 
 ---
 
 ![50%](img/rails.png)
 
-^ And apply them in Rails.
+^ And reapply them in Rails.
 
 ^ In doing so, we we're going to take a template that
 
@@ -3545,7 +3547,7 @@ class IssueBadge extends React.Component {
 
 # [fit] ActionView::Component
 
-^ And ended up with a new way of thinking about the view Layer in Rails
+^ And created a new way of thinking about the view Layer in Rails
 
 ^ that enables us to
 
