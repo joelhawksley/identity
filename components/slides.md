@@ -976,7 +976,7 @@ it('should render the closed issue badge', function() {
 
 ^ So to recap,
 
-^å React has:
+^ React has:
 
 ---
 
