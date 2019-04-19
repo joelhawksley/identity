@@ -44,7 +44,7 @@ body {
 }
 
 h1 {
-  line-height: 1.25;
+  line-height: 1;
 }
 
 h3 {
@@ -132,4 +132,17 @@ dd {
 
 footer {
   font-size: .8rem;
+  margin-top: 2rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-3 {
+  margin-top: 3rem;
+}
+
+p {
+  margin: 1rem 0;
 }
