@@ -196,15 +196,21 @@ background-color: #ffffff;
 # [fit] 2012 **Turbolinks**
 # [fit] 2016 **API Mode**
 
-^ Things haven’t changed much
+^ It's been pretty stable!
 
 ^ Rails still ships with ERB like it did in 2005
 
-^ Turbolinks shipped with Rails 4, giving us partial page reloads
+^ Rails 4 added Turbolinks
 
-^ And Rails 5 API mode
+^ And Rails 5 added API mode
 
-^ It's telling that DHH said in the Rails 5 release notes:
+---
+
+^ PAUSE
+
+^ But in the last couple of years, the winds have begun to change.
+
+^ But I think it's telling that DHH said in the Rails 5 release notes:
 
 ---
 
@@ -271,7 +277,7 @@ background-color: #ffffff;
 
 ^ Progressive enhancement.
 
-^ We like to write our Javascript like it's 2005. While it makes the user experience more pleasant, most of the site works without it.
+^ While javascript makes our user experience more pleasant, most of the app works without it.
 
 ---
 
@@ -293,9 +299,9 @@ background-color: #ffffff;
 
 ---
 
-# [fit] Browsers
+# [fit] Browser<br>Support
 
-^ And since we don't *need* javascript to run our site, we can simply turn if off for older browsers that are hard to develop for
+^ What's nice is that since we don't *need* javascript to run our site, we can simply turn it off for older browsers that are hard to develop for
 
 ^ which makes our javascript easier to maintain.
 
@@ -398,9 +404,15 @@ background-color: #ffffff;
 
 ---
 
-# [fit] Issue
-# [fit] belongs_to:
-# [fit] PullRequest
+```ruby
+class Issue < ApplicationRecord
+  belongs_to :pull_request
+end
+
+class PullRequest < ApplicationRecord
+  has_one :issue, inverse_of: :pull_request
+end
+```
 
 ^ In the GitHub data model
 
@@ -446,7 +458,9 @@ background-color: #ffffff;
 
 ^ We render the issue badge with this partial.
 
-^ S So depending on the state of the pull request or issue, we:
+^ PAUSE
+
+^ S Depending on the state of the pull request or issue, we:
 
 ^ S Render an icon, label,
 
@@ -505,6 +519,12 @@ background-color: #ffffff;
 
 ---
 
+# [fit] Testing
+
+^ Right now, our main way of exercising our view code is through controller tests set up to render views.
+
+---
+
 # [fit] 6s
 
 ^ In our test suite, it takes six seconds to run a single controller test locally, not including setup.
@@ -521,13 +541,13 @@ background-color: #ffffff;
 
 ^ So imagine listening to it twice, every time you run a set of ten cases.
 
-^ That might encourage you to write fewer tests!
+^ At our scale, this simply isn't sustainable.
 
 ---
 
-# [fit] Flaws
+![50%](img/rails.png)
 
-^ This problem is a symptom of several flaws in the Rails view layer.
+^ This problem is a symptom of several shortcomings in the Rails view layer.
 
 ---
 
@@ -541,11 +561,13 @@ background-color: #ffffff;
 
 ^ Data flow.
 
+^ A common data flow error we're probably all familiar with is
+
 ---
 
 # [fit] N + 1
 
-^ A common data flow error we're probably all familiar with is the good old N + 1, where we accidentally generate an expensive query in a view.
+^ the good old N + 1, where we accidentally generate an expensive query in a view.
 
 ^ Our example code also has some data flow issues:
 
@@ -588,13 +610,15 @@ background-color: #ffffff;
 
 ^ If these are active record objects, we’d be fetching their entire set of attributes, when we may in fact only need one or two for each object.
 
+^ In addition, it's unclear where the "pull request" and "issue" variables are coming from, making it difficult to reuse this partial with any amount of confidence.
+
 ---
 
 # [fit] Unit<br>Testing
 
 ^ Another problem is that unit testing views isn’t common practice in Rails
 
-^ Nearly all of our view tests are those six-second controller tests
+^ Rails encourages us to test our views through integration and system tests, which are expensive.
 
 ---
 
@@ -755,6 +779,8 @@ background-color: #ffffff;
 
 ^ And often fail basic Ruby code standards
 
+^ PAUSE
+
 ---
 
 # [fit] MVC
@@ -783,16 +809,14 @@ background-color: #ffffff;
 
 ^ React is all about components.
 
-^ A component encapsulates a piece of user interface.
-
-^ Multiple components are composed together to create a view.
+^ A component encapsulates a piece of user interface, making it easy to reuse.
 
 ---
 
 [.code-highlight: all]
 [.code-highlight: 2-4]
 [.code-highlight: 7]
-[.code-highlight: 3, 7]
+[.code-highlight: 3]
 
 ```jsx
 class Greeting extends React.Component {
@@ -806,17 +830,19 @@ React.render(<Greeting name="World" />, document.getElementById('example'));
 
 ^ Here's one way of writing "Hello, World" in a React component.
 
+^ PAUSE
+
 ^ S React components, at a minimum, implement a render method that returns HTML.
 
 ^ S Arguments passed to a component are assigned to the `props` object,
 
-^ S which is accessible within the component's instance methods.
+^ S which is accessible within instance methods on the component.
 
 ---
 
 [.code-highlight: all]
 [.code-highlight: 5]
-[.code-highlight: 4-6]
+[.code-highlight: 4,6]
 
 ```jsx
 class IssueBadge extends React.Component {
@@ -866,7 +892,7 @@ IssueBadge.propTypes = {
 };
 ```
 
-^ The Prop Types library allows us to express some expectations about the data we receive.
+^ The Prop Types library allows React components to express some expectations about the data they receive.
 
 ^ In this case, we are expecting:
 
@@ -906,7 +932,11 @@ class IssueBadge extends React.Component {
 
 ^ Another advantage of React is how it simplifies data flow.
 
-^ By passing data into views instead of rich objects, React encourages us to write functions without side-effects.
+---
+
+# [fit] Values > Objects
+
+^ By passing values into views instead of rich objects, React encourages us to write functions without side-effects.
 
 ---
 
@@ -938,11 +968,15 @@ it('should render the closed issue badge', function() {
 
 ^ Which means that really, really fast.
 
+^ PAUSE
+
 ---
 
 ![50%](img/react.png)
 
-^ So React has:
+^ So to recap,
+
+^å React has:
 
 ---
 
@@ -972,27 +1006,29 @@ it('should render the closed issue badge', function() {
 
 ^ Which is too bad, because it’s not compatible with our progressive enhancement architecture.
 
-^ But let's not give up just yet.
+^ But what if there was a way to incorporate some of the benefits
 
 ---
 
 ![50%](img/react.png)
 
-^ Let's see if we can find a way to incorporate some of the benefits of React
+^ of React
 
 ---
 
 ![50%](img/rails.png)
 
-^ into Rails.
+^ into Rails?
 
-^ Perhaps we can address some of those code review comments while we're at it.
+^ PAUSE
+
+^ Before we start refactoring,
 
 ---
 
 # [fit] Tests
 
-^ Before we start refactoring, let's add some tests to make sure we don't break anything.
+^ Let's add some tests to make sure we don't break anything.
 
 ---
 
@@ -1033,9 +1069,9 @@ it('should render the closed issue badge', function() {
 
 ^ S In each case, we're doing three things:
 
-^ S assigning a class name,
+^ S Setting a class name,
 
-^ S picking an icon, and setting a label.
+^ S icon, and label
 
 ---
 
@@ -1200,7 +1236,7 @@ end
 [.background-color: #d73a49]
 [.header: #ffffff]
 
-# [fit] undefined method 'octicon'<br>for Issues::Badge
+# [fit] undefined method 'octicon'
 
 ^ Undefined method octicon? That's interesting.
 
@@ -1261,7 +1297,7 @@ end
 
 # [fit] Expected element matching<br>".State.State--green", found 0
 
-^ Hmm. It can't find the CSS selectors we're looking for.
+^ Interesting. It can't find the CSS selectors we're looking for.
 
 ^ I wonder what our component is rendering.
 
@@ -1281,8 +1317,6 @@ end
 
 [.code-highlight: 12-18]
 [.code-highlight: 5-10]
-[.code-highlight: 8]
-[.code-highlight: 6-9]
 
 ```ruby
 module Issues
@@ -1311,9 +1345,7 @@ end
 
 ^ S And in our html method, we'll run our template through ActionView's ERB template handler,
 
-^ S then call #src on the result.
-
-^ S This effectively mirrors how regular Rails templates are compiled and then executed.
+^ Effectively mirroring how regular Rails templates are compiled and then executed.
 
 ^ So let's run our tests again.
 
@@ -1542,13 +1574,14 @@ end
 [.background-color: #28a745]
 [.header: #ffffff]
 
-^ We're green! Let's ship it! Maybe not yet.
+^ We're green!
 
 ---
 
 [.code-highlight: all]
 [.code-highlight: 1,5,9,13]
 [.code-highlight: 17, 21]
+[.code-highlight: all]
 
 ```erb
 <% if @pull_request && @pull_request.merged? %>
@@ -1578,11 +1611,13 @@ end
 <% end %>
 ```
 
-^ Taking another look at our template, it seems as though we really have *two* components here, not one.
+^ But something doesn't seem right about our template.
 
 ^ S The first two thirds handle various pull request states
 
 ^ S While the last third handles issue state.
+
+^ It seems as though we really have *two* components here, not one.
 
 ---
 
@@ -1647,9 +1682,9 @@ class ActionView::Base
 end
 ```
 
-^ To handle both components.
+^ To look for both components.
 
-^ Let's check in on our tests
+^ Let's check on our tests
 
 ---
 
@@ -1810,7 +1845,11 @@ module ActionView
 end
 ```
 
-^ Let's call it ActionView::Component.
+^ Enter ActionView::Component.
+
+^ PAUSE
+
+^ So let's take our new parent class...
 
 ---
 
@@ -1833,7 +1872,7 @@ module Primer
 end
 ```
 
-^ So let's update our existing components to inherit from it.
+^ And update our existing components to inherit from it.
 
 ---
 
@@ -1933,13 +1972,17 @@ end
 <% end %>
 ```
 
+^ But anyways, back to building our new component.
+
 ^ PAUSE
 
-^ But as we start to think of how to write our template, we hit a wall:
+^ This one's a little different:
 
-^ S How will we pass in the content of the badge?
+^ S We're passing it content as a block.
 
-^ Let's write a test first.
+^ PAUSE
+
+^ So let's start by writing a test.
 
 ---
 
@@ -1966,7 +2009,7 @@ it('should render the closed issue badge', function() {
 
 ^ S then assert against the resulting HTML.
 
-^ In an ideal world,
+^ Ideally, we'd be able to do...
 
 ---
 
@@ -1983,7 +2026,7 @@ it "renders content passed to it as a block" do
 end
 ```
 
-^ we'd be able do the same in Rails:
+^ the same in Rails:
 
 ^ S Render the component directly,
 
@@ -2005,11 +2048,13 @@ def render_string(string)
 end
 ```
 
-^ And without too much work, we can! We can implement a render_string test helper that:
+^ Which we can do via ApplicationController,
 
-^ S Renders our template in the same code path as a normal view, and then
+^ S Rendering our template in the same code path as a normal view, and then
 
-^ S Parses the result in Nokogiri for easier assertions.
+^ S Parsing the result in Nokogiri for easier assertions.
+
+^ PAUSE
 
 ^ So let's run our test now.
 
@@ -2020,7 +2065,7 @@ end
 
 # [fit] no implicit conversion<br>of Class into Hash
 
-^ No implicit conversion of Class into Hash? Sounds like we might be passing a Hash where we're expecting a Class.
+^ Sounds like something that expects a Class is recieving a Hash!
 
 ---
 
@@ -2279,7 +2324,7 @@ module Primer
 end
 ```
 
-^ And updating the template to reference the content accessor.
+^ And updating the template to render its value.
 
 ^ But let's see what our test says.
 
@@ -2435,7 +2480,7 @@ end
 
 ^ S with a message in a format that is suspiciously familiar
 
-^ So let's run it.
+^ So let's run it...
 
 ---
 
@@ -2445,6 +2490,8 @@ end
 # [fit] ActionView::Template::Error<br>expected but nothing was raised.
 
 ^ And make sure it fails.
+
+---
 
 ^ So how might we ensure color is one of our expected values?
 
@@ -2459,7 +2506,6 @@ end
 ---
 
 [.code-highlight: all]
-[.code-highlight: 3-8, 10]
 
 ```ruby
 module Primer
@@ -2471,7 +2517,27 @@ module Primer
       purple: "State--purple",
     }.freeze
 
-    validates :color, inclusion: { in: COLOR_CLASS_MAPPINGS.keys }
+    def initialize; end
+    def template; end
+  end
+end
+```
+
+^ Back at our component,
+
+---
+
+[.code-highlight: 10]
+
+```ruby
+module Primer
+  class State < ActionView::Component
+    COLOR_CLASS_MAPPINGS = {
+      default: "",
+      green: "State--green",
+      red: "State--red",
+      purple: "State--purple",
+    }.freeze
 
     def initialize; end
     def template; end
@@ -2479,13 +2545,13 @@ module Primer
 end
 ```
 
-^ In our component,
+^ We can use an inclusion validation to check that color is one of the keys in our constant.
 
-^ S We can use an inclusion validation to check that color is one of the keys in our constant.
+^ PAUSE
 
 ---
 
-[.code-highlight: 10]
+[.code-highlight: 10, 11]
 
 ```ruby
 module Primer
@@ -2506,7 +2572,7 @@ module Primer
 end
 ```
 
-^ To make this work, we'll need to give it an attribute reader.
+^ To make this work, we'll need to define an attribute reader.
 
 ---
 
@@ -2638,7 +2704,8 @@ end
 ---
 
 [.code-highlight: all]
-[.code-highlight: 12]
+[.code-highlight: 15]
+[.code-highlight: 11]
 
 ```ruby
 module Primer
@@ -2649,6 +2716,9 @@ module Primer
       red: "State--red",
       purple: "State--purple",
     }.freeze
+
+    attr_reader :color
+    validates :color, inclusion: { in: COLOR_CLASS_MAPPINGS.keys }
 
     def template
       <<-erb
@@ -2665,11 +2735,11 @@ end
 
 ^ S we just had the CSS class hardcoded.
 
-^ But now that we can be sure that color is one of the keys in our hash,
+^ S But now that we can be sure that color is one of the keys in our hash,
 
 ---
 
-[.code-highlight: 18-20]
+[.code-highlight: 21-23]
 
 ```ruby
 module Primer
@@ -2680,6 +2750,9 @@ module Primer
       red: "State--red",
       purple: "State--purple",
     }.freeze
+
+    attr_reader :color
+    validates :color, inclusion: { in: COLOR_CLASS_MAPPINGS.keys }
 
     def template
       <<-erb
@@ -2700,7 +2773,7 @@ end
 
 ---
 
-[.code-highlight: 12]
+[.code-highlight: 15]
 
 ```ruby
 module Primer
@@ -2711,6 +2784,9 @@ module Primer
       red: "State--red",
       purple: "State--purple",
     }.freeze
+
+    attr_reader :color
+    validates :color, inclusion: { in: COLOR_CLASS_MAPPINGS.keys }
 
     def template
       <<-erb
@@ -2848,7 +2924,7 @@ module Issues
 end
 ```
 
-^ We never updated our consumers of Primer::State to pass in a title argument!
+^ We never updated our consumers of Primer::State to pass in the required title argument!
 
 ---
 
@@ -2887,7 +2963,13 @@ end
 
 # [fit] Data Flow
 
-^ So when it comes to data flow, we were mainly concerned with our views unintentionally querying the database.
+^ So when it comes to data flow, we were mainly concerned with
+
+---
+
+# [fit] N + 1
+
+^ our views unintentionally querying the database.
 
 ^ But what if we could avoid passing in ActiveRecord objects at all? That would eliminate the risk.
 
@@ -2948,9 +3030,41 @@ end
 
 ^ Looking at the implementation of the closed predicate method,
 
-^ S it's just checking whether the state is "closed".
+^ S it's just checking whether the value is "closed".
 
 ^ What might our component look like if we passed in the state value instead of the whole issue object?
+
+---
+
+[.code-highlight: 5-7]
+
+```ruby
+module Issues
+  class Badge < ActionView::Component
+    include OcticonsHelper
+
+    def initialize(issue:)
+      @issue = issue
+    end
+
+    def template
+      <<-erb
+      <% if @issue.closed? %>
+        <%= render Primer::State, color: :red, title: "Status: Closed" do %>
+          <%= octicon('issue-closed') %> Closed
+        <% end %>
+      <% else %>
+        <%= render Primer::State, color: :green, title: "Status: Open" do %>
+          <%= octicon('issue-opened') %> Open
+        <% end %>
+      <% end %>
+      erb
+    end
+  end
+end
+```
+
+^ First, we'd have to update the initialize method to
 
 ---
 
@@ -2982,7 +3096,7 @@ module Issues
 end
 ```
 
-^ We'd have to update the initialize method
+^ Accept the state *value* instead of the issue *object*,...
 
 ---
 
@@ -3045,7 +3159,7 @@ module Issues
 end
 ```
 
-^ Looking at our template, what if we extracted each branch to be derived from the value of state?
+^ Looking at our template, what if we extracted each branch to be derived from the state value?
 
 ---
 
@@ -3296,26 +3410,6 @@ end
 
 ---
 
-[.code-highlight: 3-5]
-
-```ruby
-module PullRequests
-  class Badge < ActionView::Component
-    attr_reader :state, :is_draft
-    validates :state, inclusion: { in: [:merged, :closed, :open] }
-    validates :is_draft, inclusion: { in: [true, false] }
-
-    def initialize(state:, is_draft:)
-      @state, @is_draft = state, is_draft
-    end
-  end
-end
-```
-
-^ And we might as well add validations for those values while we're here.
-
----
-
 [.code-highlight: 5-21]
 
 ```ruby
@@ -3448,7 +3542,15 @@ class IssueBadge extends React.Component {
 
 ^ The components we've written today have been running in production since March.
 
-^ So what have we learned since then?
+---
+
+![fit](img/component-usage.png)
+
+^ As of this week, we're now rendering Repository Topics and Language Badges with ActionView::Component, in addition to the PullRequest and Issue badges we talked about today.
+
+---
+
+^ So what have we learned from using this architecture in production?
 
 ---
 
@@ -3456,7 +3558,7 @@ class IssueBadge extends React.Component {
 
 ^ As we implemented these components in numerous places throughout our views,
 
-^ we caught several cases where we weren't setting the title attribute as we were supposed to
+^ we exposed several cases where we forgot to set the title attribute,
 
 ---
 
@@ -3467,13 +3569,17 @@ class IssueBadge extends React.Component {
 
 ^ much like the test failure we ran into earlier.
 
+---
+
+# [fit] Standards
+
 ^ By using standard Ruby constructs like required arguments, we've been able to enforce the interfaces of our components, and
 
 ---
 
-# [fit] Consistency
+# [fit] Reusability
 
-^ As a result, we now have a single, standardized implementation for these UI patterns, giving us tight consistency across our codebase.
+^ As a result, we now have a single, standardized, reusable implementation for these UI patterns that makes it easier for engineers to work with our design system.
 
 ---
 
@@ -3509,7 +3615,7 @@ class IssueBadge extends React.Component {
 
 ![fit](img/jeopardy.jpg)
 
-^ Said another way, our controller tests that used to take two Jeopardy theme songs to run
+^ Said another way, our tests that used to take two Jeopardy theme songs to run
 
 ---
 
@@ -3517,7 +3623,79 @@ class IssueBadge extends React.Component {
 
 ^ Now barely make it past the first note.
 
-^ So to recap, we started with this traditional embedded ruby template that:
+---
+
+^ PAUSE
+
+---
+
+# [fit] Creativity
+
+^ Creativity is the ability
+
+---
+
+# [fit] Imagine
+
+^ to imagine something new.
+
+^ It is not the ability to create
+
+---
+
+# [fit] Something
+
+^ Something out of
+
+---
+
+# [fit] Nothing
+
+^ Nothing, but to generate
+
+---
+
+# [fit] New ideas
+
+^ New ideas by
+
+---
+
+# [fit] Combining
+
+^ Combining,
+
+---
+
+# [fit] Changing
+
+^ Changing,
+
+---
+
+# [fit] Reapplying
+
+^ or reapplying
+
+---
+
+# [fit] Existing Ideas
+
+^ existing ideas.
+
+---
+
+![50%](img/react.png)
+
+^ By taking ideas from React
+
+---
+
+![50%](img/rails.png)
+
+^ And incorporating them into Rails,
+
+^ We've taken a template that
 
 ---
 
