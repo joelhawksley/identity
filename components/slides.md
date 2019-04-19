@@ -25,7 +25,7 @@ background-color: #ffffff;
 
 ![40%](img/github.png)
 
-^ work as an engineer at GitHub
+^ work at GitHub
 
 ---
 
