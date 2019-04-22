@@ -1183,7 +1183,9 @@ module Issues
 end
 ```
 
-^ Let's add an #html method to our component that returns the open issue badge from our partial.
+^ Let's add a method to our component that returns the open issue badge from our partial.
+
+^ We'll call it #html, as `render` is a loaded word in ActionView.
 
 ^ And then run our test.
 
@@ -1631,6 +1633,11 @@ end
 
 ---
 
+[.code-highlight: all]
+[.code-highlight: 1]
+[.code-highlight: 2]
+[.code-highlight: 4]
+
 ```erb
 <% if issue.pull_request %>
   <%= render PullRequests::Badge, pull_request: issue.pull_request %>
@@ -1640,6 +1647,14 @@ end
 ```
 
 ^ That's not so bad!
+
+^ S Based on whether the issue has a pull request, we can render either
+
+^ S The pull request badge
+
+^ S Or the issue badge
+
+^ PAUSE
 
 ---
 
