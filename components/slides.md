@@ -19,7 +19,7 @@ background-color: #ffffff;
 
 ^ Name is Joel
 
-^ I live in Boulder, Colorado and...
+^ And I...
 
 ---
 
@@ -388,7 +388,7 @@ background-color: #ffffff;
 
 ^ As part of that project, I got to know this little piece of our UI, called the Issue Badge, really well.
 
-^ We use the issue badge to display the status of Issues and PRs
+^ We use the issue badge to display the status of issues and pull requests
 
 ---
 
@@ -487,7 +487,7 @@ end
 
 ^ How could this be?
 
-^ The reality is that things are, well, different here.
+^ The reality is that things are, well, different here at GitHub.
 
 ---
 
@@ -535,7 +535,7 @@ end
 
 ![fit](img/jeopardy.jpg)
 
-^ So does anyone here know how long the Jeopardy theme song is?
+^ So does anyone here know how long the final Jeopardy theme song is?
 
 ^ It's 30 seconds.
 
@@ -553,7 +553,7 @@ end
 
 # [fit] What trips you up with Rails views?
 
-^ In a survey of the Boulder Ruby group, the number one response to this question was:
+^ In a survey of my local ruby group, the number one response to this question was:
 
 ---
 
@@ -832,11 +832,13 @@ React.render(<Greeting name="World" />, document.getElementById('example'));
 
 ^ PAUSE
 
-^ S React components, at a minimum, implement a render method that returns HTML.
+^ React components, at a minimum,
+
+^ S implement a render method that returns HTML.
 
 ^ S Arguments passed to a component are assigned to the `props` object,
 
-^ S which is accessible within instance methods on the component.
+^ S which is accessible within methods on the component.
 
 ---
 
@@ -1299,7 +1301,7 @@ end
 
 # [fit] Expected element matching<br>".State.State--green", found 0
 
-^ Interesting. It can't find the CSS selectors we're looking for.
+^ Interesting. It can't find the CSS we're looking for.
 
 ^ I wonder what our component is rendering.
 
@@ -1619,7 +1621,9 @@ end
 
 ^ S While the last third handles issue state.
 
-^ It seems as though we really have *two* components here, not one.
+^ It seems as though we really have
+
+^ S *two* components here, not one.
 
 ---
 
@@ -2170,7 +2174,7 @@ end
 
 ^ S "render this block in the context of the current view", then
 
-^ S "Wrap it in the component"
+^ S "Wrap the result in the component"
 
 ^ So how might that look?
 
@@ -2339,9 +2343,9 @@ module Primer
 end
 ```
 
-^ And updating the template to render its value.
+^ And updating the template to render the value of the content accessor.
 
-^ But let's see what our test says.
+^ But let's see about our test.
 
 ---
 
@@ -2538,7 +2542,7 @@ module Primer
 end
 ```
 
-^ Back at our component,
+^ Back in our component,
 
 ---
 
@@ -2553,6 +2557,8 @@ module Primer
       red: "State--red",
       purple: "State--purple",
     }.freeze
+
+    validates :color, inclusion: { in: COLOR_CLASS_MAPPINGS.keys }
 
     def initialize; end
     def template; end
@@ -3174,7 +3180,7 @@ module Issues
 end
 ```
 
-^ Looking at our template, what if we extracted each branch to be derived from the state value?
+^ Looking at our template, what if we extracted each branch to be derived from the value of state?
 
 ---
 
@@ -3272,7 +3278,7 @@ module Issues
 end
 ```
 
-^ And extract the values from the constant instead.
+^ And extract the values from the constant, instead of having nearly duplicate branches in our template.
 
 ^ So let's run our tests...
 
@@ -3387,7 +3393,7 @@ it "renders the open state"
 
 # [fit] missing keyword: pull_request
 
-^ It looks like our component is still expecting the old arguments.
+^ It looks like our component is still expecting the old argument.
 
 ^ Let's go update it!
 
@@ -3559,7 +3565,7 @@ class IssueBadge extends React.Component {
 
 ---
 
-![fit](img/component-usage.png)
+![fit](img/component-usage-cropped.png)
 
 ^ As of this week, we're now rendering Repository Topics and Language Badges with ActionView::Component, in addition to the PullRequest and Issue badges we talked about today.
 
