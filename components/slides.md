@@ -3636,13 +3636,13 @@ class IssueBadge extends React.Component {
 
 ![fit](img/jeopardy.jpg)
 
-^ Said another way, our tests that used to take two Jeopardy theme songs to run
+^ Said another way, our test that used to take two Jeopardy theme songs to run
 
 ---
 
 # [fit] .25s vs. 1m
 
-^ Now barely make it past the first note.
+^ Now barely makes it past the first note.
 
 ---
 
