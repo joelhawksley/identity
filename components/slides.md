@@ -1,5 +1,4 @@
 autoscale: true
-slidenumbers: true
 theme: Simple, 1
 text: Avenir Next Medium, #24292e
 text-strong: Avenir Next Bold, #24292e
@@ -301,7 +300,9 @@ background-color: #ffffff;
 
 # [fit] Browser<br>Support
 
-^ What's nice is that since we don't *need* javascript to run our site, we can simply turn it off for older browsers that are hard to develop for
+^ Another reason is browser support.
+
+^ Since we don't *need* javascript to run our site, we can simply turn it off for older browsers that are hard to develop for
 
 ^ which makes our javascript easier to maintain.
 
@@ -3427,7 +3428,7 @@ module PullRequests
 end
 ```
 
-^ To instead accept the state and is_draft *values*, instead of the pull request *object*.
+^ To accept the state and is_draft *values*, instead of the pull request *object*.
 
 ---
 
@@ -3488,6 +3489,8 @@ end
 
 ^ PAUSE
 
+^ What's interesting here, is that...
+
 ---
 
 ```jsx
@@ -3506,7 +3509,7 @@ class IssueBadge extends React.Component {
 }
 ```
 
-^ Looking back at our original React mockup, it's almost uncanny how similar the two are!
+^ looking back at our original React mockup, it's almost uncanny how similar the two are!
 
 ---
 
@@ -3798,6 +3801,6 @@ class IssueBadge extends React.Component {
 
 # [fit] Q & A
 
-## [fit] Slides & source code: hawksley.org/components
+## [fit] Slides & source code: hawksley.org
 
 ^ Repeat questions
