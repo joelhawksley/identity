@@ -39,7 +39,7 @@ body {
   font-size: 18px;
   line-height: 1.4;
   padding: 20px;
-  max-width: 500px;
+  max-width: 480px;
   margin: 0 auto;
 }
 
@@ -126,7 +126,7 @@ dt {
 }
 
 dd {
-  font-size: .9rem;
+  font-size: 1rem;
 }
 
 footer {
