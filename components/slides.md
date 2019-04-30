@@ -3570,7 +3570,9 @@ class IssueBadge extends React.Component {
 
 ![fit](img/component-usage-cropped.png)
 
-^ As of this week, we're now rendering Repository Topics and Language Badges with ActionView::Component, in addition to the PullRequest and Issue badges we talked about today.
+^ And as of last week,
+
+^ We're also rendering Repository Topics and Language Badges with ActionView::Component.
 
 ---
 
