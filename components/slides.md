@@ -150,7 +150,7 @@ background-color: #ffffff;
 
 # [fit] Data Flow
 
-^ only receives that data it needs
+^ only receives the data it needs
 
 ---
 
