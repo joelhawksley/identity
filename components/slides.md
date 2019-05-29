@@ -653,7 +653,7 @@ end
 
 ^ Another weakness is the lack of a method signature
 
-^ Unlike a method declaration on an object, views do not expose the values they are expected to receive
+^ Unlike a method declaration on an object, views do not declare the values they are expected to receive
 
 ---
 
