@@ -488,7 +488,7 @@ end
 
 ^ How could this be?
 
-^ The reality is that things are, well, different here at GitHub.
+^ Things are, well, different here at GitHub.
 
 ---
 
@@ -710,7 +710,7 @@ end
 
 # [fit] Standards
 
-^ The reality is that our views regularly fail even the most basic standards of code quality we expect out of our Ruby classes.
+^ Our views regularly fail even the most basic standards of code quality we expect out of our Ruby classes.
 
 ^ Let’s go back to our example.
 
@@ -744,7 +744,7 @@ end
 
 # [fit] Standards
 
-^ The reality is that we regularly do things in our templates that we’d never do in a Ruby class
+^ We regularly do things in our templates that we’d never do in a Ruby class
 
 ^ PAUSE
 
@@ -2850,7 +2850,7 @@ end
 
 ^ We're supposed to have a title attribute!
 
-^ The reality is that for most of our Primer components, CSS classes are not the entire interface.
+^ For most of our Primer components, CSS classes are not the entire interface.
 
 ^ But this is something our original partial never accounted for.
 
