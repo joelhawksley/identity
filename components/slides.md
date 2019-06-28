@@ -3570,13 +3570,11 @@ class IssueBadge extends React.Component {
 
 ![fit](img/component-usage-cropped.png)
 
-^ And as of last week,
-
 ^ We're also rendering Repository Topics and Language Badges with ActionView::Component.
 
 ---
 
-^ So what have we learned from using this architecture in production?
+^ So what have we learned since then?
 
 ---
 
@@ -3594,10 +3592,6 @@ class IssueBadge extends React.Component {
 # [fit] missing keyword: title
 
 ^ much like the test failure we ran into earlier.
-
----
-
-# [fit] Standards
 
 ^ By using standard Ruby constructs like required arguments, we've been able to enforce the interfaces of our components, and
 
@@ -3620,8 +3614,6 @@ class IssueBadge extends React.Component {
 ---
 
 # [fit] Benchmark
-
-^ First, we're going to need a benchmark.
 
 ^ What might a useful measurement be?
 
