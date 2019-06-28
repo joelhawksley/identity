@@ -126,7 +126,7 @@ background-color: #ffffff;
 
 ^ and fails basic Ruby code standards,
 
-^ And refactor it into a new, experimental addition to Rails
+^ And refactor it into a new addition to Rails
 
 ---
 
@@ -3616,6 +3616,127 @@ class IssueBadge extends React.Component {
 # [fit] Performance
 
 ^ So what about performance?
+
+---
+
+# [fit] Benchmark
+
+^ First, we're going to need a benchmark.
+
+^ What might a useful measurement be?
+
+---
+
+# [fit] Nested Partials
+
+^ Let's compare our implementation to rendering nested partials.
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 2]
+[.code-highlight: 1,3]
+
+```erb
+<div class="Box p-2">
+  <%= yield %>
+</div>
+```
+
+^ So given a partial
+
+^ S that wraps the content passed to it
+
+^ S in a box element from our design system
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 6-8]
+
+```ruby
+class Box < ActionView::Component
+  validates :content, presence: true
+
+  def self.template
+    <<-erb
+    <div class="Box p-2">
+      <%= content %>
+    </div>
+    erb
+  end
+end
+```
+
+^ And a component
+
+^ S that does the same...
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 1]
+[.code-highlight: 2-14]
+[.code-highlight: 15-27]
+[.code-highlight: 28]
+
+```erb
+<% Benchmark.ips do |x| %>
+  <% x.report("component") do %>
+    <%= render Box.new do %>
+      <%= render Box.new do %>
+        <%= render Box.new do %>
+          <%= render Box.new do %>
+            <%= render Box.new do %>
+              <%= render Box.new do %>
+                <%= render Box.new do %>
+                  <%= render Box.new do %>
+                    <%= render Box.new do %>
+                      <%= render Box.new do %>
+    ...
+  <% end %>
+  <% x.report("partial") do %>
+    <%= render "box" do %>
+      <%= render "box" do %>
+        <%= render "box" do %>
+          <%= render "box" do %>
+            <%= render "box" do %>
+              <%= render "box" do %>
+                <%= render "box" do %>
+                  <%= render "box" do %>
+                    <%= render "box" do %>
+                      <%= render "box" do %>
+    ...
+  <% end %>
+  <%= x.compare! %>
+<% end %>
+```
+
+^ We can construct a stress test!
+
+^ S Using Evan Phoenix's benchmark IPS gem
+
+^ S We'll render ten nested box components
+
+^ S and ten nested box partials
+
+^ S and compare the result...
+
+---
+
+```
+Comparison:
+           component:     6531.5 i/s
+             partial:     1289.4 i/s - 5.07x  slower
+```
+
+^ Rendering components is five times faster than rendering partials!
+
+---
+
+# [fit] Testing
+
+^ What about test performance?
 
 ---
 
