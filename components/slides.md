@@ -3572,34 +3572,104 @@ class IssueBadge extends React.Component {
 
 ^ We're also rendering Repository Topics and Language Badges with ActionView::Component.
 
+^ PAUSE
+
 ---
+
+# [fit] Lessons
 
 ^ So what have we learned since then?
 
 ---
 
-# [fit] Implementation
+# [fit] API
 
-^ As we implemented these components in numerous places throughout our views,
-
-^ we exposed several cases where we forgot to set the title attribute,
+^ So we've simplified the API a bit.
 
 ---
 
-[.background-color: #d73a49]
-[.header: #ffffff]
+[.code-highlight: all]
+[.code-highlight: 3]
+[.code-highlight: 6]
 
-# [fit] missing keyword: title
+```ruby
+class ActionView::Base
+  module RenderMonkeyPatch
+    def render(component, *args, &block)
+      return super unless component.is_a?(Class) && component < ActionView::Component
 
-^ much like the test failure we ran into earlier.
+      instance = component.new(*args)
+      instance.content = self.capture(&block) if block_given?
+      instance.validate!
+      instance.html
+    end
+  end
 
-^ By using standard Ruby constructs like required arguments, we've been able to enforce the interfaces of our components, and
+  prepend RenderMonkeyPatch
+end
+```
+
+^ Looking back at our monkey patch
+
+^ S We were taking the arguments
+
+^ $ And then almost immediately instantiating the component with them.
+
+^ This indirection began to stick out as confusing and unnecessary...
+
+^ So we removed it!
 
 ---
 
-# [fit] Reusability
+[.code-highlight: 1]
 
-^ As a result, we now have a single, standardized, reusable implementation for these UI patterns that makes it easier for engineers to work with our design system.
+```erb
+<%= render Issues::Badge, color: :green do %>
+  <%= octicon('issue-opened') %> Open
+<% end %>
+```
+
+^ So instead of passing the component arguments after the component name,
+
+---
+
+[.code-highlight: 1]
+
+```erb
+<%= render Issues::Badge.new(color: :green) do %>
+  <%= octicon('issue-opened') %> Open
+<% end %>
+```
+
+^ We instead instantiate the component with the arguments before passing it to render.
+
+---
+
+# [fit] Templates
+
+^ We also ran into an issue with templates:
+
+^ Not all text editors syntax highlight HEREDOCS properly
+
+---
+
+^ We don't even do it properly!
+
+---
+
+^ We also found that having a template inline in a component got awkward when the template was more than a dozen lines or so.
+
+^ So with those problems in mind,
+
+---
+
+^ We added the ability to take that inline template
+
+---
+
+^ And define it in a sidecar file instead
+
+^ PAUSE
 
 ---
 
