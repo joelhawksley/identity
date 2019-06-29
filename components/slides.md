@@ -3834,6 +3834,106 @@ end
 
 ---
 
+# [fit] Convention
+
+^ But perhaps the most exciting thing we've learned is about convention
+
+---
+
+^ So you know how a lot of Rails apps end up with a couple unconventional folders in the app directory?
+
+^ There often ends up being one that is view-related. It's a place to put logic that doesn't seem to make sense in models, controllers, or views.
+
+^ Usually it's something like
+
+---
+
+# [fit] Presenters
+
+^ Presenters
+
+---
+
+# [fit] Decorators
+
+^ Decorators
+
+---
+
+# [fit] View Models
+
+^ Or view models
+
+^ Ours happens to be view models.
+
+---
+
+# [fit] ~700
+
+^ We have around 700 of them!
+
+---
+
+# [fit] Missing<br>Abstraction
+
+^ This just screams missing abstraction!
+
+^ Luckily, we think we've found the abstraction:
+
+---
+
+# [fit] ActionView::Component
+
+^ ActionView::Component!
+
+---
+
+# [fit] ~~ViewModels~~
+
+^ Our current experiment is seeing if we can replace view models with components, and so far the results have been very encouraging
+
+---
+
+# [fit] Repositories::ListItem
+
+^ The first migration we did was creating a component for a repository list item.
+
+---
+
+# [fit] Repositories::Card
+
+^ Most recently, we created a similar component for repository cards.
+
+---
+
+# [fit] Benefits
+
+---
+
+# [fit] Testing
+
+^ Instead of testing intermediate instance methods on a view model, we simply test the rendered DOM from the component
+
+---
+
+# [fit] Coupling
+
+^ By expressing the template and supporting logic under the same architectural concept, we accurately model the tight coupling between the two that view models only loosely enforced
+
+---
+
+# [fit] Convention
+
+^ And we hope that by elevating this construct into Rails, it can become a convention
+
+---
+
+# [fit] ~~Missing<br>Abstraction~~
+
+^ Filling the void of a missing abstraction.
+
+---
+
 ^ PAUSE
 
 ---
