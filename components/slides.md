@@ -3938,6 +3938,58 @@ end
 
 ---
 
+# [fit] The Future
+
+^ So what's next?
+
+---
+
+# [fit] Upstreaming
+
+^ We've already started to upstream our work on components into Rails.
+
+---
+
+^ After sharing this work at RailsConf in April
+
+^ Rafael from the Rails core team asked us to upstream our work into the alpha branch of Rails 6.1
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 12]
+[.code-highlight: 13]
+
+```ruby
+def render(options = {}, locals = {}, &block)
+  case options
+  when Hash
+    in_rendering_context(options) do |renderer|
+      if block_given?
+        view_renderer.render_partial(self, options.merge(partial: options[:layout]), &block)
+      else
+        view_renderer.render(self, options)
+      end
+    end
+  else
+    if options.respond_to?(:render_in)
+      options.render_in(self, &block)
+    else
+      view_renderer.render_partial(self, partial: options, locals: locals, &block)
+    end
+  end
+end
+```
+
+^ 6.1 now has support for passing an object to `render`
+^ S that reponds_to `render_in`
+^ S if so, `render_in` is called on the object, with the current view context and the passed block as arguments
+^ Effectively upstreaming our monkey patch
+
+^ PAUSE
+
+---
+
 # [fit] Creativity
 
 ^ Creativity is the ability
