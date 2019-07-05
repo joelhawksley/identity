@@ -488,7 +488,7 @@ end
 
 ^ How could this be?
 
-^ Things are, well, different here at GitHub.
+^ You know, things are different at GitHub.
 
 ---
 
@@ -530,19 +530,14 @@ end
 
 ^ In our test suite, it takes six seconds to run a single controller test locally, not including setup.
 
-^ One minute to run a set of ten cases.
 
 ---
 
-![fit](img/jeopardy.jpg)
+# [fit] One Minute
 
-^ So does anyone here know how long the final Jeopardy theme song is?
+^ That's one minute to run a set of ten cases.
 
-^ It's 30 seconds.
-
-^ So imagine listening to it twice, every time you run a set of ten cases.
-
-^ At our scale, this simply isn't sustainable.
+^ I think we can agree that's far from ideal.
 
 ---
 
@@ -611,7 +606,7 @@ end
 
 ^ If these are active record objects, we’d be fetching their entire set of attributes, when we may in fact only need one or two for each object.
 
-^ In addition, it's unclear where the "pull request" and "issue" variables are coming from, making it difficult to reuse this partial with any amount of confidence.
+^ In addition, it's unclear where the "pull request" and "issue" variables are coming from, making it difficult to reuse this partial with confidence.
 
 ---
 
@@ -786,17 +781,17 @@ end
 
 # [fit] MVC
 
-^ The reality is that the existing Rails view layer
+^ These things make the Rails view layer
 
 ---
 
 # [fit] MvC
 
-^ is a second-class citizen these days.
+^ more of a second-class citizen these days.
 
 ^ PAUSE
 
-^ With all these shortcomings, perhaps it isn’t much of a surprise that a new way of building views has taken hold in the Rails community:
+^ Given all of this, I don't think it's much of a surprise that a new way of building views has taken hold in the Rails community:
 
 ---
 
@@ -810,7 +805,7 @@ end
 
 ^ React is all about components.
 
-^ A component encapsulates a piece of user interface, making it easy to reuse.
+^ A component is an object that encapsulates a piece of user interface.
 
 ---
 
@@ -925,7 +920,7 @@ class IssueBadge extends React.Component {
 }
 ```
 
-^ We can then reference the isClosed boolean on issue without fear, as our type check will guarantee that it is present.
+^ This allows us to reference the isClosed boolean on issue without worry, as our type check will guarantee that it is present.
 
 ^ PAUSE
 
@@ -1188,8 +1183,6 @@ end
 
 ^ Let's add a method to our component that returns the open issue badge from our partial.
 
-^ We'll call it #html, as `render` is a loaded word in ActionView.
-
 ^ And then run our test.
 
 ---
@@ -1314,7 +1307,7 @@ end
 
 ^ It looks like our output is being escaped!
 
-^ While it might be tempting to use html_safe here, that would be the furthest thing from safe.
+^ While it might be tempting to use html_safe here, that's probably not a good idea.
 
 ^ But what if we reused the existing Rails rendering pipeline?
 
@@ -1475,7 +1468,7 @@ module Issues
 end
 ```
 
-^ In addition, we'll need to define an initialize method on our component.
+^ Next, we'll need to define an initialize method on our component.
 
 ^ We'll let pull_request be nil, as not all issues have pull requests.
 
@@ -1992,7 +1985,7 @@ end
 <% end %>
 ```
 
-^ But anyways, back to building our new component.
+^ Back to building our new component.
 
 ^ PAUSE
 
@@ -3373,8 +3366,6 @@ it "renders the closed state"
 it "renders the open state"
 ```
 
-^ Luckily for us, we now have an easy way to write unit tests for our components.
-
 ^ In this first one,
 
 ^ S we'll assert that when we pass in state and is_draft values,
@@ -3550,7 +3541,7 @@ class IssueBadge extends React.Component {
 
 ![fit](img/pull-request-component-coverage.png)
 
-^ Digging into the report, we can see that all of the branching logic in our pull request component is being exercised.
+^ Digging into the report, we now have proof that all of the branching logic in our pull request component is being exercised.
 
 ---
 
@@ -3566,7 +3557,7 @@ class IssueBadge extends React.Component {
 
 # [fit] Benchmark
 
-^ What might a useful measurement be?
+^ What might a useful benchmark be?
 
 ---
 
@@ -3673,7 +3664,7 @@ Comparison:
              partial:     1289.4 i/s - 5.07x  slower
 ```
 
-^ Rendering components is five times faster than rendering partials!
+^ As it turns out, rendering components is five times faster than rendering partials!
 
 ---
 
@@ -3700,18 +3691,6 @@ Comparison:
 # [fit] 240x
 
 ^ That’s two-hundred and fourty times faster.
-
----
-
-![fit](img/jeopardy.jpg)
-
-^ Said another way, our test that used to take two Jeopardy theme songs to run
-
----
-
-# [fit] .25s vs. 1m
-
-^ Now barely makes it past the first note.
 
 ---
 
@@ -3790,7 +3769,9 @@ end
 <% end %>
 ```
 
-^ So instead of passing the component arguments after the component name,
+^ So instead of passing the component arguments
+
+^ after the component name
 
 ---
 
@@ -3802,7 +3783,9 @@ end
 <% end %>
 ```
 
-^ We instead instantiate the component with the arguments before passing it to render.
+^ We instead instantiate the component with the arguments
+
+^ before passing it to render.
 
 ---
 
@@ -3810,23 +3793,75 @@ end
 
 ^ We also ran into an issue with templates:
 
-^ Not all text editors syntax highlight HEREDOCS properly
+^ Support for syntax highlighting HEREDOCs is not universal
 
 ---
+
+![fit](img/bad-heredoc-highlighting.png)
 
 ^ We don't even do it properly!
 
 ---
 
+`pull_requests/badge.rb`
+
+```ruby
+module PullRequests
+  class Badge < ActionView::Component
+    def template
+      <<-erb
+      <% if pull_request.merged? %>
+        <%= render Primer::State, color: :purple, title: "Status: Merged" do %>
+          <%= octicon('git-merge') %> Merged
+        <% end %>
+      <% elsif pull_request.closed? %>
+        <%= render Primer::State, color: :red, title: "Status: Closed" do %>
+          <%= octicon('git-pull-request') %> Closed
+        <% end %>
+      <% elsif pull_request.draft? %>
+        <%= render Primer::State, color: :default, title: "Status: Draft" do %>
+          <%= octicon('git-pull-request') %> Draft
+        <% end %>
+      <% else %>
+        <%= render Primer::State, color: :green, title: "Status: Open" do %>
+          <%= octicon('git-pull-request') %> Open
+        <% end %>
+      <% end %>
+      erb
+    end
+  end
+end
+```
+
 ^ We also found that having a template inline in a component got awkward when the template was more than a dozen lines or so.
 
 ^ So with those problems in mind,
 
----
-
 ^ We added the ability to take that inline template
 
 ---
+
+`pull_requests/badge.html.erb`
+
+```erb
+<% if pull_request.merged? %>
+  <%= render Primer::State, color: :purple, title: "Status: Merged" do %>
+    <%= octicon('git-merge') %> Merged
+  <% end %>
+<% elsif pull_request.closed? %>
+  <%= render Primer::State, color: :red, title: "Status: Closed" do %>
+    <%= octicon('git-pull-request') %> Closed
+  <% end %>
+<% elsif pull_request.draft? %>
+  <%= render Primer::State, color: :default, title: "Status: Draft" do %>
+    <%= octicon('git-pull-request') %> Draft
+  <% end %>
+<% else %>
+  <%= render Primer::State, color: :green, title: "Status: Open" do %>
+    <%= octicon('git-pull-request') %> Open
+  <% end %>
+<% end %>
+```
 
 ^ And define it in a sidecar file instead
 
@@ -3872,6 +3907,8 @@ end
 
 ^ We have around 700 of them!
 
+^ Taking a step back and thinking about this pattern across the many Rails apps I've seen it in
+
 ---
 
 # [fit] Missing<br>Abstraction
@@ -3890,41 +3927,60 @@ end
 
 # [fit] ~~ViewModels~~
 
-^ Our current experiment is seeing if we can replace view models with components, and so far the results have been very encouraging
+^ Our current experiment is seeing if we can replace view models with components
+
+^ and so far the results have been very encouraging
 
 ---
 
-# [fit] Repositories::ListItem
+![fit](img/repo-list-item.png)
 
-^ The first migration we did was creating a component for a repository list item.
+^ The first migration we did was creating a component for a repository list item,
 
----
-
-# [fit] Repositories::Card
-
-^ Most recently, we created a similar component for repository cards.
+^ Which we had implemented almost the exact same way a half dozen places in the app
 
 ---
 
 # [fit] Benefits
 
+^ One of the benefits over view models we've seen is...
+
 ---
 
 # [fit] Testing
 
-^ Instead of testing intermediate instance methods on a view model, we simply test the rendered DOM from the component
+^ How we're writing our tests.
+
+---
+
+```ruby
+assert_equal(view_model.color_class, "State--green")
+```
+
+^ Instead of testing intermediate instance methods on a view model
+
+---
+
+```ruby
+assert(rendered_component.css(".State--green").any?)
+```
+
+^ we simply test the rendered DOM from the component
+
 
 ---
 
 # [fit] Coupling
 
-^ By expressing the template and supporting logic under the same architectural concept, we accurately model the tight coupling between the two that view models only loosely enforced
+^ By expressing the template and supporting logic under the same architectural concept, we clearly express the tight coupling between the object and the view that view models only loosely enforced
+
+^ PAUSE
 
 ---
 
 # [fit] Convention
 
-^ And we hope that by elevating this construct into Rails, it can become a convention
+^We hope that by elevating this construct into Rails, it can become a convention,
 
 ---
 
@@ -3948,13 +4004,13 @@ end
 
 ^ We've already started to upstream our work on components into Rails.
 
----
+^ After sharing our project at RailsConf in April
 
-^ After sharing this work at RailsConf in April
-
-^ Rafael from the Rails core team asked us to upstream our work into the alpha branch of Rails 6.1
+^ Rafael from the Rails core team asked us to upstream it into the alpha branch of Rails 6.1
 
 ---
+
+`action_view/helpers/rendering_helper.rb`
 
 [.code-highlight: all]
 [.code-highlight: 12]
@@ -3981,10 +4037,17 @@ def render(options = {}, locals = {}, &block)
 end
 ```
 
-^ 6.1 now has support for passing an object to `render`
-^ S that reponds_to `render_in`
+^ Our patch updated the render helper method,
+
+^ adding support for passing in an object
+
+^ S that responds\_to `render_in`
+
 ^ S if so, `render_in` is called on the object, with the current view context and the passed block as arguments
-^ Effectively upstreaming our monkey patch
+
+^ Effectively upstreaming our monkey patch.
+
+^ Our plan is to continue to upstream more of our implementation as it stabilizes internally.
 
 ^ PAUSE
 
