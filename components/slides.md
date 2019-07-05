@@ -3937,56 +3937,9 @@ end
 
 ^ The first migration we did was creating a component for a repository list item,
 
-^ Which we had implemented almost the exact same way a half dozen places in the app
+^ Which we had implemented almost the exact same way a half dozen places in the app, some of them using view models.
 
----
-
-# [fit] Benefits
-
-^ One of the benefits over view models we've seen is...
-
----
-
-# [fit] Testing
-
-^ How we're writing our tests.
-
----
-
-```ruby
-assert_equal(view_model.color_class, "State--green")
-```
-
-^ Instead of testing intermediate instance methods on a view model
-
----
-
-```ruby
-assert(rendered_component.css(".State--green").any?)
-```
-
-^ we simply test the rendered DOM from the component
-
-
----
-
-# [fit] Coupling
-
-^ By expressing the template and supporting logic under the same architectural concept, we clearly express the tight coupling between the object and the view that view models only loosely enforced
-
-^ PAUSE
-
----
-
-# [fit] Convention
-
-^We hope that by elevating this construct into Rails, it can become a convention,
-
----
-
-# [fit] ~~Missing<br>Abstraction~~
-
-^ Filling the void of a missing abstraction.
+^ Now we have one implementation.
 
 ---
 
