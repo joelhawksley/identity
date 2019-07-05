@@ -4154,6 +4154,6 @@ end
 
 # [fit] Q & A
 
-## [fit] Slides & source code: hawksley.org
+## [fit] Slides & demo repository: hawksley.org
 
 ^ Repeat questions
