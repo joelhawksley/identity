@@ -22,7 +22,7 @@ background-color: #ffffff;
 
 ---
 
-![40%](img/github.png)
+![100%](img/github.png)
 
 ^ work at GitHub
 
