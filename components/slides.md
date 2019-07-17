@@ -4154,6 +4154,8 @@ end
 
 # [fit] Q & A
 
-## [fit] Slides & demo repository: hawksley.org
+## [fit] Slides & demo repository: hawksley.org<br/>Ask me for stickers!
+
+^ Ask me for stickers!
 
 ^ Repeat questions
