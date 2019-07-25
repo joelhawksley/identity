@@ -369,7 +369,7 @@ background-color: #ffffff;
 
 ^ Using PJAX, like Turbolinks
 
-^ Javascript turned off -> normal page request and reload
+^ Javascript turned off -> browser goes through normal request/response cycle
 
 ^ PAUSE
 
@@ -471,7 +471,7 @@ end
 
 ---
 
-^ Wanting to know more about its behavior, I figured, why not just delete the file and see what tests fail!
+^ Wanting to know more about its behavior, I figured, why not just delete the partial and see what tests fail!
 
 ^ That's just what I did.
 
@@ -494,7 +494,7 @@ end
 
 # [fit] Rails @ GitHub
 
-^ GitHub is a Rails monolith that is just turned 11 years old.
+^ GitHub is a Rails monolith that just turned 11 years old.
 
 ---
 
@@ -626,7 +626,7 @@ end
 
 ^ Leads to duplication of tests
 
-^ Cheapens benefit of reusing the partial in the first place
+^ Cheapens benefit of reusing partials in the first place
 
 ---
 
@@ -1225,7 +1225,7 @@ end
 
 ^ S So that when we pass in our component,
 
-^ S it calls our component's #html method
+^ S it calls our component's #html instance method
 
 ^ So let's run our test again.
 
@@ -1307,9 +1307,9 @@ end
 
 ^ It looks like our output is being escaped!
 
-^ While it might be tempting to use html_safe here, that's probably not a good idea.
+^ I guess this isn't just as simple as doing some string interpolation.
 
-^ But what if we reused the existing Rails rendering pipeline?
+^ How about we reuse the existing Rails rendering pipeline?
 
 ---
 
@@ -1845,7 +1845,7 @@ end
 
 ^ Perhaps we're missing an abstraction here.
 
-^ What we're really trying to say is: "Am I dealing with one of these newfangled components?"
+^ What we're really trying to say with this line of code is: "Is this a component?"
 
 ^ Perhaps it's time for a parent class!
 
@@ -3646,7 +3646,7 @@ end
 <% end %>
 ```
 
-^ We can construct a stress test!
+^ We can build a stress test!
 
 ^ S Using Evan Phoenix's benchmark IPS gem
 
@@ -3718,7 +3718,7 @@ Comparison:
 
 # [fit] Lessons
 
-^ So what have we learned since then?
+^ So what have we learned so far?
 
 ---
 
@@ -3753,7 +3753,7 @@ end
 
 ^ S We were taking the arguments
 
-^ $ And then almost immediately instantiating the component with them.
+^ S And then almost immediately instantiating the component with them.
 
 ^ This indirection began to stick out as confusing and unnecessary...
 
@@ -3955,7 +3955,7 @@ end
 
 # [fit] Upstreaming
 
-^ We've already started to upstream our work on components into Rails.
+^ We've already started to upstream this work into Rails.
 
 ^ After sharing our project at RailsConf in April
 
