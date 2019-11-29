@@ -82,17 +82,23 @@ background-color: #ffffff;
 
 ^ Decorators
 
+^ Explain pattern
+
 ---
 
 # Galvanize
 
 ^ react-rails
 
+^ explain pattern
+
 ^ isolation testing
 
 ---
 
 # Cells
+
+^ Explain pattern
 
 ^ Current things don’t render, except for cells :)
 
@@ -101,6 +107,8 @@ background-color: #ffffff;
 # GitHub
 
 ^ Presenters
+
+^ explain pattern
 
 ---
 
@@ -223,7 +231,9 @@ background-color: #ffffff;
 
 ---
 
+^ Similar to ActionMailer::Previews
 
+---
 
 ---
 
