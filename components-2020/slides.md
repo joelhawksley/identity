@@ -1,4 +1,5 @@
 autoscale: true
+slidenumbers: true
 theme: Simple, 1
 text: Avenir Next Medium, #24292e
 text-strong: Avenir Next Bold, #24292e
