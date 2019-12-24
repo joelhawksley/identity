@@ -8,9 +8,33 @@ header-strong: Avenir Next Bold, #24292e
 code: Menlo Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
 background-color: #ffffff;
 
-# [fit] ActionView::Component<br>=<br>The Missing Abstraction
+<!--
+
+The Missing Abstraction
+
+Rails is missing an abstraction, and it's hiding in plain sight, right inside your application. 
+
+Goals of talk:
+
+- Inspire audience to think about how they can contribute to Rails
+- Educate audience on how the Rails view layer works today
+- Inspire audience to consider component - driven architecture
+
+Pitch:
+I'm a software engineer at GitHub, working on one of the largest, most-trafficked Ruby on Rails applications in the world. My talk on the initial prototype of ActionView::Component was the third-most popular of RailsConf 2019 based on YouTube views.
+
+
+-->
+
+# [fit] The Missing Abstraction
 
 ^ How can I be relaxed?
+
+---
+
+# Hello!
+
+^ Name
 
 ---
 
