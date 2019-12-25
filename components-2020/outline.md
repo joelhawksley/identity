@@ -36,7 +36,9 @@ Hook
     Is inside the applications and gems you're working on right now
     Will you set it free?
 
-^ Lots of pauses in hook/intro/thankfulness
+    Today I’m going to talk about a new way of building views, called ActionView::Component. 
+
+    My goal is to share an understanding of why we built it, what we’ve learned so far in using it for the past year, and maybe inspire you to give it a try yourself.
 
 Bio intro
     Name
@@ -45,21 +47,45 @@ Bio intro
         Distributed
         Pajamas joke
         Human contact - picture of captain
+    About me
+        Recovering photojournalist - photo from CU game
+        I have no formal computer science training. 
+
+        In the fall of 2013, I was working at the Roanoke Times in Virginia.
+
+        That day, I was out riding my bike, and my phone rang. It was the editor, more or less CEO, of the newspaper.
+
+        He was calling to tell me that my manager was being laid off. That day happened to be her birthday. It also happened to be September 11th.
+
+        I got off the phone and called a friend of mine from college, a former regular here at Boulder Ruby, Aaron Snyder, asking for his advice.
+
+        Later that year, I moved to Rhode Island to be his apprentice at MojoTech, where he taught me Git, Ruby, Rails, and how to be a professional software engineer.
     Current passions
         digital wellness
         epaper
 
 Thankfulness
-    "No person hands out their money to passersby, but to how many do each of us hand out our lives!"
-    "We’re tight-fisted with property and money, yet think too little of wasting time, the one thing about which we should all be the toughest misers."
-    — SENECA, ON THE BREVITY OF LIFE, 3.1–2
-    - https://zenchongproject.wordpress.com/2019/12/09/meditation-on-mortality-december-9th-spendthrifts-of-time/
-
-    For your time
     For community
-        meetup is well over a decade old
-        some of us have been writing ruby for a long
-        friends -> family
+        Sponsors 
+            Food
+            Meeting space
+            Sandi Metz
+        Dan, Rylan, Marty
+            meetup is well over a decade old
+            some of us have been writing ruby for a long
+        You
+            You make it special
+            You make this community feel like family
+        Something special here
+    For your time
+        "No person hands out their money to passersby, but to how many do each of us hand out our lives!"
+        "We’re tight-fisted with property and money, yet think too little of wasting time, the one thing about which we should all be the toughest misers."
+        — SENECA, ON THE BREVITY OF LIFE, 3.1–2
+        - https://zenchongproject.wordpress.com/2019/12/09/meditation-on-mortality-december-9th-spendthrifts-of-time/
+        I’ve put a lot of time and energy into this talk with the intention to make it worth your time.
+        So before we begin, I have a simple request: 
+        Be present. There are many hours in the day to use our phones, to check Slack and email. I’d love to share this next half an hour or so with all of you in the present moment, not somewhere else.
+
     For rails
     For ruby
 
@@ -168,3 +194,6 @@ Conclusion
 OPEN QUESTIONS
 Ask for feedback at the end of talk - what was confusing? What needs clarifying?
 Abstract - tell story of extracting code from GitHub to share with community and eventually Rails - convention helps us collaborate
+"Time is precious, how willyou spend yours?" I certainly don't want to spend mine re-inventing the wheel
+Frameworks like Rails help us move human progress forward, allowing us to focus on new and important problems, not preventing CSRF forgery
+Lots of pauses in hook/intro/thankfulness
