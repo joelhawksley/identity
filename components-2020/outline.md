@@ -36,6 +36,10 @@ Hook
     Is inside the applications and gems you're working on right now
     Will you set it free?
 
+    Rails has been around for a long time. Practically an eternity in internet time. The internet has changed, and somehow Rails has managed to stay relevant. 
+
+    But this hasn’t been by accident. Rails isn’t carved in stone. It’s evolved over time. And it’s evolved because people like us have made it better by contributing new features and fixing bugs.
+
     Today I’m going to talk about a new way of building views, called ActionView::Component. 
 
     My goal is to share an understanding of why we built it, what we’ve learned so far in using it for the past year, and maybe inspire you to give it a try yourself.
@@ -87,15 +91,26 @@ Thankfulness
         Be present. There are many hours in the day to use our phones, to check Slack and email. I’d love to share this next half an hour or so with all of you in the present moment, not somewhere else.
 
     For rails
+        Rails has been around a long time. How long have you been using it? Think about how much money you’ve made writing rails code. Think about how much value rails has brought to the companies you’ve worked for.  
     For ruby
 
 Business value of Rails
-    Best named codebase
+    Best named codebase - github/github/github
     GitHub scale details
-    GitHub is pretty Railsy
+        We’re still largely a Rails monolith. In fact, we’ve recently been moving some of our services *back* into the monolith.
+
+        We have X models, X controller, and X views.
+
+        Our codebase is about twelve years old. It’s only about three years younger than Rails!
+    GitHub is pretty Railsy - Our app is more boring than you’d think
     Focus on value for our orgs, delivering value
 
 Rails is an extraction - what can you extract?
+    DHH said something similar back in 2007: 
+
+    “The best frameworks are in my opinion extracted, not envisioned. And the best way to extract is first to actually do.”
+    https://dhh.dk/posts/6-why-theres-no-rails-inc.html
+
     Eileen quote about upstream by default
         When I joined GitHub, I remember something @eileencodes said early on: If it doesn't have to do with our business, it needs to go in Rails.
         In other words, our mindset was to be "upstream by default"
@@ -104,6 +119,15 @@ Rails is an extraction - what can you extract?
         In fact, up until 2018, we were on long running forks of both Rails and Ruby.
         The maintenance burden of this arrangement grew over time to be unsustainable.
         reference her Talk about the future of rails at github etc
+        We had to constantly back port security fixes.
+
+        It was hard for new engineers to get up to speed on Rails, GitHub Edition.
+
+        Over the course of almost two years, Eileen and a team of several dedicated engineers managed to get us back to Rails master.
+
+        This was an incredible accomplishment.
+
+        Among the many benefits, it enabled us to contribute to Rails again.
     Backpack analogy
         "frameworks are extracted, not built"
         decisions you don't have to make
@@ -117,9 +141,29 @@ Problem intro - story
         need for consistent use of CSS + correct HTML
 
 Problem statement
+    Server-rendered views in Rails are pretty great. They’ve gotten us this far. But I’m sure many of you have felt their shortcomings.
+
+    When I asked you all to share screenshots of your Rails app folders, I was looking for something.
+
+    First of all, thank you for sharing this little window into your applications.
+
+    Let’s look at them and see.
+
+    There’s a lot of view-related abstractions. 
+
+    Presenters
+
+    Decorators
+
+    View models
+
+    Conservatively, way more than half of you had one of these in your codebases. And none of these are provided by Rails itself!
+
+    Now I’m going to go out on a limb and guess that none of your companies are in the business of view layer innovation.
     Views have felt like they are missing something
     You all have seen this in your own apps
         it's pretty clear that a lot of us are dealing with this
+    So why do we find ourselves straying from the tools Rails gives us to build our views?
     why aren't views easy to test?
         testing pyramid
         encapsulation diagram
@@ -131,6 +175,8 @@ Problem statement
     actionview precompiler gem from jhawthorn
     all variants of view
     render full path linter rule
+    Server rendered views aren’t going anywhere
+    We have almost 4000
 
 Deep dive into rails views
     instance variables work in between views as question
