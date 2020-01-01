@@ -81,6 +81,7 @@ Thankfulness
             You make it special
             You make this community feel like family
         Something special here
+        Prakash
     For your time
         "No person hands out their money to passersby, but to how many do each of us hand out our lives!"
         "We’re tight-fisted with property and money, yet think too little of wasting time, the one thing about which we should all be the toughest misers."
@@ -224,6 +225,9 @@ Our solution
         “If it could be a partial, it could be a good component”
         View models
         Migrate controller tests
+
+Case study
+    Dave ramsey examples
 
 
 Extraction example
