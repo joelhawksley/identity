@@ -35,21 +35,13 @@ Problem statement
     render full path linter rule
 
 Our solution
-    existing hundreds of view models
-    idea while traveling
-    Set out to collect these ideas and think about what it might look like to bring them into Rails
-    boulder ruby talk
-    rails talk
-    rails PR 
     gem
     OS contributions
     struggles - losing confidence regularly
     regular pairing
     What we do is the best:
-    Encapsulating into a single object
     Easier to make fast
     Better than partials and helpers
-    Instance variable context encapsulation
     superset of the rails view layer
     Works exactly as you’d expect it to
     peformance
@@ -89,6 +81,9 @@ Conclusion
     It's up to us to make thoughtful extractions to keep Rails relevant
 
 OPEN QUESTIONS
+definitions of decorator, presenter, component/cell
+coupling / testing
+
 Ask for feedback at the end of talk - what was confusing? What needs clarifying?
 Abstract - tell story of extracting code from GitHub to share with community and eventually Rails - convention helps us collaborate
 "Time is precious, how willyou spend yours?" I certainly don't want to spend mine re-inventing the wheel

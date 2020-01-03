@@ -1648,8 +1648,13 @@ end
 
 ^ No access to state from other views
 
+^ No instance variable leakage
+
 ---
 
 # Unit testing
 
+```
+render_inline(MyComponent)
+```
 
