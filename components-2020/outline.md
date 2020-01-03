@@ -31,9 +31,7 @@ GOALS
 STRUCTURE
 
 Problem statement
-    why aren't views easy to test?
-        testing pyramid
-        encapsulation diagram
+    encapsulation diagram
     "testing and encapsulation"
     actionview precompiler gem from jhawthorn
     all variants of view
@@ -42,9 +40,6 @@ Problem statement
     We have almost 4000
 
 Deep dive into rails views
-    instance variables work in between views as question
-    answer via deep dive
-    Single module
     List number of methods defined dynamically on GH app
     Why this is bad
     encapsulation

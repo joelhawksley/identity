@@ -695,6 +695,62 @@ background-color: #ffffff;
 
 # Testing & Encapsulation
 
+^ in talking with many of you
+
+^ testing and encapsulation
+
+---
+
+# Testing views
+
+^ Why aren't views easy to test?
+
+---
+
+![fit](img/test-pyramid.png)
+
+^ https://martinfowler.com/bliki/TestPyramid.html
+
+^ Martin fowler's test pyramid 
+
+^ illustrates it best
+
+^ Rails provides
+
+^ controller tests (service)
+
+^ UI tests (system)
+
+^ But not unit tests...
+
+---
+
+![fit](img/test-pyramid.png)
+
+^ Limiting us to
+
+^ Slowest and most expensive options
+
+---
+
+# View objects
+
+^ As our apps grow
+
+^ Turn to view objects
+
+^ Can be unit tested
+
+---
+
+^ PAUSE
+
+---
+
+# Encapsulation
+
+^ What about encapsulation?
+
 ---
 
 # Views
@@ -1399,7 +1455,7 @@ end
 
 ---
 
-# On the _same_ object
+# On the _same_ module
 
 ---
 
