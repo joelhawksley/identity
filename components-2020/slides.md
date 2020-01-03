@@ -745,11 +745,15 @@ background-color: #ffffff;
 
 ^ PAUSE
 
+^ Even if our views could be unit tested
+
+^ Bigger issue:
+
 ---
 
 # Encapsulation
 
-^ What about encapsulation?
+^ Encapsulation
 
 ---
 
@@ -1537,6 +1541,10 @@ end
 
 ^ All helpers
 
+^ Same context
+
+^ Can all share state
+
 ---
 
 # Encapsulation
@@ -1551,7 +1559,97 @@ end
 
 ^ PAUSE
 
-^ 
+^ So to recap:
 
 ---
+
+# Testing
+
+^ Rails views are hard to test
+
+---
+
+# Decorators, Presenters, Components
+
+^ Many of us have solutions to make them easier to test
+
+^ Why don't we bring those ideas into Rails?
+
+---
+
+# 2019
+
+^ Spent most of the past year
+
+^ Incorporating those ideas
+
+^ Into a vision for how Rails could address these issues
+
+---
+
+# ActionView::Component
+
+^ called ActionView::Component
+
+^ incorporates best parts of existing patterns
+
+---
+
+# Encapsulation
+
+^ First and foremost
+
+^ ActionView::Components are encapsulated
+
+---
+
+`# my_component.rb`
+
+```ruby
+class MyComponent < ActionView::Component::Base
+  def initialize(message:)
+    @message = message
+  end
+end
+```
+
+`# my_component.html.erb`
+
+```erb
+<h1><%= @message %><h1>
+```
+
+^ Take this example
+
+^ (talk through code)
+
+^ Follow a similar compilation process
+
+---
+
+`# my_component.rb`
+
+```ruby
+class MyComponent < ActionView::Component::Base
+  def initialize(message:)
+    @message = message
+  end
+
+  def call
+    @output_buffer.safe_append='<h1>'.freeze
+    @output_buffer.append=( @message )
+    @output_buffer.safe_append='</h1>'.freeze
+    @output_buffer.to_s
+  end
+end
+```
+
+^ But instead attach compiled view to component object
+
+^ No access to state from other views
+
+---
+
+# Unit testing
+
 
