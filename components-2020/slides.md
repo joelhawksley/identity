@@ -280,6 +280,52 @@ background-color: #ffffff;
 
 ---
 
+# Time
+
+^ Thankful for your time
+
+^ Precious resource
+
+---
+
+# Prakash
+
+^ Recently lost a member of our community
+
+^ Could have been any of us
+
+---
+
+# Loss
+
+^ Prakash fifth person lost in the past year or so
+
+^ It's been a struggle for me
+
+^ Dark times
+
+---
+
+# Clarity
+
+^ But it's also been a source of clarity in my life
+
+^ Realize how finite our time here is
+
+^ motivated to use time in a way that matters
+
+---
+
+"We’re tight-fisted with property and money, yet think too little of wasting time, the one thing about which we should all be the toughest misers."
+        — SENECA, ON THE BREVITY OF LIFE, 3.1–2
+        - https://zenchongproject.wordpress.com/2019/12/09/meditation-on-mortality-december-9th-spendthrifts-of-time/
+
+---
+
+^ PAUSE
+
+---
+
 # Community
 
 ^ for our community
@@ -334,52 +380,6 @@ background-color: #ffffff;
 
 ---
 
-# Time
-
-^ Thankful for your time
-
-^ Precious resource
-
----
-
-# Prakash
-
-^ Recently lost a member of our community
-
-^ Could have been any of us
-
----
-
-# Loss
-
-^ Prakash fifth person lost in the past year or so
-
-^ It's been a struggle for me
-
-^ Dark times
-
----
-
-# Clarity
-
-^ But it's also been a source of clarity in my life
-
-^ Realize how finite our time here is
-
-^ motivated to use time in a way that matters
-
----
-
-"We’re tight-fisted with property and money, yet think too little of wasting time, the one thing about which we should all be the toughest misers."
-        — SENECA, ON THE BREVITY OF LIFE, 3.1–2
-        - https://zenchongproject.wordpress.com/2019/12/09/meditation-on-mortality-december-9th-spendthrifts-of-time/
-
----
-
-^ PAUSE
-
----
-
 # Thanks
 
 ^ also thankful
@@ -403,7 +403,6 @@ background-color: #ffffff;
 ^ value Rails has brought to the world
 
 ^ Rails has enabled us to focus on the needs of the people who use our products
-
 
 
 ---
