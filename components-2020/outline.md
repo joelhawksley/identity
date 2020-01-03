@@ -30,17 +30,6 @@ GOALS
 
 STRUCTURE
 
-Business value of Rails
-    Best named codebase - github/github/github
-    GitHub scale details
-        We’re still largely a Rails monolith. In fact, we’ve recently been moving some of our services *back* into the monolith.
-
-        We have X models, X controller, and X views.
-
-        Our codebase is about twelve years old. It’s only about three years younger than Rails!
-    GitHub is pretty Railsy - Our app is more boring than you’d think
-    Focus on value for our orgs, delivering value
-
 Rails is an extraction - what can you extract?
     DHH said something similar back in 2007: 
 

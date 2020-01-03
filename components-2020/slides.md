@@ -404,6 +404,77 @@ background-color: #ffffff;
 
 ^ Rails has enabled us to focus on the needs of the people who use our products
 
+---
+
+# Rails @ GitHub
+
+^ Rails is a big part of GitHub's success
+
+---
+
+# Monolith
+
+^ Still a monolith
+is ab
+^ Moving back into monolith
+
+---
+
+# $7.5 Billon Monolith
+
+^ Now $7.5 billion monolith
+
+^ Has the best name ever
+
+---
+
+# github.com/github/github
+
+---
+
+# Scale
+
+^ Rails has scaled with GitHub
+
+^ App is vanilla Rails
+
+^ Just a lot of Rails
+
+----
+
+# >700 models
+
+^ Over 700 models
+
+---
+
+# >600 controllers
+
+^ Over 600 controllers
+
+---
+
+# >4,200 views
+
+^ Over 4,200 views
+
+---
+
+# 12 years old
+
+^ Codebase is about 12 years old
+
+---
+
+# >800 contributers
+
+^ More than 800 contributors last year
+
+---
+
+^ PAUSE
+
+---
 
 ---
 
