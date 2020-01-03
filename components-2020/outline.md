@@ -31,22 +31,6 @@ GOALS
 STRUCTURE
 
 Problem statement
-    When I asked you all to share screenshots of your Rails app folders, I was looking for something.
-
-    First of all, thank you for sharing this little window into your applications.
-
-    Let’s look at them and see.
-
-    There’s a lot of view-related abstractions. 
-
-    Presenters
-
-    Decorators
-
-    View models
-
-    Conservatively, way more than half of you had one of these in your codebases. And none of these are provided by Rails itself!
-
     Now I’m going to go out on a limb and guess that none of your companies are in the business of view layer innovation.
     Views have felt like they are missing something
     You all have seen this in your own apps

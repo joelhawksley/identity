@@ -623,47 +623,39 @@ background-color: #ffffff;
 
 # Your apps
 
-^ I asked you all to share your app folders with me
+^ asked to share your app folder
+
+^ wanted to see if it was in your apps too
+
+^ and it was!
 
 ---
 
-![fit](img/app-folders/1.png)
+![fit](img/app-folders/2-highlighted.png)![fit](img/app-folders/6-highlighted.png)
+
+^ sometimes decorators
 
 ---
 
-![fit](img/app-folders/2.png)
+![fit](img/app-folders/4-highlighted.png)![fit](img/app-folders/7-highlighted.png)![fit](img/app-folders/8-highlighted.png)![fit](img/app-folders/9-highlighted.png)
+
+^ sometimes presenters
 
 ---
 
-![fit](img/app-folders/3.png)
+![fit](img/app-folders/3-highlighted.png)![fit](img/app-folders/10-highlighted.png)![fit](img/app-folders/5-highlighted.png)![fit](img/app-folders/11-highlighted.png)
+
+^ sometimes more than once!
 
 ---
 
-![fit](img/app-folders/4.png)
+# >50%
 
----
+^ More than half of the responses
 
-![fit](img/app-folders/5.png)
+^ had view related abstractions
 
----
-
-![fit](img/app-folders/6.png)
-
----
-
-![fit](img/app-folders/7.png)
-
----
-
-![fit](img/app-folders/8.png)
-
----
-
-![fit](img/app-folders/9.png)
-
----
-
-![fit](img/app-folders/10.png)
+^ not provided by Rails
 
 ---
 
