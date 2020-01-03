@@ -627,7 +627,43 @@ background-color: #ffffff;
 
 ---
 
+![fit](img/app-folders/1.png)
 
+---
+
+![fit](img/app-folders/2.png)
+
+---
+
+![fit](img/app-folders/3.png)
+
+---
+
+![fit](img/app-folders/4.png)
+
+---
+
+![fit](img/app-folders/5.png)
+
+---
+
+![fit](img/app-folders/6.png)
+
+---
+
+![fit](img/app-folders/7.png)
+
+---
+
+![fit](img/app-folders/8.png)
+
+---
+
+![fit](img/app-folders/9.png)
+
+---
+
+![fit](img/app-folders/10.png)
 
 ---
 
