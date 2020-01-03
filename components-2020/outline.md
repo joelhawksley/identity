@@ -30,44 +30,7 @@ GOALS
 
 STRUCTURE
 
-Rails is an extraction - what can you extract?
-    DHH said something similar back in 2007: 
-
-    “The best frameworks are in my opinion extracted, not envisioned. And the best way to extract is first to actually do.”
-    https://dhh.dk/posts/6-why-theres-no-rails-inc.html
-
-    Eileen quote about upstream by default
-        When I joined GitHub, I remember something @eileencodes said early on: If it doesn't have to do with our business, it needs to go in Rails.
-        In other words, our mindset was to be "upstream by default"
-        Why do we do this?
-        We didn't always work with stock Rails.
-        In fact, up until 2018, we were on long running forks of both Rails and Ruby.
-        The maintenance burden of this arrangement grew over time to be unsustainable.
-        reference her Talk about the future of rails at github etc
-        We had to constantly back port security fixes.
-
-        It was hard for new engineers to get up to speed on Rails, GitHub Edition.
-
-        Over the course of almost two years, Eileen and a team of several dedicated engineers managed to get us back to Rails master.
-
-        This was an incredible accomplishment.
-
-        Among the many benefits, it enabled us to contribute to Rails again.
-    Backpack analogy
-        "frameworks are extracted, not built"
-        decisions you don't have to make
-
-Problem intro - story
-    "An extraction that became too obvious for me to ignore any longer"
-    Teespring / decorators
-    Galvanize / react - rails - isolation & testing
-    GitHub / presenters 
-    trend towards components / design systems
-        need for consistent use of CSS + correct HTML
-
 Problem statement
-    Server-rendered views in Rails are pretty great. They’ve gotten us this far. But I’m sure many of you have felt their shortcomings.
-
     When I asked you all to share screenshots of your Rails app folders, I was looking for something.
 
     First of all, thank you for sharing this little window into your applications.
@@ -169,5 +132,6 @@ OPEN QUESTIONS
 Ask for feedback at the end of talk - what was confusing? What needs clarifying?
 Abstract - tell story of extracting code from GitHub to share with community and eventually Rails - convention helps us collaborate
 "Time is precious, how willyou spend yours?" I certainly don't want to spend mine re-inventing the wheel
+Rails is an extraction - what can you extract?
 Frameworks like Rails help us move human progress forward, allowing us to focus on new and important problems, not preventing CSRF forgery
 Lots of pauses in hook/intro/thankfulness

@@ -553,6 +553,84 @@ background-color: #ffffff;
 
 ---
 
+# The extraction I couldn't ignore
+
+^ Story
+
+^ extraction
+
+^ Too obvious to ignore
+
+---
+
+# Decorators
+
+^ First time I saw it
+
+^ First job
+
+^ First time I saw a Rails folder that didn't belong
+
+^ Felt weird
+
+^ Didn't know whether I should be OK with it
+
+^ Model-specific view logic
+
+---
+
+# react_rails
+
+^ Second time
+
+^ Using React to build UI
+
+^ Could have server rendered
+
+^ But used react because of unit tests
+
+---
+
+# Presenters
+
+^ Third time
+
+^ Folder called presenters
+
+^ View-specific logic
+
+^ Extracted to Ruby objects
+
+---
+
+# Components
+
+^ Fourth time 
+
+^ Rise of view components
+
+^ Design systems
+
+^ Open source like bootstrap
+
+^ Internal like Primer at GitHub
+
+---
+
+^ PAUSE
+
+---
+
+# Your apps
+
+^ I asked you all to share your app folders with me
+
+---
+
+
+
+---
+
 # Views
 
 ^ Talk about views
