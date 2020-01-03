@@ -30,47 +30,6 @@ GOALS
 
 STRUCTURE
 
-Hook
-    Rails has been around for a long time. Practically an eternity in internet time. The internet has changed, and somehow Rails has managed to stay relevant. 
-
-    But this hasn’t been by accident. Rails isn’t carved in stone. It’s evolved over time. And it’s evolved because people like us have made it better by contributing new features and fixing bugs.
-
-    Today I’m going to talk about a new way of building views, called ActionView::Component. 
-
-    My goal is to share an understanding of why we built it, what we’ve learned so far in using it for the past year, and maybe inspire you to give it a try yourself.
-
-Bio intro
-    Current passions
-        digital wellness
-        epaper
-
-Thankfulness
-    For community
-        Sponsors 
-            Food
-            Meeting space
-            Sandi Metz
-        Dan, Rylan, Marty
-            meetup is well over a decade old
-            some of us have been writing ruby for a long
-        You
-            You make it special
-            You make this community feel like family
-        Something special here
-        Prakash
-    For your time
-        "No person hands out their money to passersby, but to how many do each of us hand out our lives!"
-        "We’re tight-fisted with property and money, yet think too little of wasting time, the one thing about which we should all be the toughest misers."
-        — SENECA, ON THE BREVITY OF LIFE, 3.1–2
-        - https://zenchongproject.wordpress.com/2019/12/09/meditation-on-mortality-december-9th-spendthrifts-of-time/
-        I’ve put a lot of time and energy into this talk with the intention to make it worth your time.
-        So before we begin, I have a simple request: 
-        Be present. There are many hours in the day to use our phones, to check Slack and email. I’d love to share this next half an hour or so with all of you in the present moment, not somewhere else.
-
-    For rails
-        Rails has been around a long time. How long have you been using it? Think about how much money you’ve made writing rails code. Think about how much value rails has brought to the companies you’ve worked for.  
-    For ruby
-
 Business value of Rails
     Best named codebase - github/github/github
     GitHub scale details
