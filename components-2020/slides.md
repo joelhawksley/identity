@@ -8,10 +8,7 @@ header-strong: Avenir Next Bold, #24292e
 code: Menlo Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
 background-color: #ffffff;
 
-
 ---
-
-
 
 ---
 
@@ -50,6 +47,84 @@ background-color: #ffffff;
 # Will you set it free?
 
 ^ Will you set it free?
+
+---
+
+^ PAUSE
+
+---
+
+# Rails
+
+^ rails
+
+^ around for a long time
+
+---
+
+# 2005
+
+^ since 2005
+
+^ eternity in internet time
+
+---
+
+# Relevance
+
+^ And yet it has remained relevant
+
+^ not by accident
+
+---
+
+# Evolution
+
+^ Rails has evolved
+
+^ through features
+
+^ and fixes
+
+^ extracted from other Rails applications
+
+---
+
+# Extraction
+
+^ today
+
+^ talk about extraction
+
+^ from GitHub
+
+^ working on for the past year
+
+---
+
+# ActionView::Component
+
+^ called ActionView Component
+
+---
+
+# Why
+
+^ Why we built it
+
+---
+
+# Lessons
+
+^ lessons learned
+
+---
+
+# Future
+
+^ vision 
+
+^ future of rails views
 
 ---
 
@@ -175,16 +250,11 @@ background-color: #ffffff;
 
 ^ saw the future of career vanish
 
----
+^ called Aaron
 
+^ asked for advice
 
----
-
-[.background-color: #000000]
-
-![fit](img/mojo.jpg)
-
-^ 
+^ apprenticeship offer
 
 ---
 
@@ -192,7 +262,9 @@ background-color: #ffffff;
 
 ![fit](img/mojo2.jpg)
 
-^ 
+^ taught me git, ruby, rails, js
+
+^ how to be a professional engineer
 
 ---
 
