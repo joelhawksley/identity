@@ -657,6 +657,44 @@ background-color: #ffffff;
 
 ^ not provided by Rails
 
+^ every big app I've worked in has used one
+
+---
+
+# Gems
+
+^ Some popular gems for these patterns
+
+---
+
+# Draper & Cells
+
+^ Draper and Cells have millions of downloads
+
+---
+
+# View layer
+
+^ going to guess
+
+^ not in business of view layer innovation
+
+---
+
+# Something's missing.
+
+^ Something is missing here
+
+---
+
+# Why?
+
+^ why do we turn to these abstractions?
+
+---
+
+# Testing & Encapsulation
+
 ---
 
 # Views

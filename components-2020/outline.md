@@ -31,19 +31,10 @@ GOALS
 STRUCTURE
 
 Problem statement
-    Now I’m going to go out on a limb and guess that none of your companies are in the business of view layer innovation.
-    Views have felt like they are missing something
-    You all have seen this in your own apps
-        it's pretty clear that a lot of us are dealing with this
-    So why do we find ourselves straying from the tools Rails gives us to build our views?
     why aren't views easy to test?
         testing pyramid
         encapsulation diagram
     "testing and encapsulation"
-    cells gem
-    drape and cells have millions of downloads
-    Every Rails app I've worked in has done something similar
-    Whether using these gems or rolling something custom.
     actionview precompiler gem from jhawthorn
     all variants of view
     render full path linter rule
