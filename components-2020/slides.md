@@ -476,6 +476,81 @@ background-color: #ffffff;
 
 ---
 
+# Rails @ GitHub
+
+^ often asked about working on monolith
+
+^ different mindset
+
+---
+
+> If it doesn't have to do with our business, it needs to go in Rails.
+
+^ Eileen said
+
+^ If it doesn't have to do with our business, it needs to go in Rails.
+
+^ In other words
+
+---
+
+# Upstream by default
+
+^ our approach should be to upstream by default
+
+^ not always this way
+
+---
+
+# Forks
+
+^ On fork until 2018
+
+^ Inventing features before Rails
+
+^ unsustainable maintenance
+
+^ backport security fixes
+
+^ hard to onboard
+
+^ Eileen led team for two years
+
+---
+
+# master
+
+^ run a couple weeks behind master 
+
+^ many benefits
+
+^ enabled easy contribution to Rails
+
+^ short lag in between rails and monolith
+
+^ enabled extraction
+
+---
+
+> The best frameworks are in my opinion extracted, not envisioned. And the best way to extract is first to actually do.[^1]
+-- DHH
+
+[^1]: https://dhh.dk/posts/6-why-theres-no-rails-inc.html
+
+^ DHH said in 2007
+
+---
+
+# Rails is an extraction
+
+^ Rails is an extraction
+
+^ Every extraction is one less thing to worry about when building your applications
+
+---
+
+^ PAUSE
+
 ---
 
 # Views
