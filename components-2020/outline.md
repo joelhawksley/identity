@@ -31,18 +31,8 @@ GOALS
 STRUCTURE
 
 Problem statement
-    encapsulation diagram
-    "testing and encapsulation"
     actionview precompiler gem from jhawthorn
-    all variants of view
     render full path linter rule
-    Server rendered views aren’t going anywhere
-    We have almost 4000
-
-Deep dive into rails views
-    List number of methods defined dynamically on GH app
-    Why this is bad
-    encapsulation
 
 Our solution
     existing hundreds of view models

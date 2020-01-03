@@ -1463,6 +1463,10 @@ end
 
 ^ compiled based on local keys
 
+^ Meaning Rails is dynamically generating a method for each combination of 
+
+^ a template and the local keys passed to it
+
 ---
 
 `# index.html.erb`
@@ -1532,4 +1536,22 @@ end
 ^ All views
 
 ^ All helpers
+
+---
+
+# Encapsulation
+
+^ There is no encapsulation
+
+^ All 4,200-odd views exist in the same scope
+
+^ They aren't going anywhere
+
+---
+
+^ PAUSE
+
+^ 
+
+---
 
