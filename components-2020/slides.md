@@ -415,7 +415,7 @@ background-color: #ffffff;
 # Monolith
 
 ^ Still a monolith
-is ab
+
 ^ Moving back into monolith
 
 ---
