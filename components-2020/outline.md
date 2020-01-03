@@ -31,11 +31,6 @@ GOALS
 STRUCTURE
 
 Hook
-    Secret to share
-    The future of Rails
-    Is inside the applications and gems you're working on right now
-    Will you set it free?
-
     Rails has been around for a long time. Practically an eternity in internet time. The internet has changed, and somehow Rails has managed to stay relevant. 
 
     But this hasn’t been by accident. Rails isn’t carved in stone. It’s evolved over time. And it’s evolved because people like us have made it better by contributing new features and fixing bugs.
@@ -45,25 +40,6 @@ Hook
     My goal is to share an understanding of why we built it, what we’ve learned so far in using it for the past year, and maybe inspire you to give it a try yourself.
 
 Bio intro
-    Name
-    Work at ~Microsoft~ GitHub
-        ![100%](img/github.png)
-        Distributed
-        Pajamas joke
-        Human contact - picture of captain
-    About me
-        Recovering photojournalist - photo from CU game
-        I have no formal computer science training. 
-
-        In the fall of 2013, I was working at the Roanoke Times in Virginia.
-
-        That day, I was out riding my bike, and my phone rang. It was the editor, more or less CEO, of the newspaper.
-
-        He was calling to tell me that my manager was being laid off. That day happened to be her birthday. It also happened to be September 11th.
-
-        I got off the phone and called a friend of mine from college, a former regular here at Boulder Ruby, Aaron Snyder, asking for his advice.
-
-        Later that year, I moved to Rhode Island to be his apprentice at MojoTech, where he taught me Git, Ruby, Rails, and how to be a professional software engineer.
     Current passions
         digital wellness
         epaper

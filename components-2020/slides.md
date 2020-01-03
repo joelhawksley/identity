@@ -8,6 +8,192 @@ header-strong: Avenir Next Bold, #24292e
 code: Menlo Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
 background-color: #ffffff;
 
+
+---
+
+
+
+---
+
+# I have a secret
+
+^ have a secret 
+
+---
+
+# The future of Rails
+
+^ future of rails
+
+^ already here
+
+^ already exists
+
+---
+
+# It's in your applications
+
+^ in your apps
+
+---
+
+# It's in your gems
+
+^ in your gems
+
+---
+
+^ Question for all of you
+
+---
+
+# Will you set it free?
+
+^ Will you set it free?
+
+---
+
+^ PAUSE
+
+---
+
+# Hi
+
+^ introduce myself
+
+^ name
+
+---
+
+![50%](img/microsoft.png)
+
+^ engineer at GitHub
+
+---
+
+![100%](img/github.png)
+
+---
+
+[.background-color: #000000]
+
+![fill](img/earth.jpeg)
+
+^ fully distributed
+
+^ most engineers remote
+
+^ south of boulder
+
+^ work from home
+
+---
+
+[.background-color: #000000]
+
+![fit](img/captain.jpg)
+
+^ captain
+
+---
+
+[.background-color: #000000]
+
+![fit](img/sports.jpg)
+
+^ recovering photographer
+
+---
+
+[.background-color: #000000]
+
+![fit](img/portfolio1.jpeg)
+
+^ traveled the country
+
+---
+
+[.background-color: #000000]
+
+![fit](img/portrait.jpg)
+
+^ portraits
+
+---
+
+[.background-color: #000000]
+
+![fit](img/nascar.jpg)
+
+^ every sport you can imagine
+
+---
+
+[.background-color: #000000]
+
+![fit](img/gr.jpeg)
+
+^ worked at newspapers
+
+^ daily life
+
+---
+
+[.background-color: #000000]
+
+![fit](img/si.jpg)
+
+^ breaking news
+
+---
+
+[.background-color: #000000]
+
+![fit](img/sports2.jpg)
+
+^ breaking news
+
+^ did for a little while
+
+---
+
+[.background-color: #000000]
+
+![fit](img/biking.jpg)
+
+^ until one day in 2013
+
+^ out biking
+
+^ friend bryce
+
+^ got a call
+
+^ photo editor, boss laid off
+
+^ aspired to have her job
+
+^ saw the future of career vanish
+
+---
+
+
+---
+
+[.background-color: #000000]
+
+![fit](img/mojo.jpg)
+
+^ 
+
+---
+
+[.background-color: #000000]
+
+![fit](img/mojo2.jpg)
+
+^ 
+
 ---
 
 # Views
@@ -244,7 +430,9 @@ end
 
 ^ Options is our partial name
 
-^ Interesting bit is find_template
+^ S Interesting bit is find_template
+
+^ S based on path and keys of locals
 
 ---
 
@@ -714,6 +902,12 @@ end
 
 ---
 
+# Templates * locals
+
+^ compiled based on local keys
+
+---
+
 `# index.html.erb`
 
 ```erb
@@ -773,4 +967,12 @@ end
 ^ S calls the generated method for the partial
 
 ^ S which has access to the message instance variable
+
+---
+
+^ Global scope explosion
+
+^ All views
+
+^ All helpers
 
