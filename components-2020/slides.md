@@ -1847,6 +1847,8 @@ end
 
 ^ Linter to enforce explicit render calls in controllers
 
+^ John Hawthorn is working on Rails improvements in this area
+
 ---
 
 ```ruby
@@ -1875,3 +1877,71 @@ end
 ^ Just the beginning
 
 ^ Designed to allow optimization
+
+---
+
+# Migration path
+
+^ If you want to give it a try
+
+^ Easy way is to migrate a presenter / view model
+
+^ what we've been doing
+
+^ Linter to cap view model usage, directing to components instead
+
+---
+
+# Tests
+
+^ Immediate testing benefit
+
+^ Migrate unit tests from previous abstraction
+
+^ Also migrate most controller tests
+
+^ Might find missing coverage in the process
+
+---
+
+# New views
+
+^ What about for new views
+
+^ While components are useful for building entire views
+
+^ Our rule has been:
+
+---
+
+# "If it could be a partial, it could be a component"
+
+^ "If it could be a partial, it could be a component"
+
+---
+
+# Case study 
+
+---
+
+# SmartDollar
+
+^ Budget app called smart dollar
+
+^ Part of a group of apps by Dave Ramsey
+
+---
+
+# 6 apps, one design system
+
+^ Six apps using a design system
+
+---
+
+# components gem
+
+^ extracted components to gem
+
+^ shared across applications
+
+---

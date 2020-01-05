@@ -35,19 +35,9 @@ Our solution
     rails patches
         In June, we landed a patch in Rails that added support for `render_in`
         Support from Rafael
-    Migration path
-        “If it could be a partial, it could be a good component”
-        View models
-        Migrate controller tests
-
-Case study
-    Dave ramsey examples
-
-
-Extraction example
-    class_names helper from react
-    bugs 
-    bad docs
+Future plans
+    continue to learn from gem
+    incorporate into Rails
 
 Conclusion
     Rails has a lot of room to grow
@@ -59,6 +49,11 @@ OPEN QUESTIONS
 
 definitions of decorator, presenter, component/cell
 coupling / testing
+
+multiple content areas
+
+partials with logic example 
+smell that something isn't right
 
 struggles - losing confidence regularly
     regular pairing
