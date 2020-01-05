@@ -1945,3 +1945,17 @@ end
 ^ shared across applications
 
 ---
+
+^ PAUSE
+
+---
+
+# The Future
+
+^ looking toward the future
+
+---
+
+# Rails
+
+^ goal to eventually incorporate into rails
