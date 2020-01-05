@@ -30,36 +30,11 @@ GOALS
 
 STRUCTURE
 
-Problem statement
-    actionview precompiler gem from jhawthorn
-    render full path linter rule
-
 Our solution
-    gem
-    OS contributions
-    struggles - losing confidence regularly
-    regular pairing
-    What we do is the best:
-    Easier to make fast
-    Better than partials and helpers
     superset of the rails view layer
-    Works exactly as you’d expect it to
-    peformance
-        Requests per second
-        It works for us
     rails patches
         In June, we landed a patch in Rails that added support for `render_in`
         Support from Rafael
-    gem
-        In August, we published version one of the `actionview-component` gem, extracting the library from `github/github`
-        Since then, we've shipped X releases
-            With a large majority of contributions coming from the Rails community
-        Blown away by support
-            contirbutors slide
-        My first open source project
-        We've added a bunch of features
-            Generators - kasper
-            Previews - juan manuel ramllo
     Migration path
         “If it could be a partial, it could be a good component”
         View models
@@ -81,12 +56,21 @@ Conclusion
     It's up to us to make thoughtful extractions to keep Rails relevant
 
 OPEN QUESTIONS
+
 definitions of decorator, presenter, component/cell
 coupling / testing
 
+struggles - losing confidence regularly
+    regular pairing
+
 Ask for feedback at the end of talk - what was confusing? What needs clarifying?
+
 Abstract - tell story of extracting code from GitHub to share with community and eventually Rails - convention helps us collaborate
+
 "Time is precious, how willyou spend yours?" I certainly don't want to spend mine re-inventing the wheel
+
 Rails is an extraction - what can you extract?
+
 Frameworks like Rails help us move human progress forward, allowing us to focus on new and important problems, not preventing CSRF forgery
+
 Lots of pauses in hook/intro/thankfulness

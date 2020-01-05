@@ -1591,7 +1591,11 @@ end
 
 ^ called ActionView::Component
 
+^ works exactly as you'd expect it to
+
 ^ incorporates best parts of existing patterns
+
+^ into the Rails architecture
 
 ---
 
@@ -1603,10 +1607,22 @@ end
 
 ---
 
-`# my_component.rb`
+# one object for _all_ views
+
+^ instead of one object with all views
+
+---
+
+# one object _per_ view
+
+^ instead of one object *per* view
+
+---
+
+`# message_component.rb`
 
 ```ruby
-class MyComponent < ActionView::Component::Base
+class MessageComponent < ActionView::Component::Base
   def initialize(message:)
     @message = message
   end
@@ -1630,7 +1646,7 @@ end
 `# my_component.rb`
 
 ```ruby
-class MyComponent < ActionView::Component::Base
+class MessageComponent < ActionView::Component::Base
   def initialize(message:)
     @message = message
   end
@@ -1654,7 +1670,208 @@ end
 
 # Unit testing
 
-```
-render_inline(MyComponent)
+```ruby
+RSpec.describe BoxComponent do
+  it "renders message" do
+    result = render_inline(MessageComponent, message: "Hello, World!")
+
+    assert_includes result.text, "Hello, World!"
+  end
+end
 ```
 
+---
+
+# `gem "actionview-component"`
+
+^ Published in august
+
+^ extraction from GitHub
+
+^ My first open source project
+
+^ blown away by support
+
+^ shipped 20 releases
+
+---
+
+# Contributors
+
+^ most work has come from the community
+
+^ two dozen contributors
+
+^ TODO add icons?
+
+^ Some cool contributions include:
+
+---
+
+# `rails g component Example`
+
+^ Simple things like 
+
+^ Adding generator support
+
+^ Vinicius Stock from Shopify
+
+---
+
+#[fit] `ActionView::Component::Preview`
+
+^ More complex feature
+
+^ Component previews
+
+^ Similar to mailer previews
+
+^ Juan Manuel Ramallo from Argentina
+
+---
+
+[.code-highlight: 1,2]
+[.code-highlight: 1,2-5]
+[.code-highlight: 1,2, 7-9]
+
+```ruby
+module Issues
+  class BadgeComponentPreview < ActionView::Component::Preview
+    def open
+      render(Issues::BadgeComponent, state: :open)
+    end
+
+    def closed
+      render(Issues::BadgeComponent, state: :closed)
+    end
+  end
+end
+```
+
+^ Just like with mailers
+
+^ Inherits from preview class
+
+^ Method for each preview
+
+^ S Open 
+
+^ S Closed
+
+---
+
+![inline](img/previews.png)
+
+^ simple UI
+
+^ when you click
+
+---
+
+![inline](img/preview.png)
+
+^ renders the component by itself
+
+---
+
+# Performance
+
+^ what about performance?
+
+---
+
+# 10's of k requests/sec
+
+^ We serve a lot of requests
+
+^ It's been a non-issue
+
+---
+
+# Pre-compilation
+
+^ Also easier to make fast
+
+---
+
+# templates * locals
+
+^ method for each unique locals passed to template at runtime
+
+---
+
+# Caching
+
+^ Cached at runtime, after forking servers like Unicorn and Puma
+
+^ One part of cold first request render times being slow
+
+^ Rails 6 contained some optimizations by John Hawthorn
+
+^ Internal code in our app with a more extreme optimization
+
+---
+
+[.build-lists: true]
+
+* Scan all templates for render calls
+* Group by template
+* Find unique combinations of locals
+* Compile template for each combination
+
+^ Scan 
+
+^ S Group
+
+^ S Uniq combinations of locals
+
+^ S Compile for each
+
+^ Enabled by having linters: 
+
+---
+
+# `render("users/index")`
+
+^ Linter to enforce full path
+
+---
+
+```ruby
+class RepositoriesController
+  def show
+    render("repostiories/show")
+  end
+end
+```
+
+^ Linter to enforce explicit render calls in controllers
+
+---
+
+```ruby
+class MessageComponent < ActionView::Component::Base
+  def initialize(message:)
+    @message = message
+  end
+
+  def call
+    @output_buffer.safe_append='<h1>'.freeze
+    @output_buffer.append=( @message )
+    @output_buffer.safe_append='</h1>'.freeze
+    @output_buffer.to_s
+  end
+end
+```
+
+^ example component 
+
+^ is compiled before Unicorn and Puma fork
+
+---
+
+# Performance
+
+^ Just the beginning
+
+^ Designed to allow optimization
