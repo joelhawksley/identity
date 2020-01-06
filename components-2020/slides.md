@@ -607,9 +607,21 @@ background-color: #ffffff;
 
 ---
 
+# Logic-filled partials
+
+^ Fourth time
+
+^ app that had lots of logic in partials
+
+^ did have encapsulation
+
+^ but was hard to test
+
+---
+
 # Components
 
-^ Fourth time 
+^ all the while
 
 ^ Rise of view components
 
@@ -622,6 +634,10 @@ background-color: #ffffff;
 ---
 
 ^ PAUSE
+
+^ that's what I've seen
+
+^ what about you?
 
 ---
 
@@ -2265,17 +2281,19 @@ end
 
 ---
 
-# Rails
-
-^ Rails has room to grow
-
----
-
 # ~~Secret~~
 
 ^ No secret
 
 ^ Future of Rails is inside your applications
+
+---
+
+# Progress
+
+^ Frameworks like Rails help us move human progress forward
+
+^ allowing us to focus on new and important problems
 
 ---
 
@@ -2290,6 +2308,14 @@ end
 ^ up to us to make thoughtful extractions
 
 ^ keep Rails relevant
+
+---
+
+# Time 
+
+^ Our time is precious
+
+^ How will you spend yours?
 
 ---
 

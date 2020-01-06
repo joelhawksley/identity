@@ -30,19 +30,4 @@ GOALS
 
 OPEN QUESTIONS
 
-definitions of decorator, presenter, component/cell
-coupling / testing
-
-partials with logic example 
-smell that something isn't right
-
-struggles - losing confidence regularly
-    regular pairing
-
 Abstract - tell story of extracting code from GitHub to share with community and eventually Rails - convention helps us collaborate
-
-"Time is precious, how willyou spend yours?" I certainly don't want to spend mine re-inventing the wheel
-
-Rails is an extraction - what can you extract?
-
-Frameworks like Rails help us move human progress forward, allowing us to focus on new and important problems, not preventing CSRF forgery
