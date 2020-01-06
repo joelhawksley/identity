@@ -28,23 +28,6 @@ GOALS
 - Create a moment of presence, clarity, and vulnerability
 - Exemplify GitHub's commitment to doing work that benefits the Rails community
 
-STRUCTURE
-
-Our solution
-    superset of the rails view layer
-    rails patches
-        In June, we landed a patch in Rails that added support for `render_in`
-        Support from Rafael
-Future plans
-    continue to learn from gem
-    incorporate into Rails
-
-Conclusion
-    Rails has a lot of room to grow
-    The future of Rails is inside your applications, right now
-    The world will keep changing
-    It's up to us to make thoughtful extractions to keep Rails relevant
-
 OPEN QUESTIONS
 
 definitions of decorator, presenter, component/cell

@@ -1924,11 +1924,11 @@ end
 
 ---
 
-# SmartDollar
+# Budgeting app
 
-^ Budget app called smart dollar
+^ Budget app
 
-^ Part of a group of apps by Dave Ramsey
+^ Part of a group of apps by same company
 
 ---
 
@@ -1959,3 +1959,49 @@ end
 # Rails
 
 ^ goal to eventually incorporate into rails
+
+---
+
+![inline](img/rails-pr.png)
+
+^ Started to make progress
+
+^ Preliminary PRs in Rails for syntax
+
+---
+
+^ PAUSE
+
+---
+
+# Rails
+
+^ Rails has room to grow
+
+---
+
+# ~~Secret~~
+
+^ No secret
+
+^ Future of Rails is inside your applications
+
+---
+
+# Change
+
+^ world will keep changing
+
+---
+
+# It's up to us.
+
+^ up to us to make thoughtful extractions
+
+^ keep Rails relevant
+
+---
+
+# Thanks.
+
+---
