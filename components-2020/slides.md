@@ -10,6 +10,10 @@ background-color: #ffffff;
 
 ---
 
+^ Lots of pauses in hook/intro/thankfulness
+
+^ YOU GOT THIS
+
 ---
 
 # I have a secret
@@ -1774,6 +1778,319 @@ end
 
 ---
 
+# Beyond
+
+^ for a while just focused on react ideas in rails
+
+^ now thinking beyond
+
+^ what can we do better than react
+
+---
+
+![fit](img/box-component.png)
+
+^ box component
+
+^ from design system
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 2]
+[.code-highlight: 3]
+[.code-highlight: 4]
+
+```html
+<div class="Box">
+  <div class="Box-header"><h3 class="Box-title">Box title</h3></div>
+  <div class="Box-body">Box body</div>
+  <div class="Box-footer">Box footer</div>
+</div>
+```
+
+^ here is the html
+
+^ S header
+
+^ S body
+
+^ S footer
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 7-11]
+
+```html
+<div class="Box">
+  <div class="Box-header"><h3 class="Box-title">Box title</h3></div>
+  <div class="Box-body">Box body</div>
+  <div class="Box-footer">Box footer</div>
+</div>
+
+<Box>
+  <BoxHeader>Box title</BoxHeader>
+  <BoxBody>Box body</BoxBody>
+  <BoxFooter>Box footer</BoxFooter>
+</Box>
+```
+
+^ Here's what it might look like as a React component
+
+^ S there are downsides
+
+^ order of elements matters
+
+^ enforce header is first?
+
+^ enforce footer is last?
+
+^ enforce title is required?
+
+^ limited options as react only supports passing single block of content
+
+---
+
+```html
+<Box>
+  <BoxHeader>Box title</BoxHeader>
+  <BoxBody>Box body</BoxBody>
+  <BoxFooter>Box footer</BoxFooter>
+</Box>
+
+<Box header="Box title" footer="Box footer">
+  Box body
+</Box>
+```
+
+^ One solution would be to have Box take header and footer arguments
+
+^ limits what we can pass for those arguments
+
+^ couldn't pass another component for footer
+
+---
+
+```erb
+<div class="Box">
+  <div class="Box-header"><h3 class="Box-title">Box title</h3></div>
+  <div class="Box-body">Box body</div>
+  <div class="Box-footer">Box footer</div>
+</div>
+```
+
+^ Go back to example HTML
+
+^ rewrite as ActionView::Component
+
+---
+
+`# box_component.rb`
+
+```ruby
+class BoxComponent < ActionView::Component::Base
+  def initialize
+  end
+end
+```
+
+`# box_component.html.erb`
+
+```erb
+<div class="Box">
+  <div class="Box-header"><h3 class="Box-title">Box title</h3></div>
+  <div class="Box-body">Box body</div>
+  <div class="Box-footer">Box footer</div>
+</div>
+```
+
+`# index.html.erb`
+
+```erb
+<%= render(BoxComponent) %>
+```
+
+^ start with a component that renders our example code
+
+---
+
+`# box_component.rb`
+
+```ruby
+class BoxComponent < ActionView::Component::Base
+  def initialize
+  end
+end
+```
+
+`# box_component.html.erb`
+
+```erb
+<div class="Box">
+  <%= content %>
+</div>
+```
+
+`# index.html.erb`
+
+```erb
+<%= render(BoxComponent) do %>
+  <%= render(BoxHeaderComponent) do %>Box title<% end %>
+  <%= render(BoxBodyComponent) do %>Box body<% end %>
+  <%= render(BoxFooterComponent) do %>Box footer<% end %>
+<% end %>
+```
+
+^ Make it more like the react example
+
+^ But really no better
+
+^ but we're writing ruby, so we can do better
+
+^ unlike javascript, ruby methods can accept multiple blocks
+
+---
+
+`# box_component.rb`
+
+```ruby
+class BoxComponent < ActionView::Component::Base
+  def initialize
+  end
+end
+```
+
+^ back in component
+
+---
+
+[.code-highlight: 2]
+
+`# box_component.rb`
+
+```ruby
+class BoxComponent < ActionView::Component::Base
+  with_content_areas :header, :body, :footer
+
+  def initialize
+  end
+end
+```
+
+^ we can declare multiple content areas
+
+---
+
+`# index.html.erb`
+
+```erb
+<%= render(BoxComponent) do %>
+  <%= render(BoxHeaderComponent) do %>
+    Box title
+  <% end %>
+  <%= render(BoxBodyComponent) do %>
+    Box body
+  <% end %>
+  <%= render(BoxFooterComponent) do %>
+    Box footer
+  <% end %>
+<% end %>
+```
+
+^ In template that renders component
+
+---
+
+`# index.html.erb`
+
+```erb
+<%= render(BoxComponent) do |component| %>
+  <% component.with(:header) do %>
+    Box title
+  <% end %>
+  <% component.with(:body) do %>
+    Box body
+  <% end %>
+  <% component.with(:footer) do %>
+    Box footer
+  <% end %>
+<% end %>
+```
+
+^ In template that renders component
+
+---
+
+[.code-highlight: 1-3]
+[.code-highlight: 6]
+[.code-highlight: 6-7]
+[.code-highlight: 6-8]
+
+`# box_component.html.erb`
+
+```erb
+<div class="Box">
+  <%= content %>
+</div>
+
+<div class="Box">
+  <div class="Box-header"><h3 class="Box-title"><%= title %></h3></div>
+  <div class="Box-body"><%= body %></div>
+  <div class="Box-footer"><%= footer %></div>
+</div>
+```
+
+^ and then in our component template
+
+^ rewrite it to
+
+^ render the 
+
+^ S title
+
+^ S body
+
+^ S and footer
+
+---
+
+`# box_component.rb`
+
+```ruby
+class BoxComponent < ActionView::Component::Base
+  with_content_areas :header, :body, :footer
+
+  def initialize
+  end
+end
+```
+
+^ back in component
+
+---
+
+[.code-highlight: 4]
+
+`# box_component.rb`
+
+```ruby
+class BoxComponent < ActionView::Component::Base
+  with_content_areas :header, :body, :footer
+
+  validates :header, :body, presence: true
+
+  def initialize
+  end
+end
+```
+
+^ we can add a validation to require certain content areas to be set
+
+^ PAUSE
+
+---
+
 # Performance
 
 ^ what about performance?
@@ -2003,5 +2320,7 @@ end
 ---
 
 # Thanks.
+
+^ What was confusing? What could I improve?
 
 ---
