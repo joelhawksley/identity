@@ -2237,32 +2237,6 @@ end
 
 ---
 
-# Case study 
-
----
-
-# Budgeting app
-
-^ Budget app
-
-^ Part of a group of apps by same company
-
----
-
-# 6 apps, one design system
-
-^ Six apps using a design system
-
----
-
-# components gem
-
-^ extracted components to gem
-
-^ shared across applications
-
----
-
 ^ PAUSE
 
 ---

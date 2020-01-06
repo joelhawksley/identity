@@ -30,8 +30,6 @@ GOALS
 
 OPEN QUESTIONS
 
-screenshots from chris
-
 definitions of decorator, presenter, component/cell
 coupling / testing
 
