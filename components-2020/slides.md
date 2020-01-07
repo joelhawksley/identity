@@ -10,6 +10,8 @@ background-color: #ffffff;
 
 ^ Lots of pauses in hook/intro/thankfulness
 
+^ Servants' mindset
+
 ^ YOU GOT THIS
 
 ---
@@ -218,19 +220,11 @@ background-color: #ffffff;
 
 [.background-color: #000000]
 
-![fit](img/sports2.jpg)
-
-^ sports
-
-^ did for a little while
-
----
-
-[.background-color: #000000]
-
 ![fit](img/biking.jpg)
 
 ^ until one day in 2013
+
+^ september 11th
 
 ^ out biking
 
@@ -239,6 +233,8 @@ background-color: #ffffff;
 ^ got a call
 
 ^ photo editor, boss laid off
+
+^ her birthday
 
 ^ aspired to have her job
 
@@ -261,6 +257,10 @@ background-color: #ffffff;
 ^ tiny 8x8 room 
 
 ^ poor ventilation 
+
+^ long days
+
+^ couple of months
 
 ^ taught me git, ruby, rails, js
 
@@ -511,7 +511,7 @@ background-color: #ffffff;
 
 ^ different mindset I noticed when I joined
 
-^ remember Eileen saying
+^ remember someone
 
 ---
 
@@ -543,13 +543,9 @@ background-color: #ffffff;
 
 ^ hard to onboard
 
-^ Eileen led team for two years
+^ team spent two years
 
 ^ got us from a fork of 3.2 to master
-
-^ many benefits
-
-^ but the most critical was
 
 ---
 
@@ -558,6 +554,8 @@ background-color: #ffffff;
 ^ run a couple weeks behind master 
 
 ^ many benefits
+
+^ but the most critical was
 
 ^ enabled easy contribution to Rails
 
@@ -628,6 +626,8 @@ end
 
 ^ Looked like this
 
+^ talk through code
+
 ^ place to put view-related logic for a specific model
 
 ^ really just another place to hide methods
@@ -652,6 +652,13 @@ end
 <%= react_component("Button", { label: "Open" }) %>
 ```
 
+```jsx
+it('should render the button', function() {
+  expect(shallow(<Button props={{ label: "Open" }} />).
+  contains(<div className="Button">Open</div>)).toBe(true);
+});
+```
+
 ^ Looked like this
 
 ^ tests were written in js
@@ -663,6 +670,8 @@ end
 ^ Third time
 
 ^ Folder called presenters
+
+^ also called view models
 
 ^ View-specific logic
 
@@ -716,14 +725,17 @@ end
 
 ^ all the while
 
+^ Rise of components
 
-^ Rise of view components
+^ made popular by react
 
 ^ Design systems
 
 ^ Open source like bootstrap
 
 ^ Internal like Primer at GitHub
+
+^ trends continue to today
 
 ---
 
@@ -865,7 +877,7 @@ end
 
 ^ Even if our views could be unit tested
 
-^ Bigger issue:
+^ points to a bigger issue:
 
 ---
 
@@ -879,7 +891,7 @@ end
 
 ---
 
-> "In object-oriented programming, encapsulation refers to the *bundling of data with the methods that operate on that data*, or the *restricting of direct access* to some of an object's components."
+> "In object-oriented programming, encapsulation refers to the **bundling of data with methods** that operate on that data, or the **restricting of direct access** to some of an object's components."
 
 ^ read quote
 
@@ -905,9 +917,9 @@ end
 
 ---
 
-[.code-higlight: 1]
-[.code-higlight: 1, 4-6]
-[.code-higlight: 1,2, 8-12]
+[.code-highlight: 1]
+[.code-highlight: 1, 4-6]
+[.code-highlight: 1,2, 8-12]
 
 ```ruby
 class User < ApplicationRecord
@@ -934,6 +946,8 @@ end
 ^ restricted from direct access
 
 ---
+
+`# user_decorate_test.rb`
 
 ```ruby
 assert_equal(user.name, "Rylan Bowers")
@@ -979,6 +993,8 @@ end
 
 ---
 
+`# users_controller_test.rb`
+
 ```ruby
 get :show
 
@@ -998,9 +1014,9 @@ assert_includes response.body "Rylan Bowers"
 ---
 
 ```erb
-<% status = user.active? "Active" : "inactive" %>
+<% status = repository.locked? ? "Disabled" : "Enabled" %>
 
-<h1><%= status %></h1>
+<h2><%= status %></h2>
 ```
 
 ^ closest thing is local variable assignment
@@ -1041,8 +1057,6 @@ assert_includes response.body "Rylan Bowers"
 
 ^ Adventure
 
-^ wallpapersafari.com
-
 ^ Lots of ways to render
 
 ---
@@ -1081,7 +1095,7 @@ assert_includes response.body "Rylan Bowers"
 
 ![inline](img/wat.jpg)
 
-^ Wat
+^ face I made
 
 ---
 
@@ -1421,7 +1435,11 @@ end
 
 ^ S compile
 
-^ S method container
+^ S method container 
+
+^ method container is the ActionView::Base class
+
+^ PAUSE
 
 ---
 
@@ -1548,7 +1566,7 @@ source = +<<-end_src
 end_src
 
 irb> method_name
-=> "_app_views_demo__messge_html_erb__3147936528918386365_70191870416280"
+=> "_app_views_demo__message_html_erb__3147936528918386365_70191870416280"
 
 irb> @virtual_path.inspect
 => "demo/_message"
@@ -1585,8 +1603,8 @@ end
 
 ---
 
-[.code-highlight: 0]
-[.code-highlight: 10]
+[.code-highlight: all]
+[.code-highlight: 11]
 
 `# ActionView::Template`
 
@@ -1624,32 +1642,9 @@ irb> self.methods...
 
 ---
 
-`# ActionView::Template`
-
 [.code-highlight: 0]
 [.code-highlight: 3]
 [.code-highlight: 4]
-
-
-```ruby
-def render(view, locals, buffer = ActionView::OutputBuffer.new, &block)
-  instrument_render_template do
-    compile!(view)
-    view._run(method_name, self, locals, buffer, &block)
-  end
-rescue => e
-  handle_render_error(view, e)
-end
-```
-
-^ end of the road
-
-^ S Compiled
-
-^ S all that's left is to run
-
----
-
 [.code-highlight: 1,4]
 [.code-highlight: 1,4, 10,11]
 [.code-highlight: 1,4, 13,14]
@@ -1677,7 +1672,13 @@ irb> buffer.class
 => ActionView::OutputBuffer
 ```
 
-^ Closer look
+^ end of the road
+
+^ S Compiled
+
+^ S all that's left is to run
+
+^ Closer look at state
 
 ^ S method_name
 
@@ -1688,7 +1689,6 @@ irb> buffer.class
 ---
 
 [.code-highlight: 0]
-[.code-highlight: 1]
 [.code-highlight: 1-3]
 [.code-highlight: 4]
 
@@ -1703,8 +1703,6 @@ end
 ```
 
 ^ Really, this is it
-
-^ S args
 
 ^ S set the template and buffer
 
@@ -1788,6 +1786,8 @@ end
 
 ^ Look at templates
 
+^ run through compilation
+
 ---
 
 [.code-highlight: 1,2,7, 9, 15, 16]
@@ -1860,13 +1860,11 @@ end
 
 ^ PAUSE
 
-^ So to recap:
-
 ---
 
-# Testing
+# Solution
 
-^ Rails views are hard to test
+^ What might encapsulated views look like?
 
 ---
 
@@ -1891,8 +1889,6 @@ end
 # ActionView::Component
 
 ^ called ActionView::Component
-
-^ works exactly as you'd expect it to
 
 ^ incorporates best parts of existing patterns
 
@@ -1924,16 +1920,24 @@ end
 
 ```ruby
 class MessageComponent < ActionView::Component::Base
+  validates :message, presence: true
+
   def initialize(message:)
     @message = message
   end
 end
 ```
 
-`# my_component.html.erb`
+`# message_component.html.erb`
 
 ```erb
 <h1><%= @message %><h1>
+```
+
+`# index.html.erb`
+
+```erb
+<%= render(MessageComponent, message: "Hello, World!") %>
 ```
 
 ^ Take this example
@@ -1941,6 +1945,46 @@ end
 ^ two files side by side
 
 ^ (talk through code)
+
+---
+
+`# index.html.erb`
+
+```erb
+<%= render(MessageComponent, message: "Hello, World!") %>
+```
+
+^ Looking at render call
+
+^ component referenced directly
+
+^ instead of through view method lookup
+
+^ no ambiguity
+
+^ PAUSE
+
+---
+
+`# message_component.rb`
+
+```ruby
+class MessageComponent < ActionView::Component::Base
+  validates :message, presence: true
+
+  def initialize(message:)
+    @message = message
+  end
+end
+```
+
+`# message_component.html.erb`
+
+```erb
+<h1><%= @message %><h1>
+```
+
+^ looking back at component
 
 ^ Follow a similar compilation process
 
@@ -1950,6 +1994,8 @@ end
 
 ```ruby
 class MessageComponent < ActionView::Component::Base
+  validates :message, presence: true
+
   def initialize(message:)
     @message = message
   end
@@ -1968,6 +2014,62 @@ end
 ^ No access to state from other views
 
 ^ No instance variable leakage
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 2]
+
+`# message_component.rb`
+
+```ruby
+class MessageComponent < ActionView::Component::Base
+  include IconHelper
+
+  validates :message, presence: true
+
+  def initialize(message:)
+    @message = message
+  end
+end
+```
+
+`# message_component.html.erb`
+
+```erb
+<h1><%= @message %><h1>
+```
+
+^ Also encapsulate access to helpers
+
+^ S can be included in component class, or:
+
+---
+
+[.code-highlight: 16]
+
+`# message_component.rb`
+
+```ruby
+class MessageComponent < ActionView::Component::Base
+  include IconHelper
+
+  validates :message, presence: true
+
+  def initialize(message:)
+    @message = message
+  end
+end
+```
+
+`# message_component.html.erb`
+
+```erb
+<h1><%= @message %><h1>
+<%= helpers.star_icon %>
+```
+
+^ or via helpers. method
 
 ---
 
@@ -2092,6 +2194,8 @@ end
 ^ now thinking beyond
 
 ^ what can we do better than react
+
+^ feature by Jon Palmer from Boston
 
 ---
 
@@ -2288,19 +2392,22 @@ end
 
 ---
 
+[.code-highlight: 1-5]
+[.code-highlight: 7-11]
+
 `# index.html.erb`
 
 ```erb
 <%= render(BoxComponent) do %>
-  <%= render(BoxHeaderComponent) do %>
-    Box title
-  <% end %>
-  <%= render(BoxBodyComponent) do %>
-    Box body
-  <% end %>
-  <%= render(BoxFooterComponent) do %>
-    Box footer
-  <% end %>
+  <%= render(BoxHeaderComponent) do %>Box title<% end %>
+  <%= render(BoxBodyComponent) do %>Box body<% end %>
+  <%= render(BoxFooterComponent) do %>Box footer<% end %>
+<% end %>
+
+<%= render(BoxComponent) do |component| %>
+  <% component.with(:header) do %>Box title<% end %>
+  <% component.with(:body) do %>Box body<% end %>
+  <% component.with(:footer) do %>Box footer<% end %>
 <% end %>
 ```
 
@@ -2308,25 +2415,9 @@ end
 
 ^ refactor it
 
----
+^ S to use named blocks instead of separate components
 
-`# index.html.erb`
-
-```erb
-<%= render(BoxComponent) do |component| %>
-  <% component.with(:header) do %>
-    Box title
-  <% end %>
-  <% component.with(:body) do %>
-    Box body
-  <% end %>
-  <% component.with(:footer) do %>
-    Box footer
-  <% end %>
-<% end %>
-```
-
-^ to use named blocks instead of separate components
+^ PAUSE
 
 ---
 
@@ -2410,6 +2501,28 @@ end
 
 ---
 
+# component gems
+
+^ another cool thing
+
+^ since components are ruby classes 
+
+^ we can extract them into gems
+
+^ we haven't done this yet
+
+^ know of some who have
+
+---
+
+![inline](img/component-gem.png)
+
+^ financial services
+
+^ half dozen apps using a single gem
+
+---
+
 # Performance
 
 ^ what about performance?
@@ -2458,10 +2571,10 @@ end
 
 [.build-lists: true]
 
-* Scan all templates for render calls
-* Group by template
-* Find unique combinations of locals
-* Compile template for each combination
+1. Scan all templates for render calls
+1. Group by template
+1. Find unique combinations of locals
+1. Compile template for each combination
 
 ^ Scan 
 
@@ -2490,8 +2603,6 @@ end
 ```
 
 ^ Linter to enforce explicit render calls in controllers
-
-^ John Hawthorn is working on Rails improvements in this area
 
 ---
 
@@ -2542,7 +2653,9 @@ end
 
 ^ Migrate unit tests from previous abstraction
 
-^ Also migrate most controller tests
+^ Also migrate most controller tests 
+
+^ can test against output html
 
 ^ Might find missing coverage in the process
 
@@ -2610,11 +2723,7 @@ end
 
 ^ allowing us to focus on new and important problems
 
----
-
-# Change
-
-^ world will keep changing
+^ in a changing world,
 
 ---
 
@@ -2634,7 +2743,7 @@ end
 
 ---
 
-# Thanks.
+# Thanks
 
 ^ What was confusing? What could I improve?
 
