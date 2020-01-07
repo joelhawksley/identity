@@ -429,6 +429,8 @@ background-color: #ffffff;
 
 ^ Not just CSRF protection
 
+^ value comes from what we don't have to worry about any more
+
 ---
 
 # Rails @ GitHub
@@ -1023,6 +1025,16 @@ assert_includes response.body "Rylan Bowers"
 
 # What _are_ views?
 
+^ what are views?
+
+---
+
+# ~~Objects~~
+
+^ Unlike models and controllers
+
+^ they aren't objects
+
 ---
 
 ![fit](img/lightspeed.jpg)
@@ -1030,8 +1042,6 @@ assert_includes response.body "Rylan Bowers"
 ^ Adventure
 
 ^ wallpapersafari.com
-
----
 
 ^ Lots of ways to render
 
@@ -1788,7 +1798,7 @@ end
 [.code-highlight: 9, 12]
 
 ```ruby
-class MyViews
+class Class
   def _app_views_demo_index_html_erb___42169053093465020_70319914664120(local_assigns, output_buffer)
     @virtual_path = "demo/index"
     @message = "Hello World"
@@ -2432,7 +2442,15 @@ end
 
 ^ One part of cold first request render times being slow
 
+^ at our scale, thousands of processes 
+
+^ each time process serves a view it hasn't seen before
+
+^ has to compile the view first
+
 ^ Rails 6 contained some optimizations by John Hawthorn
+
+^ Templates now cached between requests in dev
 
 ^ Internal code in our app with a more extreme optimization
 
