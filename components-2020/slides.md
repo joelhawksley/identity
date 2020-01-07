@@ -807,11 +807,9 @@ end
 
 ---
 
-# Testing & Encapsulation
+# Testing
 
-^ it comes down to
-
-^ testing and encapsulation
+^ comes down to testing
 
 ---
 
@@ -879,11 +877,147 @@ end
 
 ---
 
-> "Encapsulation is used to hide the values or state of a structured data object inside a class, preventing unauthorized parties' direct access to them."
+> "In object-oriented programming, encapsulation refers to the *bundling of data with the methods that operate on that data*, or the *restricting of direct access* to some of an object's components."
+
+^ read quote
+
+^ bundling of data
+
+^ restricting of access
+
+^ encapsulation is a fundamental aspect of OO
+
+---
+
+# Encapsulation in Rails
+
+^ rails does provide encapsulation
+
+^ some of the time
+
+---
+
+# Models
+
+^ models are encapsulated
+
+---
+
+[.code-higlight: 1]
+[.code-higlight: 1, 4-6]
+[.code-higlight: 1,2, 8-12]
+
+```ruby
+class User < ApplicationRecord
+  after_create :send_welcome_email
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+  private
+
+  def send_welcome_email
+    UserMailer.welcome(self)
+  end
+end
+```
+
+^ user model
+
+^ S name method is bundling
+
+^ S welcome email callback is private
+
+^ restricted from direct access
+
+---
+
+```ruby
+assert_equal(user.name, "Rylan Bowers")
+```
+
+^ Test against public interface
+
+^ but not against private methods
+
+---
+
+# Controllers
+
+^ rails controllers are also encapsulated
+
+---
+
+[.code-highlight: 1]
+[.code-highlight: 1, 2-4]
+[.code-highlight: 1, 6-10]
+
+```ruby
+class UsersController < ApplicationController
+  def show
+    render("users/show", current_user: current_user)
+  end
+
+  private
+
+  def current_user
+    User.find(params[:id])
+  end
+end
+```
+
+^ users controller
+
+^ S show method is bundling
+
+^ S private current user method
+
+^ restricted from direct access
+
+---
+
+```ruby
+get :show
+
+assert_includes response.body "Rylan Bowers"
+```
+
+^ slightly less direct, but interfaces with show
+
+^ does not test current_user method directly
+
+---
+
+# Views
+
+^ what about views?
+
+---
+
+```erb
+<% status = user.active? "Active" : "inactive" %>
+
+<h1><%= status %></h1>
+```
+
+^ closest thing is local variable assignment
+
+^ as for testing
+
+---
+
+# ~~interface~~
+
+^ no public interface for views
+
+^ we can't really unit test them 
 
 ^ To see why encapsulation of views is an issue
 
 ^ we need to understand how they work
+
+^ PAUSE
 
 ---
 

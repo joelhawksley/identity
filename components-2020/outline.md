@@ -31,3 +31,5 @@ GOALS
 OPEN QUESTIONS
 
 Abstract - tell story of extracting code from GitHub to share with community and eventually Rails - convention helps us collaborate
+
+tie back into encapsulation points after deep dive
