@@ -8,8 +8,6 @@ header-strong: Avenir Next Bold, #24292e
 code: Menlo Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
 background-color: #ffffff;
 
----
-
 ^ Lots of pauses in hook/intro/thankfulness
 
 ^ YOU GOT THIS
@@ -18,7 +16,7 @@ background-color: #ffffff;
 
 # I have a secret
 
-^ have a secret 
+^ have a secret to share
 
 ---
 
@@ -42,15 +40,9 @@ background-color: #ffffff;
 
 ^ in your gems
 
----
+^ but it won't be the future
 
-^ Question for all of you
-
----
-
-# Will you set it free?
-
-^ Will you set it free?
+^ unless you share it with the rest of us
 
 ---
 
@@ -162,17 +154,15 @@ background-color: #ffffff;
 
 ^ most engineers remote
 
-^ south of boulder
-
-^ work from home
-
 ---
 
 [.background-color: #000000]
 
-![fit](img/captain.jpg)
+![fit](img/family.jpg)
 
-^ captain
+^ south of boulder
+
+^ work from home
 
 ---
 
@@ -230,7 +220,7 @@ background-color: #ffffff;
 
 ![fit](img/sports2.jpg)
 
-^ breaking news
+^ sports
 
 ^ did for a little while
 
@@ -258,6 +248,8 @@ background-color: #ffffff;
 
 ^ asked for advice
 
+^ gave me better than advice  
+
 ^ apprenticeship offer
 
 ---
@@ -266,9 +258,17 @@ background-color: #ffffff;
 
 ![fit](img/mojo2.jpg)
 
+^ tiny 8x8 room 
+
+^ poor ventilation 
+
 ^ taught me git, ruby, rails, js
 
 ^ how to be a professional engineer
+
+^ wouldn't be be here if it wasn't for him
+
+^ enough about me
 
 ---
 
@@ -292,11 +292,19 @@ background-color: #ffffff;
 
 ---
 
-# Prakash
+![fit](img/prakash.png)
 
-^ Recently lost a member of our community
+^ Recently lost prakash
+
+^ lost a member of our community
 
 ^ Could have been any of us
+
+^ Crazy to think
+
+^ 47 
+
+^ Left behind daughter and wife
 
 ---
 
@@ -320,11 +328,18 @@ background-color: #ffffff;
 
 ---
 
-"We’re tight-fisted with property and money, yet think too little of wasting time, the one thing about which we should all be the toughest misers."
-        — SENECA, ON THE BREVITY OF LIFE, 3.1–2
-        - https://zenchongproject.wordpress.com/2019/12/09/meditation-on-mortality-december-9th-spendthrifts-of-time/
+> "We’re tight-fisted with property and money, yet think too little of wasting time, the one thing about which we should all be the toughest misers."
+-- SENECA, ON THE SHORTNESS OF LIFE, 3.1–2
+
+^ Read quote
 
 ---
+
+^ Thank you for spending time with us
+
+^ It is valuable
+
+^ It is precious
 
 ^ PAUSE
 
@@ -362,6 +377,8 @@ background-color: #ffffff;
 
 ^ Those who have helped over the years
 
+^ It wouldn't be possible it without them 
+
 ---
 
 # You
@@ -375,6 +392,8 @@ background-color: #ffffff;
 # Thanks
 
 ^ We have something special
+
+^ So good I'd still come if it was a javascript meetup
 
 ^ So thankful for it
 
@@ -408,6 +427,8 @@ background-color: #ffffff;
 
 ^ Rails has enabled us to focus on the needs of the people who use our products
 
+^ Not just CSRF protection
+
 ---
 
 # Rails @ GitHub
@@ -421,6 +442,8 @@ background-color: #ffffff;
 ^ Still a monolith
 
 ^ Moving back into monolith
+
+^ as of a year ago 
 
 ---
 
@@ -482,15 +505,15 @@ background-color: #ffffff;
 
 # Rails @ GitHub
 
-^ often asked about working on monolith
+^ often asked about working on the monolith at GitHub
 
-^ different mindset
+^ different mindset I noticed when I joined
+
+^ remember Eileen saying
 
 ---
 
-> If it doesn't have to do with our business, it needs to go in Rails.
-
-^ Eileen said
+> "If it doesn't have to do with our business, it needs to go in Rails."
 
 ^ If it doesn't have to do with our business, it needs to go in Rails.
 
@@ -520,6 +543,12 @@ background-color: #ffffff;
 
 ^ Eileen led team for two years
 
+^ got us from a fork of 3.2 to master
+
+^ many benefits
+
+^ but the most critical was
+
 ---
 
 # master
@@ -534,6 +563,8 @@ background-color: #ffffff;
 
 ^ enabled extraction
 
+^ around 100 PRs from GitHub into Rails 6
+
 ---
 
 > The best frameworks are in my opinion extracted, not envisioned. And the best way to extract is first to actually do.[^1]
@@ -541,15 +572,7 @@ background-color: #ffffff;
 
 [^1]: https://dhh.dk/posts/6-why-theres-no-rails-inc.html
 
-^ DHH said in 2007
-
----
-
-# Rails is an extraction
-
-^ Rails is an extraction
-
-^ Every extraction is one less thing to worry about when building your applications
+^ DHH said it best in 2007
 
 ---
 
@@ -571,7 +594,11 @@ background-color: #ffffff;
 
 ^ First time I saw it
 
-^ First job
+^ First job, a consultancy
+
+^ After working on a couple Rails projects
+
+^ Landed on a bigger app
 
 ^ First time I saw a Rails folder that didn't belong
 
@@ -580,6 +607,30 @@ background-color: #ffffff;
 ^ Didn't know whether I should be OK with it
 
 ^ Model-specific view logic
+
+---
+
+```ruby
+class UserDecorator < Draper::Decorator
+  delegate_all
+
+  def status
+    if active?
+      "Last active at #{last_active_at}"
+    else
+      "Inactive"
+    end
+  end
+end
+```
+
+^ Looked like this
+
+^ place to put view-related logic for a specific model
+
+^ really just another place to hide methods
+
+^ unit tested like models
 
 ---
 
@@ -595,6 +646,16 @@ background-color: #ffffff;
 
 ---
 
+```erb
+<%= react_component("Button", { label: "Open" }) %>
+```
+
+^ Looked like this
+
+^ tests were written in js
+
+---
+
 # Presenters
 
 ^ Third time
@@ -607,21 +668,52 @@ background-color: #ffffff;
 
 ---
 
+```ruby
+class RepositoryIndexViewModel < ViewModel
+  def status
+    repository.locked? ? "Disabled" : "Enabled"
+  end
+end
+```
+
+^ looked like this
+
+^ coupled to a specific view
+
+^ easier to test
+
+^ distraction, not really testing the view
+
+---
+
 # Logic-filled partials
 
 ^ Fourth time
 
 ^ app that had lots of logic in partials
 
-^ did have encapsulation
+^ simplified logic - in one place
 
 ^ but was hard to test
+
+---
+
+```erb
+<% status = repository.locked? ? "Disabled" : "Enabled" %>
+
+<h2><%= status %></h2>
+```
+
+^ looked like this
+
+^ ended up with view files with ruby blocks dozens of lines long
 
 ---
 
 # Components
 
 ^ all the while
+
 
 ^ Rise of view components
 
@@ -679,6 +771,8 @@ background-color: #ffffff;
 
 ^ every big app I've worked in has used one
 
+^ can also see the trend in the rails ecosystem
+
 ---
 
 # Gems
@@ -691,17 +785,13 @@ background-color: #ffffff;
 
 ^ Draper and Cells have millions of downloads
 
----
-
-# View layer
-
-^ going to guess
-
-^ not in business of view layer innovation
+^ PAUSE
 
 ---
 
 # Something's missing.
+
+^ It's clear
 
 ^ Something is missing here
 
@@ -711,11 +801,15 @@ background-color: #ffffff;
 
 ^ why do we turn to these abstractions?
 
+^ Why are we breaking from rails convention?
+
+^ in talking with many of you
+
 ---
 
 # Testing & Encapsulation
 
-^ in talking with many of you
+^ it comes down to
 
 ^ testing and encapsulation
 
@@ -729,11 +823,11 @@ background-color: #ffffff;
 
 ![fit](img/test-pyramid.png)
 
-^ https://martinfowler.com/bliki/TestPyramid.html
-
 ^ Martin fowler's test pyramid 
 
 ^ illustrates it best
+
+^ explain chart levels
 
 ^ Rails provides
 
@@ -745,21 +839,25 @@ background-color: #ffffff;
 
 ---
 
-![fit](img/test-pyramid.png)
+![fit](img/test-pyramid-highlighted.png)
 
 ^ Limiting us to
 
 ^ Slowest and most expensive options
 
+^ As our apps grow
+
 ---
 
 # View objects
 
-^ As our apps grow
-
 ^ Turn to view objects
 
 ^ Can be unit tested
+
+^ enabling thorough coverage
+
+^ without high cost of controller or system tests
 
 ---
 
@@ -775,11 +873,17 @@ background-color: #ffffff;
 
 ^ Encapsulation
 
+^ What is it?
+
+^ according to the fountain of knowledge wikipedia
+
 ---
 
-# Views
+> "Encapsulation is used to hide the values or state of a structured data object inside a class, preventing unauthorized parties' direct access to them."
 
-^ Talk about views
+^ To see why encapsulation of views is an issue
+
+^ we need to understand how they work
 
 ---
 
@@ -820,6 +924,8 @@ background-color: #ffffff;
 ^ Example code
 
 ^ Two views
+
+^ anyone want to guess what happens?
 
 ---
 
@@ -882,7 +988,6 @@ end
 [.code-highlight: 1, 3-4]
 [.code-highlight: 1, 6-7]
 [.code-highlight: 1, 9-10]
-[.code-highlight: 1, 12-13]
 
 
 ```ruby
@@ -894,9 +999,6 @@ irb> view_renderer.class
 irb> self.class
 => #<Class:0x00007fea31296760>
 
-irb> self.class.object_id.to_s.last(3)
-=> "920"
-
 irb> options
 => "message"
 ```
@@ -907,21 +1009,9 @@ irb> options
 
 ^ S Self is current view
 
-^ S Object ID
-
 ^ S Options is our template name
 
----
-
-`# ActionView::Renderer`
-
-```ruby
-def render_partial(context, options, &block)
-  render_partial_to_object(context, options, &block).body
-end
-```
-
-^ Wraps
+^ call passes through to
 
 ---
 
@@ -932,6 +1022,8 @@ def render_partial_to_object(context, options, &block)
   PartialRenderer.new(@lookup_context).render(context, options, block)
 end
 ```
+
+^ action view render, which builds a call to partial renderer
 
 ---
 
@@ -965,7 +1057,7 @@ irb> options
 => {:partial=>"message", :locals=>{}}
 ```
 
-^ Wraps
+^ look at the state
 
 ---
 
@@ -1189,7 +1281,6 @@ end
 
 ---
 
-[.code-highlight: 0]
 [.code-highlight: 1]
 [.code-highlight: 3]
 
@@ -1209,6 +1300,10 @@ def compile(mod)
   mod.module_eval(source, identifier, 0)
 end
 ```
+
+^ Non bang compile method
+
+^ S interesting line is handler.call
 
 ---
 
@@ -1238,6 +1333,10 @@ irb> @handler.call(self, source)
    @output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
 ```
 
+^ go through steps
+
+^ output is ruby code
+
 ---
 
 `# @handler.call`
@@ -1256,6 +1355,8 @@ irb> @handler.call(self, source)
 ```erb
 <h1><%= @message %></h1>
 ```
+
+^ turned ERB into Ruby
 
 ---
 
@@ -1280,12 +1381,18 @@ def compile(mod)
 end
 ```
 
+^ so back in actionview template
+
+^ S we've compiled our template into ruby code
+
+^ S and now let's use it to define a method
+
 ---
 
 [.code-highlight: 1-5]
 [.code-highlight: 1-5, 7-8]
 [.code-highlight: 1-5, 10-11]
-[.code-highlight: 1-5, 13-14]
+[.code-highlight: 1-5, 13-15]
 
 `# ActionView::Template`
 
@@ -1297,16 +1404,24 @@ source = +<<-end_src
 end_src
 
 irb> method_name
-=> "_app_views_demo_test_html_erb__3147936528918386365_70191870416280"
+=> "_app_views_demo__messge_html_erb__3147936528918386365_70191870416280"
 
 irb> @virtual_path.inspect
-=> "\"demo/test\""
+=> "demo/_message"
 
 irb> code
-=> " @message = \"Hello World\" \n@output_buffer.append=( render(\"message\") );\n@output_buffer.to_s"
+=> "@output_buffer.safe_append='<h1>'.freeze;@output_buffer.append=( @message );
+   @output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
 ```
 
+^ inspect current state
+
+^ generating this ruby:
+
 ---
+
+[.code-highlight: 1]
+[.code-highlight: 1-7]
 
 ```ruby
 def _app_views_demo__message_html_erb__3026934259175371146_70158375537500(local_assigns, output_buffer)
@@ -1319,6 +1434,10 @@ end
 ```
 
 ^ This method
+
+^ generated name 
+
+^ body generated by the handler
 
 ---
 
@@ -1461,6 +1580,16 @@ def _run(method, template, locals, buffer, &block)
 end
 ```
 
+^ So effectively we end up with this
+
+---
+
+^ And that's the entire call stack 
+
+^ for rendering a view
+
+^ I'm guessing you all are thinking:
+
 ---
 
 ![inline](img/wat.jpg)
@@ -1472,6 +1601,12 @@ end
 ^ Deep breath
 
 ^ What does this all mean?
+
+^ What are the implications?
+
+^ What does this have to do with encapsulation?
+
+^ Isn't that a lot of work?
 
 ---
 
@@ -1555,6 +1690,8 @@ end
 
 ---
 
+# Global scope
+
 ^ Global scope explosion
 
 ^ All views
@@ -1569,7 +1706,7 @@ end
 
 # Encapsulation
 
-^ There is no encapsulation
+^ not much encapsulation
 
 ^ All 4,200-odd views exist in the same scope
 
@@ -1635,7 +1772,7 @@ end
 
 # one object _per_ view
 
-^ instead of one object *per* view
+^ one object *per* view
 
 ---
 
@@ -1656,6 +1793,8 @@ end
 ```
 
 ^ Take this example
+
+^ two files side by side
 
 ^ (talk through code)
 
@@ -1700,6 +1839,16 @@ RSpec.describe BoxComponent do
 end
 ```
 
+^ Unit testing components is simple
+
+^ Render component inline 
+
+^ assert against rendered result
+
+^ Fast
+
+^ We end up writing a lot of them
+ 
 ---
 
 # `gem "actionview-component"`
@@ -1721,8 +1870,6 @@ end
 ^ most work has come from the community
 
 ^ two dozen contributors
-
-^ TODO add icons?
 
 ^ Some cool contributions include:
 
@@ -1835,7 +1982,6 @@ end
 
 ---
 
-[.code-highlight: all]
 [.code-highlight: 7-11]
 
 ```html
@@ -1862,7 +2008,7 @@ end
 
 ^ enforce footer is last?
 
-^ enforce title is required?
+^ enforce title and body are required?
 
 ^ limited options as react only supports passing single block of content
 
@@ -2016,6 +2162,8 @@ end
 
 ^ In template that renders component
 
+^ refactor it
+
 ---
 
 `# index.html.erb`
@@ -2034,14 +2182,15 @@ end
 <% end %>
 ```
 
-^ In template that renders component
+^ to use named blocks instead of separate components
 
 ---
 
 [.code-highlight: 1-3]
 [.code-highlight: 6]
 [.code-highlight: 6-7]
-[.code-highlight: 6-8]
+[.code-highlight: 6-8] 
+[.code-highlight: 5-9] 
 
 `# box_component.html.erb`
 
@@ -2068,6 +2217,8 @@ end
 ^ S body
 
 ^ S and footer
+
+^ S inside wrapping div
 
 ---
 
@@ -2103,6 +2254,14 @@ end
 
 ^ we can add a validation to require certain content areas to be set
 
+---
+
+# Ruby > Javascript
+
+^ made me wonder
+
+^ what other things can we do better than javascript?
+
 ^ PAUSE
 
 ---
@@ -2119,21 +2278,21 @@ end
 
 ^ It's been a non-issue
 
----
-
-# Pre-compilation
-
 ^ Also easier to make fast
 
 ---
 
 # templates * locals
 
+^ remember how
+
 ^ method for each unique locals passed to template at runtime
 
 ---
 
 # Caching
+
+^ leads to less than optimal caching behavior
 
 ^ Cached at runtime, after forking servers like Unicorn and Puma
 
@@ -2251,6 +2410,8 @@ end
 
 ^ "If it could be a partial, it could be a component"
 
+^ encourage to start there
+
 ---
 
 ^ PAUSE
@@ -2259,7 +2420,7 @@ end
 
 # The Future
 
-^ looking toward the future
+^ what about the future
 
 ---
 
@@ -2274,6 +2435,8 @@ end
 ^ Started to make progress
 
 ^ Preliminary PRs in Rails for syntax
+
+^ Continue to integrate more of library into Rails
 
 ---
 
