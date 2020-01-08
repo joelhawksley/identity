@@ -310,11 +310,23 @@ background-color: #ffffff;
 
 # Loss
 
+^ Up until a year ago
+
+^ hadn't lost anyone in my life
+
+^ Since then
+
 ^ Prakash fifth person lost in the past year or so
 
 ^ It's been a struggle for me
 
 ^ Dark times
+
+^ didn't know how to cope
+
+^ sought help
+
+^ doing better, but still a struggle
 
 ---
 
@@ -1091,6 +1103,8 @@ assert_includes response.body "Rylan Bowers"
 
 ^ Result
 
+^ so you might be thinking something like:
+
 ---
 
 ![inline](img/wat.jpg)
@@ -1798,7 +1812,7 @@ end
 [.code-highlight: 9, 12]
 
 ```ruby
-class Class
+class ActionView::Base
   def _app_views_demo_index_html_erb___42169053093465020_70319914664120(local_assigns, output_buffer)
     @virtual_path = "demo/index"
     @message = "Hello World"
@@ -1821,6 +1835,8 @@ end
 ^ Sibling methods
 
 ^ Instance variables across views
+
+^ On ActionView::Base
 
 ^ S render index
 
@@ -2117,11 +2133,14 @@ end
 
 ^ two dozen contributors
 
+^ seven or eight countries
+
 ^ Some cool contributions include:
 
 ---
 
-# `rails g component Example`
+> `rails g component Example`
+-- Vinicius Stock, Toronto
 
 ^ Simple things like 
 
@@ -2131,7 +2150,8 @@ end
 
 ---
 
-#[fit] `ActionView::Component::Preview`
+> `Component::Preview`
+-- Juan Manuel Ramallo, Argentina
 
 ^ More complex feature
 
@@ -2194,6 +2214,11 @@ end
 ^ now thinking beyond
 
 ^ what can we do better than react
+
+---
+
+> `with_content_areas`
+-- Jon Palmer, Boston
 
 ^ feature by Jon Palmer from Boston
 
@@ -2567,23 +2592,6 @@ end
 
 ^ Internal code in our app with a more extreme optimization
 
----
-
-[.build-lists: true]
-
-1. Scan all templates for render calls
-1. Group by template
-1. Find unique combinations of locals
-1. Compile template for each combination
-
-^ Scan 
-
-^ S Group
-
-^ S Uniq combinations of locals
-
-^ S Compile for each
-
 ^ Enabled by having linters: 
 
 ---
@@ -2603,6 +2611,25 @@ end
 ```
 
 ^ Linter to enforce explicit render calls in controllers
+
+---
+
+[.build-lists: true]
+
+1. Scan all templates for render calls
+1. Group by template
+1. Find unique combinations of locals
+1. Compile template for each combination
+
+^ Scan 
+
+^ S Group
+
+^ S Uniq combinations of locals
+
+^ S Compile for each
+
+^ fortunately components are easier to optimize
 
 ---
 
@@ -2738,6 +2765,10 @@ end
 # Time 
 
 ^ Our time is precious
+
+---
+
+# How will you spend yours?
 
 ^ How will you spend yours?
 
