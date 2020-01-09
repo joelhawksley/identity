@@ -2091,6 +2091,10 @@ end
 
 # Unit testing
 
+[.code-highlight: all]
+[.code-highlight: 3]
+[.code-highlight: 3, 5]
+
 ```ruby
 RSpec.describe BoxComponent do
   it "renders message" do
@@ -2103,9 +2107,9 @@ end
 
 ^ Unit testing components is simple
 
-^ Render component inline 
+^ S Render component inline 
 
-^ assert against rendered result
+^ S assert against rendered result
 
 ^ Fast
 
