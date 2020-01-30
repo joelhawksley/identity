@@ -1,37 +1,31 @@
 TITLE
-The Missing Extraction
+Encapsulating Views
 
 ABSTRACT
-Rails is missing an extraction, and it's hiding in plain sight, right inside your application. 
-
-After itself being extracted from Basecamp, Rails has remained relevant for over a decade because others have contributed pieces of their applications into the framework. If Rails is going to survive another decade, it will need you to contribute your extractions too. 
-
-In this talk we'll extract ActionView::Component from the GitHub monolith for upstreaming into Rails (with a deep dive into the Rails view layer along the way), showing how Rails can evolve through extractions from existing applications.
+Unlike models and controllers, Rails views are not encapsulated. This makes them hard to reason about and difficult to test, leading us to use abstractions such as presenters and decorators. At GitHub, we're working to bring encapsulation to Rails views with ActionView::Component, incorporating the best parts of common view abstractions. In this talk, we'll explore the inner workings of how Rails compiles and executes views today, and the lessons we've learned building encapsulated views with ActionView::Component over the past year.
 
 DETAILS
-The goal of this talk is to inspire the audience to think about how they can contribute to Rails, to educate them on how the Rails view layer works today, and to explore an extraction from the GitHub monolith into Rails.
+This talk is given in story form.
 
-As our applications evolve over time, we often turn to tools outside of Rails to manage the complexity of our views, such as decorators, presenters and view models. At GitHub, we’ve incorporated ideas from these patterns into ActionView::Component. In this talk we’ll explore the patterns ActionView::Component introduces and share the lessons we’ve learned using it in production at GitHub over the past year and a half.
+In introducing the talk, I will highlight how Rails is built through extractions from existing applications. 
 
-I'll demonstrate this by implementing a component from our design system with helpers, a decorator, a presenter, a view model, and even react-rails, highlighting the tradeoffs of each approach. It will then show how implementing it as an ActionView::Component is influenced by each of the previous approaches.
+I introduce the topic of the talk by discussing an extraction I couldn't ignore, telling the story of how I have seen a pattern of Rails applications turning to decorators, presenters, react components, and logic-filled partials as they scale. These abstractions are basically boilerplate at this point, and if there’s one thing we like about Rails it is that it eliminates boilerplate.
 
-I'll also cover how we’ve migrated existing views to this architecture, leveraging some of the unique features of ActionView::Component, such as ActionView::Component::Preview and stateless components.
+Then, I tell the story of how others have encountered these patterns in their applications, using survey data I gathered from my local Ruby community. 
 
-This talk is at the beginner to intermediate level. 
+Next, I explore why Rails developers turn to these abstractions: testing. Rails views are difficult to test, and it's because they aren't encapsulated, a key construct and benefit of object-oriented design.
+
+After a brief explanation of encapsulation and how it manifests itself in Rails, giving examples of models and controllers, I tell a detailed, technical story of the Rails render call stack, showing the internals of how Rails views are compiled into methods on a single global object, demonstrating how it's possible to share instance variable state in between views.
+
+Then, I discuss the implications of this architecture, explaining how it makes testing difficult and can lead to performance issues at scale.
+
+In contrast, I demonstrate how ActionView::Component compiles views onto one object per view, providing proper encapsulation, as a superset of the Rails view architecture. I explain how this helps Rails views better follow the single responsibility principle.
+
+Next, I highlight some features built by members of the community, including generators, component previews, and multiple content areas.
+
+Finally, I share how we see components fitting into the architecture of a typical Rails application, and how we've migrated existing views and view models to components. I highlight benefits of migration that we’ve seen, such as improvements in test coverage.
+
+I end the talk by revisiting the theme of Rails being built by extractions, and encouraging the audience to consider what they can contribute to Rails.
 
 PITCH
-I'm a software engineer at GitHub, working on one of the largest, most-trafficked Ruby on Rails applications in the world. Over the past year, I've lead the development of ActionView::Component, both at GitHub and with the open-source community. My talk on the initial prototype of ActionView::Component was the third-most popular of RailsConf 2019 based on YouTube views.
-
-GOALS
-- Inspire audience to think about how they can contribute to Rails
-- Educate audience on how the Rails view layer works today
-- Create a moment of presence, clarity, and vulnerability
-- Exemplify GitHub's commitment to doing work that benefits the Rails community
-
-OPEN QUESTIONS
-
-Abstract - tell story of extracting code from GitHub to share with community and eventually Rails - convention helps us collaborate
-
-tie back into encapsulation points after deep dive
-
-CSS JS encapsulation TO-DO
+I am the creator and maintainer of ActionView::Component. This talk builds on a talk I gave at RailsConf last year, incorporating what we've learned building and using ActionView::Component for the past year at GitHub and providing a technical argument for the architecture. This talk will be much more of a deep dive into Rails internals. While my talk last year was theoretical and worked with a prototype, this one is practical and discusses implementation in depth as well as real world implications and benefits. The video of last year's talk was highly viewed from the conference, indicating strong community interest in the topic.
