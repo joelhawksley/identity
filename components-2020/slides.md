@@ -324,7 +324,7 @@ background-color: #ffffff;
 
 ^ didn't know how to cope
 
-^ sought help
+^ sought help (via sondermind)
 
 ^ doing better, but still a struggle
 
