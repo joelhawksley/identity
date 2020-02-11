@@ -2,12 +2,10 @@ TITLE
 Encapsulating Views
 
 ABSTRACT
-Unlike models and controllers, Rails views are not encapsulated. This makes them hard to reason about and difficult to test, leading us to use abstractions such as presenters and decorators. In this talk, we'll explore the inner workings of how Rails compiles and executes views today, and the lessons we've learned building encapsulated views at GitHub over the past year.
+Unlike models and controllers, Rails views are not encapsulated. This makes them hard to reason about and difficult to test, leading us to use abstractions such as presenters and decorators. In this talk, we'll explore the inner workings of how Rails compiles and executes views today, the lessons we've learned building encapsulated views at GitHub over the past year, and how you can do the same with the support for 3rd-party component frameworks coming in Rails 6.1.
 
 DETAILS
-This talk is given in story form.
-
-In introducing the talk, I will highlight how Rails is built through extractions from existing applications.
+This talk is given in story form, covering 
 
 I introduce the topic of the talk by discussing an extraction I couldn't ignore, telling the story of how I have seen a pattern of Rails applications turning to decorators, presenters, react components, and logic-filled partials as they scale. These abstractions are basically boilerplate at this point, and if there’s one thing we like about Rails it is that it eliminates boilerplate.
 
@@ -25,7 +23,9 @@ Next, I highlight some features built by members of the community, including gen
 
 Finally, I share how we see components fitting into the architecture of a typical Rails application, and how we've migrated existing views and view models to components. I highlight benefits of migration that we’ve seen, such as improvements in test coverage.
 
-I end the talk by revisiting the theme of Rails being built by extractions, and encouraging the audience to consider what they can contribute to Rails.
-
 PITCH
-I am the creator and maintainer of ViewComponent. This talk builds on a talk I gave at RailsConf last year, incorporating what we've learned building and using ViewComponent for the past year at GitHub and providing a technical argument for the architecture. This talk will be much more of a deep dive into Rails internals. While my talk last year was theoretical and worked with a prototype, this one is practical and discusses implementation in depth as well as real world implications and benefits. The video of last year's talk was one of the most viewed from the conference, indicating strong community interest in the topic.
+I am the creator and maintainer of ViewComponent, GitHub's view component library for Rails. I'm also the author of the support for 3rd-party component frameworks being introduced in Rails 6.1. 
+
+This talk builds on a talk I gave at RailsConf last year, incorporating what we've learned building and using ViewComponent for the past year at GitHub and providing a technical argument for the architecture. This talk will be much more of a deep dive into Rails internals. While my talk last year was theoretical and worked with a prototype, this one is practical and discusses implementation in depth as well as real world implications and benefits. 
+
+The video of last year's talk was one of the most viewed from the conference, indicating strong community interest in the topic.
