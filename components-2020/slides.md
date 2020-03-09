@@ -120,7 +120,7 @@ background-color: #ffffff;
 
 # Future
 
-^ vision 
+^ vision
 
 ^ future of rails views
 
@@ -244,7 +244,7 @@ background-color: #ffffff;
 
 ^ asked for advice
 
-^ gave me better than advice  
+^ gave me better than advice
 
 ^ apprenticeship offer
 
@@ -254,9 +254,9 @@ background-color: #ffffff;
 
 ![fit](img/mojo2.jpg)
 
-^ tiny 8x8 room 
+^ tiny 8x8 room
 
-^ poor ventilation 
+^ poor ventilation
 
 ^ long days
 
@@ -302,7 +302,7 @@ background-color: #ffffff;
 
 ^ Crazy to think
 
-^ 47 
+^ 47
 
 ^ Left behind daughter and wife
 
@@ -389,7 +389,7 @@ background-color: #ffffff;
 
 ^ Those who have helped over the years
 
-^ It wouldn't be possible it without them 
+^ It wouldn't be possible it without them
 
 ---
 
@@ -457,7 +457,7 @@ background-color: #ffffff;
 
 ^ Moving back into monolith
 
-^ as of a year ago 
+^ as of a year ago
 
 ---
 
@@ -563,7 +563,7 @@ background-color: #ffffff;
 
 # master
 
-^ run a couple weeks behind master 
+^ run a couple weeks behind master
 
 ^ many benefits
 
@@ -847,7 +847,7 @@ end
 
 ![fit](img/test-pyramid.png)
 
-^ Martin fowler's test pyramid 
+^ Martin fowler's test pyramid
 
 ^ illustrates it best
 
@@ -1041,7 +1041,7 @@ assert_includes response.body "Rylan Bowers"
 
 ^ no public interface for views
 
-^ we can't really unit test them 
+^ we can't really unit test them
 
 ^ To see why encapsulation of views is an issue
 
@@ -1073,18 +1073,20 @@ assert_includes response.body "Rylan Bowers"
 
 ---
 
+<!-- TODO code highlighting -->
+
 `# index.html.erb`
 
 ```erb
 <% @message = "Hello World" %>
-<%= render("message") %>
+<%= render(partial: "message", locals: { class_names: "greeting" }) %>
 ```
 
 <br />
 `# _message.html.erb`
 
 ```erb
-<h1><%= @message %></h1>
+<h1 class="<%= class_names %>"><%= @message %></h1>
 ```
 
 ^ Deep dive
@@ -1103,295 +1105,85 @@ assert_includes response.body "Rylan Bowers"
 
 ^ Result
 
-^ so you might be thinking something like:
-
----
-
-![inline](img/wat.jpg)
-
-^ face I made
-
 ---
 
 ```erb
-<%= render("message") %>
+<%= render(...) %>
 ```
 
-^ Journey
+^ What happens when that method is called
 
----
+^ A lot happens
 
-[.code-highlight: 0]
-[.code-highlight: 1]
-[.code-highlight: 15]
-
-`# ActionView::Helpers::RenderingHelper`
-
-```ruby
-def render(options = {}, locals = {}, &block)
-  case options
-  when Hash
-    in_rendering_context(options) do |renderer|
-      if block_given?
-        view_renderer.render_partial(self, options.merge(partial: options[:layout]), &block)
-      else
-        view_renderer.render(self, options)
-      end
-    end
-  else
-    if options.respond_to?(:render_in)
-      options.render_in(self, &block)
-    else
-      view_renderer.render_partial(self, partial: options, locals: locals, &block)
-    end
-  end
-end
-```
-
-^ First stop on journey
-
-^ S Arguments
-
-^ S End up calling
-
----
-
-[.code-highlight: 1]
-[.code-highlight: 1, 3-4]
-[.code-highlight: 1, 6-7]
-[.code-highlight: 1, 9-10]
-
-
-```ruby
-view_renderer.render_partial(self, partial: options ...)
-
-irb> view_renderer.class
-=> ActionView::Renderer
-
-irb> self.class
-=> #<Class:0x00007fea31296760>
-
-irb> options
-=> "message"
-```
-
-^ What's going on
-
-^ S View renderer
-
-^ S Self is current view
-
-^ S Options is our template name
-
-^ call passes through to
-
----
-
-`# ActionView::Renderer`
-
-```ruby
-def render_partial_to_object(context, options, &block)
-  PartialRenderer.new(@lookup_context).render(context, options, block)
-end
-```
-
-^ action view render, which builds a call to partial renderer
-
----
-
-[.code-highlight: 1-3]
-[.code-highlight: 1-3, 5-6]
-[.code-highlight: 1-3, 8-9]
-[.code-highlight: 1-3, 11-12]
-[.code-highlight: 1-3, 14-15]
-[.code-highlight: 1-3, 17-18]
-
-`# ActionView::Renderer`
-
-```ruby
-def render_partial_to_object(context, options, &block)
-  PartialRenderer.new(@lookup_context).render(context, options, block)
-end
-
-irb> @lookup_context.class
-=> ActionView::LookupContext
-
-irb> @lookup_context.instance_variable_get(:@details)
-=> {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, ...]}
-
-irb> @lookup_context.instance_variable_get(:@view_paths).class
-=> ActionView::PathSet
-
-irb> context.class
-=> #<Class:0x00007fa618132368>
-
-irb> options
-=> {:partial=>"message", :locals=>{}}
-```
-
-^ look at the state
-
----
-
-[.code-highlight: 0]
-[.code-highlight: 1]
-[.code-highlight: 12]
-[.code-highlight: 10,12]
-
-`# ActionView::PartialRenderer`
-
-```ruby
-def render(context, options, block)
-  as = as_variable(options)
-  setup(context, options, as, block)
-
-  if @path
-    if @has_object || @collection
-      @variable, @variable_counter, @variable_iteration = retrieve_variable(@path, as)
-      @template_keys = retrieve_template_keys(@variable)
-    else
-      @template_keys = @locals.keys
-    end
-    template = find_template(@path, @template_keys)
-    @variable ||= template.variable
-  else
-    if options[:cached]
-      raise NotImplementedError, "render caching requires a template. Please specify a partial when rendering"
-    end
-    template = nil
-  end
-
-  if @collection
-    render_collection(context, template)
-  else
-    render_partial(context, template)
-  end
-end
-```
-
-^ S arguments
-
-^ Context is view
-
-^ Options is our partial name
-
-^ S Interesting bit is find_template
-
-^ S based on path and keys of locals
-
----
-
-[.code-highlight: 1-2]
-[.code-highlight: 1-2, 4,5]
-[.code-highlight: 1-2, 7,8]
-[.code-highlight: 1-2, 10,11]
-
-`# ActionView::PartialRenderer`
-
-```ruby
-@template_keys = @locals.keys
-template = find_template(@path, @template_keys)
-
-irb> @path
-=> "message"
-
-irb> @template_keys
-=> []
-
-irb> find_template(@path, @template_keys)
-=> #<ActionView::Template app/views/demo/_message.html.erb locals=[]>
-```
-
-^ Look at those lines
-
-^ S Path
-
-^ S Template keys
-
-^ S Template object
-
----
-
-[.code-highlight: 0]
-[.code-highlight: 24]
-
-`# ActionView::PartialRenderer`
-
-```ruby
-def render(context, options, block)
-  as = as_variable(options)
-  setup(context, options, as, block)
-
-  if @path
-    if @has_object || @collection
-      @variable, @variable_counter, @variable_iteration = retrieve_variable(@path, as)
-      @template_keys = retrieve_template_keys(@variable)
-    else
-      @template_keys = @locals.keys
-    end
-    template = find_template(@path, @template_keys)
-    @variable ||= template.variable
-  else
-    if options[:cached]
-      raise NotImplementedError, "render caching requires a template. Please specify a partial when rendering"
-    end
-    template = nil
-  end
-
-  if @collection
-    render_collection(context, template)
-  else
-    render_partial(context, template)
-  end
-end
-```
-
-^ Whole method
-
-^ S context and template object
-
----
-
-[.code-highlight: 1]
-[.code-highlight: 13]
-
-`# ActionView::PartialRenderer`
-
-```ruby
-def render_partial(view, template)
-  instrument(:partial, identifier: template.identifier) do |payload|
-    locals, block = @locals, @block
-    object, as = @object, @variable
-
-    if !block && (layout = @options[:layout])
-      layout = find_template(layout.to_s, @template_keys)
-    end
-
-    object = locals[as] if object.nil? # Respect object when object is false
-    locals[as] = object if @has_object
-
-    content = template.render(view, locals) do |*name|
-      view._layout_for(*name, &block)
-    end
-
-    content = layout.render(view, locals) { content } if layout
-    payload[:cache_hit] = view.view_renderer.cache_hits[template.virtual_path]
-    build_rendered_template(content, template)
-  end
-end
-```
-
-^ Takes arguments
-
-^ S Renders the view inside the template
+^ More interesting part
 
 ---
 
 `# ActionView::Template`
 
+[.code-highlight: 0]
 [.code-highlight: 1]
-[.code-highlight: 3]
 
+```ruby
+def render(view, locals, buffer = ActionView::OutputBuffer.new, &block)
+  instrument_render_template do
+    compile!(view)
+    view._run(method_name, self, locals, buffer, &block)
+  end
+rescue => e
+  handle_render_error(view, e)
+end
+```
+
+^ S Arguments
+
+^ S put in a binding.irb
+
+---
+
+`# ActionView::Template`
+
+[.code-highlight: 2]
+
+```ruby
+def render(view, locals, buffer = ActionView::OutputBuffer.new, &block)
+  binding.irb
+  instrument_render_template do
+    compile!(view)
+    view._run(method_name, self, locals, buffer, &block)
+  end
+rescue => e
+  handle_render_error(view, e)
+end
+```
+
+---
+
+`# ActionView::Template`
+
+```ruby
+def render(view, locals, buffer = ActionView::OutputBuffer.new, &block)
+  binding.irb
+
+irb> view.class
+=> #<Class:0x00007facefb6c800>
+
+irb> locals
+=> {:class_names=>"greeting"}
+
+irb> buffer
+=> ""
+
+irb> buffer.class
+=> ActionView::OutputBuffer
+
+```
+
+---
+
+`# ActionView::Template`
+
+[.code-highlight: 3]
 
 ```ruby
 def render(view, locals, buffer = ActionView::OutputBuffer.new, &block)
@@ -1449,7 +1241,7 @@ end
 
 ^ S compile
 
-^ S method container 
+^ S method container
 
 ^ method container is the ActionView::Base class
 
@@ -1499,14 +1291,13 @@ irb> @handler
 => #<ActionView::Template::Handlers::ERB:0x00007fb57e348740>
 
 irb> self
-=> #<ActionView::Template app/views/demo/_message.html.erb locals=[]>
+=> #<ActionView::Template app/views/demo/_message.html.erb locals=["class_names"]>
 
 irb> source
-=> "<h1><%= @message %></h1>"
+=> "<h1 class=\"<%= class_names %>\"><%= @message %></h1>"
 
 irb> @handler.call(self, source)
-=> "@output_buffer.safe_append='<h1>'.freeze;@output_buffer.append=( @message );
-   @output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
+=> "@output_buffer.safe_append='<h1 class=\"'.freeze;@output_buffer.append=( class_names );@output_buffer.safe_append='\">'.freeze;@output_buffer.append=( @message );@output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
 ```
 
 ^ go through steps
@@ -1518,10 +1309,12 @@ irb> @handler.call(self, source)
 `# @handler.call`
 
 ```ruby
-@output_buffer.safe_append='<h1>'.freeze;
+@output_buffer.safe_append='<h1 class=\"'.freeze;
+@output_buffer.append=( class_names );
+@output_buffer.safe_append='\">'.freeze;
 @output_buffer.append=( @message );
-@output_buffer.safe_append='</h1>'.freeze;
-@output_buffer.to_s
+@output_buffer.safe_append='</h1>'.freeze;\n
+@output_buffer.to_s"
 ```
 
 <br />
@@ -1529,7 +1322,7 @@ irb> @handler.call(self, source)
 `# _message.html.erb`
 
 ```erb
-<h1><%= @message %></h1>
+<h1 class="<%= class_names %>"><%= @message %></h1>
 ```
 
 ^ turned ERB into Ruby
@@ -1567,6 +1360,113 @@ end
 
 [.code-highlight: 1-5]
 [.code-highlight: 1-5, 7-8]
+
+`# ActionView::Template`
+
+```ruby
+source = +<<-end_src
+  def #{method_name}(local_assigns, output_buffer)
+    @virtual_path = #{@virtual_path.inspect};#{locals_code};#{code}
+  end
+end_src
+
+irb> method_name
+=> "_app_views_demo__message_html_erb___340905320949896366_70214743759180"
+
+irb> @virtual_path.inspect
+=> "demo/_message"
+
+irb> locals_code
+=> "class_names = local_assigns[:class_names]; class_names = class_names;"
+
+irb> code
+=> "@output_buffer.safe_append='<h1 class=\"'.freeze;@output_buffer.append=( class_names );@output_buffer.safe_append='\">'.freeze;@output_buffer.append=( @message );@output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
+```
+
+^ inspect current state
+
+---
+
+`# ActionView::Template`
+
+```ruby
+def method_name
+  @method_name ||= begin
+    m = +"_#{identifier_method_name}__#{@identifier.hash}_#{__id__}"
+    m.tr!("-", "_")
+    m
+  end
+end
+
+irb> identifier_method_name
+=> "app_views_demo__message_html_erb"
+
+irb> @identifier
+=> ".../app/views/demo/_message.html.erb"
+
+irb> @identifier.hash
+=> -340905320949896366
+
+irb> __id__
+=> 70214743759180
+```
+
+^ @identifier is a string
+
+^ Returns a hash based on the string’s length, content and encoding.
+
+^ object id - this is a problem - changes on boot,
+
+---
+
+`# index.html.erb`
+
+```erb
+<% @message = "Hello World" %>
+<%= render(partial: "message", locals: { class_names: "greeting" }) %>
+```
+
+^ back in index
+
+---
+
+[.code-highlight: 3]
+
+`# index.html.erb`
+
+```erb
+<% @message = "Hello World" %>
+<%= render(partial: "message", locals: { class_names: "greeting" }) %>
+<%= render(partial: "message", locals: { class_names: "greeting", foo: "bar" }) %>
+```
+
+^ Add a second render call for the same partial with different keys
+
+---
+
+`# ActionView::Template`
+
+```ruby
+def method_name
+  @method_name ||= begin
+    m = +"_#{identifier_method_name}__#{@identifier.hash}_#{__id__}"
+    m.tr!("-", "_")
+    m
+  end
+end
+
+irb> self
+=> #<ActionView::Template app/views/demo/_message.html.erb locals=["class_names", "foo"]>
+
+irb> __id__
+=> 70215280603560
+```
+
+
+---
+
+[.code-highlight: 1-5]
+[.code-highlight: 1-5, 7-8]
 [.code-highlight: 1-5, 10-11]
 [.code-highlight: 1-5, 13-15]
 
@@ -1580,14 +1480,16 @@ source = +<<-end_src
 end_src
 
 irb> method_name
-=> "_app_views_demo__message_html_erb__3147936528918386365_70191870416280"
+=> "_app_views_demo__message_html_erb___340905320949896366_70214743759180"
 
 irb> @virtual_path.inspect
 => "demo/_message"
 
+irb> locals_code
+=> "class_names = local_assigns[:class_names]; class_names = class_names;"
+
 irb> code
-=> "@output_buffer.safe_append='<h1>'.freeze;@output_buffer.append=( @message );
-   @output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
+=> "@output_buffer.safe_append='<h1 class=\"'.freeze;@output_buffer.append=( class_names );@output_buffer.safe_append='\">'.freeze;@output_buffer.append=( @message );@output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
 ```
 
 ^ inspect current state
@@ -1611,7 +1513,7 @@ end
 
 ^ This method
 
-^ generated name 
+^ generated name
 
 ^ body generated by the handler
 
@@ -1647,8 +1549,8 @@ end
 irb> self.methods...
 => [
   :_app_views_demo_index_html_erb__1824471460578655455_70348614451620
-  :_app_views_demo__message_html_erb__1856726472418298868_70348613288120, 
-  :_app_views_layouts_application_html_erb__3293958388228102565_70348615263920, 
+  :_app_views_demo__message_html_erb__1856726472418298868_70348613288120,
+  :_app_views_layouts_application_html_erb__3293958388228102565_70348615263920,
 ]
 ```
 
@@ -1740,7 +1642,7 @@ end
 
 ---
 
-^ And that's the entire call stack 
+^ And that's the entire call stack
 
 ^ for rendering a view
 
@@ -1778,7 +1680,7 @@ end
 
 ^ compiled based on local keys
 
-^ Meaning Rails is dynamically generating a method for each combination of 
+^ Meaning Rails is dynamically generating a method for each combination of
 
 ^ a template and the local keys passed to it
 
@@ -1788,7 +1690,7 @@ end
 
 ```erb
 <% @message = "Hello World" %>
-<%= render("message") %>
+<%= render(partial: "message", locals: { class_names: "greeting" }) %>
 ```
 
 <br />
@@ -2107,14 +2009,14 @@ end
 
 ^ Unit testing components is simple
 
-^ S Render component inline 
+^ S Render component inline
 
 ^ S assert against rendered result
 
 ^ Fast
 
 ^ We end up writing a lot of them
- 
+
 ---
 
 # `gem "actionview-component"`
@@ -2146,7 +2048,7 @@ end
 > `rails g component Example`
 -- Vinicius Stock, Toronto
 
-^ Simple things like 
+^ Simple things like
 
 ^ Adding generator support
 
@@ -2191,7 +2093,7 @@ end
 
 ^ Method for each preview
 
-^ S Open 
+^ S Open
 
 ^ S Closed
 
@@ -2453,8 +2355,8 @@ end
 [.code-highlight: 1-3]
 [.code-highlight: 6]
 [.code-highlight: 6-7]
-[.code-highlight: 6-8] 
-[.code-highlight: 5-9] 
+[.code-highlight: 6-8]
+[.code-highlight: 5-9]
 
 `# box_component.html.erb`
 
@@ -2474,7 +2376,7 @@ end
 
 ^ rewrite it to
 
-^ render the 
+^ render the
 
 ^ S title
 
@@ -2534,7 +2436,7 @@ end
 
 ^ another cool thing
 
-^ since components are ruby classes 
+^ since components are ruby classes
 
 ^ we can extract them into gems
 
@@ -2584,7 +2486,7 @@ end
 
 ^ One part of cold first request render times being slow
 
-^ at our scale, thousands of processes 
+^ at our scale, thousands of processes
 
 ^ each time process serves a view it hasn't seen before
 
@@ -2596,7 +2498,7 @@ end
 
 ^ Internal code in our app with a more extreme optimization
 
-^ Enabled by having linters: 
+^ Enabled by having linters:
 
 ---
 
@@ -2625,7 +2527,7 @@ end
 1. Find unique combinations of locals
 1. Compile template for each combination
 
-^ Scan 
+^ Scan
 
 ^ S Group
 
@@ -2652,7 +2554,7 @@ class MessageComponent < ActionView::Component::Base
 end
 ```
 
-^ example component 
+^ example component
 
 ^ is compiled before Unicorn and Puma fork
 
@@ -2684,7 +2586,7 @@ end
 
 ^ Migrate unit tests from previous abstraction
 
-^ Also migrate most controller tests 
+^ Also migrate most controller tests
 
 ^ can test against output html
 
@@ -2766,7 +2668,7 @@ end
 
 ---
 
-# Time 
+# Time
 
 ^ Our time is precious
 
