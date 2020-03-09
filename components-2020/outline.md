@@ -5,7 +5,7 @@ ABSTRACT
 Unlike models and controllers, Rails views are not encapsulated. This makes them hard to reason about and difficult to test, leading us to use abstractions such as presenters and decorators. In this talk, we'll explore the inner workings of how Rails compiles and executes views today, the lessons we've learned building encapsulated views at GitHub over the past year, and how you can do the same with the support for 3rd-party component frameworks coming in Rails 6.1.
 
 DETAILS
-This talk is given in story form, covering 
+This talk is given in story form.
 
 I introduce the topic of the talk by discussing an extraction I couldn't ignore, telling the story of how I have seen a pattern of Rails applications turning to decorators, presenters, react components, and logic-filled partials as they scale. These abstractions are basically boilerplate at this point, and if there’s one thing we like about Rails it is that it eliminates boilerplate.
 
