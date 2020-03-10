@@ -1444,6 +1444,28 @@ irb> __id__
 
 ---
 
+[.code-highlight: 1-6]
+[.code-highlight: 1-9]
+[.code-highlight: all]
+
+`# ActionView::Template`
+```ruby
+# render(partial: "message", locals: { class_names: "greeting", foo: "bar" }
+
+def compile!(view)
+  return if @compiled
+  # ...
+end
+
+irb> self.inspect
+=> #<ActionView::Template app/views/demo/_message.html.erb locals=["class_names", "foo"]>
+
+irb> @compiled
+=> false
+```
+
+---
+
 `# ActionView::Template`
 
 ```ruby
@@ -1502,11 +1524,17 @@ irb> code
 [.code-highlight: 1-7]
 
 ```ruby
-def _app_views_demo__message_html_erb__3026934259175371146_70158375537500(local_assigns, output_buffer)
-  @virtual_path = "demo/_message"
-  @output_buffer.safe_append='<h1>'.freeze
-  @output_buffer.append=( @message )
-  @output_buffer.safe_append='</h1>'.freeze
+def _app_views_demo__message_html_erb___719020604600940213_70174049455740(local_assigns, output_buffer)
+  @virtual_path = "demo/_message";
+
+  class_names = local_assigns[:class_names];
+  class_names = class_names;
+
+  @output_buffer.safe_append='<h1 class="'.freeze;
+  @output_buffer.append=( class_names );
+  @output_buffer.safe_append='">'.freeze;
+  @output_buffer.append=( @message );
+  @output_buffer.safe_append='</h1>'.freeze;
   @output_buffer.to_s
 end
 ```
