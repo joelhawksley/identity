@@ -1862,7 +1862,7 @@ end
 
 ---
 
-`# message_component.rb`
+`# app/components/message_component.rb`
 
 ```ruby
 class MessageComponent < ViewComponent::Base
@@ -1874,7 +1874,7 @@ class MessageComponent < ViewComponent::Base
 end
 ```
 
-`# message_component.html.erb`
+`# app/components/message_component.html.erb`
 
 ```erb
 <h1><%= @message %><h1>
@@ -1883,7 +1883,7 @@ end
 `# index.html.erb`
 
 ```erb
-<%= render(MessageComponent, message: "Hello, World!") %>
+<%= render(MessageComponent.new(message: "Hello, World!")) %>
 ```
 
 ^ Take this example
@@ -1897,7 +1897,7 @@ end
 `# index.html.erb`
 
 ```erb
-<%= render(MessageComponent, message: "Hello, World!") %>
+<%= render(MessageComponent.new(message: "Hello, World!")) %>
 ```
 
 ^ Looking at render call
@@ -1912,7 +1912,7 @@ end
 
 ---
 
-`# message_component.rb`
+`# app/components/message_component.rb`
 
 ```ruby
 class MessageComponent < ViewComponent::Base
@@ -1936,7 +1936,7 @@ end
 
 ---
 
-`# my_component.rb`
+`# app/components/message_component.rb`
 
 ```ruby
 class MessageComponent < ViewComponent::Base
@@ -1966,7 +1966,7 @@ end
 [.code-highlight: all]
 [.code-highlight: 2]
 
-`# message_component.rb`
+`# app/components/message_component.rb`
 
 ```ruby
 class MessageComponent < ViewComponent::Base
@@ -1980,7 +1980,7 @@ class MessageComponent < ViewComponent::Base
 end
 ```
 
-`# message_component.html.erb`
+`# app/components/message_component.html.erb`
 
 ```erb
 <h1><%= @message %><h1>
@@ -1994,7 +1994,7 @@ end
 
 [.code-highlight: 16]
 
-`# message_component.rb`
+`# app/components/message_component.rb`
 
 ```ruby
 class MessageComponent < ViewComponent::Base
@@ -2008,14 +2008,14 @@ class MessageComponent < ViewComponent::Base
 end
 ```
 
-`# message_component.html.erb`
+`# app/components/message_component.html.erb`
 
 ```erb
 <h1><%= @message %><h1>
 <%= helpers.star_icon %>
 ```
 
-^ or via helpers. method
+^ or via helpers. method escape hatch
 
 ---
 
@@ -2028,9 +2028,9 @@ end
 ```ruby
 RSpec.describe BoxComponent do
   it "renders message" do
-    result = render_inline(MessageComponent, message: "Hello, World!")
+    render_inline(MessageComponent.new(message: "Hello, World!"))
 
-    assert_includes result.text, "Hello, World!"
+    assert_text, "Hello, World!"
   end
 end
 ```
@@ -2105,11 +2105,11 @@ end
 module Issues
   class BadgeComponentPreview < ViewComponent::Preview
     def open
-      render(Issues::BadgeComponent, state: :open)
+      render(Issues::BadgeComponent.new(state: :open))
     end
 
     def closed
-      render(Issues::BadgeComponent, state: :closed)
+      render(Issues::BadgeComponent.new(state: :closed))
     end
   end
 end
@@ -2255,7 +2255,7 @@ end
 
 ---
 
-`# box_component.rb`
+`# app/components/box_component.rb`
 
 ```ruby
 class BoxComponent < ViewComponent::Base
@@ -2264,7 +2264,7 @@ class BoxComponent < ViewComponent::Base
 end
 ```
 
-`# box_component.html.erb`
+`# app/components/box_component.html.erb`
 
 ```erb
 <div class="Box">
@@ -2277,14 +2277,14 @@ end
 `# index.html.erb`
 
 ```erb
-<%= render(BoxComponent) %>
+<%= render(BoxComponent.new) %>
 ```
 
 ^ start with a component that renders our example code
 
 ---
 
-`# box_component.rb`
+`# app/components/box_component.rb`
 
 ```ruby
 class BoxComponent < ViewComponent::Base
@@ -2293,7 +2293,7 @@ class BoxComponent < ViewComponent::Base
 end
 ```
 
-`# box_component.html.erb`
+`# app/components/box_component.html.erb`
 
 ```erb
 <div class="Box">
@@ -2304,10 +2304,10 @@ end
 `# index.html.erb`
 
 ```erb
-<%= render(BoxComponent) do %>
-  <%= render(BoxHeaderComponent) do %>Box title<% end %>
-  <%= render(BoxBodyComponent) do %>Box body<% end %>
-  <%= render(BoxFooterComponent) do %>Box footer<% end %>
+<%= render(BoxComponent.new) do %>
+  <%= render(BoxHeaderComponent.new) do %>Box title<% end %>
+  <%= render(BoxBodyComponent.new) do %>Box body<% end %>
+  <%= render(BoxFooterComponent.new) do %>Box footer<% end %>
 <% end %>
 ```
 
@@ -2321,7 +2321,7 @@ end
 
 ---
 
-`# box_component.rb`
+`# app/components/box_component.rb`
 
 ```ruby
 class BoxComponent < ViewComponent::Base
@@ -2336,7 +2336,7 @@ end
 
 [.code-highlight: 2]
 
-`# box_component.rb`
+`# app/components/box_component.rb`
 
 ```ruby
 class BoxComponent < ViewComponent::Base
@@ -2357,13 +2357,13 @@ end
 `# index.html.erb`
 
 ```erb
-<%= render(BoxComponent) do %>
-  <%= render(BoxHeaderComponent) do %>Box title<% end %>
-  <%= render(BoxBodyComponent) do %>Box body<% end %>
-  <%= render(BoxFooterComponent) do %>Box footer<% end %>
+<%= render(BoxComponent.new) do %>
+  <%= render(BoxHeaderComponent.new) do %>Box title<% end %>
+  <%= render(BoxBodyComponent.new) do %>Box body<% end %>
+  <%= render(BoxFooterComponent.new) do %>Box footer<% end %>
 <% end %>
 
-<%= render(BoxComponent) do |component| %>
+<%= render(BoxComponent.new) do |component| %>
   <% component.with(:header) do %>Box title<% end %>
   <% component.with(:body) do %>Box body<% end %>
   <% component.with(:footer) do %>Box footer<% end %>
@@ -2386,7 +2386,7 @@ end
 [.code-highlight: 6-8]
 [.code-highlight: 5-9]
 
-`# box_component.html.erb`
+`# app/components/box_component.html.erb`
 
 ```erb
 <div class="Box">
@@ -2416,7 +2416,7 @@ end
 
 ---
 
-`# box_component.rb`
+`# app/components/box_component.rb`
 
 ```ruby
 class BoxComponent < ViewComponent::Base
@@ -2433,7 +2433,7 @@ end
 
 [.code-highlight: 4]
 
-`# box_component.rb`
+`# app/components/box_component.rb`
 
 ```ruby
 class BoxComponent < ViewComponent::Base
@@ -2567,6 +2567,7 @@ end
 
 ---
 
+`# app/components/message_component.rb`
 ```ruby
 class MessageComponent < ViewComponent::Base
   def initialize(message:)
