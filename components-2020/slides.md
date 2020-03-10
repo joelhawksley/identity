@@ -136,15 +136,25 @@ background-color: #fffcf5;
 
 ^ name
 
+<!-- for public talk
+
 ---
 
 ![50%](img/microsoft.png)
 
 ^ engineer at GitHub
 
+^ I have a big pile of stickers, see me later
+
+-->
+
 ---
 
 ![100%](img/github.png)
+
+^ engineer at GitHub on Design Systems team
+
+<!-- for public talk
 
 ---
 
@@ -156,6 +166,8 @@ background-color: #fffcf5;
 
 ^ most engineers remote
 
+-->
+
 ---
 
 [.background-color: #000000]
@@ -163,8 +175,6 @@ background-color: #fffcf5;
 ![fit](img/family.jpg)
 
 ^ south of boulder
-
-^ work from home
 
 ---
 
@@ -278,8 +288,6 @@ background-color: #fffcf5;
 
 # Thanks
 
-^ time of year
-
 ^ reflecting on what I'm thankful for
 
 ---
@@ -292,47 +300,9 @@ background-color: #fffcf5;
 
 ---
 
-![fit](img/prakash.png)
-
-^ Recently lost prakash
-
-^ lost a member of our community
-
-^ Could have been any of us
-
-^ Crazy to think
-
-^ 47
-
-^ Left behind daughter and wife
-
----
-
-# Loss
-
-^ Up until a year ago
-
-^ hadn't lost anyone in my life
-
-^ Since then
-
-^ Prakash fifth person lost in the past year or so
-
-^ It's been a struggle for me
-
-^ Dark times
-
-^ didn't know how to cope
-
-^ sought help (via sondermind)
-
-^ doing better, but still a struggle
-
----
-
 # Clarity
 
-^ But it's also been a source of clarity in my life
+^ It's a source of clarity in my life
 
 ^ Realize how finite our time here is
 
@@ -357,45 +327,9 @@ background-color: #fffcf5;
 
 ---
 
-# Community
-
-^ for our community
-
-^ over a decade
-
-^ almost as old as rails
-
----
-
-# Sponsors
-
-^ Sponsors
-
-^ Food
-
-^ Drinks
-
-^ Place to meet
-
-^ Sandi Metz fund
-
----
-
-# Organizers
-
-^ Organizers
-
-^ Dan, Rylan, Marty
-
-^ Those who have helped over the years
-
-^ It wouldn't be possible it without them
-
----
-
 # You
 
-^ You make it special
+^ You make it special to work here
 
 ^ You make it feel like family
 
@@ -403,9 +337,7 @@ background-color: #fffcf5;
 
 # Thanks
 
-^ We have something special
-
-^ So good I'd still come if it was a javascript meetup
+^ We have something special here
 
 ^ So thankful for it
 
@@ -439,15 +371,17 @@ background-color: #fffcf5;
 
 ^ Rails has enabled us to focus on the needs of the people who use our products
 
-^ Not just CSRF protection
-
 ^ value comes from what we don't have to worry about any more
+
+^ Not just CSRF protection
 
 ---
 
 # Rails @ GitHub
 
 ^ Rails is a big part of GitHub's success
+
+<!-- public talk only
 
 ---
 
@@ -470,6 +404,8 @@ background-color: #fffcf5;
 ---
 
 # github.com/github/github
+
+-->
 
 ---
 
@@ -706,6 +642,8 @@ end
 ^ easier to test
 
 ^ distraction, not really testing the view
+
+<!-- TODO add example test -->
 
 ---
 
@@ -2138,16 +2076,6 @@ end
 ![inline](img/preview.png)
 
 ^ renders the component by itself
-
----
-
-# Beyond
-
-^ for a while just focused on react ideas in rails
-
-^ now thinking beyond
-
-^ what can we do better than react
 
 ---
 
