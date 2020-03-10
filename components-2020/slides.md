@@ -959,7 +959,7 @@ end
 
 ---
 
-`# user_decorate_test.rb`
+`# test/decorators/user_decorator_test.rb`
 
 ```ruby
 assert_equal(user.name, "Rylan Bowers")
@@ -1005,7 +1005,7 @@ end
 
 ---
 
-`# users_controller_test.rb`
+`# test/controllers/users_controller_test.rb`
 
 ```ruby
 get :show
@@ -1075,7 +1075,7 @@ assert_includes response.body "Rylan Bowers"
 
 <!-- TODO code highlighting -->
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
 <% @message = "Hello World" %>
@@ -1083,7 +1083,7 @@ assert_includes response.body "Rylan Bowers"
 ```
 
 <br />
-`# _message.html.erb`
+`# app/views/demo/_message.html.erb`
 
 ```erb
 <h1 class="<%= class_names %>"><%= @message %></h1>
@@ -1319,7 +1319,7 @@ irb> @handler.call(self, source)
 
 <br />
 
-`# _message.html.erb`
+`# app/views/demo/_message.html.erb`
 
 ```erb
 <h1 class="<%= class_names %>"><%= @message %></h1>
@@ -1419,7 +1419,7 @@ irb> __id__
 
 ---
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
 <% @message = "Hello World" %>
@@ -1432,7 +1432,7 @@ irb> __id__
 
 [.code-highlight: 3]
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
 <% @message = "Hello World" %>
@@ -1714,7 +1714,7 @@ end
 
 ---
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
 <% @message = "Hello World" %>
@@ -1722,7 +1722,7 @@ end
 ```
 
 <br />
-`# _message.html.erb`
+`# app/views/demo/_message.html.erb`
 
 ```erb
 <h1><%= @message %></h1>
@@ -1880,7 +1880,7 @@ end
 <h1><%= @message %><h1>
 ```
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
 <%= render(MessageComponent.new(message: "Hello, World!")) %>
@@ -1894,7 +1894,7 @@ end
 
 ---
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
 <%= render(MessageComponent.new(message: "Hello, World!")) %>
@@ -2274,7 +2274,7 @@ end
 </div>
 ```
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
 <%= render(BoxComponent.new) %>
@@ -2301,7 +2301,7 @@ end
 </div>
 ```
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
 <%= render(BoxComponent.new) do %>
@@ -2354,7 +2354,7 @@ end
 [.code-highlight: 1-5]
 [.code-highlight: 7-11]
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
 <%= render(BoxComponent.new) do %>
