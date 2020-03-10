@@ -6,7 +6,7 @@ text-strong: Avenir Next Bold, #24292e
 header: Avenir Next Medium, #24292e
 header-strong: Avenir Next Bold, #24292e
 code: Menlo Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
-background-color: #ffffff;
+background-color: #fffcf5;
 
 ^ Lots of pauses in hook/intro/thankfulness
 
@@ -100,9 +100,9 @@ background-color: #ffffff;
 
 ---
 
-# ActionView::Component
+# ViewComponent
 
-^ called ActionView Component
+^ called View Component
 
 ---
 
@@ -1832,9 +1832,9 @@ end
 
 ---
 
-# ActionView::Component
+# ViewComponent
 
-^ called ActionView::Component
+^ called ViewComponent
 
 ^ incorporates best parts of existing patterns
 
@@ -1846,7 +1846,7 @@ end
 
 ^ First and foremost
 
-^ ActionView::Components are encapsulated
+^ ViewComponents are encapsulated
 
 ---
 
@@ -1865,7 +1865,7 @@ end
 `# message_component.rb`
 
 ```ruby
-class MessageComponent < ActionView::Component::Base
+class MessageComponent < ViewComponent::Base
   validates :message, presence: true
 
   def initialize(message:)
@@ -1915,7 +1915,7 @@ end
 `# message_component.rb`
 
 ```ruby
-class MessageComponent < ActionView::Component::Base
+class MessageComponent < ViewComponent::Base
   validates :message, presence: true
 
   def initialize(message:)
@@ -1939,7 +1939,7 @@ end
 `# my_component.rb`
 
 ```ruby
-class MessageComponent < ActionView::Component::Base
+class MessageComponent < ViewComponent::Base
   validates :message, presence: true
 
   def initialize(message:)
@@ -1969,7 +1969,7 @@ end
 `# message_component.rb`
 
 ```ruby
-class MessageComponent < ActionView::Component::Base
+class MessageComponent < ViewComponent::Base
   include IconHelper
 
   validates :message, presence: true
@@ -1997,7 +1997,7 @@ end
 `# message_component.rb`
 
 ```ruby
-class MessageComponent < ActionView::Component::Base
+class MessageComponent < ViewComponent::Base
   include IconHelper
 
   validates :message, presence: true
@@ -2103,7 +2103,7 @@ end
 
 ```ruby
 module Issues
-  class BadgeComponentPreview < ActionView::Component::Preview
+  class BadgeComponentPreview < ViewComponent::Preview
     def open
       render(Issues::BadgeComponent, state: :open)
     end
@@ -2251,14 +2251,14 @@ end
 
 ^ Go back to example HTML
 
-^ rewrite as ActionView::Component
+^ rewrite as ViewComponent
 
 ---
 
 `# box_component.rb`
 
 ```ruby
-class BoxComponent < ActionView::Component::Base
+class BoxComponent < ViewComponent::Base
   def initialize
   end
 end
@@ -2287,7 +2287,7 @@ end
 `# box_component.rb`
 
 ```ruby
-class BoxComponent < ActionView::Component::Base
+class BoxComponent < ViewComponent::Base
   def initialize
   end
 end
@@ -2324,7 +2324,7 @@ end
 `# box_component.rb`
 
 ```ruby
-class BoxComponent < ActionView::Component::Base
+class BoxComponent < ViewComponent::Base
   def initialize
   end
 end
@@ -2339,7 +2339,7 @@ end
 `# box_component.rb`
 
 ```ruby
-class BoxComponent < ActionView::Component::Base
+class BoxComponent < ViewComponent::Base
   with_content_areas :header, :body, :footer
 
   def initialize
@@ -2419,7 +2419,7 @@ end
 `# box_component.rb`
 
 ```ruby
-class BoxComponent < ActionView::Component::Base
+class BoxComponent < ViewComponent::Base
   with_content_areas :header, :body, :footer
 
   def initialize
@@ -2436,7 +2436,7 @@ end
 `# box_component.rb`
 
 ```ruby
-class BoxComponent < ActionView::Component::Base
+class BoxComponent < ViewComponent::Base
   with_content_areas :header, :body, :footer
 
   validates :header, :body, presence: true
@@ -2568,7 +2568,7 @@ end
 ---
 
 ```ruby
-class MessageComponent < ActionView::Component::Base
+class MessageComponent < ViewComponent::Base
   def initialize(message:)
     @message = message
   end
