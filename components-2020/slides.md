@@ -16,85 +16,25 @@ background-color: #fffcf5;
 
 ---
 
-# I have a secret
-
-^ have a secret to share
+# Encapsulating Views
 
 ---
 
-# The future of Rails
+# Hi
 
-^ future of rails
+^ introduce myself
 
-^ already here
-
-^ already exists
+^ name
 
 ---
 
-# It's in your applications
+![100%](img/github.png)
 
-^ in your apps
-
----
-
-# It's in your gems
-
-^ in your gems
-
-^ but it won't be the future
-
-^ unless you share it with the rest of us
-
----
-
-^ PAUSE
-
----
-
-# Rails
-
-^ rails
-
-^ around for a long time
-
----
-
-# 2005
-
-^ since 2005
-
-^ eternity in internet time
-
----
-
-# Relevance
-
-^ And yet it has remained relevant
-
-^ not by accident
-
----
-
-# Evolution
-
-^ Rails has evolved
-
-^ through features
-
-^ and fixes
-
-^ extracted from other Rails applications
-
----
-
-# Extraction
+^ engineer at on Design Systems team
 
 ^ today
 
-^ talk about extraction
-
-^ from GitHub
+^ talk about project
 
 ^ working on for the past year
 
@@ -102,7 +42,7 @@ background-color: #fffcf5;
 
 # ViewComponent
 
-^ called View Component
+^ called ViewComponent
 
 ---
 
@@ -122,51 +62,11 @@ background-color: #fffcf5;
 
 ^ vision
 
-^ future of rails views
+^ future of rails views at github
 
 ---
 
 ^ PAUSE
-
----
-
-# Hi
-
-^ introduce myself
-
-^ name
-
-<!-- for public talk
-
----
-
-![50%](img/microsoft.png)
-
-^ engineer at GitHub
-
-^ I have a big pile of stickers, see me later
-
--->
-
----
-
-![100%](img/github.png)
-
-^ engineer at GitHub on Design Systems team
-
-<!-- for public talk
-
----
-
-[.background-color: #000000]
-
-![fill](img/earth.jpeg)
-
-^ fully distributed
-
-^ most engineers remote
-
--->
 
 ---
 
@@ -288,6 +188,10 @@ background-color: #fffcf5;
 
 # Thanks
 
+^ stressful times
+
+^ therapist encourages focusing on gratitude
+
 ^ reflecting on what I'm thankful for
 
 ---
@@ -317,7 +221,7 @@ background-color: #fffcf5;
 
 ---
 
-^ Thank you for spending time with us
+^ Thank you for your time today
 
 ^ It is valuable
 
@@ -381,31 +285,11 @@ background-color: #fffcf5;
 
 ^ Rails is a big part of GitHub's success
 
-<!-- public talk only
-
 ---
 
-# Monolith
+# >800 contributers
 
-^ Still a monolith
-
-^ Moving back into monolith
-
-^ as of a year ago
-
----
-
-# $7.5 Billon Monolith
-
-^ Now $7.5 billion monolith
-
-^ Has the best name ever
-
----
-
-# github.com/github/github
-
--->
+^ More than 800 contributors last year
 
 ---
 
@@ -435,17 +319,7 @@ background-color: #fffcf5;
 
 ^ Over 4,200 views
 
----
-
-# 12 years old
-
-^ Codebase is about 12 years old
-
----
-
-# >800 contributers
-
-^ More than 800 contributors last year
+^ and it's this part of our scale that I'm going to focus on
 
 ---
 
@@ -453,88 +327,11 @@ background-color: #fffcf5;
 
 ---
 
-# Rails @ GitHub
+# A View Problems
 
-^ often asked about working on the monolith at GitHub
+^ seen scaling issues before
 
-^ different mindset I noticed when I joined
-
-^ remember someone
-
----
-
-> "If it doesn't have to do with our business, it needs to go in Rails."
-
-^ If it doesn't have to do with our business, it needs to go in Rails.
-
-^ In other words
-
----
-
-# Upstream by default
-
-^ our approach should be to upstream by default
-
-^ not always this way
-
----
-
-# Forks
-
-^ On fork until 2018
-
-^ Inventing features before Rails
-
-^ unsustainable maintenance
-
-^ backport security fixes
-
-^ hard to onboard
-
-^ team spent two years
-
-^ got us from a fork of 3.2 to master
-
----
-
-# master
-
-^ run a couple weeks behind master
-
-^ many benefits
-
-^ but the most critical was
-
-^ enabled easy contribution to Rails
-
-^ short lag in between rails and monolith
-
-^ enabled extraction
-
-^ around 100 PRs from GitHub into Rails 6
-
----
-
-> The best frameworks are in my opinion extracted, not envisioned. And the best way to extract is first to actually do.[^1]
--- DHH
-
-[^1]: https://dhh.dk/posts/6-why-theres-no-rails-inc.html
-
-^ DHH said it best in 2007
-
----
-
-^ PAUSE
-
----
-
-# The extraction I couldn't ignore
-
-^ Story
-
-^ extraction
-
-^ Too obvious to ignore
+^ here are a few examples of what they've looked like
 
 ---
 
@@ -586,7 +383,7 @@ end
 
 # react_rails
 
-^ Second time
+^ Second example
 
 ^ Using React to build UI
 
@@ -611,11 +408,13 @@ it('should render the button', function() {
 
 ^ tests were written in js
 
+^ super fast
+
 ---
 
 # Presenters
 
-^ Third time
+^ A third example
 
 ^ Folder called presenters
 
@@ -628,9 +427,21 @@ it('should render the button', function() {
 ---
 
 ```ruby
-class RepositoryIndexViewModel < ViewModel
+class RepositoryIndexView < ViewModel
   def status
     repository.locked? ? "Disabled" : "Enabled"
+  end
+end
+
+class RepositoryIndexViewTest < GitHub::TestCase
+  context "#status" do
+    test "enabled for unlocked repository" do
+      file_view = RepositoryIndexView.new(repository: create(:repository))
+
+      assert_equal file_view.status, "Enabled"
+    end
+
+    # ...
   end
 end
 ```
@@ -643,13 +454,11 @@ end
 
 ^ distraction, not really testing the view
 
-<!-- TODO add example test -->
-
 ---
 
 # Logic-filled partials
 
-^ Fourth time
+^ Fourth example
 
 ^ app that had lots of logic in partials
 
@@ -671,21 +480,24 @@ end
 
 ---
 
-# Components
+`# app/views/billing_settings/_github_packages_section.html.erb`
 
-^ all the while
-
-^ Rise of components
-
-^ made popular by react
-
-^ Design systems
-
-^ Open source like bootstrap
-
-^ Internal like Primer at GitHub
-
-^ trends continue to today
+```erb
+<%
+usage = Billing::Usage.new(view.account)
+unit_cost = BigDecimal(::Billing::Product::UNIT_COST)
+included_usage = [usage.paid_gigabytes, usage.plan_bandwidth].min
+usage_cost = view.pricing.downloads_cost
+transfer_group = OpenStruct.new(
+  transfer_type: "Data transfer out",
+  breakdown: [
+    OpenStruct.new(
+      name: "Data transfer out (rounded)",
+    )
+  ]
+)
+%>
+```
 
 ---
 
@@ -693,17 +505,13 @@ end
 
 ^ that's what I've seen
 
-^ what about you?
+^ what about the rest of the ecosystem
 
 ---
 
-# Your apps
+# Other apps
 
-^ asked to share your app folder
-
-^ wanted to see if it was in your apps too
-
-^ and it was!
+^ local ruby group to share app folders
 
 ---
 
@@ -897,7 +705,7 @@ end
 
 ---
 
-`# test/decorators/user_decorator_test.rb`
+`# test/models/user_test.rb`
 
 ```ruby
 assert_equal(user.name, "Rylan Bowers")
@@ -969,7 +777,7 @@ assert_includes response.body "Rylan Bowers"
 <h2><%= status %></h2>
 ```
 
-^ closest thing is local variable assignment
+^ closest thing to encapsulation is local variable assignment
 
 ^ as for testing
 
@@ -1001,13 +809,9 @@ assert_includes response.body "Rylan Bowers"
 
 ^ they aren't objects
 
----
+^ PAUSE
 
-![fit](img/lightspeed.jpg)
-
-^ Adventure
-
-^ Lots of ways to render
+^ So let's look at an example
 
 ---
 
@@ -1180,6 +984,8 @@ end
 ^ S compile
 
 ^ S method container
+
+^ TODO if not already compiled
 
 ^ method container is the ActionView::Base class
 
@@ -1387,6 +1193,7 @@ irb> __id__
 [.code-highlight: all]
 
 `# ActionView::Template`
+
 ```ruby
 # render(partial: "message", locals: { class_names: "greeting", foo: "bar" }
 
@@ -1421,7 +1228,6 @@ irb> self
 irb> __id__
 => 70215280603560
 ```
-
 
 ---
 
@@ -1612,15 +1418,7 @@ end
 
 ^ for rendering a view
 
-^ I'm guessing you all are thinking:
-
----
-
-![inline](img/wat.jpg)
-
-^ Wat
-
----
+^ PAUSE
 
 ^ Deep breath
 
@@ -1804,8 +1602,6 @@ end
 
 ```ruby
 class MessageComponent < ViewComponent::Base
-  validates :message, presence: true
-
   def initialize(message:)
     @message = message
   end
@@ -1854,8 +1650,6 @@ end
 
 ```ruby
 class MessageComponent < ViewComponent::Base
-  validates :message, presence: true
-
   def initialize(message:)
     @message = message
   end
@@ -1878,8 +1672,6 @@ end
 
 ```ruby
 class MessageComponent < ViewComponent::Base
-  validates :message, presence: true
-
   def initialize(message:)
     @message = message
   end
@@ -1910,8 +1702,6 @@ end
 class MessageComponent < ViewComponent::Base
   include IconHelper
 
-  validates :message, presence: true
-
   def initialize(message:)
     @message = message
   end
@@ -1937,8 +1727,6 @@ end
 ```ruby
 class MessageComponent < ViewComponent::Base
   include IconHelper
-
-  validates :message, presence: true
 
   def initialize(message:)
     @message = message
@@ -1968,7 +1756,7 @@ RSpec.describe BoxComponent do
   it "renders message" do
     render_inline(MessageComponent.new(message: "Hello, World!"))
 
-    assert_text, "Hello, World!"
+    assert_text "Hello, World!"
   end
 end
 ```
@@ -2117,58 +1905,6 @@ end
 
 ---
 
-[.code-highlight: 7-11]
-
-```html
-<div class="Box">
-  <div class="Box-header"><h3 class="Box-title">Box title</h3></div>
-  <div class="Box-body">Box body</div>
-  <div class="Box-footer">Box footer</div>
-</div>
-
-<Box>
-  <BoxHeader>Box title</BoxHeader>
-  <BoxBody>Box body</BoxBody>
-  <BoxFooter>Box footer</BoxFooter>
-</Box>
-```
-
-^ Here's what it might look like as a React component
-
-^ S there are downsides
-
-^ order of elements matters
-
-^ enforce header is first?
-
-^ enforce footer is last?
-
-^ enforce title and body are required?
-
-^ limited options as react only supports passing single block of content
-
----
-
-```html
-<Box>
-  <BoxHeader>Box title</BoxHeader>
-  <BoxBody>Box body</BoxBody>
-  <BoxFooter>Box footer</BoxFooter>
-</Box>
-
-<Box header="Box title" footer="Box footer">
-  Box body
-</Box>
-```
-
-^ One solution would be to have Box take header and footer arguments
-
-^ limits what we can pass for those arguments
-
-^ couldn't pass another component for footer
-
----
-
 ```erb
 <div class="Box">
   <div class="Box-header"><h3 class="Box-title">Box title</h3></div>
@@ -2239,13 +1975,15 @@ end
 <% end %>
 ```
 
-^ Make it more like the react example
+^ look something like this
 
-^ But really no better
+^ order of elements matters
 
-^ but we're writing ruby, so we can do better
+^ enforce header is first?
 
-^ unlike javascript, ruby methods can accept multiple blocks
+^ enforce footer is last?
+
+^ doesn't prevent misuse of the design system
 
 ---
 
@@ -2342,49 +2080,32 @@ end
 
 ^ S inside wrapping div
 
----
-
-`# app/components/box_component.rb`
-
-```ruby
-class BoxComponent < ViewComponent::Base
-  with_content_areas :header, :body, :footer
-
-  def initialize
-  end
-end
-```
-
-^ back in component
-
----
-
-[.code-highlight: 4]
-
-`# app/components/box_component.rb`
-
-```ruby
-class BoxComponent < ViewComponent::Base
-  with_content_areas :header, :body, :footer
-
-  validates :header, :body, presence: true
-
-  def initialize
-  end
-end
-```
-
-^ we can add a validation to require certain content areas to be set
-
----
-
-# Ruby > Javascript
-
-^ made me wonder
-
-^ what other things can we do better than javascript?
-
 ^ PAUSE
+
+---
+
+`# app/components/box_component.rb`
+
+```ruby
+class BoxComponent < ViewComponent::Base
+  with_content_areas :header, :body, :footer
+
+  def initialize
+  end
+end
+```
+
+`# app/components/box_component.html.erb`
+
+```erb
+<div class="Box">
+  <div class="Box-header"><h3 class="Box-title"><%= title %></h3></div>
+  <div class="Box-body"><%= body %></div>
+  <div class="Box-footer"><%= footer %></div>
+</div>
+```
+
+^ ended up with a codification of the design system
 
 ---
 
@@ -2408,21 +2129,27 @@ end
 
 ^ half dozen apps using a single gem
 
+^ we're planning to do the same
+
+^ PAUSE
+
+---
+
+![inline](img/rails-pr.png)
+
+^ Most exciting
+
+^ landed PRs in rails to support this architecture
+
+^ will be shipping in Rails 6.1 this spring
+
+^ PAUSE
+
 ---
 
 # Performance
 
-^ what about performance?
-
----
-
-# 10's of k requests/sec
-
-^ We serve a lot of requests
-
-^ It's been a non-issue
-
-^ Also easier to make fast
+^ so what about performance?
 
 ---
 
@@ -2529,7 +2256,7 @@ end
 
 ^ If you want to give it a try
 
-^ Easy way is to migrate a presenter / view model
+^ Easy way is to migrate a view model
 
 ^ what we've been doing
 
@@ -2569,6 +2296,10 @@ end
 
 ---
 
+## #view-component<br />@github/view-component-reviewers
+
+---
+
 ^ PAUSE
 
 ---
@@ -2582,16 +2313,6 @@ end
 # Rails
 
 ^ goal to eventually incorporate into rails
-
----
-
-![inline](img/rails-pr.png)
-
-^ Started to make progress
-
-^ Preliminary PRs in Rails for syntax
-
-^ Continue to integrate more of library into Rails
 
 ---
 
