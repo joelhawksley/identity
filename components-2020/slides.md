@@ -863,69 +863,9 @@ assert_includes response.body "Rylan Bowers"
 
 `# ActionView::Template`
 
-[.code-highlight: 0]
 [.code-highlight: 1]
-
-```ruby
-def render(view, locals, buffer = ActionView::OutputBuffer.new, &block)
-  instrument_render_template do
-    compile!(view)
-    view._run(method_name, self, locals, buffer, &block)
-  end
-rescue => e
-  handle_render_error(view, e)
-end
-```
-
-^ S Arguments
-
-^ S put in a binding.irb
-
----
-
-`# ActionView::Template`
-
-[.code-highlight: 2]
-
-```ruby
-def render(view, locals, buffer = ActionView::OutputBuffer.new, &block)
-  binding.irb
-  instrument_render_template do
-    compile!(view)
-    view._run(method_name, self, locals, buffer, &block)
-  end
-rescue => e
-  handle_render_error(view, e)
-end
-```
-
----
-
-`# ActionView::Template`
-
-```ruby
-def render(view, locals, buffer = ActionView::OutputBuffer.new, &block)
-  binding.irb
-
-irb> view.class
-=> #<Class:0x00007facefb6c800>
-
-irb> locals
-=> {:class_names=>"greeting"}
-
-irb> buffer
-=> ""
-
-irb> buffer.class
-=> ActionView::OutputBuffer
-
-```
-
----
-
-`# ActionView::Template`
-
 [.code-highlight: 3]
+
 
 ```ruby
 def render(view, locals, buffer = ActionView::OutputBuffer.new, &block)
@@ -985,8 +925,6 @@ end
 
 ^ S method container
 
-^ TODO if not already compiled
-
 ^ method container is the ActionView::Base class
 
 ^ PAUSE
@@ -1035,13 +973,14 @@ irb> @handler
 => #<ActionView::Template::Handlers::ERB:0x00007fb57e348740>
 
 irb> self
-=> #<ActionView::Template app/views/demo/_message.html.erb locals=["class_names"]>
+=> #<ActionView::Template app/views/demo/_message.html.erb locals=[]>
 
 irb> source
-=> "<h1 class=\"<%= class_names %>\"><%= @message %></h1>"
+=> "<h1><%= @message %></h1>"
 
 irb> @handler.call(self, source)
-=> "@output_buffer.safe_append='<h1 class=\"'.freeze;@output_buffer.append=( class_names );@output_buffer.safe_append='\">'.freeze;@output_buffer.append=( @message );@output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
+=> "@output_buffer.safe_append='<h1>'.freeze;@output_buffer.append=( @message );
+   @output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
 ```
 
 ^ go through steps
@@ -1053,20 +992,18 @@ irb> @handler.call(self, source)
 `# @handler.call`
 
 ```ruby
-@output_buffer.safe_append='<h1 class=\"'.freeze;
-@output_buffer.append=( class_names );
-@output_buffer.safe_append='\">'.freeze;
+@output_buffer.safe_append='<h1>'.freeze;
 @output_buffer.append=( @message );
-@output_buffer.safe_append='</h1>'.freeze;\n
-@output_buffer.to_s"
+@output_buffer.safe_append='</h1>'.freeze;
+@output_buffer.to_s
 ```
 
 <br />
 
-`# app/views/demo/_message.html.erb`
+`# _message.html.erb`
 
 ```erb
-<h1 class="<%= class_names %>"><%= @message %></h1>
+<h1><%= @message %></h1>
 ```
 
 ^ turned ERB into Ruby
@@ -1104,135 +1041,6 @@ end
 
 [.code-highlight: 1-5]
 [.code-highlight: 1-5, 7-8]
-
-`# ActionView::Template`
-
-```ruby
-source = +<<-end_src
-  def #{method_name}(local_assigns, output_buffer)
-    @virtual_path = #{@virtual_path.inspect};#{locals_code};#{code}
-  end
-end_src
-
-irb> method_name
-=> "_app_views_demo__message_html_erb___340905320949896366_70214743759180"
-
-irb> @virtual_path.inspect
-=> "demo/_message"
-
-irb> locals_code
-=> "class_names = local_assigns[:class_names]; class_names = class_names;"
-
-irb> code
-=> "@output_buffer.safe_append='<h1 class=\"'.freeze;@output_buffer.append=( class_names );@output_buffer.safe_append='\">'.freeze;@output_buffer.append=( @message );@output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
-```
-
-^ inspect current state
-
----
-
-`# ActionView::Template`
-
-```ruby
-def method_name
-  @method_name ||= begin
-    m = +"_#{identifier_method_name}__#{@identifier.hash}_#{__id__}"
-    m.tr!("-", "_")
-    m
-  end
-end
-
-irb> identifier_method_name
-=> "app_views_demo__message_html_erb"
-
-irb> @identifier
-=> ".../app/views/demo/_message.html.erb"
-
-irb> @identifier.hash
-=> -340905320949896366
-
-irb> __id__
-=> 70214743759180
-```
-
-^ @identifier is a string
-
-^ Returns a hash based on the string’s length, content and encoding.
-
-^ object id - this is a problem - changes on boot,
-
----
-
-`# app/views/demo/index.html.erb`
-
-```erb
-<% @message = "Hello World" %>
-<%= render(partial: "message", locals: { class_names: "greeting" }) %>
-```
-
-^ back in index
-
----
-
-[.code-highlight: 3]
-
-`# app/views/demo/index.html.erb`
-
-```erb
-<% @message = "Hello World" %>
-<%= render(partial: "message", locals: { class_names: "greeting" }) %>
-<%= render(partial: "message", locals: { class_names: "greeting", foo: "bar" }) %>
-```
-
-^ Add a second render call for the same partial with different keys
-
----
-
-[.code-highlight: 1-6]
-[.code-highlight: 1-9]
-[.code-highlight: all]
-
-`# ActionView::Template`
-
-```ruby
-# render(partial: "message", locals: { class_names: "greeting", foo: "bar" }
-
-def compile!(view)
-  return if @compiled
-  # ...
-end
-
-irb> self.inspect
-=> #<ActionView::Template app/views/demo/_message.html.erb locals=["class_names", "foo"]>
-
-irb> @compiled
-=> false
-```
-
----
-
-`# ActionView::Template`
-
-```ruby
-def method_name
-  @method_name ||= begin
-    m = +"_#{identifier_method_name}__#{@identifier.hash}_#{__id__}"
-    m.tr!("-", "_")
-    m
-  end
-end
-
-irb> self
-=> #<ActionView::Template app/views/demo/_message.html.erb locals=["class_names", "foo"]>
-
-irb> __id__
-=> 70215280603560
-```
-
----
-
-[.code-highlight: 1-5]
-[.code-highlight: 1-5, 7-8]
 [.code-highlight: 1-5, 10-11]
 [.code-highlight: 1-5, 13-15]
 
@@ -1246,16 +1054,14 @@ source = +<<-end_src
 end_src
 
 irb> method_name
-=> "_app_views_demo__message_html_erb___340905320949896366_70214743759180"
+=> "_app_views_demo__message_html_erb__3147936528918386365_70191870416280"
 
 irb> @virtual_path.inspect
 => "demo/_message"
 
-irb> locals_code
-=> "class_names = local_assigns[:class_names]; class_names = class_names;"
-
 irb> code
-=> "@output_buffer.safe_append='<h1 class=\"'.freeze;@output_buffer.append=( class_names );@output_buffer.safe_append='\">'.freeze;@output_buffer.append=( @message );@output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
+=> "@output_buffer.safe_append='<h1>'.freeze;@output_buffer.append=( @message );
+   @output_buffer.safe_append='</h1>'.freeze;\n@output_buffer.to_s"
 ```
 
 ^ inspect current state
@@ -1268,17 +1074,11 @@ irb> code
 [.code-highlight: 1-7]
 
 ```ruby
-def _app_views_demo__message_html_erb___719020604600940213_70174049455740(local_assigns, output_buffer)
-  @virtual_path = "demo/_message";
-
-  class_names = local_assigns[:class_names];
-  class_names = class_names;
-
-  @output_buffer.safe_append='<h1 class="'.freeze;
-  @output_buffer.append=( class_names );
-  @output_buffer.safe_append='">'.freeze;
-  @output_buffer.append=( @message );
-  @output_buffer.safe_append='</h1>'.freeze;
+def _app_views_demo__message_html_erb__3026934259175371146_70158375537500(local_assigns, output_buffer)
+  @virtual_path = "demo/_message"
+  @output_buffer.safe_append='<h1>'.freeze
+  @output_buffer.append=( @message )
+  @output_buffer.safe_append='</h1>'.freeze
   @output_buffer.to_s
 end
 ```
@@ -1418,7 +1218,15 @@ end
 
 ^ for rendering a view
 
-^ PAUSE
+^ I'm guessing you all are thinking:
+
+---
+
+![inline](img/wat.jpg)
+
+^ Wat
+
+---
 
 ^ Deep breath
 
@@ -1450,15 +1258,15 @@ end
 
 ---
 
-`# app/views/demo/index.html.erb`
+`# index.html.erb`
 
 ```erb
 <% @message = "Hello World" %>
-<%= render(partial: "message", locals: { class_names: "greeting" }) %>
+<%= render("message") %>
 ```
 
 <br />
-`# app/views/demo/_message.html.erb`
+`# _message.html.erb`
 
 ```erb
 <h1><%= @message %></h1>
@@ -1541,10 +1349,6 @@ end
 ---
 
 ^ PAUSE
-
----
-
-# Solution
 
 ^ What might encapsulated views look like?
 
