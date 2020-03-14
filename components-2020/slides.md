@@ -361,10 +361,11 @@ background-color: #fffcf5;
 
 ---
 
+[.code-highlight: 1-9]
+[.code-highlight: 11-15]
+
 ```ruby
 class UserDecorator < Draper::Decorator
-  delegate_all
-
   def status
     if active?
       "Last active at #{last_active_at}"
@@ -373,9 +374,15 @@ class UserDecorator < Draper::Decorator
     end
   end
 end
+
+class UserDecoratorTest < Minitest::Test
+  def test_status
+    assert_equal UserDecorator.new(@inactive_user).status, "Inactive"
+  end
+end
 ```
 
-^ Looked like this
+^ S Looked like this
 
 ^ talk through code
 
@@ -383,7 +390,9 @@ end
 
 ^ really just another place to hide methods
 
-^ unit tested like models
+^ S unit tested like models
+
+^ explain code
 
 ---
 
@@ -1354,7 +1363,23 @@ end
 
 ---
 
+# Problem
+
+^ this is a problem
+
+^ views have a very high business values
+
+^ views are what we ultimately ship to users
+
+^ and yet because of these problems
+
+^ they're often a blind spot in our architecture
+
+---
+
 ^ PAUSE
+
+^ given all of this, I had to wonder:
 
 ^ What might encapsulated views look like?
 
@@ -1575,7 +1600,9 @@ end
 
 ^ S Render component inline
 
-^ S assert against rendered result
+^ S assert against rendered result using Capybara matchers
+
+^ without using a browser
 
 ^ Fast
 
@@ -1639,13 +1666,13 @@ end
 
 ```ruby
 module Issues
-  class BadgeComponentPreview < ViewComponent::Preview
+  class StateComponentPreview < ViewComponent::Preview
     def open
-      render(Issues::BadgeComponent.new(state: :open))
+      render(Issues::StateComponent.new(state: :open))
     end
 
     def closed
-      render(Issues::BadgeComponent.new(state: :closed))
+      render(Issues::StateComponent.new(state: :closed))
     end
   end
 end
@@ -2215,9 +2242,165 @@ test "it renders the open state"
 
 ---
 
+# Failures
+
+^ It's also important to share some failures
+
+---
+
+# Validations
+
+^ Perhaps the biggest mistake we've made with this architecture
+
+^ was using validations
+
+---
+
+[.code-highlight: 1-2]
+[.code-highlight: 3]
+[.code-highlight: 3-4]
+[.code-highlight: 6]
+
+`# app/components/shared/avatar_component.rb`
+
+```ruby
+module Shared
+  class AvatarComponent < ApplicationViewComponent
+    DEFAULT_SIZE = 20
+    ALLOWED_SIZES = [DEFAULT_SIZE, 32]
+
+    validates :size, inclusion: { in: ALLOWED_SIZES }
+
+    # ...
+  end
+end
+```
+
+^ For example
+
+^ Avatar component
+
+^ S default size of 20
+
+^ S allowed sizes including default and 32
+
+^ in order to help developers use the component correctly
+
+^ S used activemodel validations to check that size was valid
+
+^ this also let us write code that expected size to be one of the allowed values
+
+^ this was all well and good
+
+^ but it came at a price
+
+---
+
+![fit](img/validation-error.png)
+
+^ unfortunately, we paid that price in production
+
+^ canary deploy
+
+^ presence validation error not caught by tests
+
+^ only affected a couple users
+
+^ quickly rolled back
+
+^ but we knew we needed to rethink this approach
+
+^ what we came up with was a simple helper
+
+^ called fetch or fallback
+
+---
+
+[.code-higlight: 1]
+[.code-higlight: 2]
+[.code-higlight: 3]
+[.code-higlight: 7]
+[.code-higlight: 5]
+[.code-higlight: all]
+
+`# lib/github/fetch_or_fallback_helper.rb`
+
+```ruby
+def fetch_or_fallback(allowed_values, given_value, fallback)
+  if allowed_values.include?(given_value)
+    given_value
+  else
+    raise ArgumentError, ... if Rails.development?
+
+    fallback
+  end
+end
+```
+
+^ read args
+
+^ S if allow values include given value
+
+^ S return it otherwise
+
+^ S otherwise, return fallback
+
+^ However, if in development
+
+^ S we raise an error
+
+^ S this gives us the feedback we wanted from validations
+
+^ and the safety knowing that we are working with a value we expect
+
+^ without raising exceptions in production
+
+---
+
+[.code-highlight: 9]
+
+`# app/components/shared/avatar_component.rb`
+
+```ruby
+module Shared
+  class AvatarComponent < ApplicationComponent
+    DEFAULT_SIZE = 20
+    ALLOWED_SIZES = [DEFAULT_SIZE, 32]
+
+    def initialize(actor:, viewer: nil, size: DEFAULT_SIZE, **args)
+      @actor, @viewer, @args = actor, viewer, args
+
+      @size = fetch_or_fallback(ALLOWED_SIZES, size, DEFAULT_SIZE)
+    end
+  end
+end
+```
+
+^ Looking back at the avatar component
+
+^ instead of using a validation on the size attribute
+
+^ we use fetch or fallback to safely guarantee
+
+^ size is a value we expect
+
+^ PAUSE
+
+---
+
+# Resiliency
+
+^ lesson learned here is ultimately one of
+
+^ designing for resiliency
+
+^ we hadn't fully understood the downstream risks of using validations
+
+---
+
 # Future
 
-^ What does this mean for the future of views here?
+^ What does this mean for the future of our views?
 
 ---
 
@@ -2239,6 +2422,26 @@ test "it renders the open state"
 
 ---
 
+# Examples
+
+^ we also have plenty of examples already
+
+---
+
+## app/components (70)<br />lib/primer (16)
+
+^ 70 components in dotcom application
+
+^ 16 primer components in lib
+
+---
+
+# ~300 usages in 139 views
+
+^ around 300 usages in 139 views
+
+---
+
 # New views
 
 ^ What about for new views
@@ -2252,8 +2455,6 @@ test "it renders the open state"
 # "If it could be a partial, it could be a component"
 
 ^ "If it could be a partial, it could be a component"
-
-^ encourage to start there
 
 ---
 
