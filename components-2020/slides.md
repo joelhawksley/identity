@@ -1359,7 +1359,15 @@ end
 
 ^ All 4,200-odd views exist in the same scope
 
-^ They aren't going anywhere
+^ making it really hard to reason about their execution behavior
+
+---
+
+# ~~Unit Testing~~
+
+^ which means unit testing them is very difficult
+
+^ as they can't really be isolated
 
 ---
 
@@ -2242,9 +2250,11 @@ test "it renders the open state"
 
 ---
 
-# Failures
+# Lessons
 
-^ It's also important to share some failures
+^ we've learned a lot
+
+^ In the past year experimenting with this pattern
 
 ---
 
@@ -2396,6 +2406,257 @@ end
 
 ^ we hadn't fully understood the downstream risks of using validations
 
+^ more broadly, designing error cases out of our systems is
+
+^ of utmost importance
+
+^ we're now working to undo this architecture, replacing validations with graceful fallbacks
+
+^ PAUSE
+
+---
+
+# Exposing complexity
+
+^ another thing we've learned refactoring existing code to use components
+
+^ has been that they expose complexity
+
+---
+
+# views/shared/_details_dialog.html.erb
+
+^ one of the most complex examples has been the details dialog partial
+
+^ 220 uses in 148 files
+
+---
+
+`# views/shared/_details_dialog.html.erb`
+
+```erb
+<% locals = ensure_local_vars(local_assigns, {
+  required: [:button_text, :title],
+  optional: [:button_icon, :dialog_class, :ga_click, :sudo_required, :id, :button_role, :deferred_loading_url, :button_aria_label, :title_class, :safe_toggle_button_data_attributes],
+  defaults: {
+    button_class: "btn",
+    details_class: "d-inline-block text-left",
+    preload: false,
+    is_checked: false,
+    hidden: false
+  }
+}) %>
+
+<details
+  class="details-reset details-overlay details-overlay-dark lh-default text-gray-dark <%= locals[:details_class] %>"
+  <% if locals[:id] %>id="<%= locals[:id] %>"<% end %>>
+  <summary
+      class="<%= locals[:button_class] %>"
+      <%= locals[:safe_toggle_button_data_attributes] %>
+      <% if locals[:button_aria_label] %>aria-label="<%= locals[:button_aria_label] %>"<% end %>
+      <% if locals[:ga_click] %>data-ga-click="<%= locals[:ga_click] %>"<% end %>
+      <% if locals[:sudo_required] %>data-sudo-required="<%= locals[:sudo_required] %>"<% end %>
+      <% if locals[:button_role].present? %>
+        role="<%= locals[:button_role] %>"
+        <% if ["menuitemradio", "menuitemcheckbox"].include?(locals[:button_role]) %>aria-checked="<%= locals[:is_checked] %>"<% end %>
+      <% end %>
+      <% if locals[:hidden] %>hidden<% end %>>
+    <%= octicon locals[:button_icon] if locals[:button_icon] %>
+    <%= locals[:button_text] %>
+  </summary>
+  <details-dialog
+    aria-label="<%= title %>"
+    class="Box Box--overlay d-flex flex-column anim-fade-in fast <%= locals[:dialog_class] %>"
+    <% if locals[:deferred_loading_url] %>src="<%= locals[:deferred_loading_url] %>"<% end %>
+    <% if locals[:preload] %>preload<% end %>>
+    <div class="Box-header">
+      <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
+        <%= octicon "x" %>
+      </button>
+      <h3 class="Box-title <%= locals[:title_class] %>"><%= locals[:title] %></h3>
+    </div>
+    <%= yield %>
+  </details-dialog>
+</details>
+```
+
+^ It's massive, handling a lot of complexity and use cases
+
+^ 17 different local variables
+
+---
+
+`# views/shared/_details_dialog.html.erb`
+
+```erb
+<% locals = ensure_local_vars(local_assigns, {
+  required: [:button_text, :title],
+  optional: [:button_icon, :dialog_class, :ga_click, :sudo_required, :id, :button_role, :deferred_loading_url, :button_aria_label, :title_class, :safe_toggle_button_data_attributes],
+  defaults: {
+    button_class: "btn",
+    details_class: "d-inline-block text-left",
+    preload: false,
+    is_checked: false,
+    hidden: false
+  }
+}) %>
+```
+
+^ Helpfully managed by the clever ensure_local_vars helper written by the wonderful @muan
+
+^ This really is a lovely abstraction, and saves us a lot of pain
+
+^ without digging into the details, it behaves similarly to our fetch or fallback helper
+
+^ raising errors when not in production
+
+---
+
+`# lib/github/details_component.rb`
+
+```ruby
+module GitHub
+  class DetailsComponent < ApplicationComponent
+    DEFAULT_BUTTON_CLASS = "btn"
+    DEFAULT_DETAILS_CLASS = "d-inline-block text-left"
+    DEFAULT_PRELOAD = false
+    DEFAULT_IS_CHECKED = false
+    DEFAULT_HIDDEN = false
+
+    validates :button_text, :title, presence: true
+
+    # from app/assets/modules/github/sudo.js:11
+    validates :sudo_required, inclusion: { in: [nil, "low", "medium", "high", "two_factor"] }
+
+    validate :ensure_button_role_and_is_checked_valid
+
+    IS_CHECKED_BUTTON_ROLES = ["menuitemradio", "menuitemcheckbox"]
+
+    def initialize(button_text:, title:,
+                   button_class: DEFAULT_BUTTON_CLASS, details_class: DEFAULT_DETAILS_CLASS, preload: DEFAULT_PRELOAD, is_checked: DEFAULT_IS_CHECKED, hidden: DEFAULT_HIDDEN,
+                   button_icon: nil, dialog_class: nil, ga_click: nil, sudo_required: nil, id: nil, button_role: nil, deferred_loading_url: nil, button_aria_label: nil, title_class: nil,
+                   button_data: nil)
+      @button_text = button_text
+      @title = title
+      @button_class = button_class
+      @details_class = details_class
+      @preload = preload
+      @is_checked = is_checked
+      @hidden = hidden
+      @button_icon = button_icon
+      @dialog_class = dialog_class
+      @ga_click = ga_click
+      @sudo_required = sudo_required
+      @id = id
+      @button_role = button_role
+      @deferred_loading_url = deferred_loading_url
+      @button_aria_label = button_aria_label
+      @title_class = title_class
+      @button_data = button_data
+    end
+
+    private
+
+    def ensure_button_role_and_is_checked_valid
+      return unless @button_role.present? && @is_checked.present?
+      return if IS_CHECKED_BUTTON_ROLES.include?(@button_role)
+
+      errors.add(:button_role, "must be either #{IS_CHECKED_BUTTON_ROLES.join(" or ")} if is_checked is set")
+    end
+
+    attr_reader :button_text, :title, :button_class, :details_class, :preload, :is_checked, :hidden, :button_icon, :dialog_class, :ga_click, :sudo_required, :id, :button_role, :deferred_loading_url, :button_aria_label, :title_class, :button_data
+  end
+end
+```
+
+^ Refactored into a component, this complexity is even more visible.
+
+---
+
+`# lib/github/details_component.rb`
+
+```ruby
+module GitHub
+  class DetailsComponent < ApplicationComponent
+    def initialize(button_text:, title:,
+                   button_class: DEFAULT_BUTTON_CLASS, details_class: DEFAULT_DETAILS_CLASS, preload: DEFAULT_PRELOAD, is_checked: DEFAULT_IS_CHECKED, hidden: DEFAULT_HIDDEN,
+                   button_icon: nil, dialog_class: nil, ga_click: nil, sudo_required: nil, id: nil, button_role: nil, deferred_loading_url: nil, button_aria_label: nil, title_class: nil,
+                   button_data: nil)
+    end
+
+    # ...
+  end
+end
+```
+
+^ The initializer takes 17 possible arguments.
+
+^ Even more so than the view, this forces us to reckon with the complexity
+
+^ But it also allows us some safety
+
+---
+
+`# test/lib/github/details_component_test.rb`
+
+```ruby
+class GitHubDetailsComponentTest < GitHub::TestCase
+  test "requires button and title to be present"
+  test "displays provided title and button text"
+  test "assigns custom button class"
+  test "assigns custom details class"
+  test "does not assign preload attribute by default"
+  test "assigns preload attribute if enabled"
+  test "renders button icon if provided"
+  test "renders dialog class if provided"
+  test "renders ga click if provided"
+  test "does not render sudo required if nil"
+  test "renders sudo required if provided"
+  test "raises an error if sudo required is not one of the allowed values"
+  test "assigns ID if provided"
+  test "sets button role if provided"
+  test "sets button aria-checked if provided for radio button"
+  test "raises error if aria-checked is passed with an invalid button role"
+  test "sets src if deferred loading url is provided"
+  test "sets button aria-label if provided for button"
+  test "sets title_class if provided"
+end
+```
+
+^ As we can at least unit test the component thoroughly
+
+^ Our existing test has 20 cases, and could probably use more
+
+^ PAUSE
+
+---
+
+# Consistency
+
+^ Another lesson from working with components has been
+
+^ the power of consistency
+
+---
+
+![fit](img/pr-state.png)
+
+^ one example of this was building the PR state component
+
+^ render it nine different places in the app
+
+^ when we went to implement the component
+
+^ the existing view code was more or less copy-pasted for each usage
+
+^ as we refactored to use the component
+
+^ we realized that several of the cases had never been updated to handle draft PRs
+
+^ so by using a component, we were able to ensure a consistent experience for our users
+
+^ PAUSE
+
 ---
 
 # Future
@@ -2463,6 +2724,22 @@ end
 ^ ruby library on github
 
 ^ contributions welcome, even if it's just bug reports
+
+---
+
+# github.com/orgs/github/projects/728
+
+^ also have an internal project board with plenty of actionable cards
+
+---
+
+CSS encapsulation? Accessibility?
+
+^ There are also some bigger ideas to explore
+
+^ Like CSS encapsulation
+
+^ and accessibility-forward architecture
 
 ---
 
