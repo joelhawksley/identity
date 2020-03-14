@@ -52,6 +52,12 @@ background-color: #fffcf5;
 
 ---
 
+# How
+
+^ how we're using it
+
+---
+
 # Lessons
 
 ^ lessons learned
@@ -60,13 +66,13 @@ background-color: #fffcf5;
 
 # Future
 
-^ vision
-
-^ future of rails views at github
+^ how you can get involved
 
 ---
 
 ^ PAUSE
+
+^ but a little bit about me first
 
 ---
 
@@ -1577,7 +1583,7 @@ end
 
 ---
 
-# `gem "actionview-component"`
+# `gem "view_component"`
 
 ^ Published in august
 
@@ -1587,7 +1593,7 @@ end
 
 ^ blown away by support
 
-^ shipped 20 releases
+^ shipped 33 releases
 
 ---
 
@@ -2048,11 +2054,180 @@ end
 
 ---
 
+# Testing
+
+^ big speed benefits in testing
+
+---
+
+[.code-highlight: 0]
+[.code-highlight: 1-2]
+[.code-highlight: 4-6]
+[.code-highlight: 8]
+[.code-highlight: 10-12]
+[.code-highlight: 14]
+[.code-highlight: 16]
+
+```ruby
+# test/components/issues/state_component_test.rb:41
+render_inline(Issues::StateComponent.new(state: :open))
+
+assert_text("Open")
+assert_selector("span[title='Status: Open']")
+assert_selector(".State--green")
+
+=> 20ms
+
+# test/integration/settings_controller_test.rb:21
+as @user
+get "/settings/profile"
+
+assert_response 200
+
+=> 1.46
+```
+
+^ Compare two cases
+
+^ S fairly typical component test of issues state component
+
+^ S a couple assertions against DOM
+
+^ S 20 milliseconds
+
+^ S Compared to one of the simplest controller tests I could find
+
+^ loads user profile settings page
+
+^ S asserts the response was a 200
+
+^ S takes almost 1.5 seconds
+
+^ which is a
+
+---
+
+# 73x
+
+^ 73 times difference in speed
+
+^ conservative case
+
+^ typical component test against
+
+^ best case controller test
+
+^ more typical difference is around two orders of magnitude
+
+^ PAUSE
+
+^ so for example
+
+---
+
+```ruby
+test "does not render if invalid state is passed"
+test "it passes styles to Primer::StateComponent"
+test "it passes size to Primer::StateComponent"
+test "it set the octicon height based on size"
+test "it renders the closed state"
+test "it renders the open state"
+```
+
+^ These are the test cases for the Issues State Component
+
+---
+
+# 9 seconds
+
+^ take 9 seconds as controller tests
+
+---
+
+# 120 _milliseconds_
+
+^ take 120 millisconds as unit tests
+
+^ PAUSE
+
+---
+
+# Levels of abstraction
+
+^ perhaps more importantly
+
+^ we can write tests at a more appropriate level of abstraction
+
+---
+
+![fit](img/test-pyramid-highlighted.png)
+
+^ looking back at our testing pyramid
+
+^ we had to test our views at the controller layer
+
+^ which means that for partials we reuse across the app
+
+^ we ended testing them in each place we used them
+
+---
+
+```
+# views/comments/_title.html.erb:106
+# views/comments/_title.html.erb:131
+# views/issues/events/_connection.html.erb:124
+# views/issues/events/_cross_reference.html.erb:102
+```
+
+^ In the case of the issue badge component
+
+^ we use it four times in three files
+
+^ Which means that without unit tests
+
+^ we'd likely end up testing it in mulitple controller tests
+
+^ further increasing the performance impact
+
+---
+
+![fit](img/test-pyramid-highlighted.png)
+
+^ instead, by using components with unit tests
+
+---
+
+![fit](img/test-pyramid.png)
+
+^ we can test our view layer thoroughly at the unit level
+
+^ without duplication
+
+---
+
 # Performance
 
 ^ Just the beginning
 
 ^ Designed to allow optimization
+
+^ PAUSE
+
+---
+
+# Future
+
+^ What does this mean for the future of views here?
+
+---
+
+# ViewModels to Components
+
+^ proposing that we migrate to using components
+
+^ instead of view models
+
+^ Linter to cap view model usage, directing to components instead
 
 ---
 
@@ -2060,25 +2235,7 @@ end
 
 ^ If you want to give it a try
 
-^ Easy way is to migrate a view model
-
-^ what we've been doing
-
-^ Linter to cap view model usage, directing to components instead
-
----
-
-# Tests
-
-^ Immediate testing benefit
-
-^ Migrate unit tests from previous abstraction
-
-^ Also migrate most controller tests
-
-^ can test against output html
-
-^ Might find missing coverage in the process
+^ Easy way is to migrate a view model in your AoR
 
 ---
 
@@ -2100,65 +2257,21 @@ end
 
 ---
 
+# github/view_component
+
+^ ruby library on github
+
+^ contributions welcome, even if it's just bug reports
+
+---
+
 ## #view-component<br />@github/view-component-reviewers
 
----
-
-^ PAUSE
-
----
-
-# The Future
-
-^ what about the future
-
----
-
-# Rails
-
-^ goal to eventually incorporate into rails
+^ We're here to help on slack and in PR reviews
 
 ---
 
 ^ PAUSE
-
----
-
-# ~~Secret~~
-
-^ No secret
-
-^ Future of Rails is inside your applications
-
----
-
-# Progress
-
-^ Frameworks like Rails help us move human progress forward
-
-^ allowing us to focus on new and important problems
-
-^ in a changing world,
-
----
-
-# It's up to us.
-
-^ up to us to make thoughtful extractions
-
-^ keep Rails relevant
-
----
-
-# Time
-
-^ Our time is precious
-
----
-
-# How will you spend yours?
-
-^ How will you spend yours?
 
 ---
 
