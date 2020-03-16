@@ -2326,12 +2326,12 @@ end
 
 ---
 
-[.code-higlight: 1]
-[.code-higlight: 2]
-[.code-higlight: 3]
-[.code-higlight: 7]
-[.code-higlight: 5]
-[.code-higlight: all]
+[.code-highlight: 1]
+[.code-highlight: 2]
+[.code-highlight: 3]
+[.code-highlight: 7]
+[.code-highlight: 5]
+[.code-highlight: all]
 
 `# lib/github/fetch_or_fallback_helper.rb`
 
@@ -2654,6 +2654,121 @@ end
 ^ we realized that several of the cases had never been updated to handle draft PRs
 
 ^ so by using a component, we were able to ensure a consistent experience for our users
+
+^ PAUSE
+
+^ another benefit this component exposed is how we can benefit from composition
+
+---
+
+`# app/components/pull_requests/state_component.html.erb`
+
+```erb
+<%= render(
+  Primer::StateComponent.new({
+    title: "Status: #{label}",
+    color: STATES[@state][:color],
+    size: @size }.merge(@args)
+  )
+) do %>
+  <%= octicon(STATES[@state][:octicon_name], height: octicon_height) %> <%= label %>
+<% end %>
+```
+
+^ As it is itself a wrapper of a component from our design system!
+
+^ explain code
+
+^ this is an common patten
+
+^ application-specific component wrapping one or more components from design system
+
+^ PAUSE
+
+---
+
+[.code-highlight: 0]
+[.code-highlight: 3]
+
+`# lib/primer/layout_component.rb`
+
+```ruby
+module Primer
+  class LayoutComponent < Primer::Component
+    with_content_areas :main, :sidebar
+
+    DEFAULT_SIDE = :right
+    ALLOWED_SIDES = [DEFAULT_SIDE, :left]
+
+    def initialize(responsive: false, side: DEFAULT_SIDE, **args)
+      @responsive, @args = responsive, args
+
+      @side = fetch_or_fallback(ALLOWED_SIDES, side, DEFAULT_SIDE)
+    end
+  end
+end
+```
+
+^ Another cool example is the primer layout component
+
+^ S this component leverages multiple content areas
+
+^ to accept a main content body and sidebar
+
+^ and render them side by side with proper responsive support
+
+---
+
+[.code-highlight: 0]
+[.code-highlight: 14-16]
+[.code-highlight: 8-12, 14-16]
+[.code-highlight: 14-16,18-22]
+
+`# lib/primer/layout_component.html.erb`
+
+```erb
+<%= render(
+  Primer::FlexComponent.new(
+    {
+      class_names: "gutter-condensed gutter-lg",
+      direction: (@responsive ? [:column, nil, :row] : nil)
+    }.merge(@args)
+ )) do %>
+  <% if @side == :left %>
+    <%= render Primer::BaseComponent.new(as: :div, class_names: "flex-shrink-0", col: (@responsive ? [12, nil, 3] : 3), mb: (@responsive ? [5, nil, 0] : nil)) do %>
+      <%= sidebar %>
+    <% end %>
+  <% end %>
+
+  <%= render Primer::BaseComponent.new(as: :div, class_names: "flex-shrink-0", col: (@responsive ? [12, nil, 9] : 9), mb: (@responsive ? [5, nil, 0] : nil)) do %>
+    <%= main %>
+  <% end %>
+
+  <% if @side == :right %>
+    <%= render Primer::BaseComponent.new(as: :div, class_names: "flex-shrink-0", col: (@responsive ? [12, nil, 3] : 3)) do %>
+      <%= sidebar %>
+    <% end %>
+  <% end %>
+<% end %>
+```
+
+^ in the template
+
+^ S we render the main content body
+
+^ the side bar is rendered
+
+^ S on either the left
+
+^ S on either the left
+
+^ PAUSE
+
+^ there is a fair amount of complexity in getting the responsive behavior just right
+
+^ we now have a single implementation of this pattern
+
+^ used in 8 places in dotcom
 
 ^ PAUSE
 
