@@ -6,7 +6,7 @@ text-strong: Avenir Next Bold, #24292e
 header: Avenir Next Medium, #24292e
 header-strong: Avenir Next Bold, #24292e
 code: Menlo Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
-background-color: #ffffff;
+background-color: #fffcf5;
 
 ^ Lots of pauses in hook/intro/thankfulness
 
@@ -16,117 +16,7 @@ background-color: #ffffff;
 
 ---
 
-# I have a secret
-
-^ have a secret to share
-
----
-
-# The future of Rails
-
-^ future of rails
-
-^ already here
-
-^ already exists
-
----
-
-# It's in your applications
-
-^ in your apps
-
----
-
-# It's in your gems
-
-^ in your gems
-
-^ but it won't be the future
-
-^ unless you share it with the rest of us
-
----
-
-^ PAUSE
-
----
-
-# Rails
-
-^ rails
-
-^ around for a long time
-
----
-
-# 2005
-
-^ since 2005
-
-^ eternity in internet time
-
----
-
-# Relevance
-
-^ And yet it has remained relevant
-
-^ not by accident
-
----
-
-# Evolution
-
-^ Rails has evolved
-
-^ through features
-
-^ and fixes
-
-^ extracted from other Rails applications
-
----
-
-# Extraction
-
-^ today
-
-^ talk about extraction
-
-^ from GitHub
-
-^ working on for the past year
-
----
-
-# ActionView::Component
-
-^ called ActionView Component
-
----
-
-# Why
-
-^ Why we built it
-
----
-
-# Lessons
-
-^ lessons learned
-
----
-
-# Future
-
-^ vision 
-
-^ future of rails views
-
----
-
-^ PAUSE
+# Encapsulating Views
 
 ---
 
@@ -138,23 +28,51 @@ background-color: #ffffff;
 
 ---
 
-![50%](img/microsoft.png)
-
-^ engineer at GitHub
-
----
-
 ![100%](img/github.png)
 
+^ engineer at on Design Systems team
+
+^ today
+
+^ talk about project
+
+^ working on for the past year
+
 ---
 
-[.background-color: #000000]
+# ViewComponent
 
-![fill](img/earth.jpeg)
+^ called ViewComponent
 
-^ fully distributed
+---
 
-^ most engineers remote
+# Why
+
+^ Why we built it
+
+---
+
+# How
+
+^ how we're using it
+
+---
+
+# Lessons
+
+^ lessons learned
+
+---
+
+# Future
+
+^ how you can get involved
+
+---
+
+^ PAUSE
+
+^ but a little bit about me first
 
 ---
 
@@ -163,8 +81,6 @@ background-color: #ffffff;
 ![fit](img/family.jpg)
 
 ^ south of boulder
-
-^ work from home
 
 ---
 
@@ -244,7 +160,7 @@ background-color: #ffffff;
 
 ^ asked for advice
 
-^ gave me better than advice  
+^ gave me better than advice
 
 ^ apprenticeship offer
 
@@ -254,9 +170,9 @@ background-color: #ffffff;
 
 ![fit](img/mojo2.jpg)
 
-^ tiny 8x8 room 
+^ tiny 8x8 room
 
-^ poor ventilation 
+^ poor ventilation
 
 ^ long days
 
@@ -278,7 +194,9 @@ background-color: #ffffff;
 
 # Thanks
 
-^ time of year
+^ stressful times
+
+^ therapist encourages focusing on gratitude
 
 ^ reflecting on what I'm thankful for
 
@@ -292,47 +210,9 @@ background-color: #ffffff;
 
 ---
 
-![fit](img/prakash.png)
-
-^ Recently lost prakash
-
-^ lost a member of our community
-
-^ Could have been any of us
-
-^ Crazy to think
-
-^ 47 
-
-^ Left behind daughter and wife
-
----
-
-# Loss
-
-^ Up until a year ago
-
-^ hadn't lost anyone in my life
-
-^ Since then
-
-^ Prakash fifth person lost in the past year or so
-
-^ It's been a struggle for me
-
-^ Dark times
-
-^ didn't know how to cope
-
-^ sought help (via sondermind)
-
-^ doing better, but still a struggle
-
----
-
 # Clarity
 
-^ But it's also been a source of clarity in my life
+^ It's a source of clarity in my life
 
 ^ Realize how finite our time here is
 
@@ -347,7 +227,7 @@ background-color: #ffffff;
 
 ---
 
-^ Thank you for spending time with us
+^ Thank you for your time today
 
 ^ It is valuable
 
@@ -357,45 +237,9 @@ background-color: #ffffff;
 
 ---
 
-# Community
-
-^ for our community
-
-^ over a decade
-
-^ almost as old as rails
-
----
-
-# Sponsors
-
-^ Sponsors
-
-^ Food
-
-^ Drinks
-
-^ Place to meet
-
-^ Sandi Metz fund
-
----
-
-# Organizers
-
-^ Organizers
-
-^ Dan, Rylan, Marty
-
-^ Those who have helped over the years
-
-^ It wouldn't be possible it without them 
-
----
-
 # You
 
-^ You make it special
+^ You make it special to work here
 
 ^ You make it feel like family
 
@@ -403,9 +247,7 @@ background-color: #ffffff;
 
 # Thanks
 
-^ We have something special
-
-^ So good I'd still come if it was a javascript meetup
+^ We have something special here
 
 ^ So thankful for it
 
@@ -439,9 +281,9 @@ background-color: #ffffff;
 
 ^ Rails has enabled us to focus on the needs of the people who use our products
 
-^ Not just CSRF protection
-
 ^ value comes from what we don't have to worry about any more
+
+^ Not just CSRF protection
 
 ---
 
@@ -451,25 +293,9 @@ background-color: #ffffff;
 
 ---
 
-# Monolith
+# >800 contributers
 
-^ Still a monolith
-
-^ Moving back into monolith
-
-^ as of a year ago 
-
----
-
-# $7.5 Billon Monolith
-
-^ Now $7.5 billion monolith
-
-^ Has the best name ever
-
----
-
-# github.com/github/github
+^ More than 800 contributors last year
 
 ---
 
@@ -499,17 +325,7 @@ background-color: #ffffff;
 
 ^ Over 4,200 views
 
----
-
-# 12 years old
-
-^ Codebase is about 12 years old
-
----
-
-# >800 contributers
-
-^ More than 800 contributors last year
+^ and it's this part of our scale that I'm going to focus on
 
 ---
 
@@ -517,88 +333,11 @@ background-color: #ffffff;
 
 ---
 
-# Rails @ GitHub
+# A View Problems
 
-^ often asked about working on the monolith at GitHub
+^ seen scaling issues before
 
-^ different mindset I noticed when I joined
-
-^ remember someone
-
----
-
-> "If it doesn't have to do with our business, it needs to go in Rails."
-
-^ If it doesn't have to do with our business, it needs to go in Rails.
-
-^ In other words
-
----
-
-# Upstream by default
-
-^ our approach should be to upstream by default
-
-^ not always this way
-
----
-
-# Forks
-
-^ On fork until 2018
-
-^ Inventing features before Rails
-
-^ unsustainable maintenance
-
-^ backport security fixes
-
-^ hard to onboard
-
-^ team spent two years
-
-^ got us from a fork of 3.2 to master
-
----
-
-# master
-
-^ run a couple weeks behind master 
-
-^ many benefits
-
-^ but the most critical was
-
-^ enabled easy contribution to Rails
-
-^ short lag in between rails and monolith
-
-^ enabled extraction
-
-^ around 100 PRs from GitHub into Rails 6
-
----
-
-> The best frameworks are in my opinion extracted, not envisioned. And the best way to extract is first to actually do.[^1]
--- DHH
-
-[^1]: https://dhh.dk/posts/6-why-theres-no-rails-inc.html
-
-^ DHH said it best in 2007
-
----
-
-^ PAUSE
-
----
-
-# The extraction I couldn't ignore
-
-^ Story
-
-^ extraction
-
-^ Too obvious to ignore
+^ here are a few examples of what they've looked like
 
 ---
 
@@ -622,10 +361,11 @@ background-color: #ffffff;
 
 ---
 
+[.code-highlight: 1-9]
+[.code-highlight: 11-15]
+
 ```ruby
 class UserDecorator < Draper::Decorator
-  delegate_all
-
   def status
     if active?
       "Last active at #{last_active_at}"
@@ -634,9 +374,15 @@ class UserDecorator < Draper::Decorator
     end
   end
 end
+
+class UserDecoratorTest < Minitest::Test
+  def test_status
+    assert_equal UserDecorator.new(@inactive_user).status, "Inactive"
+  end
+end
 ```
 
-^ Looked like this
+^ S Looked like this
 
 ^ talk through code
 
@@ -644,13 +390,15 @@ end
 
 ^ really just another place to hide methods
 
-^ unit tested like models
+^ S unit tested like models
+
+^ explain code
 
 ---
 
 # react_rails
 
-^ Second time
+^ Second example
 
 ^ Using React to build UI
 
@@ -675,11 +423,13 @@ it('should render the button', function() {
 
 ^ tests were written in js
 
+^ super fast
+
 ---
 
 # Presenters
 
-^ Third time
+^ A third example
 
 ^ Folder called presenters
 
@@ -692,9 +442,21 @@ it('should render the button', function() {
 ---
 
 ```ruby
-class RepositoryIndexViewModel < ViewModel
+class RepositoryIndexView < ViewModel
   def status
     repository.locked? ? "Disabled" : "Enabled"
+  end
+end
+
+class RepositoryIndexViewTest < GitHub::TestCase
+  context "#status" do
+    test "enabled for unlocked repository" do
+      file_view = RepositoryIndexView.new(repository: create(:repository))
+
+      assert_equal file_view.status, "Enabled"
+    end
+
+    # ...
   end
 end
 ```
@@ -711,7 +473,7 @@ end
 
 # Logic-filled partials
 
-^ Fourth time
+^ Fourth example
 
 ^ app that had lots of logic in partials
 
@@ -733,21 +495,24 @@ end
 
 ---
 
-# Components
+`# app/views/billing_settings/_github_packages_section.html.erb`
 
-^ all the while
-
-^ Rise of components
-
-^ made popular by react
-
-^ Design systems
-
-^ Open source like bootstrap
-
-^ Internal like Primer at GitHub
-
-^ trends continue to today
+```erb
+<%
+usage = Billing::Usage.new(view.account)
+unit_cost = BigDecimal(::Billing::Product::UNIT_COST)
+included_usage = [usage.paid_gigabytes, usage.plan_bandwidth].min
+usage_cost = view.pricing.downloads_cost
+transfer_group = OpenStruct.new(
+  transfer_type: "Data transfer out",
+  breakdown: [
+    OpenStruct.new(
+      name: "Data transfer out (rounded)",
+    )
+  ]
+)
+%>
+```
 
 ---
 
@@ -755,17 +520,13 @@ end
 
 ^ that's what I've seen
 
-^ what about you?
+^ what about the rest of the ecosystem
 
 ---
 
-# Your apps
+# Other apps
 
-^ asked to share your app folder
-
-^ wanted to see if it was in your apps too
-
-^ and it was!
+^ local ruby group to share app folders
 
 ---
 
@@ -847,7 +608,7 @@ end
 
 ![fit](img/test-pyramid.png)
 
-^ Martin fowler's test pyramid 
+^ Martin fowler's test pyramid
 
 ^ illustrates it best
 
@@ -959,7 +720,7 @@ end
 
 ---
 
-`# user_decorate_test.rb`
+`# test/models/user_test.rb`
 
 ```ruby
 assert_equal(user.name, "Rylan Bowers")
@@ -1005,7 +766,7 @@ end
 
 ---
 
-`# users_controller_test.rb`
+`# test/controllers/users_controller_test.rb`
 
 ```ruby
 get :show
@@ -1031,7 +792,7 @@ assert_includes response.body "Rylan Bowers"
 <h2><%= status %></h2>
 ```
 
-^ closest thing is local variable assignment
+^ closest thing to encapsulation is local variable assignment
 
 ^ as for testing
 
@@ -1041,7 +802,7 @@ assert_includes response.body "Rylan Bowers"
 
 ^ no public interface for views
 
-^ we can't really unit test them 
+^ we can't really unit test them
 
 ^ To see why encapsulation of views is an issue
 
@@ -1063,28 +824,26 @@ assert_includes response.body "Rylan Bowers"
 
 ^ they aren't objects
 
----
+^ PAUSE
 
-![fit](img/lightspeed.jpg)
-
-^ Adventure
-
-^ Lots of ways to render
+^ So let's look at an example
 
 ---
 
-`# index.html.erb`
+<!-- TODO code highlighting -->
+
+`# app/views/demo/index.html.erb`
 
 ```erb
 <% @message = "Hello World" %>
-<%= render("message") %>
+<%= render(partial: "message", locals: { class_names: "greeting" }) %>
 ```
 
 <br />
-`# _message.html.erb`
+`# app/views/demo/_message.html.erb`
 
 ```erb
-<h1><%= @message %></h1>
+<h1 class="<%= class_names %>"><%= @message %></h1>
 ```
 
 ^ Deep dive
@@ -1103,287 +862,17 @@ assert_includes response.body "Rylan Bowers"
 
 ^ Result
 
-^ so you might be thinking something like:
-
----
-
-![inline](img/wat.jpg)
-
-^ face I made
-
 ---
 
 ```erb
-<%= render("message") %>
+<%= render(...) %>
 ```
 
-^ Journey
+^ What happens when that method is called
 
----
+^ A lot happens
 
-[.code-highlight: 0]
-[.code-highlight: 1]
-[.code-highlight: 15]
-
-`# ActionView::Helpers::RenderingHelper`
-
-```ruby
-def render(options = {}, locals = {}, &block)
-  case options
-  when Hash
-    in_rendering_context(options) do |renderer|
-      if block_given?
-        view_renderer.render_partial(self, options.merge(partial: options[:layout]), &block)
-      else
-        view_renderer.render(self, options)
-      end
-    end
-  else
-    if options.respond_to?(:render_in)
-      options.render_in(self, &block)
-    else
-      view_renderer.render_partial(self, partial: options, locals: locals, &block)
-    end
-  end
-end
-```
-
-^ First stop on journey
-
-^ S Arguments
-
-^ S End up calling
-
----
-
-[.code-highlight: 1]
-[.code-highlight: 1, 3-4]
-[.code-highlight: 1, 6-7]
-[.code-highlight: 1, 9-10]
-
-
-```ruby
-view_renderer.render_partial(self, partial: options ...)
-
-irb> view_renderer.class
-=> ActionView::Renderer
-
-irb> self.class
-=> #<Class:0x00007fea31296760>
-
-irb> options
-=> "message"
-```
-
-^ What's going on
-
-^ S View renderer
-
-^ S Self is current view
-
-^ S Options is our template name
-
-^ call passes through to
-
----
-
-`# ActionView::Renderer`
-
-```ruby
-def render_partial_to_object(context, options, &block)
-  PartialRenderer.new(@lookup_context).render(context, options, block)
-end
-```
-
-^ action view render, which builds a call to partial renderer
-
----
-
-[.code-highlight: 1-3]
-[.code-highlight: 1-3, 5-6]
-[.code-highlight: 1-3, 8-9]
-[.code-highlight: 1-3, 11-12]
-[.code-highlight: 1-3, 14-15]
-[.code-highlight: 1-3, 17-18]
-
-`# ActionView::Renderer`
-
-```ruby
-def render_partial_to_object(context, options, &block)
-  PartialRenderer.new(@lookup_context).render(context, options, block)
-end
-
-irb> @lookup_context.class
-=> ActionView::LookupContext
-
-irb> @lookup_context.instance_variable_get(:@details)
-=> {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, ...]}
-
-irb> @lookup_context.instance_variable_get(:@view_paths).class
-=> ActionView::PathSet
-
-irb> context.class
-=> #<Class:0x00007fa618132368>
-
-irb> options
-=> {:partial=>"message", :locals=>{}}
-```
-
-^ look at the state
-
----
-
-[.code-highlight: 0]
-[.code-highlight: 1]
-[.code-highlight: 12]
-[.code-highlight: 10,12]
-
-`# ActionView::PartialRenderer`
-
-```ruby
-def render(context, options, block)
-  as = as_variable(options)
-  setup(context, options, as, block)
-
-  if @path
-    if @has_object || @collection
-      @variable, @variable_counter, @variable_iteration = retrieve_variable(@path, as)
-      @template_keys = retrieve_template_keys(@variable)
-    else
-      @template_keys = @locals.keys
-    end
-    template = find_template(@path, @template_keys)
-    @variable ||= template.variable
-  else
-    if options[:cached]
-      raise NotImplementedError, "render caching requires a template. Please specify a partial when rendering"
-    end
-    template = nil
-  end
-
-  if @collection
-    render_collection(context, template)
-  else
-    render_partial(context, template)
-  end
-end
-```
-
-^ S arguments
-
-^ Context is view
-
-^ Options is our partial name
-
-^ S Interesting bit is find_template
-
-^ S based on path and keys of locals
-
----
-
-[.code-highlight: 1-2]
-[.code-highlight: 1-2, 4,5]
-[.code-highlight: 1-2, 7,8]
-[.code-highlight: 1-2, 10,11]
-
-`# ActionView::PartialRenderer`
-
-```ruby
-@template_keys = @locals.keys
-template = find_template(@path, @template_keys)
-
-irb> @path
-=> "message"
-
-irb> @template_keys
-=> []
-
-irb> find_template(@path, @template_keys)
-=> #<ActionView::Template app/views/demo/_message.html.erb locals=[]>
-```
-
-^ Look at those lines
-
-^ S Path
-
-^ S Template keys
-
-^ S Template object
-
----
-
-[.code-highlight: 0]
-[.code-highlight: 24]
-
-`# ActionView::PartialRenderer`
-
-```ruby
-def render(context, options, block)
-  as = as_variable(options)
-  setup(context, options, as, block)
-
-  if @path
-    if @has_object || @collection
-      @variable, @variable_counter, @variable_iteration = retrieve_variable(@path, as)
-      @template_keys = retrieve_template_keys(@variable)
-    else
-      @template_keys = @locals.keys
-    end
-    template = find_template(@path, @template_keys)
-    @variable ||= template.variable
-  else
-    if options[:cached]
-      raise NotImplementedError, "render caching requires a template. Please specify a partial when rendering"
-    end
-    template = nil
-  end
-
-  if @collection
-    render_collection(context, template)
-  else
-    render_partial(context, template)
-  end
-end
-```
-
-^ Whole method
-
-^ S context and template object
-
----
-
-[.code-highlight: 1]
-[.code-highlight: 13]
-
-`# ActionView::PartialRenderer`
-
-```ruby
-def render_partial(view, template)
-  instrument(:partial, identifier: template.identifier) do |payload|
-    locals, block = @locals, @block
-    object, as = @object, @variable
-
-    if !block && (layout = @options[:layout])
-      layout = find_template(layout.to_s, @template_keys)
-    end
-
-    object = locals[as] if object.nil? # Respect object when object is false
-    locals[as] = object if @has_object
-
-    content = template.render(view, locals) do |*name|
-      view._layout_for(*name, &block)
-    end
-
-    content = layout.render(view, locals) { content } if layout
-    payload[:cache_hit] = view.view_renderer.cache_hits[template.virtual_path]
-    build_rendered_template(content, template)
-  end
-end
-```
-
-^ Takes arguments
-
-^ S Renders the view inside the template
+^ More interesting part
 
 ---
 
@@ -1449,7 +938,7 @@ end
 
 ^ S compile
 
-^ S method container 
+^ S method container
 
 ^ method container is the ActionView::Base class
 
@@ -1611,7 +1100,7 @@ end
 
 ^ This method
 
-^ generated name 
+^ generated name
 
 ^ body generated by the handler
 
@@ -1647,8 +1136,8 @@ end
 irb> self.methods...
 => [
   :_app_views_demo_index_html_erb__1824471460578655455_70348614451620
-  :_app_views_demo__message_html_erb__1856726472418298868_70348613288120, 
-  :_app_views_layouts_application_html_erb__3293958388228102565_70348615263920, 
+  :_app_views_demo__message_html_erb__1856726472418298868_70348613288120,
+  :_app_views_layouts_application_html_erb__3293958388228102565_70348615263920,
 ]
 ```
 
@@ -1740,7 +1229,7 @@ end
 
 ---
 
-^ And that's the entire call stack 
+^ And that's the entire call stack
 
 ^ for rendering a view
 
@@ -1778,7 +1267,7 @@ end
 
 ^ compiled based on local keys
 
-^ Meaning Rails is dynamically generating a method for each combination of 
+^ Meaning Rails is dynamically generating a method for each combination of
 
 ^ a template and the local keys passed to it
 
@@ -1870,15 +1359,35 @@ end
 
 ^ All 4,200-odd views exist in the same scope
 
-^ They aren't going anywhere
+^ making it really hard to reason about their execution behavior
+
+---
+
+# ~~Unit Testing~~
+
+^ which means unit testing them is very difficult
+
+^ as they can't really be isolated
+
+---
+
+# Problem
+
+^ this is a problem
+
+^ views have a very high business values
+
+^ views are what we ultimately ship to users
+
+^ and yet because of these problems
+
+^ they're often a blind spot in our architecture
 
 ---
 
 ^ PAUSE
 
----
-
-# Solution
+^ given all of this, I had to wonder:
 
 ^ What might encapsulated views look like?
 
@@ -1902,9 +1411,9 @@ end
 
 ---
 
-# ActionView::Component
+# ViewComponent
 
-^ called ActionView::Component
+^ called ViewComponent
 
 ^ incorporates best parts of existing patterns
 
@@ -1916,7 +1425,7 @@ end
 
 ^ First and foremost
 
-^ ActionView::Components are encapsulated
+^ ViewComponents are encapsulated
 
 ---
 
@@ -1932,28 +1441,26 @@ end
 
 ---
 
-`# message_component.rb`
+`# app/components/message_component.rb`
 
 ```ruby
-class MessageComponent < ActionView::Component::Base
-  validates :message, presence: true
-
+class MessageComponent < ViewComponent::Base
   def initialize(message:)
     @message = message
   end
 end
 ```
 
-`# message_component.html.erb`
+`# app/components/message_component.html.erb`
 
 ```erb
 <h1><%= @message %><h1>
 ```
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
-<%= render(MessageComponent, message: "Hello, World!") %>
+<%= render(MessageComponent.new(message: "Hello, World!")) %>
 ```
 
 ^ Take this example
@@ -1964,10 +1471,10 @@ end
 
 ---
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
-<%= render(MessageComponent, message: "Hello, World!") %>
+<%= render(MessageComponent.new(message: "Hello, World!")) %>
 ```
 
 ^ Looking at render call
@@ -1982,12 +1489,10 @@ end
 
 ---
 
-`# message_component.rb`
+`# app/components/message_component.rb`
 
 ```ruby
-class MessageComponent < ActionView::Component::Base
-  validates :message, presence: true
-
+class MessageComponent < ViewComponent::Base
   def initialize(message:)
     @message = message
   end
@@ -2006,12 +1511,10 @@ end
 
 ---
 
-`# my_component.rb`
+`# app/components/message_component.rb`
 
 ```ruby
-class MessageComponent < ActionView::Component::Base
-  validates :message, presence: true
-
+class MessageComponent < ViewComponent::Base
   def initialize(message:)
     @message = message
   end
@@ -2036,13 +1539,11 @@ end
 [.code-highlight: all]
 [.code-highlight: 2]
 
-`# message_component.rb`
+`# app/components/message_component.rb`
 
 ```ruby
-class MessageComponent < ActionView::Component::Base
+class MessageComponent < ViewComponent::Base
   include IconHelper
-
-  validates :message, presence: true
 
   def initialize(message:)
     @message = message
@@ -2050,7 +1551,7 @@ class MessageComponent < ActionView::Component::Base
 end
 ```
 
-`# message_component.html.erb`
+`# app/components/message_component.html.erb`
 
 ```erb
 <h1><%= @message %><h1>
@@ -2064,13 +1565,11 @@ end
 
 [.code-highlight: 16]
 
-`# message_component.rb`
+`# app/components/message_component.rb`
 
 ```ruby
-class MessageComponent < ActionView::Component::Base
+class MessageComponent < ViewComponent::Base
   include IconHelper
-
-  validates :message, presence: true
 
   def initialize(message:)
     @message = message
@@ -2078,14 +1577,14 @@ class MessageComponent < ActionView::Component::Base
 end
 ```
 
-`# message_component.html.erb`
+`# app/components/message_component.html.erb`
 
 ```erb
 <h1><%= @message %><h1>
 <%= helpers.star_icon %>
 ```
 
-^ or via helpers. method
+^ or via helpers. method escape hatch
 
 ---
 
@@ -2098,26 +1597,28 @@ end
 ```ruby
 RSpec.describe BoxComponent do
   it "renders message" do
-    result = render_inline(MessageComponent, message: "Hello, World!")
+    render_inline(MessageComponent.new(message: "Hello, World!"))
 
-    assert_includes result.text, "Hello, World!"
+    assert_text "Hello, World!"
   end
 end
 ```
 
 ^ Unit testing components is simple
 
-^ S Render component inline 
+^ S Render component inline
 
-^ S assert against rendered result
+^ S assert against rendered result using Capybara matchers
+
+^ without using a browser
 
 ^ Fast
 
 ^ We end up writing a lot of them
- 
+
 ---
 
-# `gem "actionview-component"`
+# `gem "view_component"`
 
 ^ Published in august
 
@@ -2127,7 +1628,7 @@ end
 
 ^ blown away by support
 
-^ shipped 20 releases
+^ shipped 33 releases
 
 ---
 
@@ -2146,7 +1647,7 @@ end
 > `rails g component Example`
 -- Vinicius Stock, Toronto
 
-^ Simple things like 
+^ Simple things like
 
 ^ Adding generator support
 
@@ -2173,13 +1674,13 @@ end
 
 ```ruby
 module Issues
-  class BadgeComponentPreview < ActionView::Component::Preview
+  class StateComponentPreview < ViewComponent::Preview
     def open
-      render(Issues::BadgeComponent, state: :open)
+      render(Issues::StateComponent.new(state: :open))
     end
 
     def closed
-      render(Issues::BadgeComponent, state: :closed)
+      render(Issues::StateComponent.new(state: :closed))
     end
   end
 end
@@ -2191,7 +1692,7 @@ end
 
 ^ Method for each preview
 
-^ S Open 
+^ S Open
 
 ^ S Closed
 
@@ -2208,16 +1709,6 @@ end
 ![inline](img/preview.png)
 
 ^ renders the component by itself
-
----
-
-# Beyond
-
-^ for a while just focused on react ideas in rails
-
-^ now thinking beyond
-
-^ what can we do better than react
 
 ---
 
@@ -2259,58 +1750,6 @@ end
 
 ---
 
-[.code-highlight: 7-11]
-
-```html
-<div class="Box">
-  <div class="Box-header"><h3 class="Box-title">Box title</h3></div>
-  <div class="Box-body">Box body</div>
-  <div class="Box-footer">Box footer</div>
-</div>
-
-<Box>
-  <BoxHeader>Box title</BoxHeader>
-  <BoxBody>Box body</BoxBody>
-  <BoxFooter>Box footer</BoxFooter>
-</Box>
-```
-
-^ Here's what it might look like as a React component
-
-^ S there are downsides
-
-^ order of elements matters
-
-^ enforce header is first?
-
-^ enforce footer is last?
-
-^ enforce title and body are required?
-
-^ limited options as react only supports passing single block of content
-
----
-
-```html
-<Box>
-  <BoxHeader>Box title</BoxHeader>
-  <BoxBody>Box body</BoxBody>
-  <BoxFooter>Box footer</BoxFooter>
-</Box>
-
-<Box header="Box title" footer="Box footer">
-  Box body
-</Box>
-```
-
-^ One solution would be to have Box take header and footer arguments
-
-^ limits what we can pass for those arguments
-
-^ couldn't pass another component for footer
-
----
-
 ```erb
 <div class="Box">
   <div class="Box-header"><h3 class="Box-title">Box title</h3></div>
@@ -2321,20 +1760,20 @@ end
 
 ^ Go back to example HTML
 
-^ rewrite as ActionView::Component
+^ rewrite as ViewComponent
 
 ---
 
-`# box_component.rb`
+`# app/components/box_component.rb`
 
 ```ruby
-class BoxComponent < ActionView::Component::Base
+class BoxComponent < ViewComponent::Base
   def initialize
   end
 end
 ```
 
-`# box_component.html.erb`
+`# app/components/box_component.html.erb`
 
 ```erb
 <div class="Box">
@@ -2344,26 +1783,26 @@ end
 </div>
 ```
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
-<%= render(BoxComponent) %>
+<%= render(BoxComponent.new) %>
 ```
 
 ^ start with a component that renders our example code
 
 ---
 
-`# box_component.rb`
+`# app/components/box_component.rb`
 
 ```ruby
-class BoxComponent < ActionView::Component::Base
+class BoxComponent < ViewComponent::Base
   def initialize
   end
 end
 ```
 
-`# box_component.html.erb`
+`# app/components/box_component.html.erb`
 
 ```erb
 <div class="Box">
@@ -2371,30 +1810,32 @@ end
 </div>
 ```
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
-<%= render(BoxComponent) do %>
-  <%= render(BoxHeaderComponent) do %>Box title<% end %>
-  <%= render(BoxBodyComponent) do %>Box body<% end %>
-  <%= render(BoxFooterComponent) do %>Box footer<% end %>
+<%= render(BoxComponent.new) do %>
+  <%= render(BoxHeaderComponent.new) do %>Box title<% end %>
+  <%= render(BoxBodyComponent.new) do %>Box body<% end %>
+  <%= render(BoxFooterComponent.new) do %>Box footer<% end %>
 <% end %>
 ```
 
-^ Make it more like the react example
+^ look something like this
 
-^ But really no better
+^ order of elements matters
 
-^ but we're writing ruby, so we can do better
+^ enforce header is first?
 
-^ unlike javascript, ruby methods can accept multiple blocks
+^ enforce footer is last?
+
+^ doesn't prevent misuse of the design system
 
 ---
 
-`# box_component.rb`
+`# app/components/box_component.rb`
 
 ```ruby
-class BoxComponent < ActionView::Component::Base
+class BoxComponent < ViewComponent::Base
   def initialize
   end
 end
@@ -2406,10 +1847,10 @@ end
 
 [.code-highlight: 2]
 
-`# box_component.rb`
+`# app/components/box_component.rb`
 
 ```ruby
-class BoxComponent < ActionView::Component::Base
+class BoxComponent < ViewComponent::Base
   with_content_areas :header, :body, :footer
 
   def initialize
@@ -2424,16 +1865,16 @@ end
 [.code-highlight: 1-5]
 [.code-highlight: 7-11]
 
-`# index.html.erb`
+`# app/views/demo/index.html.erb`
 
 ```erb
-<%= render(BoxComponent) do %>
-  <%= render(BoxHeaderComponent) do %>Box title<% end %>
-  <%= render(BoxBodyComponent) do %>Box body<% end %>
-  <%= render(BoxFooterComponent) do %>Box footer<% end %>
+<%= render(BoxComponent.new) do %>
+  <%= render(BoxHeaderComponent.new) do %>Box title<% end %>
+  <%= render(BoxBodyComponent.new) do %>Box body<% end %>
+  <%= render(BoxFooterComponent.new) do %>Box footer<% end %>
 <% end %>
 
-<%= render(BoxComponent) do |component| %>
+<%= render(BoxComponent.new) do |component| %>
   <% component.with(:header) do %>Box title<% end %>
   <% component.with(:body) do %>Box body<% end %>
   <% component.with(:footer) do %>Box footer<% end %>
@@ -2453,10 +1894,10 @@ end
 [.code-highlight: 1-3]
 [.code-highlight: 6]
 [.code-highlight: 6-7]
-[.code-highlight: 6-8] 
-[.code-highlight: 5-9] 
+[.code-highlight: 6-8]
+[.code-highlight: 5-9]
 
-`# box_component.html.erb`
+`# app/components/box_component.html.erb`
 
 ```erb
 <div class="Box">
@@ -2474,7 +1915,7 @@ end
 
 ^ rewrite it to
 
-^ render the 
+^ render the
 
 ^ S title
 
@@ -2484,49 +1925,32 @@ end
 
 ^ S inside wrapping div
 
----
-
-`# box_component.rb`
-
-```ruby
-class BoxComponent < ActionView::Component::Base
-  with_content_areas :header, :body, :footer
-
-  def initialize
-  end
-end
-```
-
-^ back in component
-
----
-
-[.code-highlight: 4]
-
-`# box_component.rb`
-
-```ruby
-class BoxComponent < ActionView::Component::Base
-  with_content_areas :header, :body, :footer
-
-  validates :header, :body, presence: true
-
-  def initialize
-  end
-end
-```
-
-^ we can add a validation to require certain content areas to be set
-
----
-
-# Ruby > Javascript
-
-^ made me wonder
-
-^ what other things can we do better than javascript?
-
 ^ PAUSE
+
+---
+
+`# app/components/box_component.rb`
+
+```ruby
+class BoxComponent < ViewComponent::Base
+  with_content_areas :header, :body, :footer
+
+  def initialize
+  end
+end
+```
+
+`# app/components/box_component.html.erb`
+
+```erb
+<div class="Box">
+  <div class="Box-header"><h3 class="Box-title"><%= title %></h3></div>
+  <div class="Box-body"><%= body %></div>
+  <div class="Box-footer"><%= footer %></div>
+</div>
+```
+
+^ ended up with a codification of the design system
 
 ---
 
@@ -2534,7 +1958,7 @@ end
 
 ^ another cool thing
 
-^ since components are ruby classes 
+^ since components are ruby classes
 
 ^ we can extract them into gems
 
@@ -2550,21 +1974,27 @@ end
 
 ^ half dozen apps using a single gem
 
+^ we're planning to do the same
+
+^ PAUSE
+
+---
+
+![inline](img/rails-pr.png)
+
+^ Most exciting
+
+^ landed PRs in rails to support this architecture
+
+^ will be shipping in Rails 6.1 this spring
+
+^ PAUSE
+
 ---
 
 # Performance
 
-^ what about performance?
-
----
-
-# 10's of k requests/sec
-
-^ We serve a lot of requests
-
-^ It's been a non-issue
-
-^ Also easier to make fast
+^ so what about performance?
 
 ---
 
@@ -2584,7 +2014,7 @@ end
 
 ^ One part of cold first request render times being slow
 
-^ at our scale, thousands of processes 
+^ at our scale, thousands of processes
 
 ^ each time process serves a view it hasn't seen before
 
@@ -2596,7 +2026,7 @@ end
 
 ^ Internal code in our app with a more extreme optimization
 
-^ Enabled by having linters: 
+^ Enabled by having linters:
 
 ---
 
@@ -2625,7 +2055,7 @@ end
 1. Find unique combinations of locals
 1. Compile template for each combination
 
-^ Scan 
+^ Scan
 
 ^ S Group
 
@@ -2637,8 +2067,9 @@ end
 
 ---
 
+`# app/components/message_component.rb`
 ```ruby
-class MessageComponent < ActionView::Component::Base
+class MessageComponent < ViewComponent::Base
   def initialize(message:)
     @message = message
   end
@@ -2652,9 +2083,160 @@ class MessageComponent < ActionView::Component::Base
 end
 ```
 
-^ example component 
+^ example component
 
 ^ is compiled before Unicorn and Puma fork
+
+---
+
+# Testing
+
+^ big speed benefits in testing
+
+---
+
+[.code-highlight: 0]
+[.code-highlight: 1-2]
+[.code-highlight: 4-6]
+[.code-highlight: 8]
+[.code-highlight: 10-12]
+[.code-highlight: 14]
+[.code-highlight: 16]
+
+```ruby
+# test/components/issues/state_component_test.rb:41
+render_inline(Issues::StateComponent.new(state: :open))
+
+assert_text("Open")
+assert_selector("span[title='Status: Open']")
+assert_selector(".State--green")
+
+=> 20ms
+
+# test/integration/settings_controller_test.rb:21
+as @user
+get "/settings/profile"
+
+assert_response 200
+
+=> 1.46
+```
+
+^ Compare two cases
+
+^ S fairly typical component test of issues state component
+
+^ S a couple assertions against DOM
+
+^ S 20 milliseconds
+
+^ S Compared to one of the simplest controller tests I could find
+
+^ loads user profile settings page
+
+^ S asserts the response was a 200
+
+^ S takes almost 1.5 seconds
+
+^ which is a
+
+---
+
+# 73x
+
+^ 73 times difference in speed
+
+^ conservative case
+
+^ typical component test against
+
+^ best case controller test
+
+^ more typical difference is around two orders of magnitude
+
+^ PAUSE
+
+^ so for example
+
+---
+
+```ruby
+test "does not render if invalid state is passed"
+test "it passes styles to Primer::StateComponent"
+test "it passes size to Primer::StateComponent"
+test "it set the octicon height based on size"
+test "it renders the closed state"
+test "it renders the open state"
+```
+
+^ These are the test cases for the Issues State Component
+
+---
+
+# 9 seconds
+
+^ take 9 seconds as controller tests
+
+---
+
+# 120 _milliseconds_
+
+^ take 120 millisconds as unit tests
+
+^ PAUSE
+
+---
+
+# Levels of abstraction
+
+^ perhaps more importantly
+
+^ we can write tests at a more appropriate level of abstraction
+
+---
+
+![fit](img/test-pyramid-highlighted.png)
+
+^ looking back at our testing pyramid
+
+^ we had to test our views at the controller layer
+
+^ which means that for partials we reuse across the app
+
+^ we ended testing them in each place we used them
+
+---
+
+```
+# views/comments/_title.html.erb:106
+# views/comments/_title.html.erb:131
+# views/issues/events/_connection.html.erb:124
+# views/issues/events/_cross_reference.html.erb:102
+```
+
+^ In the case of the issue badge component
+
+^ we use it four times in three files
+
+^ Which means that without unit tests
+
+^ we'd likely end up testing it in mulitple controller tests
+
+^ further increasing the performance impact
+
+---
+
+![fit](img/test-pyramid-highlighted.png)
+
+^ instead, by using components with unit tests
+
+---
+
+![fit](img/test-pyramid.png)
+
+^ we can test our view layer thoroughly at the unit level
+
+^ without duplication
 
 ---
 
@@ -2664,31 +2246,575 @@ end
 
 ^ Designed to allow optimization
 
+^ PAUSE
+
+---
+
+# Lessons
+
+^ we've learned a lot
+
+^ In the past year experimenting with this pattern
+
+---
+
+# Validations
+
+^ Perhaps the biggest mistake we've made with this architecture
+
+^ was using validations
+
+---
+
+[.code-highlight: 1-2]
+[.code-highlight: 3]
+[.code-highlight: 3-4]
+[.code-highlight: 6]
+
+`# app/components/shared/avatar_component.rb`
+
+```ruby
+module Shared
+  class AvatarComponent < ApplicationViewComponent
+    DEFAULT_SIZE = 20
+    ALLOWED_SIZES = [DEFAULT_SIZE, 32]
+
+    validates :size, inclusion: { in: ALLOWED_SIZES }
+
+    # ...
+  end
+end
+```
+
+^ For example
+
+^ Avatar component
+
+^ S default size of 20
+
+^ S allowed sizes including default and 32
+
+^ in order to help developers use the component correctly
+
+^ S used activemodel validations to check that size was valid
+
+^ this also let us write code that expected size to be one of the allowed values
+
+^ this was all well and good
+
+^ but it came at a price
+
+---
+
+![fit](img/validation-error.png)
+
+^ unfortunately, we paid that price in production
+
+^ canary deploy
+
+^ presence validation error not caught by tests
+
+^ only affected a couple users
+
+^ quickly rolled back
+
+^ but we knew we needed to rethink this approach
+
+^ what we came up with was a simple helper
+
+^ called fetch or fallback
+
+---
+
+[.code-highlight: 1]
+[.code-highlight: 2]
+[.code-highlight: 3]
+[.code-highlight: 7]
+[.code-highlight: 5]
+[.code-highlight: all]
+
+`# lib/github/fetch_or_fallback_helper.rb`
+
+```ruby
+def fetch_or_fallback(allowed_values, given_value, fallback)
+  if allowed_values.include?(given_value)
+    given_value
+  else
+    raise ArgumentError, ... if Rails.development?
+
+    fallback
+  end
+end
+```
+
+^ read args
+
+^ S if allow values include given value
+
+^ S return it otherwise
+
+^ S otherwise, return fallback
+
+^ However, if in development
+
+^ S we raise an error
+
+^ S this gives us the feedback we wanted from validations
+
+^ and the safety knowing that we are working with a value we expect
+
+^ without raising exceptions in production
+
+---
+
+[.code-highlight: 9]
+
+`# app/components/shared/avatar_component.rb`
+
+```ruby
+module Shared
+  class AvatarComponent < ApplicationComponent
+    DEFAULT_SIZE = 20
+    ALLOWED_SIZES = [DEFAULT_SIZE, 32]
+
+    def initialize(actor:, viewer: nil, size: DEFAULT_SIZE, **args)
+      @actor, @viewer, @args = actor, viewer, args
+
+      @size = fetch_or_fallback(ALLOWED_SIZES, size, DEFAULT_SIZE)
+    end
+  end
+end
+```
+
+^ Looking back at the avatar component
+
+^ instead of using a validation on the size attribute
+
+^ we use fetch or fallback to safely guarantee
+
+^ size is a value we expect
+
+^ PAUSE
+
+---
+
+# Resiliency
+
+^ lesson learned here is ultimately one of
+
+^ designing for resiliency
+
+^ we hadn't fully understood the downstream risks of using validations
+
+^ more broadly, designing error cases out of our systems is
+
+^ of utmost importance
+
+^ we're now working to undo this architecture, replacing validations with graceful fallbacks
+
+^ PAUSE
+
+---
+
+# Exposing complexity
+
+^ another thing we've learned refactoring existing code to use components
+
+^ has been that they expose complexity
+
+---
+
+# views/shared/_details_dialog.html.erb
+
+^ one of the most complex examples has been the details dialog partial
+
+^ 220 uses in 148 files
+
+---
+
+`# views/shared/_details_dialog.html.erb`
+
+```erb
+<% locals = ensure_local_vars(local_assigns, {
+  required: [:button_text, :title],
+  optional: [:button_icon, :dialog_class, :ga_click, :sudo_required, :id, :button_role, :deferred_loading_url, :button_aria_label, :title_class, :safe_toggle_button_data_attributes],
+  defaults: {
+    button_class: "btn",
+    details_class: "d-inline-block text-left",
+    preload: false,
+    is_checked: false,
+    hidden: false
+  }
+}) %>
+
+<details
+  class="details-reset details-overlay details-overlay-dark lh-default text-gray-dark <%= locals[:details_class] %>"
+  <% if locals[:id] %>id="<%= locals[:id] %>"<% end %>>
+  <summary
+      class="<%= locals[:button_class] %>"
+      <%= locals[:safe_toggle_button_data_attributes] %>
+      <% if locals[:button_aria_label] %>aria-label="<%= locals[:button_aria_label] %>"<% end %>
+      <% if locals[:ga_click] %>data-ga-click="<%= locals[:ga_click] %>"<% end %>
+      <% if locals[:sudo_required] %>data-sudo-required="<%= locals[:sudo_required] %>"<% end %>
+      <% if locals[:button_role].present? %>
+        role="<%= locals[:button_role] %>"
+        <% if ["menuitemradio", "menuitemcheckbox"].include?(locals[:button_role]) %>aria-checked="<%= locals[:is_checked] %>"<% end %>
+      <% end %>
+      <% if locals[:hidden] %>hidden<% end %>>
+    <%= octicon locals[:button_icon] if locals[:button_icon] %>
+    <%= locals[:button_text] %>
+  </summary>
+  <details-dialog
+    aria-label="<%= title %>"
+    class="Box Box--overlay d-flex flex-column anim-fade-in fast <%= locals[:dialog_class] %>"
+    <% if locals[:deferred_loading_url] %>src="<%= locals[:deferred_loading_url] %>"<% end %>
+    <% if locals[:preload] %>preload<% end %>>
+    <div class="Box-header">
+      <button class="Box-btn-octicon btn-octicon float-right" type="button" aria-label="Close dialog" data-close-dialog>
+        <%= octicon "x" %>
+      </button>
+      <h3 class="Box-title <%= locals[:title_class] %>"><%= locals[:title] %></h3>
+    </div>
+    <%= yield %>
+  </details-dialog>
+</details>
+```
+
+^ It's massive, handling a lot of complexity and use cases
+
+^ 17 different local variables
+
+---
+
+`# views/shared/_details_dialog.html.erb`
+
+```erb
+<% locals = ensure_local_vars(local_assigns, {
+  required: [:button_text, :title],
+  optional: [:button_icon, :dialog_class, :ga_click, :sudo_required, :id, :button_role, :deferred_loading_url, :button_aria_label, :title_class, :safe_toggle_button_data_attributes],
+  defaults: {
+    button_class: "btn",
+    details_class: "d-inline-block text-left",
+    preload: false,
+    is_checked: false,
+    hidden: false
+  }
+}) %>
+```
+
+^ Helpfully managed by the clever ensure_local_vars helper written by the wonderful @muan
+
+^ This really is a lovely abstraction, and saves us a lot of pain
+
+^ without digging into the details, it behaves similarly to our fetch or fallback helper
+
+^ raising errors when not in production
+
+---
+
+`# lib/github/details_component.rb`
+
+```ruby
+module GitHub
+  class DetailsComponent < ApplicationComponent
+    DEFAULT_BUTTON_CLASS = "btn"
+    DEFAULT_DETAILS_CLASS = "d-inline-block text-left"
+    DEFAULT_PRELOAD = false
+    DEFAULT_IS_CHECKED = false
+    DEFAULT_HIDDEN = false
+
+    validates :button_text, :title, presence: true
+
+    # from app/assets/modules/github/sudo.js:11
+    validates :sudo_required, inclusion: { in: [nil, "low", "medium", "high", "two_factor"] }
+
+    validate :ensure_button_role_and_is_checked_valid
+
+    IS_CHECKED_BUTTON_ROLES = ["menuitemradio", "menuitemcheckbox"]
+
+    def initialize(button_text:, title:,
+                   button_class: DEFAULT_BUTTON_CLASS, details_class: DEFAULT_DETAILS_CLASS, preload: DEFAULT_PRELOAD, is_checked: DEFAULT_IS_CHECKED, hidden: DEFAULT_HIDDEN,
+                   button_icon: nil, dialog_class: nil, ga_click: nil, sudo_required: nil, id: nil, button_role: nil, deferred_loading_url: nil, button_aria_label: nil, title_class: nil,
+                   button_data: nil)
+      @button_text = button_text
+      @title = title
+      @button_class = button_class
+      @details_class = details_class
+      @preload = preload
+      @is_checked = is_checked
+      @hidden = hidden
+      @button_icon = button_icon
+      @dialog_class = dialog_class
+      @ga_click = ga_click
+      @sudo_required = sudo_required
+      @id = id
+      @button_role = button_role
+      @deferred_loading_url = deferred_loading_url
+      @button_aria_label = button_aria_label
+      @title_class = title_class
+      @button_data = button_data
+    end
+
+    private
+
+    def ensure_button_role_and_is_checked_valid
+      return unless @button_role.present? && @is_checked.present?
+      return if IS_CHECKED_BUTTON_ROLES.include?(@button_role)
+
+      errors.add(:button_role, "must be either #{IS_CHECKED_BUTTON_ROLES.join(" or ")} if is_checked is set")
+    end
+
+    attr_reader :button_text, :title, :button_class, :details_class, :preload, :is_checked, :hidden, :button_icon, :dialog_class, :ga_click, :sudo_required, :id, :button_role, :deferred_loading_url, :button_aria_label, :title_class, :button_data
+  end
+end
+```
+
+^ Refactored into a component, this complexity is even more visible.
+
+---
+
+`# lib/github/details_component.rb`
+
+```ruby
+module GitHub
+  class DetailsComponent < ApplicationComponent
+    def initialize(button_text:, title:,
+                   button_class: DEFAULT_BUTTON_CLASS, details_class: DEFAULT_DETAILS_CLASS, preload: DEFAULT_PRELOAD, is_checked: DEFAULT_IS_CHECKED, hidden: DEFAULT_HIDDEN,
+                   button_icon: nil, dialog_class: nil, ga_click: nil, sudo_required: nil, id: nil, button_role: nil, deferred_loading_url: nil, button_aria_label: nil, title_class: nil,
+                   button_data: nil)
+    end
+
+    # ...
+  end
+end
+```
+
+^ The initializer takes 17 possible arguments.
+
+^ Even more so than the view, this forces us to reckon with the complexity
+
+^ But it also allows us some safety
+
+---
+
+`# test/lib/github/details_component_test.rb`
+
+```ruby
+class GitHubDetailsComponentTest < GitHub::TestCase
+  test "requires button and title to be present"
+  test "displays provided title and button text"
+  test "assigns custom button class"
+  test "assigns custom details class"
+  test "does not assign preload attribute by default"
+  test "assigns preload attribute if enabled"
+  test "renders button icon if provided"
+  test "renders dialog class if provided"
+  test "renders ga click if provided"
+  test "does not render sudo required if nil"
+  test "renders sudo required if provided"
+  test "raises an error if sudo required is not one of the allowed values"
+  test "assigns ID if provided"
+  test "sets button role if provided"
+  test "sets button aria-checked if provided for radio button"
+  test "raises error if aria-checked is passed with an invalid button role"
+  test "sets src if deferred loading url is provided"
+  test "sets button aria-label if provided for button"
+  test "sets title_class if provided"
+end
+```
+
+^ As we can at least unit test the component thoroughly
+
+^ Our existing test has 20 cases, and could probably use more
+
+^ PAUSE
+
+---
+
+# Consistency
+
+^ Another lesson from working with components has been
+
+^ the power of consistency
+
+---
+
+![fit](img/pr-state.png)
+
+^ one example of this was building the PR state component
+
+^ render it nine different places in the app
+
+^ when we went to implement the component
+
+^ the existing view code was more or less copy-pasted for each usage
+
+^ as we refactored to use the component
+
+^ we realized that several of the cases had never been updated to handle draft PRs
+
+^ so by using a component, we were able to ensure a consistent experience for our users
+
+^ PAUSE
+
+^ another benefit this component exposed is how we can benefit from composition
+
+---
+
+`# app/components/pull_requests/state_component.html.erb`
+
+```erb
+<%= render(
+  Primer::StateComponent.new({
+    title: "Status: #{label}",
+    color: STATES[@state][:color],
+    size: @size }.merge(@args)
+  )
+) do %>
+  <%= octicon(STATES[@state][:octicon_name], height: octicon_height) %> <%= label %>
+<% end %>
+```
+
+^ As it is itself a wrapper of a component from our design system!
+
+^ explain code
+
+^ this is an common patten
+
+^ application-specific component wrapping one or more components from design system
+
+^ PAUSE
+
+---
+
+[.code-highlight: 0]
+[.code-highlight: 3]
+
+`# lib/primer/layout_component.rb`
+
+```ruby
+module Primer
+  class LayoutComponent < Primer::Component
+    with_content_areas :main, :sidebar
+
+    DEFAULT_SIDE = :right
+    ALLOWED_SIDES = [DEFAULT_SIDE, :left]
+
+    def initialize(responsive: false, side: DEFAULT_SIDE, **args)
+      @responsive, @args = responsive, args
+
+      @side = fetch_or_fallback(ALLOWED_SIDES, side, DEFAULT_SIDE)
+    end
+  end
+end
+```
+
+^ Another cool example is the primer layout component
+
+^ S this component leverages multiple content areas
+
+^ to accept a main content body and sidebar
+
+^ and render them side by side with proper responsive support
+
+---
+
+[.code-highlight: 0]
+[.code-highlight: 14-16]
+[.code-highlight: 8-12, 14-16]
+[.code-highlight: 14-16,18-22]
+
+`# lib/primer/layout_component.html.erb`
+
+```erb
+<%= render(
+  Primer::FlexComponent.new(
+    {
+      class_names: "gutter-condensed gutter-lg",
+      direction: (@responsive ? [:column, nil, :row] : nil)
+    }.merge(@args)
+ )) do %>
+  <% if @side == :left %>
+    <%= render Primer::BaseComponent.new(as: :div, class_names: "flex-shrink-0", col: (@responsive ? [12, nil, 3] : 3), mb: (@responsive ? [5, nil, 0] : nil)) do %>
+      <%= sidebar %>
+    <% end %>
+  <% end %>
+
+  <%= render Primer::BaseComponent.new(as: :div, class_names: "flex-shrink-0", col: (@responsive ? [12, nil, 9] : 9), mb: (@responsive ? [5, nil, 0] : nil)) do %>
+    <%= main %>
+  <% end %>
+
+  <% if @side == :right %>
+    <%= render Primer::BaseComponent.new(as: :div, class_names: "flex-shrink-0", col: (@responsive ? [12, nil, 3] : 3)) do %>
+      <%= sidebar %>
+    <% end %>
+  <% end %>
+<% end %>
+```
+
+^ in the template
+
+^ S we render the main content body
+
+^ the side bar is rendered
+
+^ S on either the left
+
+^ S on either the left
+
+^ PAUSE
+
+^ there is a fair amount of complexity in getting the responsive behavior just right
+
+^ we now have a single implementation of this pattern
+
+^ used in 8 places in dotcom
+
+^ PAUSE
+
+---
+
+# Future
+
+^ What does this mean for the future of our views?
+
+---
+
+# ViewModels to Components
+
+^ proposing that we migrate to using components
+
+^ instead of view models
+
+^ Linter to cap view model usage, directing to components instead
+
 ---
 
 # Migration path
 
 ^ If you want to give it a try
 
-^ Easy way is to migrate a presenter / view model
-
-^ what we've been doing
-
-^ Linter to cap view model usage, directing to components instead
+^ Easy way is to migrate a view model in your AoR
 
 ---
 
-# Tests
+# Examples
 
-^ Immediate testing benefit
+^ we also have plenty of examples already
 
-^ Migrate unit tests from previous abstraction
+---
 
-^ Also migrate most controller tests 
+## app/components (70)<br />lib/primer (16)
 
-^ can test against output html
+^ 70 components in dotcom application
 
-^ Might find missing coverage in the process
+^ 16 primer components in lib
+
+---
+
+# ~300 usages in 139 views
+
+^ around 300 usages in 139 views
 
 ---
 
@@ -2706,75 +2832,39 @@ end
 
 ^ "If it could be a partial, it could be a component"
 
-^ encourage to start there
+---
+
+# github/view_component
+
+^ ruby library on github
+
+^ contributions welcome, even if it's just bug reports
+
+---
+
+# github.com/orgs/github/projects/728
+
+^ also have an internal project board with plenty of actionable cards
+
+---
+
+CSS encapsulation? Accessibility?
+
+^ There are also some bigger ideas to explore
+
+^ Like CSS encapsulation
+
+^ and accessibility-forward architecture
+
+---
+
+## #view-component<br />@github/view-component-reviewers
+
+^ We're here to help on slack and in PR reviews
 
 ---
 
 ^ PAUSE
-
----
-
-# The Future
-
-^ what about the future
-
----
-
-# Rails
-
-^ goal to eventually incorporate into rails
-
----
-
-![inline](img/rails-pr.png)
-
-^ Started to make progress
-
-^ Preliminary PRs in Rails for syntax
-
-^ Continue to integrate more of library into Rails
-
----
-
-^ PAUSE
-
----
-
-# ~~Secret~~
-
-^ No secret
-
-^ Future of Rails is inside your applications
-
----
-
-# Progress
-
-^ Frameworks like Rails help us move human progress forward
-
-^ allowing us to focus on new and important problems
-
-^ in a changing world,
-
----
-
-# It's up to us.
-
-^ up to us to make thoughtful extractions
-
-^ keep Rails relevant
-
----
-
-# Time 
-
-^ Our time is precious
-
----
-
-# How will you spend yours?
-
-^ How will you spend yours?
 
 ---
 
