@@ -30,6 +30,13 @@ autoscale: true
 
 ^ engineer at on Design Systems team
 
+---
+
+[.hide-footer]
+![fit](img/primer.png)
+
+^ We are responsible for the Primer design system used throughout GitHub
+
 ^ today
 
 ^ talk about project
@@ -134,8 +141,6 @@ autoscale: true
 
 ^ out biking
 
-^ friend bryce
-
 ^ got a call
 
 ^ photo editor, boss laid off
@@ -154,16 +159,7 @@ autoscale: true
 
 ^ apprenticeship offer
 
----
-
-[.hide-footer]
-![](img/mojo2.jpg)
-
-^ tiny 8x8 room
-
-^ poor ventilation
-
-^ long days
+^ moved to rhode island
 
 ^ couple of months
 
@@ -196,33 +192,6 @@ autoscale: true
 ^ Thankful for your time
 
 ^ Precious resource
-
----
-
-## Clarity
-
-^ It's a source of clarity in my life
-
-^ Realize how finite our time here is
-
-^ motivated to use time in a way that matters
-
----
-
-> "We’re tight-fisted with property and money, yet think too little of wasting time, the one thing about which we should all be the toughest misers."
--- SENECA, ON THE SHORTNESS OF LIFE, 3.1–2
-
-^ Read quote
-
----
-
-^ Thank you for your time today
-
-^ It is valuable
-
-^ It is precious
-
-^ PAUSE
 
 ---
 
@@ -272,8 +241,6 @@ autoscale: true
 
 ^ value comes from what we don't have to worry about any more
 
-^ Not just CSRF protection
-
 ---
 
 ## Rails @ GitHub
@@ -322,9 +289,11 @@ autoscale: true
 
 ---
 
-## A View Problems
+## Scaling views
 
-^ seen scaling issues before
+^ As Rails applications scale
+
+^ We often turn to view abstractions not provided by rails
 
 ^ here are a few examples of what they've looked like
 
@@ -332,7 +301,7 @@ autoscale: true
 
 ## Decorators
 
-^ First time I saw it
+^ One abstraction is decorators
 
 ^ First job, a consultancy
 
@@ -430,6 +399,9 @@ it('should render the button', function() {
 
 ---
 
+[.code-highlight: 1-5]
+[.code-highlight: 7-17]
+
 ```ruby
 class RepositoryIndexView < ViewModel
   def status
@@ -437,7 +409,7 @@ class RepositoryIndexView < ViewModel
   end
 end
 
-class RepositoryIndexViewTest < GitHub::TestCase
+class RepositoryIndexViewTest < Minitest::Test
   context "#status" do
     test "enabled for unlocked repository" do
       file_view = RepositoryIndexView.new(repository: create(:repository))
@@ -455,6 +427,8 @@ end
 ^ coupled to a specific view
 
 ^ easier to test
+
+^ S describe test
 
 ^ distraction, not really testing the view
 
@@ -605,9 +579,9 @@ transfer_group = OpenStruct.new(
 
 ^ Rails provides
 
-^ controller tests (service)
-
 ^ UI tests (system)
+
+^ controller tests (service)
 
 ^ But not unit tests...
 
@@ -639,7 +613,7 @@ transfer_group = OpenStruct.new(
 
 ^ Even if our views could be unit tested
 
-^ points to a bigger issue:
+^ My exploration of the space pointed to a bigger issue:
 
 ---
 
@@ -793,6 +767,12 @@ assert_includes response.body "Rylan Bowers"
 
 ^ we can't really unit test them
 
+^ rails doesn't give us a away
+
+^ PAUSE
+
+---
+
 ^ To see why encapsulation of views is an issue
 
 ^ we need to understand how they work
@@ -819,20 +799,13 @@ assert_includes response.body "Rylan Bowers"
 
 ---
 
-<!-- TODO code highlighting -->
-
-`# app/views/demo/index.html.erb`
-
 ```erb
+# app/views/demo/index.html.erb
 <% @message = "Hello World" %>
-<%= render(partial: "message", locals: { class_names: "greeting" }) %>
-```
+<%= render("message") %>
 
-<br />
-`# app/views/demo/_message.html.erb`
-
-```erb
-<h1 class="<%= class_names %>"><%= @message %></h1>
+# app/views/demo/_message.html.erb
+<h1><%= @message %></h1>
 ```
 
 ^ Deep dive
@@ -1224,13 +1197,7 @@ end
 
 ^ for rendering a view
 
-^ I'm guessing you all are thinking:
-
----
-
-![inline](img/wat.jpg)
-
-^ Wat
+^ PAUSE
 
 ---
 
@@ -1251,16 +1218,6 @@ end
 ---
 
 ## On the **same** module
-
----
-
-## Templates * locals
-
-^ compiled based on local keys
-
-^ Meaning Rails is dynamically generating a method for each combination of
-
-^ a template and the local keys passed to it
 
 ---
 
@@ -1528,6 +1485,7 @@ end
 ---
 
 [.code-highlight: all]
+[.code-highlight: 10]
 [.code-highlight: 2]
 
 `# app/components/message_component.rb`
@@ -1546,6 +1504,7 @@ end
 
 ```erb
 <h1><%= @message %><h1>
+<%= star_icon %>
 ```
 
 ^ Also encapsulate access to helpers
@@ -1575,23 +1534,21 @@ end
 <%= helpers.star_icon %>
 ```
 
-^ or via helpers. method escape hatch
+^ or via helpers. method escape hatch similar to controllers
 
 ---
 
 ## Unit testing
 
 [.code-highlight: all]
-[.code-highlight: 3]
-[.code-highlight: 3, 5]
+[.code-highlight: 2]
+[.code-highlight: 2, 4]
 
 ```ruby
-RSpec.describe BoxComponent do
-  it "renders message" do
-    render_inline(MessageComponent.new(message: "Hello, World!"))
+test "renders message" do
+  render_inline(MessageComponent.new(message: "Hello, World!"))
 
-    assert_text "Hello, World!"
-  end
+  assert_text "Hello, World!"
 end
 ```
 
@@ -1603,9 +1560,7 @@ end
 
 ^ without using a browser
 
-^ Fast
-
-^ We end up writing a lot of them
+^ PAUSE
 
 ---
 
@@ -1901,7 +1856,7 @@ end
 </div>
 
 <div class="Box">
-  <div class="Box-header"><h3 class="Box-title"><%= title %></h3></div>
+  <div class="Box-header"><h3 class="Box-title"><%= header %></h3></div>
   <div class="Box-body"><%= body %></div>
   <div class="Box-footer"><%= footer %></div>
 </div>
@@ -1984,7 +1939,7 @@ end
 
 ^ Most exciting
 
-^ landed PRs in rails to support this architecture
+^ landed PRs in rails to add native support for component frameworks like ours
 
 ^ will be shipping in Rails 6.1 this spring
 
@@ -1998,19 +1953,11 @@ end
 
 ---
 
-## templates * locals
-
-^ remember how
-
-^ method for each unique locals passed to template at runtime
-
----
-
 ## Caching
 
 ^ leads to less than optimal caching behavior
 
-^ Cached at runtime, after forking servers like Unicorn and Puma
+^ compiled methods are cached at runtime, after forking servers like Unicorn and Puma
 
 ^ One part of cold first request render times being slow
 
@@ -2067,7 +2014,11 @@ end
 
 ---
 
+[.code-highlight: 1]
+[.code-highlight: 6-11]
+
 `# app/components/message_component.rb`
+
 ```ruby
 class MessageComponent < ViewComponent::Base
   def initialize(message:)
@@ -2085,7 +2036,7 @@ end
 
 ^ example component
 
-^ is compiled before Unicorn and Puma fork
+^ S is compiled before Unicorn and Puma fork
 
 ---
 
@@ -2156,7 +2107,7 @@ assert_response 200
 
 ^ PAUSE
 
-^ so for example
+^ so for a real world example
 
 ---
 
@@ -2241,14 +2192,6 @@ test "it renders the open state"
 ^ we can test our view layer thoroughly at the unit level
 
 ^ without duplication
-
----
-
-## Performance
-
-^ Just the beginning
-
-^ Designed to allow optimization
 
 ^ PAUSE
 
@@ -2605,7 +2548,7 @@ end
 `# test/lib/github/details_component_test.rb`
 
 ```ruby
-class GitHubDetailsComponentTest < GitHub::TestCase
+class GitHubDetailsComponentTest < Minitest::Test
   test "requires button and title to be present"
   test "displays provided title and button text"
   test "assigns custom button class"
@@ -2694,6 +2637,20 @@ end
 
 ---
 
+[.hide-footer]
+[.background-color: #FFFFFF]
+![100%](img/rails-pr.png)
+
+^ Another cool example is the primer layout component
+
+^ built by jonrohan
+
+^ used to render main content body and sidebar
+
+^ in action on PR pages
+
+---
+
 [.code-highlight: 0]
 [.code-highlight: 3]
 
@@ -2716,7 +2673,7 @@ module Primer
 end
 ```
 
-^ Another cool example is the primer layout component
+^ here's what it looks like
 
 ^ S this component leverages multiple content areas
 
@@ -2871,12 +2828,6 @@ end
 
 ---
 
-^ PAUSE
-
----
-
 # 👋 Thanks
 
-^ What was confusing? What could I improve?
-
----
+### @tenderlove @natashau @broccolini @myobie @kenyonj @nickh @blakewilliams @colinkeany @enriikke @jhawthron @jonrohan @emplums @ashygee @jonabc @joshmgross @smashwilson @itsbagpack @jonspalmer @juanmanuelramallo @vinistock @metade @asgerb @xronos-i-am @dylnclrk @kaspermeyer @rdavid1099 @kylefox @traels @rainerborene @jcoyne @elia @cesariouy @spdawson @rmacklin @michaelem @mellowfish @horacio @dukex @dark-panda @seanpdoyle
