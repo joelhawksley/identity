@@ -1,12 +1,7 @@
-autoscale: true
 slidenumbers: true
-theme: Simple, 1
-text: Avenir Next Medium, #24292e
-text-strong: Avenir Next Bold, #24292e
-header: Avenir Next Medium, #24292e
-header-strong: Avenir Next Bold, #24292e
-code: Menlo Regular, #6f42c1, #005cc5, #0366d6, #d73a49, #d73a49
-background-color: #fffcf5;
+footer: GitHub - Day of learning March 2020
+autoscale: true
+
 
 ^ Lots of pauses in hook/intro/thankfulness
 
@@ -14,13 +9,16 @@ background-color: #fffcf5;
 
 ^ YOU GOT THIS
 
+
+# ![inline 55%](img/invertocat.png)_GitHub - Day of learning March 2020_<br>Encapsulating Views
+
+![](img/bg.png)
+
+[.footer: @joelhawksley]
+
 ---
 
-# Encapsulating Views
-
----
-
-# Hi
+## Hi
 
 ^ introduce myself
 
@@ -28,7 +26,7 @@ background-color: #fffcf5;
 
 ---
 
-![100%](img/github.png)
+![40%](img/github-white.png)
 
 ^ engineer at on Design Systems team
 
@@ -40,31 +38,31 @@ background-color: #fffcf5;
 
 ---
 
-# ViewComponent
+## ViewComponent
 
 ^ called ViewComponent
 
 ---
 
-# Why
+## Why
 
 ^ Why we built it
 
 ---
 
-# How
+## How
 
 ^ how we're using it
 
 ---
 
-# Lessons
+## Lessons
 
 ^ lessons learned
 
 ---
 
-# Future
+## Future
 
 ^ how you can get involved
 
@@ -76,49 +74,43 @@ background-color: #fffcf5;
 
 ---
 
-[.background-color: #000000]
-
-![fit](img/family.jpg)
+[.hide-footer]
+![](img/family.jpg)
 
 ^ south of boulder
 
 ---
 
-[.background-color: #000000]
-
-![fit](img/sports.jpg)
+[.hide-footer]
+![](img/sports.jpg)
 
 ^ recovering photographer
 
 ---
 
-[.background-color: #000000]
-
-![fit](img/portfolio1.jpeg)
+[.hide-footer]
+![](img/portfolio1.jpeg)
 
 ^ traveled the country
 
 ---
 
-[.background-color: #000000]
-
-![fit](img/portrait.jpg)
+[.hide-footer]
+![](img/portrait.jpg)
 
 ^ portraits
 
 ---
 
-[.background-color: #000000]
-
-![fit](img/nascar.jpg)
+[.hide-footer]
+![](img/nascar.jpg)
 
 ^ every sport you can imagine
 
 ---
 
-[.background-color: #000000]
-
-![fit](img/gr.jpeg)
+[.hide-footer]
+![](img/gr.jpeg)
 
 ^ worked at newspapers
 
@@ -126,17 +118,15 @@ background-color: #fffcf5;
 
 ---
 
-[.background-color: #000000]
-
-![fit](img/si.jpg)
+[.hide-footer]
+![](img/si.jpg)
 
 ^ breaking news
 
 ---
 
-[.background-color: #000000]
-
-![fit](img/biking.jpg)
+[.hide-footer]
+![](img/biking.jpg)
 
 ^ until one day in 2013
 
@@ -166,9 +156,8 @@ background-color: #fffcf5;
 
 ---
 
-[.background-color: #000000]
-
-![fit](img/mojo2.jpg)
+[.hide-footer]
+![](img/mojo2.jpg)
 
 ^ tiny 8x8 room
 
@@ -192,7 +181,7 @@ background-color: #fffcf5;
 
 ---
 
-# Thanks
+## Thanks
 
 ^ stressful times
 
@@ -202,7 +191,7 @@ background-color: #fffcf5;
 
 ---
 
-# Time
+## Time
 
 ^ Thankful for your time
 
@@ -210,7 +199,7 @@ background-color: #fffcf5;
 
 ---
 
-# Clarity
+## Clarity
 
 ^ It's a source of clarity in my life
 
@@ -237,7 +226,7 @@ background-color: #fffcf5;
 
 ---
 
-# You
+## You
 
 ^ You make it special to work here
 
@@ -245,7 +234,7 @@ background-color: #fffcf5;
 
 ---
 
-# Thanks
+## Thanks
 
 ^ We have something special here
 
@@ -257,13 +246,13 @@ background-color: #fffcf5;
 
 ---
 
-# Thanks
+## Thanks
 
 ^ also thankful
 
 ---
 
-# Rails
+## Rails
 
 ^ for rails
 
@@ -275,7 +264,7 @@ background-color: #fffcf5;
 
 ---
 
-# Value
+## Value
 
 ^ value Rails has brought to the world
 
@@ -287,19 +276,19 @@ background-color: #fffcf5;
 
 ---
 
-# Rails @ GitHub
+## Rails @ GitHub
 
 ^ Rails is a big part of GitHub's success
 
 ---
 
-# >800 contributers
+## >800 contributers
 
 ^ More than 800 contributors last year
 
 ---
 
-# Scale
+## Scale
 
 ^ Rails has scaled with GitHub
 
@@ -309,19 +298,19 @@ background-color: #fffcf5;
 
 ----
 
-# >700 models
+## **>**700 models
 
 ^ Over 700 models
 
 ---
 
-# >600 controllers
+## **>**600 controllers
 
 ^ Over 600 controllers
 
 ---
 
-# >4,200 views
+## **>**4,200 views
 
 ^ Over 4,200 views
 
@@ -333,7 +322,7 @@ background-color: #fffcf5;
 
 ---
 
-# A View Problems
+## A View Problems
 
 ^ seen scaling issues before
 
@@ -341,7 +330,7 @@ background-color: #fffcf5;
 
 ---
 
-# Decorators
+## Decorators
 
 ^ First time I saw it
 
@@ -396,7 +385,7 @@ end
 
 ---
 
-# react_rails
+## react_rails
 
 ^ Second example
 
@@ -427,7 +416,7 @@ it('should render the button', function() {
 
 ---
 
-# Presenters
+## Presenters
 
 ^ A third example
 
@@ -471,7 +460,7 @@ end
 
 ---
 
-# Logic-filled partials
+## Logic-filled partials
 
 ^ Fourth example
 
@@ -524,7 +513,7 @@ transfer_group = OpenStruct.new(
 
 ---
 
-# Other apps
+## Other apps
 
 ^ local ruby group to share app folders
 
@@ -548,7 +537,7 @@ transfer_group = OpenStruct.new(
 
 ---
 
-# >50%
+## **>**50%
 
 ^ More than half of the responses
 
@@ -562,13 +551,13 @@ transfer_group = OpenStruct.new(
 
 ---
 
-# Gems
+## Gems
 
 ^ Some popular gems for these patterns
 
 ---
 
-# Draper & Cells
+## Draper & Cells
 
 ^ Draper and Cells have millions of downloads
 
@@ -576,7 +565,7 @@ transfer_group = OpenStruct.new(
 
 ---
 
-# Something's missing.
+## Something's missing.
 
 ^ It's clear
 
@@ -584,7 +573,7 @@ transfer_group = OpenStruct.new(
 
 ---
 
-# Why?
+## Why?
 
 ^ why do we turn to these abstractions?
 
@@ -594,19 +583,19 @@ transfer_group = OpenStruct.new(
 
 ---
 
-# Testing
+## Testing
 
 ^ comes down to testing
 
 ---
 
-# Testing views
+## Testing views
 
 ^ Why aren't views easy to test?
 
 ---
-
-![fit](img/test-pyramid.png)
+[.background-color: #FFFFFF]
+![100%](img/test-pyramid.png)
 
 ^ Martin fowler's test pyramid
 
@@ -623,8 +612,8 @@ transfer_group = OpenStruct.new(
 ^ But not unit tests...
 
 ---
-
-![fit](img/test-pyramid-highlighted.png)
+[.background-color: #FFFFFF]
+![100%](img/test-pyramid-highlighted.png)
 
 ^ Limiting us to
 
@@ -634,7 +623,7 @@ transfer_group = OpenStruct.new(
 
 ---
 
-# View objects
+## View objects
 
 ^ Turn to view objects
 
@@ -654,7 +643,7 @@ transfer_group = OpenStruct.new(
 
 ---
 
-# Encapsulation
+## Encapsulation
 
 ^ Encapsulation
 
@@ -676,7 +665,7 @@ transfer_group = OpenStruct.new(
 
 ---
 
-# Encapsulation in Rails
+## Encapsulation in Rails
 
 ^ rails does provide encapsulation
 
@@ -684,7 +673,7 @@ transfer_group = OpenStruct.new(
 
 ---
 
-# Models
+## Models
 
 ^ models are encapsulated
 
@@ -732,7 +721,7 @@ assert_equal(user.name, "Rylan Bowers")
 
 ---
 
-# Controllers
+## Controllers
 
 ^ rails controllers are also encapsulated
 
@@ -780,7 +769,7 @@ assert_includes response.body "Rylan Bowers"
 
 ---
 
-# Views
+## Views
 
 ^ what about views?
 
@@ -798,7 +787,7 @@ assert_includes response.body "Rylan Bowers"
 
 ---
 
-# ~~interface~~
+## ~~interface~~
 
 ^ no public interface for views
 
@@ -812,13 +801,13 @@ assert_includes response.body "Rylan Bowers"
 
 ---
 
-# What _are_ views?
+## What **are** views?
 
 ^ what are views?
 
 ---
 
-# ~~Objects~~
+## ~~Objects~~
 
 ^ Unlike models and controllers
 
@@ -858,6 +847,8 @@ assert_includes response.body "Rylan Bowers"
 
 ---
 
+[.hide-footer]
+[.background-color: #FFFFFF]
 ![inline](img/helloworld.png)
 
 ^ Result
@@ -1255,15 +1246,15 @@ end
 
 ---
 
-# Views _are_ methods
+## Views **are** methods
 
 ---
 
-# On the _same_ module
+## On the **same** module
 
 ---
 
-# Templates * locals
+## Templates * locals
 
 ^ compiled based on local keys
 
@@ -1339,7 +1330,7 @@ end
 
 ---
 
-# Global scope
+## Global scope
 
 ^ Global scope explosion
 
@@ -1353,7 +1344,7 @@ end
 
 ---
 
-# Encapsulation
+## Encapsulation
 
 ^ not much encapsulation
 
@@ -1363,7 +1354,7 @@ end
 
 ---
 
-# ~~Unit Testing~~
+## ~~Unit Testing~~
 
 ^ which means unit testing them is very difficult
 
@@ -1371,7 +1362,7 @@ end
 
 ---
 
-# Problem
+## Problem
 
 ^ this is a problem
 
@@ -1393,7 +1384,7 @@ end
 
 ---
 
-# Decorators, Presenters, Components
+## Decorators, Presenters, Components
 
 ^ Many of us have solutions to make them easier to test
 
@@ -1401,7 +1392,7 @@ end
 
 ---
 
-# 2019
+## 2019
 
 ^ Spent most of the past year
 
@@ -1411,7 +1402,7 @@ end
 
 ---
 
-# ViewComponent
+## ViewComponent
 
 ^ called ViewComponent
 
@@ -1421,7 +1412,7 @@ end
 
 ---
 
-# Encapsulation
+## Encapsulation
 
 ^ First and foremost
 
@@ -1429,13 +1420,13 @@ end
 
 ---
 
-# one object for _all_ views
+## one object for **all** views
 
 ^ instead of one object with all views
 
 ---
 
-# one object _per_ view
+## one object **per** view
 
 ^ one object *per* view
 
@@ -1588,7 +1579,7 @@ end
 
 ---
 
-# Unit testing
+## Unit testing
 
 [.code-highlight: all]
 [.code-highlight: 3]
@@ -1618,7 +1609,7 @@ end
 
 ---
 
-# `gem "view_component"`
+## `gem "view_component"`
 
 ^ Published in august
 
@@ -1632,7 +1623,7 @@ end
 
 ---
 
-# Contributors
+## Contributors
 
 ^ most work has come from the community
 
@@ -1698,6 +1689,8 @@ end
 
 ---
 
+[.hide-footer]
+[.background-color: #FFFFFF]
 ![inline](img/previews.png)
 
 ^ simple UI
@@ -1706,6 +1699,8 @@ end
 
 ---
 
+[.hide-footer]
+[.background-color: #FFFFFF]
 ![inline](img/preview.png)
 
 ^ renders the component by itself
@@ -1718,8 +1713,9 @@ end
 ^ feature by Jon Palmer from Boston
 
 ---
-
-![fit](img/box-component.png)
+[.hide-footer]
+[.background-color: #FFFFFF]
+![100%](img/box-component.png)
 
 ^ box component
 
@@ -1954,7 +1950,7 @@ end
 
 ---
 
-# component gems
+## component gems
 
 ^ another cool thing
 
@@ -1968,7 +1964,9 @@ end
 
 ---
 
-![inline](img/component-gem.png)
+[.hide-footer]
+[.background-color: #F5F7F8]
+![fit](img/component-gem.png)
 
 ^ financial services
 
@@ -1980,7 +1978,9 @@ end
 
 ---
 
-![inline](img/rails-pr.png)
+[.hide-footer]
+[.background-color: #FFFFFF]
+![100%](img/rails-pr.png)
 
 ^ Most exciting
 
@@ -1992,13 +1992,13 @@ end
 
 ---
 
-# Performance
+## Performance
 
 ^ so what about performance?
 
 ---
 
-# templates * locals
+## templates * locals
 
 ^ remember how
 
@@ -2006,7 +2006,7 @@ end
 
 ---
 
-# Caching
+## Caching
 
 ^ leads to less than optimal caching behavior
 
@@ -2030,7 +2030,7 @@ end
 
 ---
 
-# `render("users/index")`
+## `render("users/index")`
 
 ^ Linter to enforce full path
 
@@ -2089,7 +2089,7 @@ end
 
 ---
 
-# Testing
+## Testing
 
 ^ big speed benefits in testing
 
@@ -2142,7 +2142,7 @@ assert_response 200
 
 ---
 
-# 73x
+## 73x
 
 ^ 73 times difference in speed
 
@@ -2173,13 +2173,13 @@ test "it renders the open state"
 
 ---
 
-# 9 seconds
+## 9 seconds
 
 ^ take 9 seconds as controller tests
 
 ---
 
-# 120 _milliseconds_
+## 120 milliseconds
 
 ^ take 120 millisconds as unit tests
 
@@ -2187,7 +2187,7 @@ test "it renders the open state"
 
 ---
 
-# Levels of abstraction
+## Levels of abstraction
 
 ^ perhaps more importantly
 
@@ -2195,7 +2195,9 @@ test "it renders the open state"
 
 ---
 
-![fit](img/test-pyramid-highlighted.png)
+[.hide-footer]
+[.background-color: #FFFFFF]
+![100%](img/test-pyramid-highlighted.png)
 
 ^ looking back at our testing pyramid
 
@@ -2225,14 +2227,16 @@ test "it renders the open state"
 ^ further increasing the performance impact
 
 ---
-
-![fit](img/test-pyramid-highlighted.png)
+[.hide-footer]
+[.background-color: #FFFFFF]
+![100%](img/test-pyramid-highlighted.png)
 
 ^ instead, by using components with unit tests
 
 ---
-
-![fit](img/test-pyramid.png)
+[.hide-footer]
+[.background-color: #FFFFFF]
+![100%](img/test-pyramid.png)
 
 ^ we can test our view layer thoroughly at the unit level
 
@@ -2240,7 +2244,7 @@ test "it renders the open state"
 
 ---
 
-# Performance
+## Performance
 
 ^ Just the beginning
 
@@ -2250,7 +2254,7 @@ test "it renders the open state"
 
 ---
 
-# Lessons
+## Lessons
 
 ^ we've learned a lot
 
@@ -2258,7 +2262,7 @@ test "it renders the open state"
 
 ---
 
-# Validations
+## Validations
 
 ^ Perhaps the biggest mistake we've made with this architecture
 
@@ -2305,7 +2309,8 @@ end
 ^ but it came at a price
 
 ---
-
+[.hide-footer]
+[.background-color: #FFFFFF]
 ![fit](img/validation-error.png)
 
 ^ unfortunately, we paid that price in production
@@ -2398,7 +2403,7 @@ end
 
 ---
 
-# Resiliency
+## Resiliency
 
 ^ lesson learned here is ultimately one of
 
@@ -2416,7 +2421,7 @@ end
 
 ---
 
-# Exposing complexity
+## Exposing complexity
 
 ^ another thing we've learned refactoring existing code to use components
 
@@ -2424,7 +2429,7 @@ end
 
 ---
 
-# views/shared/_details_dialog.html.erb
+## `views/shared/_details_dialog.html.erb`
 
 ^ one of the most complex examples has been the details dialog partial
 
@@ -2631,7 +2636,7 @@ end
 
 ---
 
-# Consistency
+## Consistency
 
 ^ Another lesson from working with components has been
 
@@ -2639,7 +2644,9 @@ end
 
 ---
 
-![fit](img/pr-state.png)
+[.hide-footer]
+[.background-color: #FFFFFF]
+![inline](img/pr-state.png)
 
 ^ one example of this was building the PR state component
 
@@ -2774,13 +2781,13 @@ end
 
 ---
 
-# Future
+## Future
 
 ^ What does this mean for the future of our views?
 
 ---
 
-# ViewModels to Components
+## ViewModels to Components
 
 ^ proposing that we migrate to using components
 
@@ -2790,7 +2797,7 @@ end
 
 ---
 
-# Migration path
+## Migration path
 
 ^ If you want to give it a try
 
@@ -2798,7 +2805,7 @@ end
 
 ---
 
-# Examples
+## Examples
 
 ^ we also have plenty of examples already
 
@@ -2812,13 +2819,13 @@ end
 
 ---
 
-# ~300 usages in 139 views
+## ~300 usages in 139 views
 
 ^ around 300 usages in 139 views
 
 ---
 
-# New views
+## New views
 
 ^ What about for new views
 
@@ -2828,13 +2835,13 @@ end
 
 ---
 
-# "If it could be a partial, it could be a component"
+## "If it could be a partial, it could be a component"
 
 ^ "If it could be a partial, it could be a component"
 
 ---
 
-# github/view_component
+## github/view_component
 
 ^ ruby library on github
 
@@ -2842,13 +2849,13 @@ end
 
 ---
 
-# github.com/orgs/github/projects/728
+## github.com/orgs/github/projects/728
 
 ^ also have an internal project board with plenty of actionable cards
 
 ---
 
-CSS encapsulation? Accessibility?
+## CSS encapsulation? Accessibility?
 
 ^ There are also some bigger ideas to explore
 
@@ -2868,7 +2875,7 @@ CSS encapsulation? Accessibility?
 
 ---
 
-# Thanks
+# 👋 Thanks
 
 ^ What was confusing? What could I improve?
 
