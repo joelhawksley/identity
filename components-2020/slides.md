@@ -602,6 +602,7 @@ transfer_group = OpenStruct.new(
 ---
 
 > "In object-oriented programming, encapsulation refers to the **bundling of data with methods** that operate on that data, or the **restricting of direct access** to some of an object's components."
+-- wikipedia.org/wiki/Encapsulation\_(computer_programming)
 
 ^ read quote
 
