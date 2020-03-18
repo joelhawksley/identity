@@ -1742,6 +1742,8 @@ end
 
 ^ start with a component that renders our example code
 
+^ explain code
+
 ---
 
 `# app/components/box_component.rb`
@@ -1771,7 +1773,9 @@ end
 <% end %>
 ```
 
-^ look something like this
+^ skipping a few steps, we might end up with components
+
+^ for header, body and footer
 
 ^ order of elements matters
 
@@ -1780,6 +1784,8 @@ end
 ^ enforce footer is last?
 
 ^ doesn't prevent misuse of the design system
+
+^ this is where with_content_areas comes in
 
 ---
 
@@ -1809,7 +1815,7 @@ class BoxComponent < ViewComponent::Base
 end
 ```
 
-^ we can declare multiple content areas
+^ we can declare a content area for the header, body, and footer
 
 ---
 
@@ -1842,19 +1848,14 @@ end
 
 ---
 
-[.code-highlight: 1-3]
-[.code-highlight: 6]
-[.code-highlight: 6-7]
-[.code-highlight: 6-8]
-[.code-highlight: 5-9]
+[.code-highlight: 2]
+[.code-highlight: 2-3]
+[.code-highlight: 2-4]
+[.code-highlight: 1-5]
 
 `# app/components/box_component.html.erb`
 
 ```erb
-<div class="Box">
-  <%= content %>
-</div>
-
 <div class="Box">
   <div class="Box-header"><h3 class="Box-title"><%= header %></h3></div>
   <div class="Box-body"><%= body %></div>
@@ -1862,9 +1863,7 @@ end
 </div>
 ```
 
-^ and then in our component template
-
-^ rewrite it to
+^ then, in the component template, we can
 
 ^ render the
 
@@ -1902,6 +1901,10 @@ end
 ```
 
 ^ ended up with a codification of the design system
+
+^ helping developers use it properly
+
+^ PAUSE
 
 ---
 
@@ -1957,7 +1960,9 @@ end
 
 ^ leads to less than optimal caching behavior
 
-^ compiled methods are cached at runtime, after forking servers like Unicorn and Puma
+^ views are compiled into methods at runtime
+
+^ after forking servers like Unicorn and Puma
 
 ^ One part of cold first request render times being slow
 
@@ -1967,9 +1972,9 @@ end
 
 ^ has to compile the view first
 
-^ Rails 6 contained some optimizations by John Hawthorn
+^ PAUSE
 
-^ Templates now cached between requests in dev
+^ Except this isn't the case
 
 ^ Internal code in our app with a more extreme optimization
 
@@ -1997,18 +2002,16 @@ end
 
 [.build-lists: true]
 
+`# lib/github/fast_render_enhancer.rb`
+
 1. Scan all templates for render calls
-1. Group by template
-1. Find unique combinations of locals
-1. Compile template for each combination
+2. Compile unique templates
 
-^ Scan
+^ S Scan
 
-^ S Group
+^ S Compile each template
 
-^ S Uniq combinations of locals
-
-^ S Compile for each
+^ before ernicorn spawns workers
 
 ^ fortunately components are easier to optimize
 
@@ -2036,7 +2039,11 @@ end
 
 ^ example component
 
-^ S is compiled before Unicorn and Puma fork
+^ S is compiled at boot, before worker processes are spawned
+
+^ effectively gives us the same optimization as fast render enhancer
+
+^ PAUSE
 
 ---
 
@@ -2812,17 +2819,9 @@ end
 
 ---
 
-## CSS encapsulation? Accessibility?
-
-^ There are also some bigger ideas to explore
-
-^ Like CSS encapsulation
-
-^ and accessibility-forward architecture
-
----
-
 ## #view-component<br />@github/view-component-reviewers
+
+^ If you have any questions,
 
 ^ We're here to help on slack and in PR reviews
 
@@ -2830,4 +2829,4 @@ end
 
 # 👋 Thanks
 
-### @tenderlove @natashau @broccolini @myobie @kenyonj @nickh @blakewilliams @colinkeany @enriikke @jhawthron @jonrohan @emplums @ashygee @jonabc @joshmgross @smashwilson @itsbagpack @jonspalmer @juanmanuelramallo @vinistock @metade @asgerb @xronos-i-am @dylnclrk @kaspermeyer @rdavid1099 @kylefox @traels @rainerborene @jcoyne @elia @cesariouy @spdawson @rmacklin @michaelem @mellowfish @horacio @dukex @dark-panda @seanpdoyle
+### @tenderlove @natashau @broccolini @seejohnrun @kytrinyx @myobie @kenyonj @nickh @blakewilliams @colinkeany @enriikke @jhawthron @jonrohan @emplums @ashygee @jonabc @joshmgross @smashwilson @itsbagpack @jonspalmer @juanmanuelramallo @vinistock @metade @asgerb @xronos-i-am @dylnclrk @kaspermeyer @rdavid1099 @kylefox @traels @rainerborene @jcoyne @elia @cesariouy @spdawson @rmacklin @michaelem @mellowfish @horacio @dukex @dark-panda @seanpdoyle
