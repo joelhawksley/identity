@@ -181,49 +181,23 @@ autoscale: true
 
 ^ stressful times
 
+^ while working on this talk
+
 ^ therapist encourages focusing on gratitude
 
-^ reflecting on what I'm thankful for
-
----
-
-## Time
-
-^ Thankful for your time
-
-^ Precious resource
-
----
-
-## You
-
-^ You make it special to work here
-
-^ You make it feel like family
+^ I'm going to be critical of some things in this talk
 
 ---
 
 ## Thanks
 
-^ We have something special here
-
-^ So thankful for it
-
----
-
-^ PAUSE
-
----
-
-## Thanks
-
-^ also thankful
+^ so let's start our with some gratitude
 
 ---
 
 ## Rails
 
-^ for rails
+^ I'm thankful for rails
 
 ^ around a long time
 
@@ -2446,7 +2420,7 @@ end
 ```erb
 <% locals = ensure_local_vars(local_assigns, {
   required: [:button_text, :title],
-  optional: [:button_icon, :dialog_class, :ga_click, :sudo_required, :id, :button_role, :deferred_loading_url, :button_aria_label, :title_class, :safe_toggle_button_data_attributes],
+  optional: [:button_icon, :dialog_class, ...],
   defaults: {
     button_class: "btn",
     details_class: "d-inline-block text-left",
@@ -2533,13 +2507,24 @@ end
 ```ruby
 module GitHub
   class DetailsComponent < ApplicationComponent
-    def initialize(button_text:, title:,
-                   button_class: DEFAULT_BUTTON_CLASS, details_class: DEFAULT_DETAILS_CLASS, preload: DEFAULT_PRELOAD, is_checked: DEFAULT_IS_CHECKED, hidden: DEFAULT_HIDDEN,
-                   button_icon: nil, dialog_class: nil, ga_click: nil, sudo_required: nil, id: nil, button_role: nil, deferred_loading_url: nil, button_aria_label: nil, title_class: nil,
+    def initialize(button_text:,
+                   title:,
+                   button_class: DEFAULT_BUTTON_CLASS,
+                   details_class: DEFAULT_DETAILS_CLASS,
+                   preload: DEFAULT_PRELOAD,
+                   is_checked: DEFAULT_IS_CHECKED,
+                   hidden: DEFAULT_HIDDEN,
+                   button_icon: nil,
+                   dialog_class: nil,
+                   ga_click: nil,
+                   sudo_required: nil,
+                   id: nil,
+                   button_role: nil,
+                   deferred_loading_url: nil,
+                   button_aria_label: nil,
+                   title_class: nil,
                    button_data: nil)
     end
-
-    # ...
   end
 end
 ```
@@ -2581,6 +2566,18 @@ end
 ^ As we can at least unit test the component thoroughly
 
 ^ Our existing test has 20 cases, and could probably use more
+
+^ but because we can write unit tests, we can refactor!
+
+---
+
+[.hide-footer]
+[.background-color: #FFFFFF]
+![100%](img/muan-dgraham-pr.png)
+
+^ and that's just what @muan and @dgraham are doing now
+
+^ they're refactoring the component to be drastically simpler
 
 ^ PAUSE
 
@@ -2829,4 +2826,4 @@ end
 
 # 👋 Thanks
 
-### @tenderlove @natashau @broccolini @seejohnrun @kytrinyx @myobie @kenyonj @nickh @blakewilliams @colinkeany @enriikke @jhawthron @jonrohan @emplums @ashygee @jonabc @joshmgross @smashwilson @itsbagpack @jonspalmer @juanmanuelramallo @vinistock @metade @asgerb @xronos-i-am @dylnclrk @kaspermeyer @rdavid1099 @kylefox @traels @rainerborene @jcoyne @elia @cesariouy @spdawson @rmacklin @michaelem @mellowfish @horacio @dukex @dark-panda @seanpdoyle
+### @tenderlove @natashau @broccolini @seejohnrun @kytrinyx @myobie @kenyonj @nickh @blakewilliams @colinkeany @muan @dgraham @enriikke @jhawthron @jonrohan @emplums @ashygee @jonabc @joshmgross @smashwilson @itsbagpack @jonspalmer @juanmanuelramallo @vinistock @metade @asgerb @xronos-i-am @dylnclrk @kaspermeyer @rdavid1099 @kylefox @traels @rainerborene @jcoyne @elia @cesariouy @spdawson @rmacklin @michaelem @mellowfish @horacio @dukex @dark-panda @seanpdoyle
