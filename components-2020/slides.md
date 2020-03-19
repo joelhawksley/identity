@@ -187,11 +187,9 @@ autoscale: true
 
 ^ I'm going to be critical of some things in this talk
 
----
+^ but let's start our with some gratitude
 
-## Thanks
-
-^ so let's start our with some gratitude
+^ PAUSE
 
 ---
 
