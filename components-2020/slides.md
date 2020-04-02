@@ -1586,9 +1586,9 @@ end
 
 ^ most work has come from the community
 
-^ two dozen contributors
+^ over three dozen contributors
 
-^ seven or eight countries
+^ all over the world
 
 ^ Some cool contributions include:
 
