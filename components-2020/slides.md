@@ -2572,7 +2572,7 @@ end
 
 [.hide-footer]
 [.background-color: #FFFFFF]
-![100%](img/rails-pr.png)
+![100%](img/rails-pr-cropped.png)
 
 ^ Another cool example is the primer layout component
 
@@ -2585,6 +2585,9 @@ end
 ---
 
 [.code-highlight: 0]
+[.code-highlight: 8]
+[.code-highlight: 4-8]
+[.code-highlight: 4-8, 11]
 [.code-highlight: 3]
 
 `# lib/primer/layout_component.rb`
@@ -2607,6 +2610,12 @@ end
 ```
 
 ^ here's what it looks like
+
+^ S arguments
+
+^ S side constants
+
+^ S use fetch of fallback to make sure side is one of those values
 
 ^ S this component leverages multiple content areas
 
@@ -2679,19 +2688,9 @@ end
 
 ## ViewModels to Components
 
-^ proposing that we migrate to using components
-
-^ instead of view models
+^ we're migrating our viewmodels to components
 
 ^ Linter to cap view model usage, directing to components instead
-
----
-
-## Migration path
-
-^ If you want to give it a try
-
-^ Easy way is to migrate a view model in your AoR
 
 ---
 
@@ -2736,20 +2735,6 @@ end
 ^ ruby library on github
 
 ^ contributions welcome, even if it's just bug reports
-
----
-
-## github.com/orgs/github/projects/728
-
-^ also have an internal project board with plenty of actionable cards
-
----
-
-## #view-component<br />@github/view-component-reviewers
-
-^ If you have any questions,
-
-^ We're here to help on slack and in PR reviews
 
 ---
 
