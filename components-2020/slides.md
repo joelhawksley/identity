@@ -1,5 +1,5 @@
 slidenumbers: true
-footer: RailsConf 2020.2 Couch Edition - Encapsulating Views
+footer: RailsConf 2020.2 Couch Edition - Encapsulating Views - @joelhawksley
 autoscale: true
 
 
@@ -9,12 +9,9 @@ autoscale: true
 
 ^ YOU GOT THIS
 
-
-# ![inline 55%](img/invertocat.png)_GitHub - Day of learning March 2020_<br>Encapsulating Views
+# Encapsulating Views
 
 ![](img/bg.png)
-
-[.footer: @joelhawksley]
 
 ---
 
@@ -255,9 +252,9 @@ autoscale: true
 
 ---
 
-## **>**4,200 views
+## **>**4,400 views
 
-^ Over 4,200 views
+^ Over 4,400 views
 
 ^ and it's this part of our scale that I'm going to focus on
 
@@ -1582,7 +1579,9 @@ end
 
 ---
 
-## Contributors
+[.slidenumbers: false]
+[.hide-footer]
+![fit](img/collage.jpg)
 
 ^ most work has come from the community
 
@@ -1976,50 +1975,27 @@ end
 
 ^ PAUSE
 
-^ Except this isn't the case
-
-^ Internal code in our app with a more extreme optimization
-
-^ Enabled by having linters:
+^ however, components are able to get around this issue:
 
 ---
 
-## `render("users/index")`
-
-^ Linter to enforce full path
-
----
+`# lib/view_component/engine.rb`
 
 ```ruby
-class RepositoriesController
-  def show
-    render("repostiories/show")
+initializer "view_component.eager_load_actions" do
+  ActiveSupport.on_load(:after_initialize) do
+    ViewComponent::Base.descendants.each(&:compile)
   end
 end
 ```
 
-^ Linter to enforce explicit render calls with full paths
+^ in the library
 
-^ even in controllers where it's common to not have a render call at all
+^ S we define an initializer
 
-^
+^ that compiles all descendents of ViewComponent base
 
----
-
-[.build-lists: true]
-
-`# lib/github/fast_render_enhancer.rb`
-
-1. Scan all templates for render calls
-2. Compile unique templates
-
-^ S Scan
-
-^ S Compile each template
-
-^ before ernicorn spawns workers
-
-^ fortunately components are easier to optimize
+^ in practice, it looks like this:
 
 ---
 
@@ -2045,9 +2021,9 @@ end
 
 ^ example component
 
-^ S is compiled at boot, before worker processes are spawned
+^ S template is compiled to a call method
 
-^ effectively gives us the same optimization as fast render enhancer
+^ at boot, before worker processes are spawned
 
 ^ PAUSE
 
@@ -2190,12 +2166,36 @@ test "it renders the open state"
 
 ^ further increasing the performance impact
 
+^ PAUSE
+
+^ But at our scale, the consequences of this problem are more significant
+
+---
+
+## **>**4,400 views
+
+^ Earlier, I mentioned that we have around 4,400 views in our monolith
+
+^ Of those views,
+
+---
+
+## **>**3,000 partials
+
+^ over 3,000 are partials
+
+^ which means there is a lot of opportunities for duplicate controller tests
+
+^ PAUSE
+
+^ Looking back at the testing pyramid
+
 ---
 [.hide-footer]
 [.background-color: #FFFFFF]
 ![100%](img/test-pyramid-highlighted.png)
 
-^ instead, by using components with unit tests
+^ by using components with unit tests
 
 ---
 [.hide-footer]
@@ -2700,17 +2700,17 @@ end
 
 ---
 
-## app/components (70)<br />lib/primer (16)
+## app/components (112)<br />lib/primer (16)
 
-^ 70 components in dotcom application
+^ 112 components in applicaiton
 
 ^ 16 primer components in lib
 
 ---
 
-## ~300 usages in 139 views
+## ~550 usages in ~250 views
 
-^ around 300 usages in 139 views
+^ around 550 usages in 250 views
 
 ---
 
@@ -2734,7 +2734,9 @@ end
 
 ^ ruby library on github
 
-^ contributions welcome, even if it's just bug reports
+^ contributions welcome
+
+^ give it a try in your applications and let us know what you think!
 
 ---
 
