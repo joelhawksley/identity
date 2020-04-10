@@ -23,6 +23,12 @@ autoscale: true
 
 ---
 
+[.slidenumbers: false]
+[.hide-footer]
+![fit](img/closet.jpg)
+
+---
+
 ![40%](img/github-white.png)
 
 ^ engineer at on Design Systems team
