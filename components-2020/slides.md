@@ -1,5 +1,5 @@
 slidenumbers: true
-footer: GitHub - Day of learning March 2020
+footer: RailsConf 2020.2 Couch Edition - Encapsulating Views - @joelhawksley
 autoscale: true
 
 
@@ -9,12 +9,9 @@ autoscale: true
 
 ^ YOU GOT THIS
 
-
-# ![inline 55%](img/invertocat.png)_GitHub - Day of learning March 2020_<br>Encapsulating Views
+# Encapsulating Views
 
 ![](img/bg.png)
-
-[.footer: @joelhawksley]
 
 ---
 
@@ -23,6 +20,12 @@ autoscale: true
 ^ introduce myself
 
 ^ name
+
+---
+
+[.slidenumbers: false]
+[.hide-footer]
+![fit](img/closet.jpg)
 
 ---
 
@@ -81,13 +84,15 @@ autoscale: true
 
 ---
 
+[.slidenumbers: false]
 [.hide-footer]
-![](img/family.jpg)
+![fit](img/family.jpg)
 
 ^ south of boulder
 
 ---
 
+[.slidenumbers: false]
 [.hide-footer]
 ![](img/sports.jpg)
 
@@ -95,6 +100,7 @@ autoscale: true
 
 ---
 
+[.slidenumbers: false]
 [.hide-footer]
 ![](img/portfolio1.jpeg)
 
@@ -102,6 +108,7 @@ autoscale: true
 
 ---
 
+[.slidenumbers: false]
 [.hide-footer]
 ![](img/portrait.jpg)
 
@@ -109,6 +116,7 @@ autoscale: true
 
 ---
 
+[.slidenumbers: false]
 [.hide-footer]
 ![](img/nascar.jpg)
 
@@ -116,8 +124,9 @@ autoscale: true
 
 ---
 
+[.slidenumbers: false]
 [.hide-footer]
-![](img/gr.jpeg)
+![fit](img/gr.jpeg)
 
 ^ worked at newspapers
 
@@ -125,6 +134,7 @@ autoscale: true
 
 ---
 
+[.slidenumbers: false]
 [.hide-footer]
 ![](img/si.jpg)
 
@@ -132,20 +142,15 @@ autoscale: true
 
 ---
 
+[.slidenumbers: false]
 [.hide-footer]
-![](img/biking.jpg)
-
-^ until one day in 2013
-
-^ september 11th
+![fit](img/biking.jpg)
 
 ^ out biking
 
 ^ got a call
 
-^ photo editor, boss laid off
-
-^ her birthday
+^ photo editor, laid off
 
 ^ aspired to have her job
 
@@ -159,11 +164,15 @@ autoscale: true
 
 ^ apprenticeship offer
 
+---
+
+[.slidenumbers: false]
+[.hide-footer]
+![fit](img/ri.jpg)
+
 ^ moved to rhode island
 
 ^ couple of months
-
-^ taught me git, ruby, rails, js
 
 ^ how to be a professional engineer
 
@@ -185,7 +194,7 @@ autoscale: true
 
 ^ therapist encourages focusing on gratitude
 
-^ I'm going to be critical of some things in this talk
+^ this presentation has some constructive criticism
 
 ^ but let's start our with some gratitude
 
@@ -249,13 +258,11 @@ autoscale: true
 
 ---
 
-## **>**4,200 views
+## **>**4,400 views
 
-^ Over 4,200 views
+^ Over 4,400 views
 
 ^ and it's this part of our scale that I'm going to focus on
-
----
 
 ^ PAUSE
 
@@ -338,9 +345,11 @@ end
 
 ---
 
-```erb
-<%= react_component("Button", { label: "Open" }) %>
-```
+[.code-highlight: 0]
+[.code-highlight: 2]
+[.code-highlight: 3]
+
+`# app/assets/javascripts/tests/button_component_test.js`
 
 ```jsx
 it('should render the button', function() {
@@ -349,9 +358,11 @@ it('should render the button', function() {
 });
 ```
 
-^ Looked like this
+^ tests were simple
 
-^ tests were written in js
+^ S rendered the component
+
+^ S and asserted against HTML result
 
 ^ super fast
 
@@ -418,15 +429,25 @@ end
 
 ---
 
+[.code-highlight: 0]
+[.code-highlight: 1]
+[.code-highlight: 3]
+
 ```erb
 <% status = repository.locked? ? "Disabled" : "Enabled" %>
 
 <h2><%= status %></h2>
 ```
 
-^ looked like this
+^ taking the previous view model example, it looks like this
 
-^ ended up with view files with ruby blocks dozens of lines long
+^ S assigning the result of a ternary to status
+
+^ S rendering status inside an h2 tag
+
+^ in practice though,
+
+^ we end up with view files with ruby blocks dozens of lines long
 
 ---
 
@@ -434,9 +455,9 @@ end
 
 ```erb
 <%
-usage = Billing::Usage.new(view.account)
-unit_cost = BigDecimal(::Billing::Product::UNIT_COST)
-included_usage = [usage.paid_gigabytes, usage.plan_bandwidth].min
+usage = Usage.new(view.account)
+unit_cost = ::Product::UNIT_COST
+included_usage = [usage.paid, usage.bandwidth].min
 usage_cost = view.pricing.downloads_cost
 transfer_group = OpenStruct.new(
   transfer_type: "Data transfer out",
@@ -449,19 +470,29 @@ transfer_group = OpenStruct.new(
 %>
 ```
 
+^ Here's one example
+
+^ drastically simplified from dozens of lines
+
+^ not tested directly, since we don't have unit tests for views
+
 ---
 
 ^ PAUSE
 
 ^ that's what I've seen
 
-^ what about the rest of the ecosystem
+^ was wondering whether my experience was a reflection of the greater Rails ecosystem
 
 ---
 
-## Other apps
+## Ecosystem Survey
 
-^ local ruby group to share app folders
+^ So I took a survey
+
+^ local ruby group of around 50 people to share app folders
+
+^ here's what I found
 
 ---
 
@@ -529,15 +560,9 @@ transfer_group = OpenStruct.new(
 
 ---
 
-## Testing
-
-^ comes down to testing
-
----
-
 ## Testing views
 
-^ Why aren't views easy to test?
+^ comes down to testing
 
 ---
 [.background-color: #FFFFFF]
@@ -772,6 +797,10 @@ assert_includes response.body "Rylan Bowers"
 
 ---
 
+[.code-highlight: 0]
+[.code-highlight: 1-3]
+[.code-highlight: 5-6]
+
 ```erb
 # app/views/demo/index.html.erb
 <% @message = "Hello World" %>
@@ -789,7 +818,11 @@ assert_includes response.body "Rylan Bowers"
 
 ^ Two views
 
-^ anyone want to guess what happens?
+^ S first view
+
+^ S Second view
+
+^ What's interesting is that when we render this example
 
 ---
 
@@ -797,7 +830,7 @@ assert_includes response.body "Rylan Bowers"
 [.background-color: #FFFFFF]
 ![inline](img/helloworld.png)
 
-^ Result
+^ The second view is able to access the instance variable from the first!
 
 ---
 
@@ -1070,7 +1103,6 @@ end
 ---
 
 ```ruby
-irb> self.methods...
 => [
   :_app_views_demo_index_html_erb__1824471460578655455_70348614451620
   :_app_views_demo__message_html_erb__1856726472418298868_70348613288120,
@@ -1142,8 +1174,6 @@ def _run(method, template, locals, buffer, &block)
 end
 ```
 
-^ Really, this is it
-
 ^ S set the template and buffer
 
 ^ S then call the compiled method we defined above
@@ -1164,17 +1194,11 @@ end
 
 ^ So effectively we end up with this
 
----
-
-^ And that's the entire call stack
-
-^ for rendering a view
+^ And that's what happens when rendering a view in Rails, at runtime
 
 ^ PAUSE
 
 ---
-
-^ Deep breath
 
 ^ What does this all mean?
 
@@ -1182,15 +1206,17 @@ end
 
 ^ What does this have to do with encapsulation?
 
-^ Isn't that a lot of work?
-
 ---
 
 ## Views **are** methods
 
+^ Views are methods
+
 ---
 
-## On the **same** module
+## In the **same** context
+
+^ that execute in the same context
 
 ---
 
@@ -1223,14 +1249,14 @@ end
 
 ```ruby
 class ActionView::Base
-  def _app_views_demo_index_html_erb___42169053093465020_70319914664120(local_assigns, output_buffer)
+  def _app_views_demo_index_html_erb___42169053093465020_70319914664120
     @virtual_path = "demo/index"
     @message = "Hello World"
-    @output_buffer.append=( render("message") )
+    @output_buffer.append=( _app_views_demo__message_html_erb___154141396804859982_70319911264400 )
     @output_buffer.to_s
   end
 
-  def _app_views_demo__message_html_erb___154141396804859982_70319911264400(local_assigns, output_buffer)
+  def _app_views_demo__message_html_erb___154141396804859982_70319911264400
     @virtual_path = "demo/_message"
     @output_buffer.safe_append='<h1>'.freeze
     @output_buffer.append=( @message )
@@ -1290,11 +1316,13 @@ end
 
 ^ as they can't really be isolated
 
+^ this is a problem
+
+^ because:
+
 ---
 
-## Problem
-
-^ this is a problem
+## Views are valuable
 
 ^ views have a very high business values
 
@@ -1318,8 +1346,6 @@ end
 
 ^ Many of us have solutions to make them easier to test
 
-^ Why don't we bring those ideas into Rails?
-
 ---
 
 ## 2019
@@ -1336,10 +1362,6 @@ end
 
 ^ called ViewComponent
 
-^ incorporates best parts of existing patterns
-
-^ into the Rails architecture
-
 ---
 
 ## Encapsulation
@@ -1350,15 +1372,15 @@ end
 
 ---
 
-## one object for **all** views
+## one context for **all** views
 
-^ instead of one object with all views
+^ instead of one context with all views
 
 ---
 
-## one object **per** view
+## one context **per** view
 
-^ one object *per* view
+^ one context *per* view
 
 ---
 
@@ -1388,6 +1410,8 @@ end
 
 ^ two files side by side
 
+^ in app/components...
+
 ^ (talk through code)
 
 ---
@@ -1402,9 +1426,11 @@ end
 
 ^ component referenced directly
 
-^ instead of through view method lookup
-
 ^ no ambiguity
+
+^ if we wanted to see every place it's used
+
+^ we can just search our codebase for the MessageComponent class name
 
 ^ PAUSE
 
@@ -1454,6 +1480,8 @@ end
 ^ No access to state from other views
 
 ^ No instance variable leakage
+
+^
 
 ---
 
@@ -1529,9 +1557,9 @@ end
 
 ^ S Render component inline
 
-^ S assert against rendered result using Capybara matchers
+^ S assert against rendered result using Capybara matchers, the same used by Rails system tests
 
-^ without using a browser
+^ but without using a browser
 
 ^ PAUSE
 
@@ -1547,17 +1575,25 @@ end
 
 ^ blown away by support
 
-^ shipped 33 releases
+^ shipped 39 releases
 
 ---
 
-## Contributors
+## v2.0.0
+
+^ including our second major release in late March
+
+---
+
+[.slidenumbers: false]
+[.hide-footer]
+![fit](img/collage.jpg)
 
 ^ most work has come from the community
 
-^ two dozen contributors
+^ over three dozen contributors
 
-^ seven or eight countries
+^ all over the world
 
 ^ Some cool contributions include:
 
@@ -1574,7 +1610,7 @@ end
 
 ---
 
-> `Component::Preview`
+> `ViewComponent::Preview`
 -- Juan Manuel Ramallo, Argentina
 
 ^ More complex feature
@@ -1903,8 +1939,6 @@ end
 
 ^ half dozen apps using a single gem
 
-^ we're planning to do the same
-
 ^ PAUSE
 
 ---
@@ -1915,9 +1949,9 @@ end
 
 ^ Most exciting
 
-^ landed PRs in rails to add native support for component frameworks like ours
+^ landed PRs in rails to add native support for 3rd-party component frameworks
 
-^ will be shipping in Rails 6.1 this spring
+^ will be shipping in Rails 6.1
 
 ^ PAUSE
 
@@ -1947,46 +1981,27 @@ end
 
 ^ PAUSE
 
-^ Except this isn't the case
-
-^ Internal code in our app with a more extreme optimization
-
-^ Enabled by having linters:
+^ however, components are able to get around this issue:
 
 ---
 
-## `render("users/index")`
-
-^ Linter to enforce full path
-
----
+`# lib/view_component/engine.rb`
 
 ```ruby
-class RepositoriesController
-  def show
-    render("repostiories/show")
+initializer "view_component.eager_load_actions" do
+  ActiveSupport.on_load(:after_initialize) do
+    ViewComponent::Base.descendants.each(&:compile)
   end
 end
 ```
 
-^ Linter to enforce explicit render calls in controllers
+^ in the library
 
----
+^ S we define an initializer
 
-[.build-lists: true]
+^ that compiles all descendents of ViewComponent base
 
-`# lib/github/fast_render_enhancer.rb`
-
-1. Scan all templates for render calls
-2. Compile unique templates
-
-^ S Scan
-
-^ S Compile each template
-
-^ before ernicorn spawns workers
-
-^ fortunately components are easier to optimize
+^ in practice, it looks like this:
 
 ---
 
@@ -2012,9 +2027,9 @@ end
 
 ^ example component
 
-^ S is compiled at boot, before worker processes are spawned
+^ S template is compiled to a call method
 
-^ effectively gives us the same optimization as fast render enhancer
+^ at boot, before worker processes are spawned
 
 ^ PAUSE
 
@@ -2157,21 +2172,47 @@ test "it renders the open state"
 
 ^ further increasing the performance impact
 
+^ PAUSE
+
+^ But at our scale, the consequences of this problem are more significant
+
+---
+
+## **>**4,400 views
+
+^ Earlier, I mentioned that we have around 4,400 views in our monolith
+
+^ Of those views,
+
+---
+
+## **>**3,000 partials
+
+^ over 3,000 are partials
+
+^ which means there is a lot of opportunities for duplicate controller tests
+
+^ PAUSE
+
+^ Looking back at the testing pyramid
+
 ---
 [.hide-footer]
 [.background-color: #FFFFFF]
 ![100%](img/test-pyramid-highlighted.png)
 
-^ instead, by using components with unit tests
+^ by using components with unit tests
 
 ---
 [.hide-footer]
 [.background-color: #FFFFFF]
 ![100%](img/test-pyramid.png)
 
-^ we can test our view layer thoroughly at the unit level
+^ we can test our view layer permutations thoroughly at the unit level
 
 ^ without duplication
+
+^ leaving controller tests for happy path assertions
 
 ^ PAUSE
 
@@ -2202,7 +2243,7 @@ test "it renders the open state"
 
 ```ruby
 module Shared
-  class AvatarComponent < ApplicationViewComponent
+  class AvatarComponent < ApplicationComponent
     DEFAULT_SIZE = 20
     ALLOWED_SIZES = [DEFAULT_SIZE, 32]
 
@@ -2338,8 +2379,6 @@ end
 
 ^ of utmost importance
 
-^ we're now working to undo this architecture, replacing validations with graceful fallbacks
-
 ^ PAUSE
 
 ---
@@ -2363,18 +2402,6 @@ end
 `# views/shared/_details_dialog.html.erb`
 
 ```erb
-<% locals = ensure_local_vars(local_assigns, {
-  required: [:button_text, :title],
-  optional: [:button_icon, :dialog_class, :ga_click, :sudo_required, :id, :button_role, :deferred_loading_url, :button_aria_label, :title_class, :safe_toggle_button_data_attributes],
-  defaults: {
-    button_class: "btn",
-    details_class: "d-inline-block text-left",
-    preload: false,
-    is_checked: false,
-    hidden: false
-  }
-}) %>
-
 <details
   class="details-reset details-overlay details-overlay-dark lh-default text-gray-dark <%= locals[:details_class] %>"
   <% if locals[:id] %>id="<%= locals[:id] %>"<% end %>>
@@ -2411,91 +2438,6 @@ end
 ^ It's massive, handling a lot of complexity and use cases
 
 ^ 17 different local variables
-
----
-
-`# views/shared/_details_dialog.html.erb`
-
-```erb
-<% locals = ensure_local_vars(local_assigns, {
-  required: [:button_text, :title],
-  optional: [:button_icon, :dialog_class, ...],
-  defaults: {
-    button_class: "btn",
-    details_class: "d-inline-block text-left",
-    preload: false,
-    is_checked: false,
-    hidden: false
-  }
-}) %>
-```
-
-^ Helpfully managed by the clever ensure_local_vars helper written by the wonderful @muan
-
-^ This really is a lovely abstraction, and saves us a lot of pain
-
-^ without digging into the details, it behaves similarly to our fetch or fallback helper
-
-^ raising errors when not in production
-
----
-
-`# lib/github/details_component.rb`
-
-```ruby
-module GitHub
-  class DetailsComponent < ApplicationComponent
-    DEFAULT_BUTTON_CLASS = "btn"
-    DEFAULT_DETAILS_CLASS = "d-inline-block text-left"
-    DEFAULT_PRELOAD = false
-    DEFAULT_IS_CHECKED = false
-    DEFAULT_HIDDEN = false
-
-    validates :button_text, :title, presence: true
-
-    # from app/assets/modules/github/sudo.js:11
-    validates :sudo_required, inclusion: { in: [nil, "low", "medium", "high", "two_factor"] }
-
-    validate :ensure_button_role_and_is_checked_valid
-
-    IS_CHECKED_BUTTON_ROLES = ["menuitemradio", "menuitemcheckbox"]
-
-    def initialize(button_text:, title:,
-                   button_class: DEFAULT_BUTTON_CLASS, details_class: DEFAULT_DETAILS_CLASS, preload: DEFAULT_PRELOAD, is_checked: DEFAULT_IS_CHECKED, hidden: DEFAULT_HIDDEN,
-                   button_icon: nil, dialog_class: nil, ga_click: nil, sudo_required: nil, id: nil, button_role: nil, deferred_loading_url: nil, button_aria_label: nil, title_class: nil,
-                   button_data: nil)
-      @button_text = button_text
-      @title = title
-      @button_class = button_class
-      @details_class = details_class
-      @preload = preload
-      @is_checked = is_checked
-      @hidden = hidden
-      @button_icon = button_icon
-      @dialog_class = dialog_class
-      @ga_click = ga_click
-      @sudo_required = sudo_required
-      @id = id
-      @button_role = button_role
-      @deferred_loading_url = deferred_loading_url
-      @button_aria_label = button_aria_label
-      @title_class = title_class
-      @button_data = button_data
-    end
-
-    private
-
-    def ensure_button_role_and_is_checked_valid
-      return unless @button_role.present? && @is_checked.present?
-      return if IS_CHECKED_BUTTON_ROLES.include?(@button_role)
-
-      errors.add(:button_role, "must be either #{IS_CHECKED_BUTTON_ROLES.join(" or ")} if is_checked is set")
-    end
-
-    attr_reader :button_text, :title, :button_class, :details_class, :preload, :is_checked, :hidden, :button_icon, :dialog_class, :ga_click, :sudo_required, :id, :button_role, :deferred_loading_url, :button_aria_label, :title_class, :button_data
-  end
-end
-```
 
 ^ Refactored into a component, this complexity is even more visible.
 
@@ -2568,15 +2510,9 @@ end
 
 ^ but because we can write unit tests, we can refactor!
 
----
+^ and that's just what's happening.
 
-[.hide-footer]
-[.background-color: #FFFFFF]
-![100%](img/muan-dgraham-pr.png)
-
-^ and that's just what @muan and @dgraham are doing now
-
-^ they're refactoring the component to be drastically simpler
+^ we're refactoring the component to be drastically simpler
 
 ^ PAUSE
 
@@ -2642,7 +2578,7 @@ end
 
 [.hide-footer]
 [.background-color: #FFFFFF]
-![100%](img/rails-pr.png)
+![100%](img/rails-pr-cropped.png)
 
 ^ Another cool example is the primer layout component
 
@@ -2655,6 +2591,9 @@ end
 ---
 
 [.code-highlight: 0]
+[.code-highlight: 8]
+[.code-highlight: 4-8]
+[.code-highlight: 4-8, 11]
 [.code-highlight: 3]
 
 `# lib/primer/layout_component.rb`
@@ -2677,6 +2616,12 @@ end
 ```
 
 ^ here's what it looks like
+
+^ S arguments
+
+^ S side constants
+
+^ S use fetch of fallback to make sure side is one of those values
 
 ^ S this component leverages multiple content areas
 
@@ -2749,19 +2694,9 @@ end
 
 ## ViewModels to Components
 
-^ proposing that we migrate to using components
-
-^ instead of view models
+^ we're migrating our viewmodels to components
 
 ^ Linter to cap view model usage, directing to components instead
-
----
-
-## Migration path
-
-^ If you want to give it a try
-
-^ Easy way is to migrate a view model in your AoR
 
 ---
 
@@ -2771,17 +2706,17 @@ end
 
 ---
 
-## app/components (70)<br />lib/primer (16)
+## app/components (112)<br />lib/primer (16)
 
-^ 70 components in dotcom application
+^ 112 components in applicaiton
 
 ^ 16 primer components in lib
 
 ---
 
-## ~300 usages in 139 views
+## ~550 usages in ~250 views
 
-^ around 300 usages in 139 views
+^ around 550 usages in 250 views
 
 ---
 
@@ -2805,21 +2740,9 @@ end
 
 ^ ruby library on github
 
-^ contributions welcome, even if it's just bug reports
+^ contributions welcome
 
----
-
-## github.com/orgs/github/projects/728
-
-^ also have an internal project board with plenty of actionable cards
-
----
-
-## #view-component<br />@github/view-component-reviewers
-
-^ If you have any questions,
-
-^ We're here to help on slack and in PR reviews
+^ give it a try in your applications and let us know what you think!
 
 ---
 
