@@ -70,6 +70,7 @@ h6 {
   font-size: .8rem;
   font-style: oblique;
   line-height: 1.5;
+  margin-bottom: .8rem;
 }
 
 img, video {
@@ -79,12 +80,8 @@ img, video {
   width: 100%;
 }
 
-.embed-audio,
 .embed-container {
-  margin-top: 10px;
-}
-
-.embed-container {
+  margin-top: .8rem;
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
