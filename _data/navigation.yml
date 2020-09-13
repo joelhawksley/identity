@@ -1,0 +1,6 @@
+# - name: Writing
+#   link: /writing.html
+- name: About
+  link: /
+- name: Projects
+  link: /projects.html

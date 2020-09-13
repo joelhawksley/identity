@@ -1,0 +1,37 @@
+---
+layout: default
+title: Projects
+---
+
+<style>
+  .projects {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .projects h3 {
+    margin: 0;
+  }
+
+  .projects li {
+    margin: 2rem 0 4rem;
+  }
+
+  .projects img {
+    border: 1px solid black;
+  }
+</style>
+<ul class="projects">
+  {% assign sorted = site.projects | sort: 'position' | reverse %}
+  {% for project in sorted %}
+    <li>
+      <img src="{{project.image}}" />
+      <div style="display: flex; justify-content: space-between;">
+        <h3>{{ project.name }}</h3>
+        <span>{{ project.period }}</span>
+      </div>
+      <p>{{ project.content | markdownify }}</p>
+    </li>
+  {% endfor %}
+</ul>
