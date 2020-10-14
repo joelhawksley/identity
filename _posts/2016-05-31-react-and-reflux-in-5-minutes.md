@@ -1,5 +1,6 @@
 ---
 layout: post
+title: React and Reflux in 5 minutes
 ---
 
 _Note: This post was originally published on the [MojoTech blog](https://www.mojotech.com/blog/). It's been reproduced here for posterity._
