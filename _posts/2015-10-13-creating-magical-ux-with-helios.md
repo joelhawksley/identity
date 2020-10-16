@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Creating Magical UX with Helios
+title: Creating magical UX with Helios
 ---
 
 _Note: This post was originally published on the [MojoTech blog](https://www.mojotech.com/blog/). It's been reproduced here for posterity._
