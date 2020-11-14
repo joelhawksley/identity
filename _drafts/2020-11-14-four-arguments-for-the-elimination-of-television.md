@@ -10,7 +10,7 @@ ISBN 0-688-03274-5
 
 Jerry Mander argues that television is bad for the world. It separates us from first hand experience, limits the breadth of perspectives, causes negative physical effects, and biases towards a subset of experiences.
 
-## Why I read it
+## Why did I read it?
 
 I grew up without a television at home. Even at the time, I knew this was out of the ordinary. As my friends obsessed over MTV, video games, and movies, I spent time on the computer. 
 
@@ -50,8 +50,17 @@ In many ways, redefining these images is the root of modern social movements suc
 
 Before modern technology, if we saw or heard something, it was because it was in fact happening. Only recently has it been necessary to doubt what our senses perceive, as television can present false realities. This “sensory cynicism” would have been profoundly dangerous for most of human history, but is now practically a necessity for survival.
 
+### Space to question
 
+> Whenever you engage with media, any media, you begin to take things on faith. With books you are at least able to stop and think about what you read, as you read. This gives you some chance to analyze. With television, the images just come.
 
+As the need for sensory cynicism grows, the space for it shrinks. We need time to process what we’re perceiving, and television often doesn’t provide that time.
+
+### Sensual struggle
+
+> Programs concerned with the arts, programs concerned with many religions and all programs concerned with non-Western cultures are similarly distorted by television’s inability to convey their sensual aspects.
+
+As I consider my struggles with religious faith and emotional intelligence, I see a connection to how technology is incapable of conveying these aspects of life. By spending most of our conscious hours in front of a screen, we’re limiting our exposure to sensual experiences.
 
 
 ## The Mediation of Experience
