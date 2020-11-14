@@ -1,18 +1,13 @@
-# Four arguments for the elimination of television
+---
+layout: post
+title: Four arguments for the elimination of television
+---
 
-By Jerry Mander
-
-1978
-
-ISBN 0-688-03274-5
-
-## In one sentence
-
-Television should be eliminated because is bad for human beings, society, and the world.
+By Jerry Mander / 1978 / ISBN 0-688-03274-5
 
 ## Why did I read it?
 
-I grew up without a television at home. Even at the time, I knew this was out of the ordinary. As my friends obsessed over MTV, video games, and movies, I spent time on the computer. 
+I grew up without a television at home. Even at the time, I knew this was out of the ordinary. As my friends obsessed over MTV, video games, and movies, I spent time on the computer.
 
 Why did my parents raise me this way? This book is a big part of the reason.
 
@@ -20,11 +15,11 @@ Why did my parents raise me this way? This book is a big part of the reason.
 
 ### Watching TV is not an experience
 
-One argument for television is that it allows us to experience more than we could without it. A child in Nebraska can watch a performance of an orchestra in New York City. Yet watching the performance is a shadow of the experience of seeing it in person. 
+One argument for television is that it allows us to experience more than we could without it. A child in Nebraska can watch a performance of an orchestra in New York City. Yet watching the performance is a shadow of the experience of seeing it in person.
 
 ### Technology upsets the natural balance
 
-Technology is prone to upset the natural balance because its evolution is not constrained by physics. 
+Technology is prone to upset the natural balance because its evolution is not constrained by physics.
 
 ### Advertising is deadweight
 
@@ -36,9 +31,9 @@ I’ve always had an aversion to advertising, and this passage renewed that feel
 
 > [...] television addiction might itself be symptomatic of an inability to produce one’s own mental imagery.
 
-Think about a time you saw a movie after reading the book. Now compare it to a time when you read the book _after_ watching the movie. When reading the book first, your mental images of the characters were of your own creation. When reading it second, your images were likely those from the movie. 
+Think about a time you saw a movie after reading the book. Now compare it to a time when you read the book _after_ watching the movie. When reading the book first, your mental images of the characters were of your own creation. When reading it second, your images were likely those from the movie.
 
-When our mental images are not of our own making, our creative abilities suffer. 
+When our mental images are not of our own making, our creative abilities suffer.
 
 ### Television redefines reality
 
@@ -58,9 +53,9 @@ As the need for sensory cynicism grows, the space for it shrinks. We need time t
 
 ### Technique vs. content
 
-Mander highlights the cadence of “technical events,” such as cuts, pans, zooms, and other techniques as evidence of how much technique drives engagement in television. 
+Mander highlights the cadence of “technical events,” such as cuts, pans, zooms, and other techniques as evidence of how much technique drives engagement in television.
 
-In typical commercial television, there is a such an event every six seconds or so. In commercials, it’s every 1-2 seconds. The less appealing the subject, the more enticement is needed to drive interest. 
+In typical commercial television, there is a such an event every six seconds or so. In commercials, it’s every 1-2 seconds. The less appealing the subject, the more enticement is needed to drive interest.
 
 ### Sensual struggle
 
@@ -72,12 +67,12 @@ As I consider my struggles with religious faith and emotional intelligence, I se
 
 > One answer to this questions lies with the absolutely erroneous assumption that technologies are “neutral,” benign instruments that may be used well or badly depending on who controls them. Americans have not grasped the fact that many technologies determine their own use, their own effects, and even the kind of people who control them. We have not yet learned to think of having ideology built into its very form.
 
-Technologists, including myself, often make the argument that technology is neutral, and that any biases or downsides are the doing of the people who use it. 
+Technologists, including myself, often make the argument that technology is neutral, and that any biases or downsides are the doing of the people who use it.
 
 Given the inability to reverse the progress of technology, there is a great need to exercise caution in its creation.
 
 ## Summary
 
-While this book is over 50 years old, it’s relevant today, more than ever. 
+While this book is over 50 years old, it’s relevant today, more than ever.
 
 With the great power technology gives us, we must exercise great care. We need to create avenues for removing technologies from our lives that don’t serve our needs.
