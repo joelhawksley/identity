@@ -1,7 +1,11 @@
 ---
 layout: default
 ---
+
 <h1>{{ page.title }}</h1>
-<p>{{ page.date | date: "%Y-%m-%d" }}</p>
+{% if page.book_author %}
+  <p><em>By {{page.book_author}}, {{page.book_year}}. ISBN {{page.book_isbn}}</em></p>
+{% endif %}
+<time>{{ page.date | date: "%B %e, %Y" }}</time>
 
 {{ content }}

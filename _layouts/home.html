@@ -1,27 +1,17 @@
 ---
 layout: default
-title: Projects
 ---
-
-<style>
-  .projects {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-
-  .projects h3 {
-    margin: 0;
-  }
-
-  .projects li {
-    margin: 2rem 0 4rem;
-  }
-
-  .projects img {
-    border: 1px solid black;
-  }
-</style>
+<h2>Writing</h2>
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <time>{{ post.date | date: "%Y-%m-%d" }}</time>
+      <a href="{{ post.url }}">{{ post.title }} </a>
+    </li>
+  {% endfor %}
+</ul>
+{{ content }}
+<h2>Projects</h2>
 <ul class="projects">
   {% assign sorted = site.projects | sort: 'position' | reverse %}
   {% for project in sorted %}
@@ -31,7 +21,7 @@ title: Projects
         <h3>{{ project.name }}</h3>
         <span>{{ project.period }}</span>
       </div>
-      <p>{{ project.content | markdownify }}</p>
+      {{ project.content | markdownify }}
     </li>
   {% endfor %}
 </ul>
