@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>{% if page.title %}{{ page.title }} - {% endif %}Joel Hawksley</title>
-    <meta name="description" content="The work of Joel Hawksley.">
+    <meta name="description" content="Joel Hawksley is software engineer and photographer based in Louisville, Colorado.">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -27,12 +27,32 @@
         font-size: 1rem;
         font-family: var(--sans-font);
         max-width: 40rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
 
       h1, h2, h4 {
         margin-bottom: .5rem;
         line-height: 1.25;
         font-weight: 600;
+      }
+
+      h2 {
+        border-bottom: 1px solid lightgray;
+        font-size: 1.5rem;
+        padding-bottom: .5rem;
+        margin-top: 2rem;
+      }
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      blockquote {
+        border-left: 5px solid lightgray;
+        margin-inline-start: 0;
+        padding-inline-start: 1.5rem;
+        font-style: italic;
       }
 
       h4 {
@@ -42,15 +62,6 @@
       img {
         width: 100%;
         max-width: 40rem;
-      }
-
-      .px {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-
-      .only-print {
-        display: none
       }
 
       nav {
@@ -68,28 +79,40 @@
         color: black;
       }
 
-      footer {
-        opacity: 0.3;
-      }
-
       .highlight {
         white-space: break-spaces;
+      }
+
+      time {
+        font-variant-numeric: tabular-nums;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .projects h3 {
+        margin: 0;
+      }
+
+      .projects li {
+        margin: 1rem 0 2rem;
+      }
+
+      .projects img {
+        border: 1px solid lightgray;
       }
     </style>
     <link rel="stylesheet" href="/github.css">
   </head>
   <body>
-    <h1 style="font-size:1.5rem;margin:0;line-height:1;padding-top:2rem;" class="px">Joel Hawksley</h1>
-    <nav>
-      {% for item in site.data.navigation %}
-        <a href="{{ item.link }}" {% if page.url == item.link %}style="text-decoration: underline;"{% endif %}>
-          {{ item.name }}
-        </a>
-      {% endfor %}
-    </nav>
-    <div class="px">
-      {{ content }}
-    </div>
-    <footer style="font-size: .8rem; margin-bottom: 2rem;" class="px">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley</footer>
+    <header>
+      <div style="font-size:1rem;margin:0;line-height:1;padding-top:2rem;font-weight:bold;"><a href="/" style="text-decoration:none;">Joel Hawksley</a></div>
+      <a href="mailto:joel@hawksley.org">joel@hawksley.org</a>
+    </header>
+    {{ content }}
+    <footer style="font-size: .8rem; margin-bottom: 2rem;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley</footer>
   </body>
 </html>

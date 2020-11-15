@@ -1,17 +1,17 @@
 ---
 layout: post
 title: Four arguments for the elimination of television
+type: review
+book_author: Jerry Mander
+book_year: 1978
+book_isbn: 0-688-03274-5
 ---
-
-By Jerry Mander / 1978 / ISBN 0-688-03274-5
-
-## Why did I read it?
 
 I grew up without a television at home. Even at the time, I knew this was out of the ordinary. As my friends obsessed over MTV, video games, and movies, I spent time on the computer.
 
 Why did my parents raise me this way? This book is a big part of the reason.
 
-## Takeaways
+Here are some points that stuck out to me:
 
 ### Watching TV is not an experience
 
@@ -73,6 +73,4 @@ Given the inability to reverse the progress of technology, there is a great need
 
 ## Summary
 
-While this book is over 50 years old, it’s relevant today, more than ever.
-
-With the great power technology gives us, we must exercise great care. We need to create avenues for removing technologies from our lives that don’t serve our needs.
+While this book is over 50 years old, it’s relevant today, more than ever. Mander's arguments border on hyperbolic at times, but ultimately make a strong case.
