@@ -2,7 +2,6 @@ slidenumbers: true
 footer: RailsConf 2020.2 Couch Edition - Encapsulating Views - @joelhawksley
 autoscale: true
 
-
 ^ Lots of pauses in hook/intro/thankfulness
 
 ^ Servants' mindset
