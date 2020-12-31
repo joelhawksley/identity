@@ -16,6 +16,16 @@ autoscale: true
 
 ---
 
+^ Today I'm going to share what we’ve learned
+
+^ scaling to hundreds of ViewComponents in our application
+
+^ open sourcing a library of ViewComponents
+
+^ and nurturing a thriving community around the project, both internally and externally.
+
+---
+
 ![40%](img/github-white.png)
 
 ^ I work at GitHub
