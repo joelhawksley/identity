@@ -39,11 +39,13 @@ autoscale: true
 
 ^ We are responsible for the Primer design system used throughout GitHub
 
-^ We recently shipped dark mode
+^ Perhaps our biggest ship just went out recently - dark mode
 
 ^ My job on the team
 
 ^ to help hundreds of engineers use our design system correctly in our monolith
+
+^ Make building consistent, accessible, resilient UI easy
 
 ^ and to generally make building UI an enjoyable experience
 
@@ -54,6 +56,10 @@ autoscale: true
 ^ This is a big challenge!
 
 ^ The main GitHub application has thousands of templates, and over 450kb of custom CSS.
+
+^ Thousands of screens, X routes, X GET routes.
+
+^ All need to stay current, even if they're out of the critical path
 
 ^ We have a lot of legacy one-off designs that are difficult to maintain.
 
@@ -214,6 +220,12 @@ autoscale: true
 
 ^ I'm not sure it's a good idea or not, but it's served us well.
 
+^ https://team.githubapp.com/posts/35123
+
+^ https://github.com/github/github/pull/154697
+
+^ https://github.com/github/design-systems/issues/768#issuecomment-694536798
+
 ---
 
 ## Seeds vs. test setup
@@ -223,6 +235,12 @@ autoscale: true
 ^ Our seeds and test setup code has a lot of overlap!
 
 ^ I'm curious to see if there's ways we could bridge the gap between these conceptual domains.
+
+---
+
+## Static analysis
+
+^ Viewfinder - https://team.githubapp.com/posts/34338
 
 ---
 
@@ -270,6 +288,18 @@ autoscale: true
 
 ---
 
+# Example
+
+^ Share example component from README
+
+---
+
+# Testing
+
+^ Example test from README
+
+---
+
 # 2020
 
 ^ 2020
@@ -279,6 +309,12 @@ autoscale: true
 ^ Talked about how Rails views work under the hood
 
 ^ All execute in the same context, meaning they can share state
+
+---
+
+# Example
+
+^ Previous code, compiled
 
 ---
 
@@ -545,6 +581,8 @@ autoscale: true
 
 ^ we aimed to conceptually align the framework with Rails as much as possible.
 
+^ Rails conventions mean baseline expectations outside framework
+
 ^ And because of that, it's enabled others to almost instinctively know how to contribute
 
 ---
@@ -619,7 +657,7 @@ autoscale: true
 
 ---
 
-> The Innovator's Dilemma is the decision between catering to customers' current needs, or adopting new innovations and technologies which will answer future needs.
+> The Innovator's Dilemma is the decision between catering to current needs, or adopting new innovations and technologies which will answer future needs.
 
 ^ READ QUOTE
 
@@ -649,11 +687,19 @@ autoscale: true
 
 ^ We need to innovate!
 
+^ Improving Rails is the only way we'll survive.
+
 ---
 
-# Ownership
+# Citizenship
 
 ^ We need to take ownership of keeping Rails relevant for the long term.
+
+^ By being good citizens. By participating.
+
+^ Rails was built by people just like all of you
+
+^ And we benefit from the work they've put in
 
 ^ You can see this in GitHub's contributions to the framework
 
