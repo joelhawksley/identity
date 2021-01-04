@@ -8,27 +8,124 @@ autoscale: true
 
 ^ Hi
 
-^ Name is Joel
+^ My name is joel
 
 ^ Thanks for having me
 
 ^ Thanks to Rylan, Dan, and Marty for organizing
 
+^ Today we're going to take a peak behind the curtain
+
+^ of one of the biggest, highest-trafficked Rails applications in the world
+
+---
+
+## github.com/github/github
+
+^ github / github / github
+
+^ It seems like every time I give a talk people want to know our stats
+
+^ So here are a few...
+
+---
+
+# 10s of k's requests/second
+
+^ Our app serves tens of thousands of requests per second
+
+---
+
+# ~ two dozen services
+
+^ We have around two dozen services
+
+^ Citadel architecture
+
+^ A lot of them are written in Go
+
+^ optimized extractions from the monolith
+
+^ such as webhook delivery
+
+^ On the rails side...
+
+---
+
+# 580 models
+
+## +144 YoY (33%)
+
+^ `grep -lr "< ApplicationRecord" app/models | wc -l`
+
+^ 580 models
+
+---
+
+# 4573 views
+
+## +702 YoY (18%)
+
+^ `find app/views -type f -name "*.html.erb" | wc -l`
+
+^ 4573 views
+
+---
+
+# 766 controllers
+
+## +206 YoY (36.8%)
+
+^ `find app/controllers -type f -name "*_controller.rb" | wc -l`
+
+^ 766 controllers
+
+---
+
+# 647 jobs
+
+## +107 YoY (19.8%)
+
+^ `find app/jobs -type f -name "*_job.rb" | wc -l`
+
+^ 647 jobs
+
+---
+# 397 ViewComponents
+
+## +373 YoY (1554%)
+
+^ `find app/components -type f -name "*.rb" | wc -l`
+
+^ 397 view components
+
+---
+
+# Scaling ViewComponents
+
+^ Today I'm going to talk about what we've learned scaling
+
+^ to hundreds of ViewComponents
+
+---
+
+# Open source
+
+^ share what we've learned open sourcing portions of our UI architecture
+
+---
+
+# Innovation
+
+^ and consider ways to ensure Rails continues to innovate and stay relevant for the long term.
+
+^ PAUSE
+
 ---
 
 ![40%](img/github-white.png)
 
-^ I work at GitHub
-
-^ For a couple years now
-
-^ Today I'm going to share what we’ve learned
-
-^ scaling to hundreds of ViewComponents in our application
-
-^ open sourcing a library of ViewComponents
-
-^ and nurturing a thriving community around the project, both internally and externally.
+^ I've been at GitHub for a couple years now
 
 ^ engineer at on Design Systems team
 
@@ -49,23 +146,32 @@ autoscale: true
 
 ^ and to generally make building UI an enjoyable experience
 
----
-
-## Scale
-
 ^ This is a big challenge!
 
-^ The main GitHub application has thousands of templates, and over 450kb of custom CSS.
+^ In addition to over 4500 views...
 
-^ Thousands of screens, X routes, X GET routes.
+---
+
+# 2015 GET routes
+
+^ We have over two thousand screens in the application
+
+---
 
 ^ All need to stay current, even if they're out of the critical path
 
 ^ We have a lot of legacy one-off designs that are difficult to maintain.
 
 ---
+# >450kb of custom CSS
+
+^ Which means almost half a megabyte of custom CSS.
+
+^ This scale makes for some interesting problems.
 
 ^ PAUSE
+
+---
 
 ^ one example of how I've worked to improve the developer experience
 
@@ -267,8 +373,6 @@ autoscale: true
 ^ It's incredibly difficult to make sweeping changes to our view code,
 
 ^ limiting the leverage our team has with our design system.
-
-^ TODO update count / add YoY
 
 ---
 
@@ -643,6 +747,7 @@ autoscale: true
 
 ^ We don't do view caching, so it's more difficult for us to build the framework support for it
 
+---
 # Innovation
 
 ^ Another thing this project has made me think about is innovation in Rails.
