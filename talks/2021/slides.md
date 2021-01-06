@@ -14,6 +14,8 @@ autoscale: true
 
 ^ Thanks to Rylan, Dan, and Marty for organizing
 
+---
+
 ^ Today we're going to take a peak behind the curtain
 
 ^ of one of the biggest, highest-trafficked Rails applications in the world
@@ -24,13 +26,13 @@ autoscale: true
 
 ^ github / github / github
 
-^ It seems like every time I give a talk people want to know our stats
+^ and it's a big app
 
-^ So here are a few...
+^ here are a few stats
 
 ---
 
-# 10s of k's requests/second
+# 10k's requests/second
 
 ^ Our app serves tens of thousands of requests per second
 
@@ -44,11 +46,13 @@ autoscale: true
 
 ^ A lot of them are written in Go
 
-^ optimized extractions from the monolith
+^ extractions from the monolith
 
 ^ such as webhook delivery
 
-^ On the rails side...
+^ but most of GitHub is a Rails monolith
+
+^ and it's a big one...
 
 ---
 
@@ -80,32 +84,9 @@ autoscale: true
 
 ^ 766 controllers
 
----
+^ This scale poses novel problems.
 
-# 647 jobs
-
-## +107 YoY (19.8%)
-
-^ `find app/jobs -type f -name "*_job.rb" | wc -l`
-
-^ 647 jobs
-
----
-# 397 ViewComponents
-
-## +373 YoY (1554%)
-
-^ `find app/components -type f -name "*.rb" | wc -l`
-
-^ 397 view components
-
----
-
-# Scaling ViewComponents
-
-^ Today I'm going to talk about what we've learned scaling
-
-^ to hundreds of ViewComponents
+^ We definitely aren't lacking use cases and examples
 
 ---
 
@@ -117,7 +98,9 @@ autoscale: true
 
 # Innovation
 
-^ and consider ways to ensure Rails continues to innovate and stay relevant for the long term.
+^ and consider ways
+
+^ we can ensure Rails stays relevant for the long term.
 
 ^ PAUSE
 
@@ -134,7 +117,7 @@ autoscale: true
 [.hide-footer]
 ![fit](img/primer.png)
 
-^ We are responsible for the Primer design system used throughout GitHub
+^ responsible for the Primer design system used throughout GitHub
 
 ^ Perhaps our biggest ship just went out recently - dark mode
 
@@ -156,8 +139,6 @@ autoscale: true
 
 ^ We have over two thousand screens in the application
 
----
-
 ^ All need to stay current, even if they're out of the critical path
 
 ^ We have a lot of legacy one-off designs that are difficult to maintain.
@@ -176,8 +157,6 @@ autoscale: true
 ^ one example of how I've worked to improve the developer experience
 
 ^ is template annotations
-
----
 
 ^ One issue developers had building UI at GitHub was figuring out
 
@@ -239,9 +218,7 @@ autoscale: true
 
 ^ You can turn it on with the configuration variable X
 
-^ And new Rails applications have it enabled by default in local development,
-
-^ otherwise it defaults to being turned off.
+^ And new Rails applications have it enabled by default in local development
 
 ^ PAUSE
 
@@ -255,13 +232,13 @@ autoscale: true
 
 ^ seeds only get us so far.
 
-^ part of this is due to our architecture
+^ part of this is due to the citadel architecture
 
 ---
 
 ## Architecture
 
-^ GitHub is a huge application. It's what some people call a citadel.
+^ As I said...
 
 ^ We have a main Rails monolith and about two dozen services.
 
@@ -270,6 +247,8 @@ autoscale: true
 ^ but yet we manage to do it...
 
 ^ in our tests.
+
+^ while this is great, it's not much help for making visual changes
 
 ---
 ## TDD
@@ -282,13 +261,15 @@ autoscale: true
 
 ^ Which is already over 10 hours without parallelization.
 
+^ PAUSE
+
 ^ However, we do write plenty of controller tests.
 
 ^ After numerous pairing sessions helping our designers
 
 ^ get their local development environments into the right state,
 
-^ I had an epiphany- what if we could temporarily convert controller tests...
+^ I had an idea- what if we could temporarily convert controller tests...
 
 ---
 
@@ -342,11 +323,315 @@ autoscale: true
 
 ^ I'm curious to see if there's ways we could bridge the gap between these conceptual domains.
 
+^ PAUSE
+
 ---
 
-## Static analysis
+^ While working on these projects
 
-^ Viewfinder - https://team.githubapp.com/posts/34338
+^ we identified another source of friction
+
+---
+## View -> route(s)
+
+As a developer editing a view, it’s difficult to know what pages of the application will be affected by my changes.
+
+^ When modifying a template,
+
+^ It can be difficult to know where a view is used.
+
+^ Not knowing where a template is used is risky, as we have a lot of template reuse.
+
+^ John Hawthorn made a diagram of how our templates reference each other...
+
+---
+
+^ TODO template diagram
+
+^ Navigating our render stack can be tricky
+
+^ so we turned to static analysis!
+
+---
+
+## Viewfinder
+
+^ And built a tool called Viewfinder
+
+---
+
+ [.build-lists: true]
+
+## `bin/viewfinder app/views/wiki/show.html.erb`
+
+^ Here's how it works:
+
+^ We pass in the path to the template, in this case the wiki show page.
+
+---
+
+```ruby
+grep(/('|")wiki/show('|")/, paths: [Rails.root.join("app/**/*")])
+```
+
+^ Then we extract the template string literal, in this case `wiki/show`
+
+^ And search for it in the codebase.
+
+---
+
+```ruby
+root_node = Parser::CurrentRuby.new.parse(file_contents)
+```
+
+^ Then, for each search result, we load the file with the Parser gem,
+
+^ Which returns an Abstract Syntax Tree of the file.
+
+^ For example, one of the matches for our search was a controller. Here's part of the syntax tree:
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 10-11]
+
+```
+s(:block,
+  s(:send, nil, :respond_to),
+  s(:args,
+    s(:arg, :format)),
+  s(:begin,
+    s(:block,
+      s(:send,
+        s(:lvar, :format), :html),
+      s(:args),
+        s(:send, nil, :render,
+          s(:str, "wiki/show")),
+```
+
+^ This data structure represents how Ruby interprets the code we write.
+
+^ S And you can see at the bottom that we have our render call to `wiki/show`
+
+^ For reference, here is the equivalent Ruby code for this tree:
+
+---
+
+```ruby
+respond_to do |format|
+  format.html do
+    render "wiki/show"
+  end
+end
+```
+
+```
+s(:block,
+  s(:send, nil, :respond_to),
+  s(:args,
+    s(:arg, :format)),
+  s(:begin,
+    s(:block,
+      s(:send,
+        s(:lvar, :format), :html),
+      s(:args),
+        s(:send, nil, :render,
+          s(:str, "wiki/show")),
+```
+
+^ PAUSE
+
+^ So once we have the syntax tree, we can query it!
+
+---
+
+[.code-light: 0]
+[.code-light: 1]
+[.code-light: 2]
+[.code-light: 0]
+
+```ruby
+if node.type == :send
+  case node.method_name
+  when :render
+    ...
+  when :render_to_string
+    ...
+  end
+end
+```
+
+^ Not going to go into too much detail at this point
+
+^ but we are able to find the calls to `render`
+
+^ S by looking at the type of the syntax node
+
+^ S and then the method name
+
+^ S And we do this to confirm that the render call is referring to the template we're tracing
+
+---
+
+^ We continue until we reach a controller action.
+
+^ Then, going back to the syntax tree...
+
+---
+
+```
+s(:def, :show,
+  s(:args),
+```
+
+^ We look up the tree until we find the definition of the controller method.
+
+---
+
+# WikiController#show
+
+^ Which in this case is the show method on the wiki controller.
+
+---
+
+# `get "wiki/*path", to: "wiki#show"`
+
+^ From there, we look up the routes that render that controller action,
+
+^ and return the result to the console:
+
+---
+
+```
+2 uses of wiki/show found:
+
+ROUTE: /:user_id/:repository/wiki/*path () =>
+CONTROLLER: app/controllers/wiki_controller.rb#show =>
+wiki/show.html.erb
+
+ROUTE: /:user_id/:repository/wiki (wikis) =>
+CONTROLLER: app/controllers/wiki_controller.rb#index =>
+wiki/show.html.erb
+```
+
+^ PAUSE
+
+^ By itself, this tool was really useful.
+
+^ We could see all of the routes that rendered a template!
+
+^ But then we realized:
+
+---
+
+# Route -> test
+
+^ We could use these routes to identify which controller tests
+
+^ rendered our template!
+
+^ We did this through a similar process to what got us to this point
+
+---
+
+```ruby
+grep(/get ".*"/, paths: [Rails.root.join("test/integration/**/*").to_s])
+```
+
+^ We start by finding all of the `get` calls from our controller tests
+
+---
+
+`get "/joelhawksley/demo/wiki/"`
+
+^ For example, here is a call that loads a wiki page.
+
+^ So we extract the argument from this call, and pass it into...
+
+---
+
+[.code-highlight: 1]
+[.code-highlight: 2]
+
+```ruby
+irb(main):001:0> Rails.application.routes.recognize_path("/joelhawksley/demo/wiki/")
+=> {:controller=>"wiki", :action=>"index", :user_id=>"joelhawksley", :repository=>"demo"}
+```
+
+^ The Rails code path that takes a request path...
+
+^ S and returns a route!
+
+^ And we repeat this over and over, for every controller test
+
+^ Building up a hash that looks something like this:
+
+---
+
+```ruby
+"wiki#index" => ["test/integration/wiki_controller_test.rb:278", ...]
+```
+
+^ Where we have the controller action as the key
+
+^ and the matching tests as an array of values.
+
+^ PAUSE
+
+^ So if we go back to our output from before...
+
+---
+
+[.code-highlight: 1-2]
+
+```
+ROUTE: /:user_id/:repository/wiki/*path () =>
+CONTROLLER: app/controllers/wiki_controller.rb#show =>
+wiki/show.html.erb
+```
+
+^ We can take the controller data we had from before,
+
+^ and use our new lookup hash to include which tests render the view:
+
+---
+
+[.code-highlight: 6-7]
+
+```
+ROUTE: /:user_id/:repository/wiki/*path () =>
+CONTROLLER: app/controllers/wiki_controller.rb#show =>
+wiki/show.html.erb
+
+    These tests may render this template:
+    test/integration/wiki_controller_test.rb:278
+    test/integration/wiki_controller_test.rb:289
+    ...
+```
+
+^ We can then use these test cases with our system test conversion tool
+
+---
+
+`RUN_IN_BROWSER=1 bin/rails test test/integration/wiki_controller_test.rb:278`
+
+^ To visually verify the changes to our template in a browser.
+
+^ PAUSE
+
+---
+
+# Downsides
+
+^ doesn't account for conditionals
+
+^ this is an optimistic approach
+
+^ it returns all possible routes
+
+^ but it's proved incredibly useful for us.
+
+^ PAUSE
 
 ---
 
@@ -430,6 +715,23 @@ autoscale: true
 
 ^ and building a thriving community around the project
 
+^ So to go back from our stats from earlier,
+
+^ The GitHub application grew about 25% last year.
+
+^ Except for our ViewComponents, which...
+
+---
+# 397 ViewComponents
+
+## +373 YoY (1554%)
+
+^ `find app/components -type f -name "*.rb" | wc -l`
+
+^ Grew by over 15 times!
+
+^ PAUSE
+
 ---
 
 # Thinking in Ruby vs. ERB
@@ -454,17 +756,19 @@ autoscale: true
 
 ---
 
-# Abstractions
+# API
 
 ^ One of the main lessons we've learned building components
 
-^ Is that they enable us to provide the right abstractions for developers
+^ Is that they enable us to provide the right API for developers
+
+^ EXAMPLE - only part of CSS component used, vs. all of it (CSS is not the only interface)
 
 ^ TODO for example, slots for borderbox
 
 ---
 
-# Abstractions
+# Abstraction
 
 ^ And perhaps more generally, we need to help developers focus on building products
 
