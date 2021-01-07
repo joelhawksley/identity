@@ -2,7 +2,7 @@ slidenumbers: true
 footer: Boulder Ruby January 2020 - ViewComponents in the real world - @joelhawksley
 autoscale: true
 
-# ViewComponents in the real world
+# ViewComponents <br/>in the real world
 
 ![](img/bg.png)
 
@@ -151,6 +151,8 @@ autoscale: true
 
 ^ When you have a body of work like this
 
+^ With thousands and thousands of examples
+
 ^ it’s possible to zoom out and see patterns emerge
 
 ^ PAUSE
@@ -187,13 +189,11 @@ autoscale: true
 
 ^ not very reliable.
 
----
-
 ^ In this case, if we search for the class names on the element, we get dozens of results.
 
-^ It's not super helpful.
-
 ^ PAUSE
+
+---
 
 ^ In thinking about this problem, I wondered if it might be possible to add HTML comments
 
@@ -201,55 +201,99 @@ autoscale: true
 
 ---
 
+[.code-highlight: 0]
+[.code-highlight: 3-4]
+[.code-highlight: 5]
+[.code-highlight: 7-9]
+[.code-highlight: 14]
+
+```ruby
+# config/initializers/template_annotation.rb
+
+class CustomHandler < ActionView::Template::Handlers::ERB
+  def call(template)
+    out = super.gsub("@output_buffer.to_s", "")
+
+    "@output_buffer.safe_append='<!-- BEGIN: #{ template.short_identifier } -->\n'.freeze;" +
+      out +
+      "@output_buffer.safe_append='<!-- END: #{ template.short_identifier } -->\n'.freeze;@output_buffer.to_s;"
+    end
+  end
+end
+
+ActionView::Template.register_template_handler(:erb, CustomHandler.new) if Rails.env.development?
+```
+
 ^ We did this by writing a custom ERB compiler that added the template path to the output
 
 ^ of a template.
 
+^ S we start by defining the handler object with a call method that receives a template object
+
+^ S get the original output of the ERB handler
+
+^ S and wrap it in HTML comments with the template's identifier
+
+^ S and for now, we only do this in development.
+
 ---
+
+[.slidenumbers: false]
+[.footer:]
+![fit](img/pr-status-annotation.png)
 
 ^ And it worked!
 
 ^ We now had a way to quickly figure out which template rendered a part of a page.
 
-^ TODO image/etc https://github.com/github/github/pull/139605
+^ PAUSE
+
+^ After seeing the benefits of this patch internally,
 
 ---
 
-^ After seeing the benefits of this patch internally,
+[.slidenumbers: false]
+[.footer:]
+![fit](img/annotations-rails.png)
 
 ^ We extracted it into Rails!
 
 ^ It's part of Rails 6.1.
 
-^ TODO image/etc https://github.com/rails/rails/pull/38848/files
-
 ---
 
 ## `config.action_view.annotate_template_file_names`
 
-^ You can turn it on with the configuration variable X
+^ You can turn it on with the configuration variable
 
 ^ And new Rails applications have it enabled by default in local development
 
+---
+
+[.slidenumbers: false]
+[.footer:]
+
+![](img/stars.jpg)
+
 ^ PAUSE
+
+^ Another issue that's come up is getting the application into the right state
+
+^ in local development so we can test visual changes
 
 ---
 
 # Seeds
 
-^ another issue we've run into is getting the application into the right state
-
-^ in local development so we can test visual changes
-
 ^ seeds only get us so far.
 
-^ part of this is due to the citadel architecture
+^ part of this is due to GitHub's architecture
 
 ---
 
 # Architecture
 
-^ As I said...
+^ As I mentioned
 
 ^ We have a main Rails monolith and about two dozen services.
 
@@ -292,37 +336,98 @@ autoscale: true
 
 ^ To preview the application in a specific state to make visual changes
 
----
-
 ^ And that's just what we did!
 
-^ We wrote a module... explain code
+---
 
-^ TODO insert code from system_test_conversion.rb
+[.code-highlight: all]
+[.code-highlight: 2]
+[.code-highlight: 4]
+
+```ruby
+# test/integration/profiles_controller_test.rb
+test "loads successfully" do
+  get "/#{@user}"
+
+  assert_response :ok
+end
+```
+
+^ As a quick refresher, this is what a controller test looks like
+
+^ S It calls `get` with a URL
+
+^ S and then makes an assertion
+
+^ So how can we convert this into a system test?
 
 ---
 
-^ Which we then include if `RUN_IN_BROWSER` is appended to a command to run a test.
+[.code-highlight: 3]
+[.code-highlight: 4-9]
+[.code-highlight: 11-14]
+[.code-highlight: 16]
+[.code-highlight: all]
 
-^ TODO insert code from conditional include
+```ruby
+# test/test_helpers/system_test_conversion.rb
+
+module SystemTestConversion
+  def self.included(child)
+    child.setup do
+      ActionDispatch::SystemTestCase.driven_by(:selenium, using: :chrome)
+      ActionDispatch::SystemTestCase.driver.use
+    end
+  end
+
+  def get(path)
+    visit(path)
+    binding.irb # intentionally pause
+  end
+
+  def assert_response; end
+end
+```
+
+^ We start by writing a module, called system test conversion
+
+^ S That when it's included, registers some configuration for ActionDispatch::SystemTestCase
+
+^ Then in this case we just need to...
+
+^ S redefine `get` to visit the path provided, and then pause with a debugger
+
+^ S and for `assert_response` to be a no-op
+
+^ S PAUSE
+
+^ From there
 
 ---
+
+```ruby
+# test/test_helper.rb
+
+if ENV["RUN_IN_BROWSER"]
+  IntegrationTestCase.send(:include, SystemTestConversion)
+end
+```
+
+^ We conditionally include the module if `RUN_IN_BROWSER` is appended to a command to run a test.
+
+---
+
+[.slidenumbers: false]
+[.footer:]
+![fit](img/tdd-chrome.gif)
 
 ^ And here's what it looks like in action...
-
-^ TODO insert gif of run_in_browser
 
 ---
 
 ^ Unlike template annotations, this hasn't made it into Rails.
 
 ^ I'm not sure it's a good idea or not, but it's served us well.
-
-^ https://team.githubapp.com/posts/35123
-
-^ https://github.com/github/github/pull/154697
-
-^ https://github.com/github/design-systems/issues/768#issuecomment-694536798
 
 ---
 
@@ -334,9 +439,14 @@ autoscale: true
 
 ^ I'm curious to see if there's ways we could bridge the gap between these conceptual domains.
 
-^ PAUSE
-
 ---
+
+[.slidenumbers: false]
+[.footer:]
+
+![](img/stars.jpg)
+
+^ PAUSE
 
 ^ While working on these projects
 
@@ -353,13 +463,18 @@ As a developer editing a view, it’s difficult to know what pages of the applic
 
 ^ Not knowing where a template is used is risky, as we have a lot of template reuse.
 
-^ John Hawthorn made a diagram of how our templates reference each other...
+^ Colleague John Hawthorn made a diagram of how our templates reference each other...
 
 ---
 
-^ TODO template diagram
+[.slidenumbers: false]
+[.footer:]
 
-^ Navigating our render stack can be tricky
+![](img/template-references.jpg)
+
+^ As you can see
+
+^ Navigating our render stack might be a little tricky
 
 ^ so we turned to static analysis!
 
@@ -369,13 +484,11 @@ As a developer editing a view, it’s difficult to know what pages of the applic
 
 ^ And built a tool called Viewfinder
 
+^ Here's how it works:
+
 ---
 
- [.build-lists: true]
-
 # `bin/viewfinder app/views/wiki/show.html.erb`
-
-^ Here's how it works:
 
 ^ We pass in the path to the template, in this case the wiki show page.
 
@@ -650,13 +763,20 @@ wiki/show.html.erb
 
 ^ but definitely not ready for prime time
 
+---
+
+[.slidenumbers: false]
+[.footer:]
+
+![](img/stars.jpg)
+
 ^ PAUSE
+
+^ But the biggest challenge has been a missing abstraction.
 
 ---
 
 # The Missing Abstraction
-
-^ But the biggest challenge has been a missing abstraction.
 
 ---
 
