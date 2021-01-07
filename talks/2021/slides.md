@@ -16,17 +16,44 @@ autoscale: true
 
 ---
 
-^ Today we're going to take a peak behind the curtain
+![40%](img/github-white.png)
 
-^ of one of the biggest, highest-trafficked Rails applications in the world
+^ I've been at GitHub for a couple years now
+
+^ engineer at on Design Systems team
 
 ---
 
-## github.com/github/github
+[.hide-footer]
+![fit](img/primer.png)
 
-^ github / github / github
+^ responsible for the Primer design system used throughout GitHub
 
-^ and it's a big app
+^ Perhaps our biggest ship just went out recently - dark mode
+
+^ My job on the team
+
+^ to help hundreds of engineers use our design system correctly in our monolith
+
+^ Make building consistent, accessible, resilient UI easy
+
+^ and to generally make building UI an enjoyable experience
+
+^ This is a big challenge!
+
+---
+
+# UI at GitHub
+
+^ Today we're going to take a peak behind the curtain
+
+^ at how we build UI in one of the biggest
+
+^ highest-trafficked Rails applications
+
+^ PAUSE
+
+^ To give you an idea of our scale,
 
 ^ here are a few stats
 
@@ -84,55 +111,6 @@ autoscale: true
 
 ^ 766 controllers
 
-^ This scale poses novel problems.
-
-^ We definitely aren't lacking use cases and examples
-
----
-
-# Open source
-
-^ share what we've learned open sourcing portions of our UI architecture
-
----
-
-# Innovation
-
-^ and consider ways
-
-^ we can ensure Rails stays relevant for the long term.
-
-^ PAUSE
-
----
-
-![40%](img/github-white.png)
-
-^ I've been at GitHub for a couple years now
-
-^ engineer at on Design Systems team
-
----
-
-[.hide-footer]
-![fit](img/primer.png)
-
-^ responsible for the Primer design system used throughout GitHub
-
-^ Perhaps our biggest ship just went out recently - dark mode
-
-^ My job on the team
-
-^ to help hundreds of engineers use our design system correctly in our monolith
-
-^ Make building consistent, accessible, resilient UI easy
-
-^ and to generally make building UI an enjoyable experience
-
-^ This is a big challenge!
-
-^ In addition to over 4500 views...
-
 ---
 
 # 2015 GET routes
@@ -149,6 +127,10 @@ autoscale: true
 ^ Which means almost half a megabyte of custom CSS.
 
 ^ This scale makes for some interesting problems.
+
+^ Things that might be a small annoyance in smaller applications can
+
+^ become serious roadblocks at our scale.
 
 ^ PAUSE
 
@@ -623,13 +605,21 @@ wiki/show.html.erb
 
 # Downsides
 
+^ only works with explicit render calls
+
+^ where a template name is passed to `render`
+
+^ something we enforce with a linter
+
 ^ doesn't account for conditionals
 
 ^ this is an optimistic approach
 
 ^ it returns all possible routes
 
-^ but it's proved incredibly useful for us.
+^ but it's proved incredibly useful for us
+
+^ but definitely not ready for prime time
 
 ^ PAUSE
 
