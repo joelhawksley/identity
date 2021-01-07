@@ -2,7 +2,7 @@ slidenumbers: true
 footer: Boulder Ruby January 2020 - ViewComponents in the real world - @joelhawksley
 autoscale: true
 
-## ViewComponents in the real world
+# ViewComponents in the real world
 
 ![](img/bg.png)
 
@@ -59,9 +59,17 @@ autoscale: true
 
 ---
 
+# 13 years
+
+^ The GitHub rails app is over thirteen years old.
+
+^ Initial development began in October 2007
+
+---
+
 # 10k's requests/second
 
-^ Our app serves tens of thousands of requests per second
+^ Our app receives  tens of thousands of requests per second
 
 ---
 
@@ -85,7 +93,7 @@ autoscale: true
 
 # 580 models
 
-## +144 YoY (33%)
+# +144 YoY (33%)
 
 ^ `grep -lr "< ApplicationRecord" app/models | wc -l`
 
@@ -95,7 +103,7 @@ autoscale: true
 
 # 4573 views
 
-## +702 YoY (18%)
+# +702 YoY (18%)
 
 ^ `find app/views -type f -name "*.html.erb" | wc -l`
 
@@ -105,7 +113,7 @@ autoscale: true
 
 # 766 controllers
 
-## +206 YoY (36.8%)
+# +206 YoY (36.8%)
 
 ^ `find app/controllers -type f -name "*_controller.rb" | wc -l`
 
@@ -136,6 +144,19 @@ autoscale: true
 
 ---
 
+[.slidenumbers: false]
+[.footer:]
+
+![](img/stars.jpg)
+
+^ When you have a body of work like this
+
+^ it’s possible to zoom out and see patterns emerge
+
+^ PAUSE
+
+---
+
 ^ one example of how I've worked to improve the developer experience
 
 ^ is template annotations
@@ -146,11 +167,19 @@ autoscale: true
 
 ---
 
-^ TODO image
+[.slidenumbers: false]
+[.footer:]
+![fit](img/pr-status.png)
 
 ^ for example, when looking at a PR page, if I want to edit this PR badge,
 
 ^ how do a I find the right template?
+
+---
+
+[.slidenumbers: false]
+[.footer:]
+![fit](img/pr-status-inspect.png)
 
 ^ I could try searching by the specific class names on the element, but with
 
@@ -196,7 +225,7 @@ autoscale: true
 
 ---
 
-### `config.action_view.annotate_template_file_names`
+## `config.action_view.annotate_template_file_names`
 
 ^ You can turn it on with the configuration variable X
 
@@ -206,7 +235,7 @@ autoscale: true
 
 ---
 
-## Seeds
+# Seeds
 
 ^ another issue we've run into is getting the application into the right state
 
@@ -218,7 +247,7 @@ autoscale: true
 
 ---
 
-## Architecture
+# Architecture
 
 ^ As I said...
 
@@ -233,7 +262,7 @@ autoscale: true
 ^ while this is great, it's not much help for making visual changes
 
 ---
-## TDD
+# TDD
 
 ^ Unfortunately, we don't have browser-based tests
 
@@ -255,7 +284,7 @@ autoscale: true
 
 ---
 
-## Controller -> System
+# Controller -> System
 
 ^ Into system tests?
 
@@ -297,7 +326,7 @@ autoscale: true
 
 ---
 
-## Seeds vs. test setup
+# Seeds vs. test setup
 
 ^ But there is something that I think we can learn here.
 
@@ -314,7 +343,7 @@ autoscale: true
 ^ we identified another source of friction
 
 ---
-## View -> route(s)
+# View -> route(s)
 
 As a developer editing a view, it’s difficult to know what pages of the application will be affected by my changes.
 
@@ -336,7 +365,7 @@ As a developer editing a view, it’s difficult to know what pages of the applic
 
 ---
 
-## Viewfinder
+# Viewfinder
 
 ^ And built a tool called Viewfinder
 
@@ -344,7 +373,7 @@ As a developer editing a view, it’s difficult to know what pages of the applic
 
  [.build-lists: true]
 
-## `bin/viewfinder app/views/wiki/show.html.erb`
+# `bin/viewfinder app/views/wiki/show.html.erb`
 
 ^ Here's how it works:
 
@@ -427,10 +456,10 @@ s(:block,
 
 ---
 
-[.code-light: 0]
-[.code-light: 1]
-[.code-light: 2]
-[.code-light: 0]
+[.code-highlight: 0]
+[.code-highlight: 1]
+[.code-highlight: 2]
+[.code-highlight: 0]
 
 ```ruby
 if node.type == :send
@@ -625,23 +654,15 @@ wiki/show.html.erb
 
 ---
 
-^ Third January in a row at Boulder Ruby
+# The Missing Abstraction
 
-^ Going to build on previous talks
-
-^ Following a thread asking a simple question:
-
----
-
-# Abstractions
-
-^ How can we make Rails views a first-class abstraction?
+^ But the biggest challenge has been a missing abstraction.
 
 ---
 
 # Problem
 
-^ In general, most of our templates are built by copy-pasting chunks of ERB.
+^ In general, most of our templates are built by copy-pasting chunks of ERB from existing templates.
 
 ^ We have over 4500 templates in the GitHub codebase, largely built in this way.
 
@@ -651,11 +672,25 @@ wiki/show.html.erb
 
 ---
 
+# Standards
+
+^ More generally, our Rails code often doesn't live up to the standards
+
+^ we hold our Ruby code to.
+
+---
+
+# Testing
+
+^ Views are generally tested with slow integration or system tests.
+
+---
+
 # 2019
 
 ^ 2019
 
-^ Shared a crazy idea
+^ Has a crazy idea
 
 ^ For using Ruby objects to render views
 
@@ -667,15 +702,75 @@ wiki/show.html.erb
 
 ---
 
-# Example
+[.column]
 
-^ Share example component from README
+```ruby
+# app/components/test_component.rb
+
+class TestComponent < ViewComponent::Base
+  def initialize(title:)
+    @title = title
+  end
+end
+```
+
+[.column]
+
+```erb
+<%# app/components/test_component.html.erb %>
+
+<span title="<%= @title %>"><%= content %></span>
+```
+
+^ A ViewComponent is a Ruby file and a template.
+
+^ EXPLAIN CODE
 
 ---
 
-# Testing
 
-^ Example test from README
+```erb
+<%= render(TestComponent.new(title: "my title")) do %>
+  Hello, World!
+<% end %>
+```
+
+^ To render it, we instantiate the component and pass it to `render`
+
+^ EXPLAIN CODE
+
+---
+
+```html
+<span title="my title">Hello, World!</span>
+```
+
+^ Which then returns the resulting HTML.
+
+^ PAUSE
+
+---
+
+[.code-highlight: 0]
+[.code-highlight: 2]
+[.code-highlight: 4]
+[.code-highlight: all]
+
+```ruby
+def test_render_component
+  render_inline(TestComponent.new(title: "my title")) { "Hello, World!" }
+
+  assert_selector("span[title='my title']", text: "Hello, World!")
+end
+```
+
+^ To test the component, we can write a unit test...
+
+^ S That renders the component
+
+^ S and then asserts against the output using matchers from Capybara.
+
+^ S These tests are incredibly fast. In our code base they are around 100x faster than controller tests.
 
 ---
 
@@ -683,29 +778,11 @@ wiki/show.html.erb
 
 ^ 2020
 
-^ That idea had become my full time job at GitHub
+^ I joined the Design Systems team to work on ViewComponent full time
 
-^ Talked about how Rails views work under the hood
+^ And since then, we've rapidly adopted the pattern in GitHub.com
 
-^ All execute in the same context, meaning they can share state
-
----
-
-# Example
-
-^ Previous code, compiled
-
----
-
-# 2021
-
-^ Today I'm going to share what we've learned scaling to hundreds of components in our application
-
-^ Open sourcing some of those components
-
-^ and building a thriving community around the project
-
-^ So to go back from our stats from earlier,
+^ to go back from our stats from earlier,
 
 ^ The GitHub application grew about 25% last year.
 
@@ -714,13 +791,19 @@ wiki/show.html.erb
 ---
 # 397 ViewComponents
 
-## +373 YoY (1554%)
+# +373 YoY (1554%)
 
 ^ `find app/components -type f -name "*.rb" | wc -l`
 
 ^ Grew by over 15 times!
 
 ^ PAUSE
+
+^ Today I'm going to share what we've learned scaling to hundreds of components in our application
+
+^ Open sourcing some of those components
+
+^ and building a thriving community around the project
 
 ---
 
@@ -729,6 +812,16 @@ wiki/show.html.erb
 ^ One of the fundamental benefits we've seen writing components
 
 ^ Is that they enable us to think in Ruby vs. ERB
+
+^ quite simply
+
+^ Components allow us to express our views as units of UI
+
+---
+
+# API
+
+^ Giving us the tools to give our view code an API
 
 ---
 
@@ -818,7 +911,7 @@ wiki/show.html.erb
 
 ---
 
-## Allowed queries
+# Allowed queries
 
 ^ https://github.com/github/github/pull/141560/files
 
@@ -826,7 +919,15 @@ wiki/show.html.erb
 
 ---
 
-## Live editing experiments
+# Live editing experiments
+
+^ StimulusReflex, Motion
+
+---
+
+# Storybook
+
+^ https://github.com/jonspalmer/view_component_storybook
 
 ---
 
@@ -834,7 +935,7 @@ wiki/show.html.erb
 
 ---
 
-## Communication
+# Communication
 
 ^ https://team.githubapp.com/posts/33953
 
@@ -844,7 +945,7 @@ wiki/show.html.erb
 
 ---
 
-## Linters
+# Linters
 
 ^ https://github.com/github/github/pull/143114
 
@@ -852,7 +953,7 @@ wiki/show.html.erb
 
 ---
 
-## Refactors
+# Refactors
 
 ^ Rewrite view model: https://github.com/github/github/pull/166253/files
 
@@ -862,27 +963,7 @@ wiki/show.html.erb
 
 ---
 
-## WALL-E
-
-^ Six people
-
-^ Stats
-
-^ TODO bin/rails test test/fast/linting/component_usage_test.rb
-
----
-
-## Extraction
-
-^ Properly built components are more likely to be useful outside of one app
-
-^ We introduce components inside the monolith, then extract
-
-^ Team post: https://team.githubapp.com/posts/34739
-
----
-
-## Primer ViewComponents
+# Primer ViewComponents
 
 ^ We now have a library of ViewComponents
 
@@ -892,7 +973,27 @@ wiki/show.html.erb
 
 ---
 
-## Autogenerated docs
+# WALL-E
+
+^ Six people
+
+^ Stats
+
+^ TODO bin/rails test test/fast/linting/component_usage_test.rb
+
+---
+
+# Extraction
+
+^ Properly built components are more likely to be useful outside of one app
+
+^ We introduce components inside the monolith, then extract
+
+^ Team post: https://team.githubapp.com/posts/34739
+
+---
+
+# Autogenerated docs
 
 ^ https://github.com/primer/view_components/pull/94
 
@@ -904,7 +1005,21 @@ wiki/show.html.erb
 
 ---
 
-## Storybook
+# UK Government
+
+^ https://github.com/DFE-Digital/govuk-components
+
+
+
+---
+
+# Precompilation
+
+^ compilation example - first user on every unicorn worker, on every deploy
+
+---
+
+# Shortcomings
 
 ---
 
@@ -1033,6 +1148,12 @@ wiki/show.html.erb
 
 ---
 
+# Mining for abstractions
+
+^ mining existing applications for abstractions for rails
+
+---
+
 # Design from experience
 
 ^ Lesson: Design from real experience, not hypothesis
@@ -1040,6 +1161,10 @@ wiki/show.html.erb
 ^ One missing feature is caching
 
 ^ We don't do view caching, so it's more difficult for us to build the framework support for it
+
+^ I'd love some help here
+
+^ PAUSE
 
 ---
 # Innovation
@@ -1106,6 +1231,28 @@ wiki/show.html.erb
 
 ---
 
-## Mining for abstractions
+# We can't walk away.
 
-^ mining existing applications for abstractions for rails
+^ Most of us can’t walk away from rails.
+
+---
+
+# Picking a framework is forever
+
+^ Picking a framework is forever
+
+^ Rewrites are rare
+
+^ But yet the world moves on
+
+# It's up to us.
+
+^ Which means it's up to us to keep Rails relevant.
+
+^ PAUSE
+
+---
+
+# Thanks
+
+^ Thanks
