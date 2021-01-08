@@ -171,6 +171,7 @@ autoscale: true
 
 [.slidenumbers: false]
 [.footer:]
+[.background-color: #FFFFFF]
 ![fit](img/pr-status.png)
 
 ^ for example, when looking at a PR page, if I want to edit this PR badge,
@@ -181,6 +182,7 @@ autoscale: true
 
 [.slidenumbers: false]
 [.footer:]
+[.background-color: #FFFFFF]
 ![fit](img/pr-status-inspect.png)
 
 ^ I could try searching by the specific class names on the element, but with
@@ -240,6 +242,7 @@ ActionView::Template.register_template_handler(:erb, CustomHandler.new) if Rails
 
 [.slidenumbers: false]
 [.footer:]
+[.background-color: #FFFFFF]
 ![fit](img/pr-status-annotation.png)
 
 ^ And it worked!
@@ -254,6 +257,7 @@ ActionView::Template.register_template_handler(:erb, CustomHandler.new) if Rails
 
 [.slidenumbers: false]
 [.footer:]
+[.background-color: #FFFFFF]
 ![fit](img/annotations-rails.png)
 
 ^ We extracted it into Rails!
@@ -419,6 +423,7 @@ end
 
 [.slidenumbers: false]
 [.footer:]
+[.background-color: #FFFFFF]
 ![fit](img/tdd-chrome.gif)
 
 ^ And here's what it looks like in action...
@@ -469,7 +474,7 @@ As a developer editing a view, it’s difficult to know what pages of the applic
 
 [.slidenumbers: false]
 [.footer:]
-
+[.background-color: #FFFFFF]
 ![](img/template-references.jpg)
 
 ^ As you can see
@@ -772,19 +777,28 @@ wiki/show.html.erb
 
 ^ PAUSE
 
-^ But the biggest challenge has been a missing abstraction.
+^ But the biggest challenge has been a missing abstraction in our view layer.
 
 ---
 
-# The Missing Abstraction
+# Rule of three
+
+> The first time you do something, you just do it. The second time you do something similar, you wince at the duplication, but you do the duplicate thing anyway. The third time you do something similar, you refactor.
+
+- Martin Fowler, _Refactoring, Ruby Edition_
+
+^ A common rule of abstraction is the Rule of Three. Which Martin Fowler describes as... READ QUOTE
+
+^ Usually when we do something over and over again, we abstract it!
+
+^ If we don’t, our code becomes inconsistent and hard to maintain...
 
 ---
-
 # Problem
 
-^ In general, most of our templates are built by copy-pasting chunks of ERB from existing templates.
+^ And this is especially true in our view code.
 
-^ We have over 4500 templates in the GitHub codebase, largely built in this way.
+^ In general, our templates are built by copy-pasting chunks of ERB from existing templates.
 
 ^ It's incredibly difficult to make sweeping changes to our view code,
 
@@ -917,87 +931,185 @@ end
 
 ^ Grew by over 15 times!
 
+^ and we've learned a lot in the process.
+
 ^ PAUSE
-
-^ Today I'm going to share what we've learned scaling to hundreds of components in our application
-
-^ Open sourcing some of those components
-
-^ and building a thriving community around the project
-
----
-
-# Thinking in Ruby vs. ERB
-
-^ One of the fundamental benefits we've seen writing components
-
-^ Is that they enable us to think in Ruby vs. ERB
-
-^ quite simply
-
-^ Components allow us to express our views as units of UI
-
----
-
-# API
-
-^ Giving us the tools to give our view code an API
-
----
-
-# Testing
-
-^ this really manifests itself when writing tests
-
-^ force to make you think about what you're writing
-
-^ Unit testing exposes global state dependencies such as current user, which make caching tricky
-
-^ having to declare dependencies is a benefit
-
-^ https://github.com/github/github/pull/139311
-
----
-
-# API
-
-^ One of the main lessons we've learned building components
-
-^ Is that they enable us to provide the right API for developers
-
-^ EXAMPLE - only part of CSS component used, vs. all of it (CSS is not the only interface)
-
-^ TODO for example, slots for borderbox
-
----
-
-# Abstraction
-
-^ And perhaps more generally, we need to help developers focus on building products
-
-^ Not implementing the UI.
-
-^ Just like AR simplified use of SQL
-
-^ And controllers made it easy to write code to respond to requests
-
-^ Having an abstraction for building UI.
-
----
-
-# Super powers
-
-^ Rails is a collection of abstractions that give developers super powers.
-
-^ How does ViewComponent do this in our application?
 
 ---
 
 # Consistency
 
-^ As a baseline, it encourages consistency.
+^ One of the goals of the design systems team is to help our developers build consistent UI.
 
-^ TODO examples - counter, blankslate - logic and design (counting logic, for example)
+^ ViewComponents have been a key tool to accomplishing this goal.
+
+---
+
+[.slidenumbers: false]
+[.footer:]
+[.background-color: #FFFFFF]
+
+![fit](img/counters.png)
+
+^ For example, last summer my colleague Christian built a ViewComponent for the counters we use throughout the app
+
+^ Here they are on the repository navigation
+
+^ We render counters in over a hundred places in the app
+
+---
+
+[.slidenumbers: false]
+[.footer:]
+[.background-color: #FFFFFF]
+
+![fit](img/counters-diff.png)
+
+^ This diff from one of his PRs shows how we mixed and matched the formatting of values displayed with the counter
+
+^ In one case using number with delimiter, and one case without.
+
+^ This led to visual inconsistencies, but only with large numbers of commits,
+
+^ something we'd never expect a developer think about when working on a feature.
+
+^ Instead, we simply pass the raw count to the component, and it handles formatting the value in a consistent way.
+
+^ PAUSE
+
+---
+
+# Correctness
+
+^ One of the main lessons we've learned building view components
+
+^ Is that they enable us to help developers use our design system correctly
+
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/subhead-docs.png)
+
+^ One example of this is our Subhead component
+
+^ Used over 450 times in the app
+
+^ Here's what it looks like, and the correct way to build it with HTML.
+
+^ In practice, we often ended up with cases where the `Subhead-heading` or `Subhead-description` classes were used by themselves, out of line with our design guidelines.
+
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/subhead-component-docs.png)
+
+^ In the ViewComponent implementation, we instead accept block arguments for the heading and description,
+
+^ Making it easy to use the design pattern correctly.
+
+^ PAUSE
+
+---
+
+# Complexity
+
+^ Another advantage we've seen with ViewComponents is how they can help manage complexity.
+
+^ One example of this has been in our mailers.
+
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/mailers.png)
+
+^ Building HTML emails can be tricky
+
+^ Often requires writing 1995-level HTML
+
+^ And it's fraught with edge cases.
+
+---
+
+```html
+<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top"></td>
+<td class="container" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; display: block; margin: 0 auto !important; max-width: 580px; padding: 30px; width: 580px;" width="580" valign="top">
+```
+
+^ Most of our mailers are written with heavy-handed inline HTML
+
+^ And it's incredibly hard to maintain, let alone change without breaking something
+
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/mailers-columns.png)
+
+^ So when we looked into adding columns to a mailer for this design,
+
+^ My colleague mike thought we could build some ViewComponents to abstract away all of the tables and inline CSS.
+
+---
+
+[.code-highlight: none]
+[.code-highlight: 1,9]
+[.code-highlight: 2-8]
+[.code-highlight: all]
+
+```erb
+<%= render(Mail::RowComponent.new(classes: "text-gray")) do %>
+  <%= render(Mail::ColumnComponent.new(classes: "pr-2")) do %>
+    I am a column for some very interesting content. The text wraps around nicely and fits into this column.
+    This sure is very useful.
+  <% end %>
+  <%= render(Mail::ColumnComponent.new) do %>
+    I am another column that is within a row. I am also positioned correctly and wrap nicely.
+  <% end %>
+<% end %>
+```
+
+^ To do this, he built mailer-specific components for rows and columns,
+
+^ Which are used together,
+
+^ S Wrap a row, which contains
+
+^ S multiple columns
+
+^ S giving developers a reliable way to build column layouts in mailers.
+
+---
+
+# Conceptual compression
+
+^ This is a classic example of what Rails creator DHH calls conceptual compression.
+
+^ By simplifying the process for building mailers,
+
+^ We've practically removed the conceptual overhead necessary to build one correctly.
+
+^ Instead of worrying about whether you've written your inline styles in a way that works correctly in the numerous different email clients out there, you can just piece together a couple of ViewComponents and move on with your life.
+
+---
+
+# Abstraction
+
+^ Just like AR simplified use of SQL
+
+^ And controllers made it easy to write code to respond to requests
+
+^ ViewComponents make building UI correctly the default, not the exception.
 
 ---
 
@@ -1006,18 +1118,6 @@ end
 - TODO for example, sponsors button (https://github.com/github/github/pull/162819)
 
 - TODO for example, reusing code across user/org/business (https://github.com/github/github/pull/158309)
-
-- TODO for example, reusing code across render paths/live reload/etc
-
----
-
-# Mailers
-
-^ https://github.com/github/github/pull/144469
-
-^ https://team.githubapp.com/posts/34407
-
-^ https://github.com/orgs/github/teams/c2c-actions/discussions/56
 
 ---
 
@@ -1048,6 +1148,10 @@ end
 # Storybook
 
 ^ https://github.com/jonspalmer/view_component_storybook
+
+---
+
+# Thinking in Ruby vs. ERB
 
 ---
 
