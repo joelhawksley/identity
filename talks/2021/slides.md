@@ -1017,6 +1017,57 @@ end
 
 ---
 
+# Performance
+
+^ Another benefit we've seen from ViewComponents has been in helping developers write performant code.
+
+^ One of the most common performance issues I've seen in view code is unintentionally querying the database.
+
+---
+
+```erb
+<% if repository.writable_by?(current_user) %>
+  ... <!-- edit button, etc -->
+<% end %>
+```
+
+^ For example, we often have permission checks in our views to determine whether to show certain elements or not.
+
+^ Unfortunately, these checks trigger queries if not batched properly.
+
+^ So to help developers understand how their view code might interact with the database...
+
+---
+
+[.code-highlight: none]
+[.code-highlight: 1]
+[.code-highlight: 2-4]
+[.code-highlight: all]
+
+```ruby
+def render_inline(component, allowed_queries: 0)
+  assert_query_counts(allowed_queries) do
+    super(component)
+  end
+end
+```
+
+^ We redefined the helper used to render ViewComponent in unit tests
+
+^ S To accept a number of allowed queries, defaulting to zero allowed
+
+^ S We then render the component, failing the test if the actual number of queries doesn't match what was expected.
+
+^ This helper has turned out to be quite educational.
+
+^ It's helped us better understand the side affects of our code
+
+^ prevented the introduction of several N+1 queries.
+
+^ In one recent case, this saved over 100ms of overhead on a page.
+
+---
+
 # Complexity
 
 ^ Another advantage we've seen with ViewComponents is how they can help manage complexity.
@@ -1109,33 +1160,7 @@ end
 
 ^ And controllers made it easy to write code to respond to requests
 
-^ ViewComponents make building UI correctly the default, not the exception.
-
----
-
-# Reuse
-
-- TODO for example, sponsors button (https://github.com/github/github/pull/162819)
-
-- TODO for example, reusing code across user/org/business (https://github.com/github/github/pull/158309)
-
----
-
-# Slots
-
-^ LayoutComponent
-
-^ BorderBox
-
-^ Mention blake, jon palmer
-
----
-
-# Allowed queries
-
-^ https://github.com/github/github/pull/141560/files
-
-^ https://github.com/github/github/pull/158181#issuecomment-705136703
+^ We use ViewComponents to make building UI correctly the default, not the exception.
 
 ---
 
