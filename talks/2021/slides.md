@@ -1226,9 +1226,15 @@ top; display: block; margin: 0 auto !important; max-width:
 
 ![fit](img/pvc-site.png)
 
+^ We open-sourced the library over the summer, and it now has over two dozen components.
+
+^ We use it in a couple internal Rails apps in addition to GitHub.com
+
 ---
 
 # Thinking in Ruby vs. ERB
+
+^ Views are code too!
 
 ---
 
@@ -1261,16 +1267,6 @@ top; display: block; margin: 0 auto !important; max-width:
 ^ Convert partial to component
 
 ^ Add component
-
----
-
-# Primer ViewComponents
-
-^ We now have a library of ViewComponents
-
-^ Open sourcing forced us to do work we should have done a long time ago
-
-^ Intern manuel
 
 ---
 
@@ -1434,6 +1430,8 @@ top; display: block; margin: 0 auto !important; max-width:
 ---
 
 # Test coverage
+
+^ TODO for both libraries
 
 ^ It's enabled us to ensure we have 100% test coverage,
 
