@@ -1372,19 +1372,137 @@ end
 
 ^ PAUSE
 
-^ Convert partial to component
+---
 
-^ Add component
+# New components
+
+^ We also write view components from scratch
+
+^ We consider the reasons I mentioned earlier:
 
 ---
 
-# Extraction
+# Consistency
 
-^ Properly built components are more likely to be useful outside of one app
+^ Is there a need for strong consistency?
 
-^ We introduce components inside the monolith, then extract
+---
 
-^ Team post: https://team.githubapp.com/posts/34739
+# Performance
+
+^ Are there performance concerns?
+
+---
+
+# Complexity
+
+^ Is the view complex, with many different possible states?
+
+^ If so, we use a component. Otherwise, we don't.
+
+^ PAUSE
+
+---
+
+# Organizational
+
+^ When it comes to the organizational side of things
+
+---
+
+# Communication
+
+^ Communication has been incredibly important.
+
+^ It takes many different forms
+
+---
+
+# Linters
+
+^ The primary way we communicate with other developers about ViewComponents is via linters.
+
+^ I've never seen linters used as extensively as they are here.
+
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/sentinel.png)
+
+^ For example, we have a bot that automatically reviews pull requests for cases where we'd prefer people to use existing ViewComponents!
+
+^ EXPLAIN SCREENSHOT
+
+^ This saves us from having to make these suggestions manually in code reviews.
+
+^ PAUSE
+
+^ Another way we use linters is with custom Rubocops.
+
+---
+
+[.code-highlight: 6]
+[.code-highlight: 9]
+[.code-highlight: 10]
+[.code-highlight: 7, 11]
+
+```ruby
+# test/rubocop/cop/view_component/prefer_view_components.rb
+
+module RuboCop
+  module Cop
+    module ViewComponent
+      class PreferViewComponents
+        MSG = "Avoid adding ViewModels..."
+
+        def on_class(node)
+          if node.node_parts.compact.any? { |n| n.node_parts.last.to_s == "ViewModel" }
+            add_offense(node, message: MSG)
+          end
+        end
+      end
+    end
+  end
+end
+```
+
+^ we have a Rubocop to encourage people to use ViewComponents instead of ViewModels.
+
+^ S It looks at class syntax tree nodes
+
+^ S Sees if the class is a ViewModel
+
+^ S And if it is, adds an offense with a helpful message (I've shortened it here)
+
+
+---
+
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/initiative-update.png)
+
+^ One is weekly updates. For a lot of our projects, we use an issue to track our progress.
+
+^ Usually share a handful of highlights
+
+^ Examples of code improved by using the pattern (such as the cases I've shared today)
+
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/team.png)
+
+^ A couple times a year,
 
 ---
 
@@ -1399,12 +1517,6 @@ end
 # Communication
 
 ^ https://team.githubapp.com/posts/33953
-
-^ Weekly initiative updates
-
-^ Sharing examples of code improved by using the pattern
-
-^ Such as some of the examples I've share today
 
 ^ Internal posts
 
