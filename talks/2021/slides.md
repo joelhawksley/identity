@@ -540,6 +540,8 @@ s(:block,
 
 ^ This data structure represents how Ruby interprets the code we write.
 
+^ As an aside, the Rubocop linter works by analyzing these data structures.
+
 ^ S And you can see at the bottom that we have our render call to `wiki/show`
 
 ^ For reference, here is the equivalent Ruby code for this tree:
@@ -569,6 +571,8 @@ s(:block,
 ```
 
 ^ PAUSE
+
+^ EXPLAIN CODE
 
 ^ So once we have the syntax tree, we can query it!
 
@@ -1230,11 +1234,32 @@ top; display: block; margin: 0 auto !important; max-width:
 
 ^ We use it in a couple internal Rails apps in addition to GitHub.com
 
+^ PAUSE
+
+^ And we aren't the only ones open sourcing our components!
+
 ---
 
-# Thinking in Ruby vs. ERB
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
 
-^ Views are code too!
+![fit](img/gov-uk-components.png)
+
+^ UK department for education has released a library
+
+^ Of over a dozen viewcomponents for the Gov.uk design system.
+
+---
+
+[.slidenumbers: false]
+[.footer:]
+
+![](img/stars.jpg)
+
+^ PAUSE
+
+^ So one of the common questions I get about this project from folks outside the company
 
 ---
 
@@ -1247,6 +1272,10 @@ top; display: block; margin: 0 auto !important; max-width:
 ^ https://team.githubapp.com/posts/33953
 
 ^ Weekly initiative updates
+
+^ Sharing examples of code improved by using the pattern
+
+^ Such as some of the examples I've share today
 
 ^ Internal posts
 
@@ -1302,33 +1331,22 @@ top; display: block; margin: 0 auto !important; max-width:
 
 ---
 
-# UK Government
+[.slidenumbers: false]
+[.footer:]
 
-^ https://github.com/DFE-Digital/govuk-components
+![](img/stars.jpg)
 
-
-
----
-
-# Precompilation
-
-^ compilation example - first user on every unicorn worker, on every deploy
+^ SHORTCOMINGS
 
 ---
 
-# Shortcomings
-
----
-
-# Two abstractions
+# Views + components
 
 ^ There is one problem with this approach that I can't shake:
 
 ^ It means that we now have two ways of writing views that work differently
 
-^ Granted, we already had this problem with using ViewModels,
-
-^ But I can't imagine Rails having native support for ViewComponents,
+^ I can't imagine Rails having native support for ViewComponents,
 
 ^ At least as they exist today in a separate directory.
 
@@ -1343,8 +1361,6 @@ top; display: block; margin: 0 auto !important; max-width:
 ^ TODO One example is the pretty partial GEM
 
 ^ Could VC feel as light as views? Could we have ruby objects in the Views folder?
-
----
 
 ^ PAUSE
 
@@ -1555,3 +1571,9 @@ top; display: block; margin: 0 auto !important; max-width:
 # Thanks
 
 ^ Thanks
+
+---
+
+# Thinking in Ruby vs. ERB
+
+^ Views are code too!
