@@ -1090,9 +1090,19 @@ end
 
 ---
 
+[.code-highlight: 0]
+
 ```html
-<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top;" valign="top"></td>
-<td class="container" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align: top; display: block; margin: 0 auto !important; max-width: 580px; padding: 30px; width: 580px;" width="580" valign="top">
+<td style="box-sizing: border-box; font-family: -apple-system,
+BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
+'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+font-size: 14px; vertical-align: top;" valign="top"></td>
+<td class="container" style="box-sizing: border-box;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI
+Emoji', 'Segoe UI Symbol'; font-size: 14px; vertical-align:
+top; display: block; margin: 0 auto !important; max-width:
+580px; padding: 30px; width: 580px;" width="580" valign="top">
 ```
 
 ^ Most of our mailers are written with heavy-handed inline HTML
@@ -1162,17 +1172,59 @@ end
 
 ^ We use ViewComponents to make building UI correctly the default, not the exception.
 
----
-
-# Live editing experiments
-
-^ StimulusReflex, Motion
+^ PAUSE
 
 ---
 
 # Storybook
 
-^ https://github.com/jonspalmer/view_component_storybook
+^ Another thing we've experimented with is Storybook.
+
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/storybook.png)
+
+^ Storybook is an open source tool for developing components in isolation.
+
+^ It's quite popular (something like almost 60k stars)
+
+^ And thanks to the work of community member Jon Palmer...
+
+^ It supports ViewComponents!
+
+^ Here's an example of it in action with our Flash ViewComponent
+
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit autoplay mute](img/storybook.mov)
+
+^ Storybook provides a UI for interacting with ViewComponents.
+
+^ Here you can see it previewing a change to the icon
+
+^ and a change to the variant
+
+^ PAUSE
+
+^ This gives us a development environment for building components
+
+^ outside of a Rails application, such as in our Primer ViewComponents library.
+
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/pvc-site.png)
 
 ---
 
