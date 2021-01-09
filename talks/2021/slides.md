@@ -1269,13 +1269,108 @@ top; display: block; margin: 0 auto !important; max-width:
 
 ^ It's sometimes asked in a technical context, writing new components, refactoring old views, etc
 
-^ And organizational- how do we ensure components are use appropriately,
+^ And organizational- how do we ensure components are use appropriately, how do we make the case for this work with non-engineering stakeholders, etc.
 
 ---
 
-# Refactors
+# Technical
 
-^ Rewrite view model: https://github.com/github/github/pull/166253/files
+^ So let's start with the technical
+
+---
+# Authoring
+
+^ How do we create ViewComponents?
+
+---
+
+# Refactoring
+
+^ The first way is by refactoring existing view code into components.
+
+^ For example, before ViewComponents, we used a presenter-like pattern
+
+^ called view models, ruby objects we instantiated and then passed into views
+
+---
+
+[.code-highlight: 1-5]
+[.code-highlight: 7-17]
+[.code-highlight: all]
+
+```ruby
+class RepositoryIndexView < ViewModel
+  def status
+    repository.locked? ? "Disabled" : "Enabled"
+  end
+end
+
+class RepositoryIndexViewTest < Minitest::Test
+  context "#status" do
+    test "enabled for unlocked repository" do
+      view = RepositoryIndexView.new(repository: create(:repository))
+
+      assert_equal view.status, "Enabled"
+    end
+  end
+end
+```
+
+^ Here's an example ViewModel - explain code
+
+^ S and the test looks like this - explain code - asserts against the object output
+
+^ So that's a ViewModel. We'd pass this object into a template and access values from it.
+
+^ PAUSE
+
+---
+
+[.code-highlight: 1-5]
+[.code-highlight: 7-17]
+[.code-highlight: 10-12]
+[.code-highlight: 12]
+[.code-highlight: all]
+
+```ruby
+class RepositoryIndexComponent < ViewComponent::Base
+  def status
+    repository.locked? ? "Disabled" : "Enabled"
+  end
+end
+
+class RepositoryIndexComponentTest < Minitest::Test
+  context "status" do
+    test "enabled for unlocked repository" do
+      render_inline(RepositoryIndexView.new(repository: create(:repository))
+
+      assert_text "Enabled"
+    end
+  end
+end
+```
+
+^ And here's what it looks like rewritten as a ViewComponent
+
+^ Explain code - base class has changed, ignoring the template for this example
+
+^ S for the test, not much changes either
+
+^ S explain code
+
+^ But there's something fundamentally different about this test.
+
+^ Instead of asserting against the attribute of an object
+
+^ S We're assert against what's actually presented to a user
+
+^ This is something we previously could only do with system and integration tests
+
+^ And it's one of the main reasons we refactor ViewModels to be ViewComponents:
+
+^ To gain confidence that our view code is working correctly from the perspective of our customers.
+
+^ PAUSE
 
 ^ Convert partial to component
 
