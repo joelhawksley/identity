@@ -14,6 +14,10 @@ autoscale: true
 
 ^ Thanks to Rylan, Dan, and Marty for organizing
 
+^ Today I'm going to share some lessons I've learned building ViewComponents at GitHub over the past year.
+
+^ By sharing real examples, my goal is to TODO
+
 ---
 
 [.hide-footer]
@@ -1668,15 +1672,76 @@ end
 
 ^ This provides company leadership with case studies they can use to justify the work we're doing.
 
+^ At some point though, there's no substitute for putting in the time.
+
 ---
 
-# WALL-E
+# Resourcing
 
-^ Six people
+^ So over the summer, we put together a team of about half a dozen engineers
 
-^ Stats
+^ And spent two months building new ViewComponents for our design system and rolling out existing ones.
 
-^ TODO bin/rails test test/fast/linting/component_usage_test.rb
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/graph-components-rollout.png)
+
+^ And the the results were dramatic.
+
+^ this is a graph of how many places we render a component in the GitHub.com codebase
+
+^ The graph is pretty stable until August first, where the slope changes suddenly
+
+^ In the two months the team worked on the rollout, we quadrupled the number of uses of components in the codebase.
+
+^ But even after the team disbanded, the gains continued! How could that be?
+
+---
+
+# Copy-paste
+
+^ I think part of it is that we now had a critical mass of component-based examples for engineers to reuse as they built new UI.
+
+^ But how do we ensure that we're reusing the correct examples?
+
+^ With linters!
+
+^ For example, if I was to use the non-component implementation of the Counter component, I get this message:
+
+---
+
+```
+bin/rails test test/fast/linting/component_usage_test.rb
+
+There was 1 discrepancy in usage counts for components:
+  Counter    expected: 0    actual:  1    Please use Primer::CounterComponent...
+```
+
+^ For each component, we set a number of places we allow for the non-component implementation to be used.
+
+^ If someone adds another usage, this linter fails their build, and suggests they use the component.
+
+^ As we roll out a new component, we decrement the number of exceptions, preventing new ones from being introduced.
+
+^ PAUSE
+
+^ We also reuse this code to generate a report on our progress:
+
+---
+
+`bin/rails test test/fast/linting/component_usage_test.rb`
+
+| Name                        | CSS Uses | Component Uses | % Migrated |
+|-----------------------------|----------|----------------|------------|
+| Avatar                      | 284      | 19             | 6.27%      |
+| Blankslate                  | 0        | 492            | 100.0%     |
+| Breadcrumb                  | 2        | 34             | 94.44%     |
+| ...                         |          |                |            |
+
 
 ---
 
