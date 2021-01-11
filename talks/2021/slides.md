@@ -1449,12 +1449,12 @@ end
 [.code-highlight: all]
 
 ```ruby
-# components/primer/progress_bar_component.rb
+# ../primer/progress_bar_component.rb
 
 module Primer
   # Use ProgressBar to visualize task completion.
   class ProgressBarComponent < Primer::Component
-    # @example 20|Default
+    # @example Default
     #   <%= render(Primer::ProgressBarComponent.new) do |component| %>
     #     <% component.slot(:item, percentage: 25) %>
     #   <% end %>
@@ -1504,6 +1504,12 @@ docs = registry.get(Primer::ProgressBarComponent)
 ---
 
 [.code-highlight: 0]
+[.code-highlight: 1-2]
+[.code-highlight: 4-5]
+[.code-highlight: 7-8]
+[.code-highlight: 10-11]
+[.code-highlight: 13-14]
+[.code-highlight: 0]
 
 ```ruby
 irb(main):002:0> documentation.base_docstring
@@ -1523,6 +1529,67 @@ irb(main):018:0> ApplicationController.new.view_context.render(inline: example_t
 ```
 
 ^ At that point, we now have the parsed documentation available in a Ruby object!
+
+^ S Which includes the class description
+
+^ S It also has data on each method. Let's look at the one that is marked as the constructor.
+
+^ S First, we can see the names of the parameters
+
+^ S We can also see the text of the example we wrote. Unfortunately, it's still in ERB
+
+^ S But we can fix that by rendering the example using an instance of our Application Controller, passed as an inline template.
+
+^ S from here, we have what we need to build our documentation page:
+
+---
+
+[.code-highlight: 0]
+[.code-highlight: 1]
+[.code-highlight: 3]
+[.code-highlight: 9]
+[.code-highlight: 0]
+
+```md
+# ProgressBar
+
+Use ProgressBar to visualize task completion.
+
+## Examples
+
+### Default
+
+<span class='Progress '><span style='width: 25%;' class='Progress-item bg-green'></span></span>
+
+<%= render(Primer::ProgressBarComponent.new) do |component| %>
+  <% component.slot(:item, percentage: 25) %>
+<% end %>
+
+```
+
+^ We use that data to build a markdown file
+
+^ S With head matter as the title
+
+^ S The description we wrote for the component class below it
+
+^ S Then the inline HTML of the rendered example
+
+^ S And finally the original ERB code.
+
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/progress-bar-docs.png)
+
+^ Rendered on the docs site, it looks like this.
+
+^ This standardized approach keeps our documentation consistent.
+
+^ I think my favorite part is that the documentation is consumable both via the component code's comments and via the published site, as people seem to prefer one or the other.
 
 ---
 
@@ -1601,17 +1668,6 @@ end
 
 ^ This provides company leadership with case studies they can use to justify the work we're doing.
 
-
----
-
-^ https://github.com/primer/view_components/pull/94
-
-^ https://primer.style/view-components/
-
-^ Lesson: Open source project updates consumed internally
-
-^ Have to treat internal projects as open source due to scale docs test coverage etc
-
 ---
 
 # WALL-E
@@ -1621,41 +1677,6 @@ end
 ^ Stats
 
 ^ TODO bin/rails test test/fast/linting/component_usage_test.rb
-
----
-
-[.slidenumbers: false]
-[.footer:]
-
-![](img/stars.jpg)
-
-^ SHORTCOMINGS
-
----
-
-# Views + components
-
-^ There is one problem with this approach that I can't shake:
-
-^ It means that we now have two ways of writing views that work differently
-
-^ I can't imagine Rails having native support for ViewComponents,
-
-^ At least as they exist today in a separate directory.
-
-^ TODO xkcd comic on standards
-
----
-
-# What to extract?
-
-^ But maybe we could extract some of what makes ViewComponent useful into Rails!
-
-^ TODO One example is the pretty partial GEM
-
-^ Could VC feel as light as views? Could we have ruby objects in the Views folder?
-
-^ PAUSE
 
 ---
 
@@ -1753,6 +1774,41 @@ end
 ^ But we're working on tooling to prevent those too.
 
 ^ https://github.com/github/view_component/pull/424
+
+---
+
+[.slidenumbers: false]
+[.footer:]
+
+![](img/stars.jpg)
+
+^ SHORTCOMINGS
+
+---
+
+# Views + components
+
+^ There is one problem with this approach that I can't shake:
+
+^ It means that we now have two ways of writing views that work differently
+
+^ I can't imagine Rails having native support for ViewComponents,
+
+^ At least as they exist today in a separate directory.
+
+^ TODO xkcd comic on standards
+
+---
+
+# What to extract?
+
+^ But maybe we could extract some of what makes ViewComponent useful into Rails!
+
+^ TODO One example is the pretty partial GEM
+
+^ Could VC feel as light as views? Could we have ruby objects in the Views folder?
+
+^ PAUSE
 
 ---
 
