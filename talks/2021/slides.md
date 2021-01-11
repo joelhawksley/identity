@@ -16,7 +16,15 @@ autoscale: true
 
 ^ Today I'm going to share some lessons I've learned building ViewComponents at GitHub over the past year.
 
-^ By sharing real examples, my goal is to TODO
+^ By sharing real examples, my goal is to show how we have a lot to learn by
+
+---
+
+# Views are code, too
+
+^ By treating our views a bit more like the rest of the code we write.
+
+^ PAUSE
 
 ---
 
@@ -925,6 +933,10 @@ end
 
 ^ S These tests are incredibly fast. In our code base they are around 100x faster than controller tests.
 
+^ Having this ability has been a game changer.
+
+^ We used to treat DOM tests as a luxury, and now they're basically free.
+
 ---
 
 # 2020
@@ -1656,6 +1668,10 @@ end
 
 ^ S And if it is, adds an offense with a helpful message (I've shortened it here)
 
+^ At our scale, if we want to do something consistently, the only answer is tooling and metrics that guide people toward the right solution.
+
+^ PAUSE
+
 ---
 
 [.slidenumbers: false]
@@ -1664,7 +1680,7 @@ end
 
 ![fit](img/initiative-update.png)
 
-^ One is weekly updates. For a lot of our projects, we use an issue to track our progress.
+^ Another way we communicate is weekly updates. For a lot of our projects, we use an issue to track our progress.
 
 ^ Usually share a handful of highlights
 
@@ -2098,21 +2114,31 @@ end
 
 ^ but we need more voices.
 
-^ PAUSE
-
 ---
 
-# We can't walk away.
+# Extractors
 
-^ Most of us can’t walk away from rails.
+^ We need more extractors.
+
+^ Many rails developers have worked on multiple apps.
+
+^ We know what the underlying deficiences are.
+
+^ We know what gems we add to every app we build.
+
+^ We know the pain points.
+
+^ PAUSE
+
+^ And the survival of our companies depends on it, because...
 
 ---
 
 # Picking a framework is forever
 
-^ Picking a framework is forever
+^ Picking a framework is forever:
 
-^ Rewrites are rare
+^ Rewrites are rare.
 
 ^ But yet the world moves on
 
@@ -2121,6 +2147,8 @@ end
 # It's up to us.
 
 ^ Which means it's up to us to keep Rails relevant.
+
+^ If we want our companies to remain competitive.
 
 ^ PAUSE
 
