@@ -1515,11 +1515,10 @@ irb(main):007:0> initialize_method = documentation.meths.find(&:constructor?)
 irb(main):015:0> initialize_method.tags(:param).map(&:name)
 => ["size", "system_arguments"]
 
-irb(main):016:0> initialize_method.tags(:example).first.text
+irb(main):016:0> example_text = initialize_method.tags(:example).first.text
 => "<%= render(Primer::ProgressBarComponent.new) do |component| %>\n  <% component.slot(:item, percentage: 25) %>\n<% end %>"
 
-irb(main):018:0> view_context.render(initialize_method.tags(:example).first.text
-)
+irb(main):018:0> ApplicationController.new.view_context.render(inline: example_text)
 => "<span class='Progress '>    <span style='width: 25%;' class='Progress-item bg-green'></span></span>"
 ```
 
