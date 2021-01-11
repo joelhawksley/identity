@@ -52,6 +52,12 @@ autoscale: true
 
 ^ responsible for the Primer design system used throughout GitHub
 
+^ like our version of bootstrap
+
+^ provides design patterns combined to build UI.
+
+^ PAUSE
+
 ^ Perhaps our biggest ship just went out recently - dark mode
 
 ^ My job on the team
@@ -1202,6 +1208,262 @@ top; display: block; margin: 0 auto !important; max-width:
 ^ And controllers made it easy to write code to respond to requests
 
 ^ We use ViewComponents to make building UI correctly the default, not the exception.
+
+^ PAUSE
+
+---
+
+# Slots
+
+^ Another way ViewComponents can help simplify building UI is with Slots.
+
+^ Slots are a way to pass multiple blocks of content to a single component.
+
+^ So let's look at an example:
+
+---
+[.hide-footer]
+[.background-color: #FFFFFF]
+![100%](img/box-component.png)
+
+^ box component
+
+^ from design system
+
+---
+
+[.code-highlight: all]
+[.code-highlight: 2]
+[.code-highlight: 3]
+[.code-highlight: 4-8]
+[.code-highlight: 9]
+
+```html
+<div class="Box">
+  <div class="Box-header"><h3 class="Box-title">Header</h3></div>
+  <div class="Box-body">Body</div>
+  <ul>
+    <li class="Box-row">Row one</li>
+    <li class="Box-row">Row two</li>
+    <li class="Box-row">Row three</li>
+  </ul>
+  <div class="Box-footer">Footer</div>
+</div>
+```
+
+^ here is the html
+
+^ S header
+
+^ S body
+
+^ S rows
+
+^ S footer
+
+^ rewrite as ViewComponent
+
+---
+
+`# app/components/box_component.rb`
+
+```ruby
+class BoxComponent < ViewComponent::Base
+  def initialize
+  end
+end
+```
+
+`# app/components/box_component.html.erb`
+
+```erb
+<div class="Box">
+  <div class="Box-header"><h3 class="Box-title">Header</h3></div>
+  <div class="Box-body">Body</div>
+  <ul>
+    <li class="Box-row">Row one</li>
+    <li class="Box-row">Row two</li>
+    <li class="Box-row">Row three</li>
+  </ul>
+  <div class="Box-footer">Footer</div>
+</div>
+```
+
+`# app/views/demo/index.html.erb`
+
+```erb
+<%= render(BoxComponent.new) %>
+```
+
+^ start with a component that renders our example code
+
+^ explain code
+
+---
+
+`# app/components/box_component.rb`
+
+```ruby
+class BoxComponent < ViewComponent::Base
+  def initialize
+  end
+end
+```
+
+`# app/components/box_component.html.erb`
+
+```erb
+<div class="Box">
+  <%= content %>
+</div>
+```
+
+`# app/views/demo/index.html.erb`
+
+```erb
+<%= render(BoxComponent.new) do %>
+  <%= render(BoxHeaderComponent.new) do %>Header<% end %>
+  <%= render(BoxBodyComponent.new) do %>Body<% end %>
+  <ul>
+    <%= render(BoxRowComponent.new) do %>Row one<% end %>
+    <%= render(BoxRowComponent.new) do %>Row two<% end %>
+    <%= render(BoxRowComponent.new) do %>Row three<% end %>
+  </ul>
+  <%= render(BoxFooterComponent.new) do %>Footer<% end %>
+<% end %>
+```
+
+^ skipping a few steps, we might end up with components
+
+^ for header, body, row and footer
+
+^ But this puts a lot of burden on the the developer using all these components!
+
+^ order of elements matters
+
+^ enforce header is first?
+
+^ enforce footer is last?
+
+^ doesn't prevent misuse of the design system
+
+^ this is where slots comes in
+
+---
+
+`# app/components/box_component.rb`
+
+```ruby
+class BoxComponent < ViewComponent::Base
+  def initialize
+  end
+end
+```
+
+^ back in component
+
+---
+
+[.code-highlight: 2-5]
+
+`# app/components/box_component.rb`
+
+```ruby
+class BoxComponent < ViewComponent::Base
+  renders_one :header
+  renders_one :body
+  renders_many :rows
+  renders_one :footer
+
+  def initialize
+  end
+end
+```
+
+^ we can declare slots for the header, body, rows, and footer
+
+---
+
+[.code-highlight: 1-10]
+[.code-highlight: 7-11]
+
+`# app/views/demo/index.html.erb`
+
+```erb
+<%= render(BoxComponent.new) do %>
+  <%= render(BoxHeaderComponent.new) do %>Header<% end %>
+  <%= render(BoxBodyComponent.new) do %>Body<% end %>
+  <ul>
+    <%= render(BoxRowComponent.new) do %>Row one<% end %>
+    <%= render(BoxRowComponent.new) do %>Row two<% end %>
+    <%= render(BoxRowComponent.new) do %>Row three<% end %>
+  </ul>
+  <%= render(BoxFooterComponent.new) do %>Footer<% end %>
+<% end %>
+
+<%= render(BoxComponent.new) do |component| %>
+  <% component.header do %>Header<% end %>
+  <% component.body do %>Body<% end %>
+  <% component.row do %>Row one<% end %>
+  <% component.row do %>Row two<% end %>
+  <% component.row do %>Row three<% end %>
+  <% component.footer do %>Footer<% end %>
+<% end %>
+```
+
+^ In template that renders component
+
+^ refactor it
+
+^ S to use slots instead of separate components
+
+^ PAUSE
+
+---
+
+[.code-highlight: 2]
+[.code-highlight: 2-3]
+[.code-highlight: 2-4]
+[.code-highlight: 2-7]
+[.code-highlight: 8]
+[.code-highlight: all]
+
+`# app/components/box_component.html.erb`
+
+```erb
+<div class="Box">
+  <div class="Box-header"><h3 class="Box-title"><%= header %></h3></div>
+  <div class="Box-body"><%= body %></div>
+  <% if rows.any? %>
+    <ul>
+      <% rows.each do row %>
+        <li class="Box-row"><%= row %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="Box-footer"><%= footer %></div>
+</div>
+```
+
+^ then, in the component template, we can
+
+^ render the
+
+^ S title
+
+^ S body
+
+^ S rows, iterating over the collection
+
+^ S and footer
+
+^ S inside wrapping div
+
+^ PAUSE
+
+^ ended up with a codification of the design system
+
+^ helping developers use it properly
 
 ^ PAUSE
 
