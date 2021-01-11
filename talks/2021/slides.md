@@ -1773,7 +1773,7 @@ There was 1 discrepancy in usage counts for components:
 
 ^ We've had contributions from over 80 developers, only a dozen of which work for GitHub.
 
-^
+^ TODO include folks writing issues, etc
 
 ---
 
