@@ -1742,16 +1742,38 @@ There was 1 discrepancy in usage counts for components:
 | Breadcrumb                  | 2        | 34             | 94.44%     |
 | ...                         |          |                |            |
 
+^ For example, you can see that we've migrated every Blankslate to use the component we built.
 
 ---
 
-# OSS
+[.slidenumbers: false]
+[.footer:]
 
-^ The ViewComponent project has been very successful.
+![](img/stars.jpg)
+
+^ PAUSE
+
+^ One of the other questions I get about the project is:
+
+^ what have I learned by open sourcing it?
+
+^ I should caveat this by saying that this is the only open source project I've worked on.
+
+^ By many measures, the ViewComponent project has been very successful.
 
 ^ We've averaged one release a week since publishing the project in August 2019.
 
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/contributors.png)
+
 ^ We've had contributions from over 80 developers, only a dozen of which work for GitHub.
+
+^
 
 ---
 
