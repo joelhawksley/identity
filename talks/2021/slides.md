@@ -508,7 +508,7 @@ As a developer editing a view, it’s difficult to know what pages of the applic
 
 ---
 
-# `bin/viewfinder app/views/wiki/show.html.erb`
+### `bin/viewfinder app/views/wiki/show.html.erb`
 
 ^ We pass in the path to the template, in this case the wiki show page.
 
@@ -1771,33 +1771,135 @@ There was 1 discrepancy in usage counts for components:
 
 ![fit](img/contributors.png)
 
-^ We've had contributions from over 80 developers, only a dozen of which work for GitHub.
+^ This is my first time running an open source project
 
-^ TODO include folks writing issues, etc
+^ We've been lucky to have a lot of engagement on the project.
+
+^ We've had code contributions from over 80 developers, only a dozen of which work for GitHub.
+
+^ And working with so many different people from all around the world
 
 ---
 
 # Empathy
 
-^ This is my first time running an open source project
+^ has been a huge lesson in empathy.
 
-^ It's been a huge lesson in empathy.
+^ What's stuck out to me is that in every issue, PR, or discussion posted
 
-^ We've been lucky to have a lot of engagement on the project.
-
-^ And what's stuck out to me is that in every issue, PR, or discussion posted
-
-^ There is something to be learned to improve the framework. Even the small stuff.
-
----
+^ There is something to be learned. Even the small stuff.
 
 ^ If someone was confused by the documentation and wrote a component incorrectly,
 
 ^ it's evidence we can use to improve our docs.
 
+^ If an error message doesn't help someone fix the error and they file an issue about it, we should probably improve the error message!
+
+^ PAUSE
+
+^ It's amazed me how eager people are to contribute. But they're not always sure how.
+
+---
+# Enabling contribution
+
+^ Which is why we've focused on is enabling contribution.
+
+^ We want to enable people to make high-quality contributions as easily as possible.
+
+^ The library isn't super complicated,
+
+^ but it has some nuance and differing behavior across Rails versions.
+
+^ One way we've reduced the burden of this is through matrix builds
+
 ---
 
-^ TODO insert other examples, twitter quote about us doing it right
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/matrix.png)
+
+^ By running the test suite against over a dozen combinations
+
+^ of Ruby and Rails, we're able to ensure every change works across all the of those combinations
+
+^ But perhaps more importantly...
+
+---
+
+# Test coverage
+
+^ It's enabled us to ensure we have 100% test coverage,
+
+^ By combining coverage data from all of the matrix builds.
+
+^ Having a confident foundation like this makes it easier to accept contributions.
+
+---
+
+[.code-highlight: 0]
+[.code-highlight: 2-6]
+[.code-highlight: 7-13]
+
+`.github/workflows/ruby_on_rails.yml`
+
+```yml
+test:
+  - name: Upload coverage results
+    uses: actions/upload-artifact@master
+    with:
+      name: simplecov-resultset-rails${{matrix.rails_version}}-ruby${{matrix.ruby_version}}
+      path: coverage
+coverage:
+  needs: test
+  steps:
+  - name: Download coverage results
+    uses: actions/download-artifact@v2
+  - name: Collate simplecov
+    run: bundle exec rake coverage:report
+```
+
+^ We do this with artifacts.
+
+^ In our Actions configuration, we
+
+^ S upload contents of the simplecov directory as an artifact
+
+^ S And then in a dependent build that runs after all of the test builds,
+
+^ We download all of the coverage artifacts and run a rake task to combine the coverage results:
+
+---
+
+[.code-highlight: 7]
+[.code-highlight: 5-7]
+
+```ruby
+# Rakefile
+
+namespace :coverage do
+  task :report do
+    SimpleCov.minimum_coverage 100
+
+    SimpleCov.collate Dir["simplecov-resultset-*/.resultset.json"], "rails" do
+      formatter SimpleCov::Formatter::Console
+    end
+  end
+end
+```
+
+^ That task loads the artifacts into the Simplecov collator
+
+^ S Which we configure with a 100% coverage requirement
+
+^ This means that a build will fail if it contains untested code.
+
+^ With all this infrastructure in place, it's a lot easier to accept PRs with passing tests!
+
+^ Since we can be quite sure they don't break existing APIs.
+
+^ PAUSE
 
 ^ Another lesson I've learned is how powerful Rails convention is.
 
@@ -1814,53 +1916,17 @@ There was 1 discrepancy in usage counts for components:
 
 ---
 
-^ TODO for example, previews
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
 
-^ TODO for example, caching
+![fit](img/previews.png)
+
+^ For example, Juan Manuel contributed ViewComponent previews,
+
+^ largely based on the convention established by ActionMailer previews.
 
 ^ The strong conceptual foundation provided by Rails has enabled us to make good design decisions.
-
----
-
-# Enabling contribution
-
-^ Another thing we've focused on is enabling contribution.
-
-^ We want to enable people to make high-quality contributions as easily as possible.
-
-^ The library isn't super complicated,
-
-^ but it has some nuance and differing behavior across Rails versions.
-
-^ One way we've reduced the burden of this is through matrix builds
-
----
-
-# Matrix builds
-
-^ By running the test suite against over a dozen combinations
-
-^ of Ruby and Rails, we're able to ensure every change works across all the of those combinations
-
-^ But perhaps more importantly...
-
----
-
-# Test coverage
-
-^ TODO for both libraries
-
-^ It's enabled us to ensure we have 100% test coverage,
-
-^ By combining coverage data from all of the matrix builds
-
-^ Having a confident foundation like this makes it easier to accept contributions.
-
-^ I will note that this hasn't prevented a couple performance regressions
-
-^ But we're working on tooling to prevent those too.
-
-^ https://github.com/github/view_component/pull/424
 
 ---
 
@@ -1869,74 +1935,124 @@ There was 1 discrepancy in usage counts for components:
 
 ![](img/stars.jpg)
 
-^ SHORTCOMINGS
+^ PAUSE
 
----
-
-# Views + components
+^ I also think it's worth talking about what hasn't been going so well.
 
 ^ There is one problem with this approach that I can't shake:
 
-^ It means that we now have two ways of writing views that work differently
+---
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![175%](img/standards.png)
+
+^ It means that we now have two ways of writing views that work differently.
 
 ^ I can't imagine Rails having native support for ViewComponents,
 
 ^ At least as they exist today in a separate directory.
 
-^ TODO xkcd comic on standards
-
 ---
 
 # What to extract?
 
-^ But maybe we could extract some of what makes ViewComponent useful into Rails!
+^ But it makes me wonder if we could extract some of the lessons from ViewComponent into Rails.
 
-^ TODO One example is the pretty partial GEM
+^ One example of this is Andrew Culver and Dom Christie's Nice Partials gem.
 
-^ Could VC feel as light as views? Could we have ruby objects in the Views folder?
+---
+
+```erb
+<%= render 'card', title: 'Some Title' do |p| %>
+  <% p.content_for :body do %>
+    Lorem ipsum dolor sit amet...
+  <% end %>
+
+  <% p.content_for :image do %>
+    <%= image_tag image_path('example.jpg'), alt: 'An example image' %>
+  <% end %>
+<% end %>
+```
+
+^ Nice partials provides a similar API to ViewComponent's slots,
+
+^ Allow for multiple blocks of content to be passed to a partial.
+
+^ Maybe this is something we could add to Rails!
 
 ^ PAUSE
 
 ---
 
-# Mining for abstractions
+# Improving ActionView
 
-^ mining existing applications for abstractions for rails
+^ I think this is what we ultimately need to focus on in the long term.
+
+^ From our work on ViewComponent, we've identified ways ActionView could be improved.
+
+^ And as ViewComponent's API matures, we'll have an increasingly clear idea of what those improvements might look like.
+
+^ PAUSE
 
 ---
 
 # Design from experience
 
-^ Lesson: Design from real experience, not hypothesis
+^ By doing so, we'll be able to design the future of building UI in Rails
 
-^ One missing feature is caching
+^ from experience, not hypothesis.
 
-^ We don't do view caching, so it's more difficult for us to build the framework support for it
+^ PAUSE
 
-^ I'd love some help here
+^ One example of this is the lack of robust support for caching in ViewComponent
+
+^ We don't do much view caching, so it's more difficult for us to build the framework support for it
+
+^ This is one area where we could really use some help.
 
 ^ PAUSE
 
 ---
-# Innovation
 
-^ Another thing this project has made me think about is innovation in Rails.
+[.slidenumbers: false]
+[.footer:]
 
----
+![](img/stars.jpg)
 
-# Dilemma
-
-^ There is a theory called the innovator's dilemma.
-
-^ TODO innovator's dilemma cover
+^ The last thing this project has made me think about is innovation in Rails.
 
 ---
 
-> The Innovator's Dilemma is the decision between catering to current needs, or adopting new innovations and technologies which will answer future needs.
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/dilemma.jpg)
+
+^ There is a book called the innovator's dilemma.
+
+^ Widely considered one of the most influential business books ever written.
+
+^ Written by Clayton Christensen, Harvard Business School professor
+
+---
+
+## The Innovator's Dilemma is the decision between catering to current needs, or adopting new innovations and technologies which will answer future needs.
 
 ^ READ QUOTE
 
-^ Rails is a very mature.
+^ The book demonstrates how successful, outstanding organizations can do everything "right" and still lose their market leadership,
+
+^ or even fail – as new, unexpected competitors rise and take over the market
+
+^ PAUSE
+
+^ And I think this is an important lesson we need to consider about Rails' long-term survival.
+
+^ The reason this matters so much to me, is that for GitHub, the continued success of Rails is critical!
 
 ---
 
@@ -1962,7 +2078,11 @@ There was 1 discrepancy in usage counts for components:
 
 ^ We need to innovate!
 
-^ Improving Rails is the only way we'll survive.
+^ We need to experiment with new and potentially disruptive ideas,
+
+^ because improving Rails is the only way we'll survive.
+
+^ It's going to require work.
 
 ---
 
@@ -1974,11 +2094,11 @@ There was 1 discrepancy in usage counts for components:
 
 ^ Rails was built by people just like all of you
 
-^ And we benefit from the work they've put in
-
-^ You can see this in GitHub's contributions to the framework
+^ And we benefit from the work others have put in
 
 ^ but we need more voices.
+
+^ PAUSE
 
 ---
 
@@ -1996,6 +2116,8 @@ There was 1 discrepancy in usage counts for components:
 
 ^ But yet the world moves on
 
+---
+
 # It's up to us.
 
 ^ Which means it's up to us to keep Rails relevant.
@@ -2007,9 +2129,3 @@ There was 1 discrepancy in usage counts for components:
 # Thanks
 
 ^ Thanks
-
----
-
-# Thinking in Ruby vs. ERB
-
-^ Views are code too!
