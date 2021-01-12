@@ -949,7 +949,7 @@ end
 
 ^ One of the goals of the design systems team is to help our developers build consistent UI.
 
-^ ViewComponents have been a key tool to accomplishing this goal.
+^ ViewComponents have been a key part of accomplishing this goal.
 
 ---
 
@@ -975,11 +975,27 @@ end
 
 ^ This diff from one of his PRs shows how we mixed and matched the formatting of values displayed with the counter
 
+---
+
+[.slidenumbers: false]
+[.footer:]
+[.background-color: #FFFFFF]
+
+![fit](img/counters-diff-highlighted.png)
+
 ^ In one case using number with delimiter, and one case without.
 
 ^ This led to visual inconsistencies, but only with large numbers of commits,
 
 ^ something we'd never expect a developer think about when working on a feature.
+
+---
+
+[.slidenumbers: false]
+[.footer:]
+[.background-color: #FFFFFF]
+
+![fit](img/counters-diff-highlighted-2.png)
 
 ^ Instead, we simply pass the raw count to the component, and it handles formatting the value in a consistent way.
 
@@ -1068,11 +1084,22 @@ end
 
 ^ This helper has turned out to be quite educational.
 
+^ PAUSE
+
 ^ It's helped us better understand the side affects of our code
 
 ^ prevented the introduction of several N+1 queries.
 
-^ In one recent case, this saved over 100ms of overhead on a page.
+---
+
+
+[.slidenumbers: false]
+[.background-color: #FFFFFF]
+[.footer:]
+
+![fit](img/checks.png)
+
+^ In one recent case on the checks page, this saved over 100ms of overhead per request.
 
 ---
 
@@ -1174,7 +1201,7 @@ top; display: block; margin: 0 auto !important; max-width:
 
 # Abstraction
 
-^ Just like AR simplified use of SQL
+^ Just like active record simplified use of SQL
 
 ^ And controllers made it easy to write code to respond to requests
 
