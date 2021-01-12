@@ -16,16 +16,6 @@ autoscale: true
 
 ^ Today I'm going to share some lessons I've learned building ViewComponents at GitHub over the past year.
 
-^ By sharing real examples, my goal is to show how we have a lot to learn by
-
----
-
-# Views are code, too
-
-^ By treating our views a bit more like the rest of the code we write.
-
-^ PAUSE
-
 ---
 
 [.hide-footer]
@@ -54,11 +44,16 @@ autoscale: true
 
 ^ like our version of bootstrap
 
+---
+
+[.hide-footer]
+![fit](img/system.png)
+
 ^ provides design patterns combined to build UI.
 
-^ PAUSE
+^ has several pieces - CSS, React, ViewComponents, figma, icons
 
-^ Perhaps our biggest ship just went out recently - dark mode
+^ PAUSE
 
 ^ My job on the team
 
@@ -68,17 +63,7 @@ autoscale: true
 
 ^ and to generally make building UI an enjoyable experience
 
-^ This is a big challenge!
-
----
-
-# UI at GitHub
-
-^ Today we're going to take a peak behind the curtain
-
-^ at how we build UI in one of the biggest
-
-^ highest-trafficked Rails applications
+^ in one of the biggest, highest-trafficked Rails applications in the world
 
 ^ PAUSE
 
@@ -114,9 +99,9 @@ autoscale: true
 
 ^ such as webhook delivery
 
-^ but most of GitHub is a Rails monolith
+^ but most of GitHub is a Rails monolith.
 
-^ and it's a big one...
+^ A big monolith that's growing quickly.
 
 ---
 
@@ -295,7 +280,7 @@ ActionView::Template.register_template_handler(:erb, CustomHandler.new) if Rails
 
 ---
 
-## `config.action_view.annotate_template_file_names`
+### `config.action_view.annotate_template_file_names`
 
 ^ You can turn it on with the configuration variable
 
@@ -334,7 +319,7 @@ ActionView::Template.register_template_handler(:erb, CustomHandler.new) if Rails
 
 ^ but yet we manage to do it...
 
-^ in our tests.
+^ in our test environment.
 
 ^ while this is great, it's not much help for making visual changes
 
@@ -374,11 +359,12 @@ ActionView::Template.register_template_handler(:erb, CustomHandler.new) if Rails
 ---
 
 [.code-highlight: all]
-[.code-highlight: 2]
 [.code-highlight: 4]
+[.code-highlight: 6]
 
 ```ruby
 # test/integration/profiles_controller_test.rb
+
 test "loads successfully" do
   get "/#{@user}"
 
@@ -610,15 +596,12 @@ s(:block,
 [.code-highlight: 0]
 [.code-highlight: 1]
 [.code-highlight: 2]
-[.code-highlight: 0]
 
 ```ruby
 if node.type == :send
   case node.method_name
   when :render
-    ...
-  when :render_to_string
-    ...
+    # inspect method arguments
   end
 end
 ```
@@ -631,7 +614,7 @@ end
 
 ^ S and then the method name
 
-^ S And we do this to confirm that the render call is referring to the template we're tracing
+^ And we do this to confirm that the render call is referring to the template we're tracing
 
 ---
 
@@ -656,7 +639,9 @@ s(:def, :show,
 
 ---
 
-# `get "wiki/*path", to: "wiki#show"`
+```ruby
+get "wiki/*path", to: "wiki#show"
+```
 
 ^ From there, we look up the routes that render that controller action,
 
@@ -740,21 +725,7 @@ irb(main):001:0> Rails.application.routes.recognize_path("/joelhawksley/demo/wik
 
 ^ PAUSE
 
-^ So if we go back to our output from before...
-
----
-
-[.code-highlight: 1-2]
-
-```
-ROUTE: /:user_id/:repository/wiki/*path () =>
-CONTROLLER: app/controllers/wiki_controller.rb#show =>
-wiki/show.html.erb
-```
-
-^ We can take the controller data we had from before,
-
-^ and use our new lookup hash to include which tests render the view:
+^ With this lookup hash, we can then include which tests render the view:
 
 ---
 
