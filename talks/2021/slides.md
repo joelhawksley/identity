@@ -1299,23 +1299,6 @@ end
 
 ---
 
-`# app/components/box_component.rb`
-
-```ruby
-class BoxComponent < ViewComponent::Base
-  def initialize
-  end
-end
-```
-
-`# app/components/box_component.html.erb`
-
-```erb
-<div class="Box">
-  <%= content %>
-</div>
-```
-
 `# app/views/demo/index.html.erb`
 
 ```erb
@@ -1383,7 +1366,7 @@ end
 ---
 
 [.code-highlight: 1-10]
-[.code-highlight: 7-11]
+[.code-highlight: 12-19]
 
 `# app/views/demo/index.html.erb`
 
@@ -1423,7 +1406,7 @@ end
 [.code-highlight: 2-3]
 [.code-highlight: 2-4]
 [.code-highlight: 2-7]
-[.code-highlight: 8]
+[.code-highlight: 11]
 [.code-highlight: all]
 
 `# app/components/box_component.html.erb`
@@ -1447,17 +1430,30 @@ end
 
 ^ render the
 
-^ S title
+^ S header
 
-^ S body
+^ S and body
 
-^ S rows, iterating over the collection
+^ S render the rows, which are exposed as an array, iterating over the collection
 
 ^ S and footer
 
 ^ S inside wrapping div
 
 ^ PAUSE
+
+---
+
+```erb
+<%= render(BoxComponent.new) do |component| %>
+  <% component.header do %>Header<% end %>
+  <% component.body do %>Body<% end %>
+  <% component.row do %>Row one<% end %>
+  <% component.row do %>Row two<% end %>
+  <% component.row do %>Row three<% end %>
+  <% component.footer do %>Footer<% end %>
+<% end %>
+```
 
 ^ ended up with a codification of the design system
 
@@ -1496,8 +1492,6 @@ end
 [.footer:]
 
 ![fit autoplay mute](img/storybook.mov)
-
-^ Storybook provides a UI for interacting with ViewComponents.
 
 ^ Here you can see it previewing a change to the icon
 
@@ -1582,7 +1576,8 @@ end
 ---
 
 [.code-highlight: 1-5]
-[.code-highlight: 7-17]
+[.code-highlight: 7-15]
+[.code-highlight: 10-12]
 [.code-highlight: all]
 
 ```ruby
@@ -1605,7 +1600,9 @@ end
 
 ^ Here's an example ViewModel - explain code
 
-^ S and the test looks like this - explain code - asserts against the object output
+^ S and the test looks like this
+
+^ S It instanstiates the view, and asserts against the object output
 
 ^ So that's a ViewModel. We'd pass this object into a template and access values from it.
 
@@ -1639,7 +1636,7 @@ end
 
 ^ And here's what it looks like rewritten as a ViewComponent
 
-^ Explain code - base class has changed, ignoring the template for this example
+^ Explain code - base class has changed
 
 ^ S for the test, not much changes either
 
@@ -1649,7 +1646,7 @@ end
 
 ^ Instead of asserting against the attribute of an object
 
-^ S We're assert against what's actually presented to a user
+^ S We're asserting against what's actually presented to a user
 
 ^ This is something we previously could only do with system and integration tests
 
@@ -1685,7 +1682,9 @@ end
 
 ^ Is the view complex, with many different possible states?
 
-^ If so, we use a component. Otherwise, we don't.
+^ If so, we might use a component so we can unit test all of the permutations.
+
+^ Otherwise, we don't.
 
 ^ PAUSE
 
