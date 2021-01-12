@@ -1754,9 +1754,9 @@ module Primer
 ^ Here's how:
 
 ---
-[.code-highlight: 1]
 [.code-highlight: 3]
 [.code-highlight: 5]
+[.code-highlight: 7]
 
 ```ruby
 # Rakefile
@@ -1823,7 +1823,7 @@ irb(main):018:0> ApplicationController.new.view_context.render(inline: example_t
 [.code-highlight: 1]
 [.code-highlight: 3]
 [.code-highlight: 9]
-[.code-highlight: 0]
+[.code-highlight: 11-13]
 
 ```md
 # ProgressBar
@@ -1844,13 +1844,13 @@ Use ProgressBar to visualize task completion.
 
 ^ We use that data to build a markdown file
 
-^ S With head matter as the title
+^ S With the class name as the title,
 
-^ S The description we wrote for the component class below it
+^ S The description we wrote for the component class below it,
 
-^ S Then the inline HTML of the rendered example
+^ S the inline HTML of the rendered example,
 
-^ S And finally the original ERB code.
+^ S And the original ERB code.
 
 ---
 
@@ -1865,6 +1865,8 @@ Use ProgressBar to visualize task completion.
 ^ This standardized approach keeps our documentation consistent.
 
 ^ I think my favorite part is that the documentation is consumable both via the component code's comments and via the published site, as people seem to prefer one or the other.
+
+^ PAUSE
 
 ---
 
@@ -1947,7 +1949,11 @@ end
 
 ^ This provides company leadership with case studies they can use to justify the work we're doing.
 
+^ PAUSE
+
 ^ At some point though, there's no substitute for putting in the time.
+
+^ PAUSE
 
 ---
 
@@ -2000,7 +2006,7 @@ There was 1 discrepancy in usage counts for components:
 
 ^ If someone adds another usage, this linter fails their build, and suggests they use the component.
 
-^ As we roll out a new component, we decrement the number of exceptions, preventing new ones from being introduced.
+^ As we roll out a new component, we decrease the number of exceptions, preventing new ones from being introduced.
 
 ^ PAUSE
 
@@ -2034,9 +2040,9 @@ There was 1 discrepancy in usage counts for components:
 
 ^ I should caveat this by saying that this is the only open source project I've worked on.
 
-^ By many measures, the ViewComponent project has been very successful.
+^ PAUSE
 
-^ We've averaged one release a week since publishing the project in August 2019.
+^ By many measures, the ViewComponent project has been very successful.
 
 ---
 
@@ -2045,8 +2051,6 @@ There was 1 discrepancy in usage counts for components:
 [.footer:]
 
 ![fit](img/contributors.png)
-
-^ This is my first time running an open source project
 
 ^ We've been lucky to have a lot of engagement on the project.
 
@@ -2072,18 +2076,20 @@ There was 1 discrepancy in usage counts for components:
 
 ^ PAUSE
 
-^ It's amazed me how eager people are to contribute. But they're not always sure how.
+^ It's clear to me that people want to contribute. But they're not always sure how.
 
 ---
 # Enabling contribution
 
-^ Which is why we've focused on is enabling contribution.
+^ Which is why we've focused on making it easy to contribute.
 
 ^ We want to enable people to make high-quality contributions as easily as possible.
 
 ^ The library isn't super complicated,
 
 ^ but it has some nuance and differing behavior across Rails versions.
+
+^ We support the combinations of several versions of Ruby and Rails, and making sure the framework works for all of them is critical.
 
 ^ One way we've reduced the burden of this is through matrix builds
 
@@ -2187,7 +2193,7 @@ end
 
 ^ Rails conventions mean baseline expectations outside framework
 
-^ And because of that, it's enabled others to almost instinctively know how to contribute
+^ and these conventions have enabled others to almost instinctively know how to contribute
 
 ---
 
@@ -2200,8 +2206,6 @@ end
 ^ For example, Juan Manuel contributed ViewComponent previews,
 
 ^ largely based on the convention established by ActionMailer previews.
-
-^ The strong conceptual foundation provided by Rails has enabled us to make good design decisions.
 
 ---
 
@@ -2239,6 +2243,9 @@ end
 ^ One example of this is Andrew Culver and Dom Christie's Nice Partials gem.
 
 ---
+
+[.code-highlight: 0]
+[.code-highlight: 2,6]
 
 ```erb
 <%= render 'card', title: 'Some Title' do |p| %>
@@ -2309,9 +2316,7 @@ end
 
 ^ There is a book called the innovator's dilemma.
 
-^ Widely considered one of the most influential business books ever written.
-
-^ Written by Clayton Christensen, Harvard Business School professor
+^ Widely considered to be one of the most influential business books ever written.
 
 ---
 
@@ -2325,25 +2330,19 @@ end
 
 ^ PAUSE
 
-^ And I think this is an important lesson we need to consider about Rails' long-term survival.
+^ And I think this is an important lesson we need to consider about the long term relevance of Rails.
 
-^ The reason this matters so much to me, is that for GitHub, the continued success of Rails is critical!
+^ The reason this matters so much to me, is that...
 
 ---
 
 # Dependency
 
-^ GitHub's survival is ultimately pretty dependent on Rails' ability to stay relevant.
+^ GitHub's future is pretty dependent on Rails remaining relevant.
 
 ^ We have so much built on top of Rails
 
 ^ it's very unlikely we'd rewrite our core application.
-
----
-
-# Survival
-
-^ Which means that Rails' survival, is our survival.
 
 ^ So what does that mean for all of us?
 
@@ -2351,9 +2350,9 @@ end
 
 # Innovate
 
-^ We need to innovate!
+^ It means that we need to innovate!
 
-^ We need to experiment with new and potentially disruptive ideas,
+^ We need to experiment with new and potentially disruptive ideas like ViewComponent,
 
 ^ because improving Rails is the only way we'll survive.
 
@@ -2372,6 +2371,8 @@ end
 ^ And we benefit from the work others have put in
 
 ^ but we need more voices.
+
+^ PAUSE
 
 ---
 
@@ -2406,8 +2407,6 @@ end
 # It's up to us.
 
 ^ Which means it's up to us to keep Rails relevant.
-
-^ If we want our companies to remain competitive.
 
 ^ PAUSE
 
