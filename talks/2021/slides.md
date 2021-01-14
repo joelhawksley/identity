@@ -38,16 +38,9 @@ autoscale: true
 ---
 
 [.hide-footer]
-![fit](img/primer.png)
+![fit](img/system.png)
 
 ^ responsible for the Primer design system used throughout GitHub
-
-^ like our version of bootstrap
-
----
-
-[.hide-footer]
-![fit](img/system.png)
 
 ^ provides design patterns combined to build UI.
 
