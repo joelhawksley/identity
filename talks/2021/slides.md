@@ -10,11 +10,9 @@ autoscale: true
 
 ^ My name is joel
 
-^ Thanks for having me
+^ Thanks for coming to this session
 
-^ Thanks to Rylan, Dan, and Marty for organizing
-
-^ Today I'm going to share some lessons I've learned building ViewComponents at GitHub over the past year.
+^ Today I'm going to share some lessons we've learned building ViewComponents at GitHub over the past year.
 
 ---
 
@@ -60,7 +58,7 @@ autoscale: true
 
 ^ PAUSE
 
-^ To give you an idea of our scale,
+^ To give you an idea of our scale
 
 ^ here are a few stats
 
@@ -1676,6 +1674,12 @@ end
 ^ Is the view complex, with many different possible states?
 
 ^ If so, we might use a component so we can unit test all of the permutations.
+
+---
+
+# Partial / ViewModel
+
+^ The most common case for using ViewComponents is in place of a partial or ViewModel.
 
 ^ Otherwise, we don't.
 
