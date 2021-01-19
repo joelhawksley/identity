@@ -1,5 +1,5 @@
 slidenumbers: true
-footer: Boulder Ruby January 2020 - ViewComponents in the real world - @joelhawksley
+footer: GitHub Day of Learning - January 2021 - ViewComponents in the real world - @joelhawksley
 autoscale: true
 
 ## ViewComponents in the real world
