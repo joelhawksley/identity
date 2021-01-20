@@ -1,5 +1,6 @@
 slidenumbers: true
 footer: GitHub Day of Learning - January 2021 - ViewComponents in the real world - @joelhawksley
+code: Menlo Regular, #d2a8ff, #79c0ff, #0366d6, #ff7b72, #d73a49
 autoscale: true
 
 ## ViewComponents in the real world
