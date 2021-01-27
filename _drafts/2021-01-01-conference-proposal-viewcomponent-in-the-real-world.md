@@ -35,8 +35,10 @@ The talk finishes with a consideration of the bigger picture around the state of
 
 ## Pitch
 
-I am the creator and maintainer of ViewComponent, GitHub's framework for building reusable, testable & encapsulated view components in Rails. I'm also the author of the support for 3rd-party component frameworks introduced in Rails 6.1, along with other view-related improvements such as template annotations and the `class_names` helper. In addition, I maintain the Primer ViewComponents library, an open-source Ruby gem of ViewComponents for the Primer Design System.
+I am the creator and maintainer of ViewComponent, GitHub's framework for building reusable, testable & encapsulated view components in Rails. The ViewComponent framework has received significant attention in the Rails community over the past year, and is foundational to several up and coming Rails ecosystem libraries including StimulusReflex.
+
+I'm also the author of the support for 3rd-party component frameworks introduced in Rails 6.1, along with other view-related improvements such as template annotations and the `class_names` helper. In addition, I maintain the Primer ViewComponents library, an open-source Ruby gem of ViewComponents for the Primer Design System.
 
 This talk builds on presentations I gave at RailsConf 2019, sharing a prototype for view components in Rails, and 2020, a technical deep-dive into how a lack of encapsulation affects Rails views. It shares what we've learned scaling up to hundreds of ViewComponents over the past year, including open-sourcing some of them. Through sharing concrete examples from the GitHub codebase, I'll help attendees understand how their applications might benefit from using ViewComponents.
 
-I've given the talk to our local Ruby group and internally at GitHub.
+I've already given the talk to our local Ruby group and internally at GitHub, and it's been well-received.
