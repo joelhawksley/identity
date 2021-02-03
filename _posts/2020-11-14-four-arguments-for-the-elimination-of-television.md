@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Four arguments for the elimination of television
+title: Notes on Four Arguments for the Elimination of Television
 type: review
 book_author: Jerry Mander
 book_year: 1978
