@@ -21,18 +21,7 @@ autoscale: true
 
 ![40%](img/github-white.png)
 
-^ I've been at GitHub for a couple years now
-
-^ engineer at on Design Systems team
-
----
-
-[.hide-footer]
-![fit](img/team.jpg)
-
-^ There's about a dozen of us.
-
-^ this is our halloween team photo
+^ I'm an engineer at on Design Systems team at GitHub
 
 ---
 
@@ -41,55 +30,49 @@ autoscale: true
 
 ^ responsible for the Primer design system used throughout GitHub
 
-^ provides design patterns combined to build UI.
-
-^ has several pieces - CSS, React, ViewComponents, figma, icons
-
-^ PAUSE
-
-^ My job on the team
-
-^ to help hundreds of engineers use our design system correctly in our monolith
-
-^ Make building consistent, accessible, resilient UI easy
-
-^ and to generally make building UI an enjoyable experience
-
-^ in one of the biggest, highest-trafficked Rails applications in the world
-
-^ PAUSE
-
-^ To give you an idea of our scale
-
-^ here are a few stats
+^ as you can see it's really a system of systems
 
 ---
 
-# 13 years
+[.hide-footer]
 
-^ The GitHub rails app is over thirteen years old.
+![40%](img/github-white.png)
 
-^ Initial development began in October 2007
+^ My job on the team
+
+^ Make building consistent, accessible, resilient UI in our Rails monolith an enjoyable experience
+
+^ All at a pretty incredible scale
+
+^ To give you an idea of our scale, here are a few stats
+
+^ It seems like people always ask me about these when I'm talking about our application
+
+---
+
+# est. 2007
+
+^ The GitHub rails app is over thirteen years old, and it..
 
 ---
 
 # 10k's requests/second
 
-^ Our app receives  tens of thousands of requests per second
+^ receives tens of thousands of requests per second
 
 ---
 
 # ~ two dozen services
 
-^ We have around two dozen services
+^ We have extracted around two dozen services
 
-^ Citadel architecture
+^ into what some people call a citadel architecture
 
-^ A lot of them are written in Go
+^ A lot of our services are written in Go
 
-^ extractions from the monolith
+^ including functional areas such as webhook delivery
 
-^ such as webhook delivery
+^ PAUSE
 
 ^ but most of GitHub is a Rails monolith.
 
@@ -99,46 +82,45 @@ autoscale: true
 
 # 580 models
 
-# +144 YoY (33%)
+## +144 YoY (33%)
 
 ^ `grep -lr "< ApplicationRecord" app/models | wc -l`
 
-^ 580 models
+^ We have almost 600 models
 
 ---
 
-# 4573 views
+# 4671 views
 
-# +702 YoY (18%)
+## +702 YoY (18%)
 
 ^ `find app/views -type f -name "*.html.erb" | wc -l`
 
-^ 4573 views
+^ Almost 4700 views
 
 ---
 
-# 766 controllers
+# 807 controllers
 
-# +206 YoY (36.8%)
+## +206 YoY (36.8%)
 
 ^ `find app/controllers -type f -name "*_controller.rb" | wc -l`
 
-^ 766 controllers
+^ and over 800 controllers
+
+^ PAUSE
 
 ---
 
 # 2015 GET routes
 
-^ We have over two thousand screens in the application
+^ We have over two thousand pages in the application.
 
-^ All need to stay current, even if they're out of the critical path
+^ All of them need to stay current,
 
-^ We have a lot of legacy one-off designs that are difficult to maintain.
+^ even if they're obscure settings pages out of the critical path.
 
 ---
-# >450kb of custom CSS
-
-^ Which means almost half a megabyte of custom CSS.
 
 ^ This scale makes for some interesting problems.
 
@@ -157,19 +139,13 @@ autoscale: true
 
 ^ When you have a body of work like this
 
-^ With thousands and thousands of examples
-
-^ it’s possible to zoom out and see patterns emerge
+^ patterns start to emerge
 
 ^ PAUSE
 
 ---
 
-^ one example of how I've worked to improve the developer experience
-
-^ is template annotations
-
-^ One issue developers had building UI at GitHub was figuring out
+^ One issue we've had is figuring out
 
 ^ which template rendered a specific line of HTML
 
@@ -180,9 +156,11 @@ autoscale: true
 [.background-color: #FFFFFF]
 ![fit](img/pr-status.png)
 
-^ for example, when looking at a PR page, if I want to edit this PR badge,
+^ for example, when looking at a PR page,
 
-^ how do a I find the right template?
+^ if I want to edit the badge that display the draft status here
+
+^ how do a I find the right place to make my change?
 
 ---
 
@@ -191,58 +169,58 @@ autoscale: true
 [.background-color: #FFFFFF]
 ![fit](img/pr-status-inspect.png)
 
-^ I could try searching by the specific class names on the element, but with
+^ I could try searching by the specific class names on the element,
 
-^ the functional css approach many apps take these days, this approach is often
-
-^ not very reliable.
+^ this approach is often not very reliable if you're using function CSS class names like we are
 
 ^ In this case, if we search for the class names on the element, we get dozens of results.
 
-^ PAUSE
-
 ---
 
-^ In thinking about this problem, I wondered if it might be possible to add HTML comments
+^ PAUSE
+
+^ In thinking about this problem, we came up with the idea to add HTML comments
 
 ^ at the beginning and end of each template's output, with the path of the template file.
 
 ---
 
 [.code-highlight: 0]
-[.code-highlight: 3-4]
-[.code-highlight: 5]
-[.code-highlight: 7-9]
-[.code-highlight: 14]
+[.code-highlight: 1]
+[.code-highlight: 2]
+[.code-highlight: 3]
+[.code-highlight: 5-7]
+[.code-highlight: 11]
 
 ```ruby
-# config/initializers/template_annotation.rb
-
 class CustomHandler < ActionView::Template::Handlers::ERB
   def call(template)
-    out = super.gsub("@output_buffer.to_s", "")
+    out = super
 
-    "@output_buffer.safe_append='<!-- BEGIN: #{ template.short_identifier } -->\n'.freeze;" +
-      out +
-      "@output_buffer.safe_append='<!-- END: #{ template.short_identifier } -->\n'.freeze;@output_buffer.to_s;"
-    end
+    "<!-- BEGIN: #{ template.path } -->\n" +
+    out +
+    "<!-- END: #{ template.path } -->\n'"
   end
 end
 
-ActionView::Template.register_template_handler(:erb, CustomHandler.new) if Rails.env.development?
+ActionView::Template.register_template_handler(:erb, CustomHandler.new)
 ```
 
-^ We did this by writing a custom ERB compiler that added the template path to the output
+^ We did this by writing a custom ERB compiler
 
-^ of a template.
+^ S we start by defining a custom compiler as a subclass of the existing ERB compiler
 
-^ S we start by defining the handler object with a call method that receives a template object
+^ S with a call method that receives a template object
 
-^ S get the original output of the ERB handler
+^ S get the original output of the ERB compiler
 
-^ S and wrap it in HTML comments with the template's identifier
+^ S and wrap it in HTML comments with the template's path.
 
-^ S and for now, we only do this in development.
+^ S Finally, we register our custom compiler with Rails.
+
+^ PAUSE
+
+^ Now going back to our page,
 
 ---
 
@@ -251,9 +229,9 @@ ActionView::Template.register_template_handler(:erb, CustomHandler.new) if Rails
 [.background-color: #FFFFFF]
 ![fit](img/pr-status-annotation.png)
 
-^ And it worked!
+^ We now see which template rendered a part of a page.
 
-^ We now had a way to quickly figure out which template rendered a part of a page.
+^ In this case, it's a
 
 ^ PAUSE
 
@@ -291,12 +269,6 @@ ActionView::Template.register_template_handler(:erb, CustomHandler.new) if Rails
 
 ^ in local development so we can test visual changes
 
----
-
-# Seeds
-
-^ seeds only get us so far.
-
 ^ part of this is due to GitHub's architecture
 
 ---
@@ -309,22 +281,12 @@ ActionView::Template.register_template_handler(:erb, CustomHandler.new) if Rails
 
 ^ this can make it difficult to get local development into the right state
 
-^ but yet we manage to do it...
-
-^ in our test environment.
-
-^ while this is great, it's not much help for making visual changes
-
 ---
 # TDD
 
 ^ Unfortunately, we don't have browser-based tests
 
-^ Which means we can't use them for verifying visual changes
-
-^ This is mainly due to how much time it would add to our test suite
-
-^ Which is already over 10 hours without parallelization.
+^ This is mainly due to how much time they would add to our test suite.
 
 ^ PAUSE
 
@@ -344,19 +306,15 @@ ActionView::Template.register_template_handler(:erb, CustomHandler.new) if Rails
 
 ^ That way, we could reuse all of the existing setup code from our controller tests
 
-^ To preview the application in a specific state to make visual changes
-
-^ And that's just what we did!
+^ To preview the application in a specific state to make visual changes?
 
 ---
 
 [.code-highlight: all]
+[.code-highlight: 2]
 [.code-highlight: 4]
-[.code-highlight: 6]
 
 ```ruby
-# test/integration/profiles_controller_test.rb
-
 test "loads successfully" do
   get "/#{@user}"
 
@@ -368,27 +326,21 @@ end
 
 ^ S It calls `get` with a URL
 
-^ S and then makes an assertion
+^ S and then makes an assertion, in this case asserting against the response code
 
 ^ So how can we convert this into a system test?
 
 ---
 
-[.code-highlight: 3]
-[.code-highlight: 4-9]
-[.code-highlight: 11-14]
-[.code-highlight: 16]
-[.code-highlight: all]
+[.code-highlight: 1]
+[.code-highlight: 2-4]
+[.code-highlight: 6-9]
+[.code-highlight: 14]
 
 ```ruby
-# test/test_helpers/system_test_conversion.rb
-
 module SystemTestConversion
-  def self.included(child)
-    child.setup do
-      ActionDispatch::SystemTestCase.driven_by(:selenium, using: :chrome)
-      ActionDispatch::SystemTestCase.driver.use
-    end
+  def self.included
+    ActionDispatch::SystemTestCase.driven_by(:selenium, using: :chrome)
   end
 
   def get(path)
@@ -410,7 +362,7 @@ end
 
 ^ S and for `assert_response` to be a no-op
 
-^ S PAUSE
+^ PAUSE
 
 ^ From there
 
@@ -424,7 +376,7 @@ if ENV["RUN_IN_BROWSER"]
 end
 ```
 
-^ We conditionally include the module if `RUN_IN_BROWSER` is appended to a command to run a test.
+^ We conditionally include the  module if `RUN_IN_BROWSER` is appended to a command to run a test.
 
 ---
 
@@ -441,11 +393,11 @@ end
 
 ^ I'm not sure it's a good idea or not, but it's served us well.
 
+^ But there is a more generally lesson here.
+
 ---
 
 # Seeds vs. test setup
-
-^ But there is something that I think we can learn here.
 
 ^ Our seeds and test setup code has a lot of overlap!
 
@@ -467,11 +419,9 @@ end
 ---
 # View -> route(s)
 
-As a developer editing a view, it’s difficult to know what pages of the application will be affected by my changes.
-
 ^ When modifying a template,
 
-^ It can be difficult to know where a view is used.
+^ It can be difficult to know where it's used.
 
 ^ Not knowing where a template is used is risky, as we have a lot of template reuse.
 
@@ -488,31 +438,32 @@ As a developer editing a view, it’s difficult to know what pages of the applic
 
 ^ Navigating our render stack might be a little tricky
 
-^ so we turned to static analysis!
+^ PAUSE
 
----
-
-# Viewfinder
-
-^ And built a tool called Viewfinder
+^ So built a tool called Viewfinder
 
 ^ Here's how it works:
 
 ---
 
-### `bin/viewfinder app/views/wiki/show.html.erb`
+### `viewfinder wiki/show.html.erb`
 
 ^ We pass in the path to the template, in this case the wiki show page.
 
 ---
 
 ```ruby
-grep(/('|")wiki/show('|")/, paths: [Rails.root.join("app/**/*")])
+grep(
+  /wiki/show/,
+  paths: [Rails.root.join("app/**/*")]
+)
 ```
 
 ^ Then we extract the template string literal, in this case `wiki/show`
 
 ^ And search for it in the codebase.
+
+^ Just like you might search in your text editor.
 
 ---
 
@@ -674,7 +625,10 @@ wiki/show.html.erb
 ---
 
 ```ruby
-grep(/get ".*"/, paths: [Rails.root.join("test/integration/**/*").to_s])
+grep(
+  /get ".*"/,
+  paths: [Rails.root.join("test/integration/**/*")]
+)
 ```
 
 ^ We start by finding all of the `get` calls from our controller tests
@@ -690,11 +644,17 @@ grep(/get ".*"/, paths: [Rails.root.join("test/integration/**/*").to_s])
 ---
 
 [.code-highlight: 1]
-[.code-highlight: 2]
+[.code-highlight: 3-8]
 
 ```ruby
-irb(main):001:0> Rails.application.routes.recognize_path("/joelhawksley/demo/wiki/")
-=> {:controller=>"wiki", :action=>"index", :user_id=>"joelhawksley", :repository=>"demo"}
+Rails.application.routes.recognize_path("/joelhawksley/demo/wiki/")
+
+{
+  controller: "wiki",
+  action: "index",
+  user_id: "joelhawksley",
+  repository: "demo"
+}
 ```
 
 ^ The Rails code path that takes a request path...
@@ -708,7 +668,11 @@ irb(main):001:0> Rails.application.routes.recognize_path("/joelhawksley/demo/wik
 ---
 
 ```ruby
-"wiki#index" => ["test/integration/wiki_controller_test.rb:278", ...]
+"wiki#index" =>
+  [
+    "test/integration/wiki_controller_test.rb:278",
+    ...
+  ]
 ```
 
 ^ Where we have the controller action as the key
@@ -736,10 +700,6 @@ wiki/show.html.erb
 
 ^ We can then use these test cases with our system test conversion tool
 
----
-
-`RUN_IN_BROWSER=1 bin/rails test test/integration/wiki_controller_test.rb:278`
-
 ^ To visually verify the changes to our template in a browser.
 
 ^ PAUSE
@@ -760,7 +720,9 @@ wiki/show.html.erb
 
 ^ it returns all possible routes
 
-^ but it's proved incredibly useful for us
+^ PAUSE
+
+^ it's proved incredibly useful for us
 
 ^ but definitely not ready for prime time
 
@@ -783,7 +745,7 @@ wiki/show.html.erb
 
 - Martin Fowler, _Refactoring, Ruby Edition_
 
-^ A common rule of abstraction is the Rule of Three. Which Martin Fowler describes as... READ QUOTE
+^ A common rule of abstraction is the Rule of Three. I like Martin Fowler's definition: READ QUOTE
 
 ^ Usually when we do something over and over again, we abstract it!
 
@@ -794,7 +756,7 @@ wiki/show.html.erb
 
 ^ And this is especially true in our view code.
 
-^ In general, our templates are built by copy-pasting chunks of ERB from existing templates.
+^ We often build templates by copying existing ones.
 
 ^ It's incredibly difficult to make sweeping changes to our view code,
 
@@ -812,7 +774,9 @@ wiki/show.html.erb
 
 # Testing
 
-^ Views are generally tested with slow integration or system tests.
+^ And Views are generally tested with slow integration or system tests.
+
+^ PAUSE
 
 ---
 
@@ -835,7 +799,7 @@ wiki/show.html.erb
 [.column]
 
 ```ruby
-# app/components/test_component.rb
+# test_component.rb
 
 class TestComponent < ViewComponent::Base
   def initialize(title:)
@@ -847,9 +811,11 @@ end
 [.column]
 
 ```erb
-<%# app/components/test_component.html.erb %>
+<%# test_component.html.erb %>
 
-<span title="<%= @title %>"><%= content %></span>
+<span title="<%= @title %>">
+  <%= content %>
+</span>
 ```
 
 ^ A ViewComponent is a Ruby file and a template.
@@ -872,7 +838,9 @@ end
 ---
 
 ```html
-<span title="my title">Hello, World!</span>
+<span title="my title">
+  Hello, World!
+</span>
 ```
 
 ^ Which then returns the resulting HTML.
@@ -902,17 +870,17 @@ end
 
 ^ S These tests are incredibly fast. In our code base they are around 100x faster than controller tests.
 
+^ PAUSE
+
 ^ Having this ability has been a game changer.
 
 ^ We used to treat DOM tests as a luxury, and now they're basically free.
 
 ---
 
-# 2020
+# Adoption
 
-^ 2020
-
-^ I joined the Design Systems team to work on ViewComponent full time
+^ PAUSE
 
 ^ And since then, we've rapidly adopted the pattern in GitHub.com
 
@@ -925,7 +893,7 @@ end
 ---
 # 397 ViewComponents
 
-# +373 YoY (1554%)
+## +373 YoY (1554%)
 
 ^ `find app/components -type f -name "*.rb" | wc -l`
 
@@ -957,15 +925,9 @@ end
 
 ^ We render counters in over a hundred places in the app
 
----
+^ PAUSE
 
-[.slidenumbers: false]
-[.footer:]
-[.background-color: #FFFFFF]
-
-![fit](img/counters-diff.png)
-
-^ This diff from one of his PRs shows how we mixed and matched the formatting of values displayed with the counter
+^ Looking at one of his PRs
 
 ---
 
@@ -975,11 +937,13 @@ end
 
 ![fit](img/counters-diff-highlighted.png)
 
-^ In one case using number with delimiter, and one case without.
+^ We can see that for one counter, we wrapped the amount in number with delimiter
 
-^ This led to visual inconsistencies, but only with large numbers of commits,
+^ And in the other case, ae didn't.
 
-^ something we'd never expect a developer think about when working on a feature.
+^ This led to visual inconsistencies,
+
+^ but only in edge cases we'd never expect a developer think about when working on a feature.
 
 ---
 
