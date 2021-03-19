@@ -959,44 +959,6 @@ end
 
 ---
 
-# Correctness
-
-^ One of the main lessons we've learned building view components
-
-^ Is that they enable us to help developers use our design system correctly
-
----
-
-[.slidenumbers: false]
-[.background-color: #FFFFFF]
-[.footer:]
-
-![fit](img/subhead-docs.png)
-
-^ One example of this is our Subhead component
-
-^ Used over 450 times in the app
-
-^ Here's what it looks like, and the correct way to build it with HTML.
-
-^ In practice, we often ended up with cases where the `Subhead-heading` or `Subhead-description` classes were used by themselves, out of line with our design guidelines.
-
----
-
-[.slidenumbers: false]
-[.background-color: #FFFFFF]
-[.footer:]
-
-![fit](img/subhead-component-docs.png)
-
-^ In the ViewComponent implementation, we instead accept block arguments for the heading and description,
-
-^ Making it easy to use the design pattern correctly.
-
-^ PAUSE
-
----
-
 # Performance
 
 ^ Another benefit we've seen from ViewComponents has been in helping developers write performant code.
@@ -1022,7 +984,6 @@ end
 [.code-highlight: none]
 [.code-highlight: 1]
 [.code-highlight: 2-4]
-[.code-highlight: all]
 
 ```ruby
 def render_inline(component, allowed_queries: 0)
@@ -1039,6 +1000,8 @@ end
 ^ S We then render the component, failing the test if the actual number of queries doesn't match what was expected.
 
 ^ This helper has turned out to be quite educational.
+
+---
 
 ^ PAUSE
 
@@ -1103,7 +1066,7 @@ top; display: block; margin: 0 auto !important; max-width:
 ---
 
 [.slidenumbers: false]
-[.background-color: #FFFFFF]
+[.background-color: #cdcdcd]
 [.footer:]
 
 ![fit](img/mailers-columns.png)
@@ -1139,7 +1102,7 @@ top; display: block; margin: 0 auto !important; max-width:
 
 ^ S multiple columns
 
-^ S giving developers a reliable way to build column layouts in mailers.
+^ S giving developers a reliable way to build column layouts in mailers without having to write old-school HTML.
 
 ---
 
@@ -1151,7 +1114,9 @@ top; display: block; margin: 0 auto !important; max-width:
 
 ^ We've practically removed the conceptual overhead necessary to build one correctly.
 
-^ Instead of worrying about whether you've written your inline styles in a way that works correctly in the numerous different email clients out there, you can just piece together a couple of ViewComponents and move on with your life.
+^ Instead of worrying about whether you've written your inline styles in a way that renders properly in the numerous different email clients out there,
+
+^ you can just piece together a couple of ViewComponents and move on with your life.
 
 ---
 
@@ -1390,7 +1355,9 @@ end
 
 ^ S and body
 
-^ S render the rows, which are exposed as an array, iterating over the collection
+^ S render the rows, which are exposed as an array,
+
+^ Which means iterating over the collection, check to see if it's empty, etc.
 
 ^ S and footer
 
@@ -1469,11 +1436,9 @@ end
 
 ^ We open-sourced the library over the summer, and it now has over two dozen components.
 
-^ We use it in a couple internal Rails apps in addition to GitHub.com
-
 ^ PAUSE
 
-^ And we aren't the only ones open sourcing our components!
+^ And we aren't the only ones doing so!
 
 ---
 
@@ -1527,14 +1492,13 @@ end
 
 ^ For example, before ViewComponents, we used a presenter-like pattern
 
-^ called view models, ruby objects we instantiated and then passed into views
+^ called view models, ruby objects we instantiate and then pass into views
 
 ---
 
 [.code-highlight: 1-5]
 [.code-highlight: 7-15]
 [.code-highlight: 10-12]
-[.code-highlight: all]
 
 ```ruby
 class RepositoryIndexView < ViewModel
@@ -1570,7 +1534,6 @@ end
 [.code-highlight: 7-17]
 [.code-highlight: 10-12]
 [.code-highlight: 12]
-[.code-highlight: all]
 
 ```ruby
 class RepositoryIndexComponent < ViewComponent::Base
@@ -1600,7 +1563,7 @@ end
 
 ^ But there's something fundamentally different about this test.
 
-^ Instead of asserting against the attribute of an object
+^ Instead of asserting against the attribute of an object like we did with the viewmodel
 
 ^ S We're asserting against what's actually presented to a user
 
@@ -1642,11 +1605,9 @@ end
 
 ---
 
-# Partial / ViewModel
+#  Partial / ViewModel
 
-^ The most common case for using ViewComponents is in place of a partial or ViewModel.
-
-^ Otherwise, we don't.
+^ But the most common case for using ViewComponents is in place of a partial or ViewModel.
 
 ^ PAUSE
 
@@ -1682,7 +1643,7 @@ end
 [.code-highlight: 0]
 [.code-highlight: 4]
 [.code-highlight: 6-9]
-[.code-highlight: 11-13]
+[.code-highlight: 11-12]
 [.code-highlight: all]
 
 ```ruby
@@ -1711,7 +1672,7 @@ module Primer
 
 ^ PAUSE
 
-^ But then the fun begins. We use these docs to build our documentation site!
+^ But then the fun begins. We use these annotations to generate our documentation site!
 
 ^ Here's how:
 
@@ -1746,22 +1707,21 @@ docs = registry.get(Primer::ProgressBarComponent)
 [.code-highlight: 7-8]
 [.code-highlight: 10-11]
 [.code-highlight: 13-14]
-[.code-highlight: 0]
 
 ```ruby
-irb(main):002:0> documentation.base_docstring
+irb> documentation.base_docstring
 => "Use ProgressBar to visualize task completion."
 
-irb(main):007:0> initialize_method = documentation.meths.find(&:constructor?)
-=> #<yardoc method Primer::ProgressBarComponent#initialize>
+irb> initialize_method = documentation.meths.find(&:constructor?)
+=> <yardoc method Primer::ProgressBarComponent#initialize>
 
-irb(main):015:0> initialize_method.tags(:param).map(&:name)
+irb> initialize_method.tags(:param).map(&:name)
 => ["size", "system_arguments"]
 
-irb(main):016:0> example_text = initialize_method.tags(:example).first.text
+irb> example_text = initialize_method.tags(:example).first.text
 => "<%= render(Primer::ProgressBarComponent.new) do |component| %>\n  <% component.slot(:item, percentage: 25) %>\n<% end %>"
 
-irb(main):018:0> ApplicationController.new.view_context.render(inline: example_text)
+irb> ApplicationController.new.view_context.render(inline: example_text)
 => "<span class='Progress '>    <span style='width: 25%;' class='Progress-item bg-green'></span></span>"
 ```
 
@@ -1777,7 +1737,7 @@ irb(main):018:0> ApplicationController.new.view_context.render(inline: example_t
 
 ^ S But we can fix that by rendering the example using an instance of our Application Controller, passed as an inline template.
 
-^ S from here, we have what we need to build our documentation page:
+^ from here, we have what we need to build our documentation page:
 
 ---
 
@@ -1836,7 +1796,7 @@ Use ProgressBar to visualize task completion.
 
 ^ Another way we communicate with other developers about ViewComponents is via linters.
 
-^ I've never seen linters used as extensively as they are here.
+^ I've never seen linters used as extensively as they are at GitHub.
 
 ---
 
@@ -1889,7 +1849,9 @@ end
 
 ^ S Sees if the class is a ViewModel
 
-^ S And if it is, adds an offense with a helpful message (I've shortened it here)
+^ S And if it is, adds an offense with a helpful message
+
+^ PAUSE
 
 ^ At our scale, if we want to do something consistently, the only answer is tooling and metrics that guide people toward the right solution.
 
@@ -1923,7 +1885,7 @@ end
 
 ^ So over the summer, we put together a team of about half a dozen engineers
 
-^ And spent two months building new ViewComponents for our design system and rolling out existing ones.
+^ And spent two months building new ViewComponents and rolling out existing ones.
 
 ---
 
@@ -1958,8 +1920,6 @@ end
 ---
 
 ```
-bin/rails test test/fast/linting/component_usage_test.rb
-
 There was 1 discrepancy in usage counts for components:
   Counter    expected: 0    actual:  1    Please use Primer::CounterComponent...
 ```
@@ -1975,8 +1935,6 @@ There was 1 discrepancy in usage counts for components:
 ^ We also reuse this code to generate a report on our progress:
 
 ---
-
-`bin/rails test test/fast/linting/component_usage_test.rb`
 
 | Name                        | CSS Uses | Component Uses | % Migrated |
 |-----------------------------|----------|----------------|------------|
@@ -2016,7 +1974,7 @@ There was 1 discrepancy in usage counts for components:
 
 ^ We've been lucky to have a lot of engagement on the project.
 
-^ We've had code contributions from over 80 developers, only a dozen of which work for GitHub.
+^ We've had code contributions from almost a hundred developers, only a dozen of which work for GitHub.
 
 ^ And working with so many different people from all around the world
 
@@ -2026,7 +1984,7 @@ There was 1 discrepancy in usage counts for components:
 
 ^ has been a huge lesson in empathy.
 
-^ What's stuck out to me is that in every issue, PR, or discussion posted
+^ What's stuck out to me is that in every issue, PR, or discussion post
 
 ^ There is something to be learned. Even the small stuff.
 
@@ -2038,10 +1996,10 @@ There was 1 discrepancy in usage counts for components:
 
 ^ PAUSE
 
-^ It's clear to me that people want to contribute. But they're not always sure how.
-
 ---
 # Enabling contribution
+
+^ It's clear to me that people want to contribute. But they're not always sure how.
 
 ^ Which is why we've focused on making it easy to contribute.
 
@@ -2077,7 +2035,7 @@ There was 1 discrepancy in usage counts for components:
 
 ^ By combining coverage data from all of the matrix builds.
 
-^ Having a confident foundation like this makes it easier to accept contributions.
+^ Having a confident foundation like this makes it easier to accept contributions from the community.
 
 ---
 
@@ -2085,22 +2043,20 @@ There was 1 discrepancy in usage counts for components:
 [.code-highlight: 2-6]
 [.code-highlight: 7-13]
 
-`.github/workflows/ruby_on_rails.yml`
-
 ```yml
 test:
-  - name: Upload coverage results
+  - name: Upload coverage
     uses: actions/upload-artifact@master
     with:
-      name: simplecov-resultset-rails${{matrix.rails_version}}-ruby${{matrix.ruby_version}}
+      name: simplecov-rails${{matrix.rails_version}}-ruby${{matrix.ruby_version}}
       path: coverage
 coverage:
   needs: test
   steps:
-  - name: Download coverage results
+  - name: Download coverage
     uses: actions/download-artifact@v2
   - name: Collate simplecov
-    run: bundle exec rake coverage:report
+    run: rake coverage:report
 ```
 
 ^ We do this with artifacts.
@@ -2206,7 +2162,7 @@ end
 
 ---
 
-[.code-highlight: 0]
+[.code-highlight: all]
 [.code-highlight: 2,6]
 
 ```erb
@@ -2223,7 +2179,7 @@ end
 
 ^ Nice partials provides a similar API to ViewComponent's slots,
 
-^ Allow for multiple blocks of content to be passed to a partial.
+^ S Allow for multiple blocks of content to be passed to a partial.
 
 ^ Maybe this is something we could add to Rails!
 
@@ -2253,7 +2209,9 @@ end
 
 ^ One example of this is the lack of robust support for caching in ViewComponent
 
-^ We don't do much view caching, so it's more difficult for us to build the framework support for it
+^ We don't do much view caching at GitHub,
+
+^ so it's more difficult for us to build the framework support for it
 
 ^ This is one area where we could really use some help.
 
@@ -2266,7 +2224,7 @@ end
 
 ![](img/stars.jpg)
 
-^ The last thing this project has made me think about is innovation in Rails.
+^ More broadly, this project has made me think about is innovation in Rails.
 
 ---
 
@@ -2289,6 +2247,10 @@ end
 ^ The book demonstrates how successful, outstanding organizations can do everything "right" and still lose their market leadership,
 
 ^ or even fail – as new, unexpected competitors rise and take over the market
+
+---
+
+# Relevance
 
 ^ PAUSE
 
@@ -2318,8 +2280,6 @@ end
 
 ^ because improving Rails is the only way we'll survive.
 
-^ It's going to require work.
-
 ---
 
 # Citizenship
@@ -2327,6 +2287,10 @@ end
 ^ We need to take ownership of keeping Rails relevant for the long term.
 
 ^ By being good citizens. By participating.
+
+---
+
+# We need you!
 
 ^ Rails was built by people just like all of you
 
@@ -2344,7 +2308,7 @@ end
 
 ^ Many rails developers have worked on multiple apps.
 
-^ We know what the underlying deficiences are.
+^ We know what the underlying deficencies are.
 
 ^ We know what gems we add to every app we build.
 
