@@ -1974,7 +1974,7 @@ There was 1 discrepancy in usage counts for components:
 
 ^ We've been lucky to have a lot of engagement on the project.
 
-^ We've had code contributions from almost a hundred developers, only a dozen of which work for GitHub.
+^ We've had code contributions from over a hundred developers, only a dozen of which work for GitHub.
 
 ^ And working with so many different people from all around the world
 
