@@ -3,6 +3,8 @@ layout: post
 title: "Conference proposal: ViewComponents in the Real World"
 ---
 
+_This conference proposal was accepted for [RailsConf 2021](https://railsconf.org) and [RubyDay 2021](https://2021.rubyday.it)._
+
 ## Abstract
 
 With the release of 6.1, Rails added support for rendering objects that respond to `render_in`, a feature extracted from the GitHub application. This change enabled the development of ViewComponent, a framework for building reusable, testable & encapsulated view components. In this talk, we’ll share what we’ve learned scaling to hundreds of ViewComponents in our application, open sourcing a library of ViewComponents, and nurturing a thriving community around the project, both internally and externally.
