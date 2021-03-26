@@ -335,7 +335,7 @@ end
 [.code-highlight: 1]
 [.code-highlight: 2-4]
 [.code-highlight: 6-9]
-[.code-highlight: 14]
+[.code-highlight: 11]
 
 ```ruby
 module SystemTestConversion
@@ -1545,7 +1545,7 @@ end
 class RepositoryIndexComponentTest < Minitest::Test
   context "status" do
     test "enabled for unlocked repository" do
-      render_inline(RepositoryIndexView.new(repository: create(:repository))
+      render_inline(RepositoryIndexComponent.new(repository: create(:repository))
 
       assert_text "Enabled"
     end
