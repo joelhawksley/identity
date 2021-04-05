@@ -764,22 +764,6 @@ wiki/show.html.erb
 
 ---
 
-# Standards
-
-^ More generally, our Rails code often doesn't live up to the standards
-
-^ we hold our Ruby code to.
-
----
-
-# Testing
-
-^ And Views are generally tested with slow integration or system tests.
-
-^ PAUSE
-
----
-
 # 2019
 
 ^ 2019
