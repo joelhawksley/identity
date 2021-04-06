@@ -776,7 +776,7 @@ wiki/show.html.erb
 
 ^ We now call it ViewComponent:
 
-^ A framework for building reusable, testable & encapsulated view components in Rails.
+^ A framework for building reusable, testable & encapsulated view components as a natural extension to Rails.
 
 ---
 
@@ -1003,6 +1003,20 @@ end
 ![fit](img/checks.png)
 
 ^ In one recent case on the checks page, this saved over 100ms of overhead per request.
+
+---
+
+[.code-highlight: 1,3]
+
+```ruby
+assert_allocations 113 do
+  # ...
+end
+```
+
+^ Just recently, we've started trying a similar approach for preventing regressions around memory allocations as well.
+
+^ PAUSE
 
 ---
 
