@@ -89,6 +89,14 @@ We collect: All brands of empty coffee bean bags.
 
 ![Gift cards we recycle](/img/recycle/giftcards.jpg)
 
+### Razors and blades
+
+We collect: All brands of blades and razors (systems and disposable units, and replaceable-blade cartridge units), rigid plastic packaging, and flexible plastic bag packaging.
+
+<br/><br/>
+
+![Gift cards we recycle](/img/recycle/gillette.jpg)
+
 ### Gift cards
 
 We collect: All expired/spent gift cards.
