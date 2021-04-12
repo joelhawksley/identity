@@ -87,7 +87,7 @@ We collect: All brands of empty coffee bean bags.
 
 <br/><br/>
 
-![Gift cards we recycle](/img/recycle/giftcards.jpg)
+![Razors and blades we recycle](/img/recycle/gillette.jpg)
 
 ### Razors and blades
 
@@ -95,7 +95,7 @@ We collect: All brands of blades and razors (systems and disposable units, and r
 
 <br/><br/>
 
-![Gift cards we recycle](/img/recycle/gillette.jpg)
+![Gift cards we recycle](/img/recycle/giftcards.jpg)
 
 ### Gift cards
 
