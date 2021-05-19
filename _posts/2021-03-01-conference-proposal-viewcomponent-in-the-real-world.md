@@ -3,7 +3,7 @@ layout: post
 title: "Conference proposal: ViewComponents in the Real World"
 ---
 
-_This proposal was accepted by [RailsConf 2021](https://railsconf.org), [RubyDay 2021](https://2021.rubyday.it), [Euruko 2021](https://euruko2021.org) (declined due to conflict), [RubyGalaxy](https://rubygalaxy.io/talks), and [ChicagoRuby](https://chicagoruby.org)._
+_This proposal was accepted by [RailsConf 2021](https://railsconf.org), [RubyDay 2021](https://2021.rubyday.it), [Euruko 2021](https://euruko2021.org) (declined due to conflict), [Boulder Ruby](https://boulder-ruby.org), [RubyGalaxy](https://rubygalaxy.io/talks), and [ChicagoRuby](https://chicagoruby.org)._
 
 ## Abstract
 
