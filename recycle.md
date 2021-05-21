@@ -43,13 +43,45 @@ Please note that white-out and free ink markers are not accepted.
 
 <br/><br/>
 
-![Simple truth items we recycle](/img/recycle/simple-truth.jpg)
+![Kroger flexible packaging](/img/recycle/kroger.jpg)
 
-### Simple Truth flexible packaging
+### Kroger flexible packaging
 
-We collect: Simple Truth flexible plastic packaging, including bags, pouches, liners, and wraps.
+We collect: Flexible plastic packaging from Simple Truth, Private Selection, Kroger Brand, Comforts, HemisFares, Luvsome, Abound, and more.
 
-Please make sure _all_ excess product has been removed (i.e. leftover food).
+For food packaging, please make sure _all_ excess product has been removed (i.e. leftover food).
+
+<br/><br/>
+
+![Cough drop packaging](/img/recycle/coughdrops.jpg)
+
+### Cough drop packaging
+
+We collect: All brands of cough and sore throat drop packaging, including drop wrappers.
+
+<br/><br/>
+
+![Baby and kid clothing](/img/recycle/babyclothes.jpg)
+
+### Baby and kid clothing
+
+We collect: All brands of non-donatable baby and children's clothing.
+
+<br/><br/>
+
+![Febreze aerosol containers](/img/recycle/febreze.jpg)
+
+### Febreze aerosol containers
+
+We collect: Empty, in-tact Febreze aerosol containers.
+
+<br/><br/>
+
+![Contact lens cases and solution caps](/img/recycle/eyecare.jpg)
+
+### Contact lens cases and solution caps
+
+We collect: Any brand contact lens case and solution cap. No need to clean materials for collection.
 
 <br/><br/>
 
@@ -65,9 +97,9 @@ Please make sure _all_ excess product has been removed (i.e. leftover food).
 
 ![Candles we recycle](/img/recycle/candles.jpg)
 
-### Yankee, WoodWick, and Chesapeake Bay candles
+### Yankee, WoodWick, and Chesapeake Bay fragrance products
 
-We collect: All Newell Brands’ (Yankee, WoodWick, and Chesapeake Bay) home fragrance products and packaging.
+We collect: All Newell Brands’ home fragrance products from Yankee Candle, WoodWick, and Chesapeake Bay Candle, including: candles, wax melts and melt cups, diffusers and refills, plug-ins and refills, room sprays, fragrance beads, and auto air fresheners and refills.
 
 <br/><br/>
 
@@ -100,4 +132,3 @@ We collect: All brands of blades and razors (systems and disposable units, and r
 ### Gift cards
 
 We collect: All expired/spent gift cards.
-
