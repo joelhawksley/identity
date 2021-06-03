@@ -37,6 +37,11 @@
         font-weight: 600;
       }
 
+      h1 {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
       h2 {
         font-size: 1.5rem;
         padding-bottom: 0;
@@ -87,6 +92,11 @@
         font-variant-numeric: tabular-nums;
       }
 
+      time.subhead {
+        margin-bottom: 1em;
+        display: inline-block;
+      }
+
       ul.projects, ul.posts {
         margin: 0;
         padding: 0;
@@ -101,9 +111,9 @@
         margin: 0;
       }
 
-      .projects em {
+      .projects .period {
         opacity: 0.6;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
       }
 
       .projects li {
@@ -117,7 +127,7 @@
     <link rel="stylesheet" href="/github.css">
   </head>
   <body>
-    <header style="font-size:1rem;margin:0 0 2rem;line-height:1;padding-top:2rem;">
+    <header style="font-size:1rem;margin:0 0 4rem;line-height:1;padding-top:2rem;">
       <span style="font-weight:bold;text-decoration:none;color:black;">Joel Hawksley</span> /
       <a href="mailto:joel@hawksley.org">joel@hawksley.org</a>
       {% if page.layout != "home" %}
@@ -125,6 +135,6 @@
       {% endif %}
     </header>
     {{ content }}
-    <footer style="font-size: .8rem; margin-bottom: 2rem;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley</footer>
+    <footer style="font-size: .8rem; margin-bottom: 2rem; opacity: 0.6;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley</footer>
   </body>
 </html>

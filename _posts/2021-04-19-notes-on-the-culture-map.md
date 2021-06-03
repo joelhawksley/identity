@@ -1,10 +1,6 @@
 ---
 layout: post
-title: Notes on The Culture Map
-type: review
-book_author: Erin Meyer
-book_year: 2014
-book_isbn: 978-1-61039-276-1
+title: The Culture Map by Erin Meyer
 ---
 
 _For a good idea of the ground the book covers, I'd recommend listening to this interview with the author, in which she covers the main points of the book: [https://armchairexpertpod.com/pods/erin-meyer](https://armchairexpertpod.com/pods/erin-meyer)._

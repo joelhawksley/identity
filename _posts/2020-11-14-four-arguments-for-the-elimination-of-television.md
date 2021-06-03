@@ -1,10 +1,6 @@
 ---
 layout: post
-title: Notes on Four Arguments for the Elimination of Television
-type: review
-book_author: Jerry Mander
-book_year: 1978
-book_isbn: 0-688-03274-5
+title: Four Arguments for the Elimination of Television by Jerry Mander
 ---
 
 I grew up without a television at home. Even at the time, I knew this was out of the ordinary. As my friends obsessed over MTV, video games, and movies, I spent time on the computer.

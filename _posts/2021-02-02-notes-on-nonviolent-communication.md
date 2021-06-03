@@ -1,10 +1,6 @@
 ---
 layout: post
-title: Notes on Nonviolent Communication
-type: review
-book_author: Marshall B. Rosenberg
-book_year: 2003
-book_isbn: 1892005034
+title: Nonviolent Communication by Marshall B. Rosenberg
 ---
 
 Every act of communication, whether written, verbal, or non-verbal, is an expression of an unmet need. By clearly sharing our needs and listening for the needs of others, we can help each other fulfill them.

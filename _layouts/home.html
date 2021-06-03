@@ -19,7 +19,7 @@ layout: default
       <img src="{{project.image}}" />
       <div style="display: flex; justify-content: space-between;">
         <h3>{{ project.name }}</h3>
-        <em>{{ project.period }}</em>
+        <span class="period">{{ project.period }}</span>
       </div>
       {{ project.content | markdownify }}
     </li>
