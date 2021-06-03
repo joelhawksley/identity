@@ -38,14 +38,14 @@
       }
 
       h2 {
-        border-bottom: 1px solid lightgray;
         font-size: 1.5rem;
-        padding-bottom: .5rem;
+        padding-bottom: 0;
         margin-top: 2rem;
       }
 
       h3 {
         font-size: 1rem;
+        margin-bottom: 0;
       }
 
       blockquote {
@@ -69,6 +69,10 @@
         margin-bottom: 2rem;
       }
 
+      p {
+        margin-top: 0;
+      }
+
       nav a {
         text-decoration: none;
         display: inline-block;
@@ -89,12 +93,21 @@
         list-style: none;
       }
 
+      .posts li {
+        margin: 0.1rem 0;
+      }
+
       .projects h3 {
         margin: 0;
       }
 
+      .projects em {
+        opacity: 0.6;
+        font-size: 0.9rem;
+      }
+
       .projects li {
-        margin: 1rem 0 2rem;
+        margin: 1rem 0 3rem;
       }
 
       .projects img {
@@ -104,9 +117,12 @@
     <link rel="stylesheet" href="/github.css">
   </head>
   <body>
-    <header>
-      <div style="font-size:1rem;margin:0;line-height:1;padding-top:2rem;font-weight:bold;"><a href="/" style="text-decoration:none;color:black;">Joel Hawksley</a></div>
+    <header style="font-size:1rem;margin:0 0 2rem;line-height:1;padding-top:2rem;">
+      <span style="font-weight:bold;text-decoration:none;color:black;">Joel Hawksley</span> /
       <a href="mailto:joel@hawksley.org">joel@hawksley.org</a>
+      {% if page.layout != "home" %}
+        / <a href="/">&#8592;home</a>
+      {% endif %}
     </header>
     {{ content }}
     <footer style="font-size: .8rem; margin-bottom: 2rem;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley</footer>
