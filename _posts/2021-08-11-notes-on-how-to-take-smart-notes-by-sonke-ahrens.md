@@ -19,7 +19,7 @@ Only knowledge systems you can give your trust to will be effective.
 
 ## Focus on thinking
 
-The best tools reduce distractions from our primary goal, which should be _thinking. An undistracted brain is the most important thing we need.
+The best tools reduce distractions from our primary goal, which should be _thinking_. An undistracted brain is the most important thing we need.
 
 ## Writing is all that matters
 
