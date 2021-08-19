@@ -18,4 +18,4 @@ I am a firm believer in the power of peer mentoring. In addition to being a [Big
 
 ### Photography
 
-Prior to my career in software, I worked as a photojournalist at several newspapers including [The Roanoke Times](https://roanoke.com/) and [The Seattle Times](https://www.seattletimes.com/), [specializing in sports](https://www.cpoy.org/index.php?s=WinningImages&yr=66&c=238&p=1.0) coverage. I now focus on [travel](https://www.hawksleyvisuals.com/travel) and [nature](https://www.hawksleyvisuals.com/nature) in my personal work.
+Prior to my career in software, I worked as a photojournalist at several newspapers including [The Roanoke Times](https://roanoke.com/) and [The Seattle Times](https://www.seattletimes.com/). I now focus on [travel](https://www.hawksleyvisuals.com/travel) and [nature](https://www.hawksleyvisuals.com/nature) in my personal work.
