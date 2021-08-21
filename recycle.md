@@ -111,14 +111,6 @@ We collect: All flexible plastic Craisins Dried Cranberries packaging.
 
 <br/><br/>
 
-![Coffee bean bags we recycle](/img/recycle/coffee-bean-bags.jpg)
-
-### Coffee bean bags
-
-We collect: All brands of empty coffee bean bags.
-
-<br/><br/>
-
 ![Razors and blades we recycle](/img/recycle/gillette.jpg)
 
 ### Razors and blades
