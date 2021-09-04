@@ -6,7 +6,7 @@ layout: home
 
 Hi!
 
-My name is Joel, and I live in [Louisville, Colorado](http://louisvilleco.gov/) with my wife Caitlin and our Golden Retriever, Captain.
+My name is Joel, and I live in [Louisville, Colorado](http://louisvilleco.gov/) with my wife [Caitlin](https://www.caitlinhawksley.com) and our Golden Retriever, Captain.
 
 ### Work
 
