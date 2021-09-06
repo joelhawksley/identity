@@ -140,6 +140,7 @@ Conclusion
     But at what cost?
     To what end?
     Writing this talk has given me time to think about why we have linters in the first place.
+    In a lot of cases, we are linting for safety
     Most of the ruby today isn't typed
     It's also very dynamic
     It's not compiled
@@ -151,6 +152,7 @@ To-do
 
 mike mcquaid use graphic from https://github.com/github/friction/issues/86?
 call out the work of various hubbers
+modify talk title, intro note about location depending on audience
 
 Parking lot
   Domain boundary enforcement with Packwerk
