@@ -1,2 +1,8 @@
 collections:
   projects:
+
+plugins:
+  - jekyll-feed
+title: Joel Hawksley
+description: Joel Hawksley's home on the internet
+author: Joel Hawksley
