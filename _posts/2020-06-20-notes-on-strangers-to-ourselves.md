@@ -11,7 +11,7 @@ A patient with amnesia (the inability to make new conscious memories) was greete
 
 ### Doing before knowing
 
-“Children are especially likely to act on automatic pilot, with their adaptive unconscious guiding their behavior in sophisticated ways before they are aware of what they are doing or why they are doing it.”
+> Children are especially likely to act on automatic pilot, with their adaptive unconscious guiding their behavior in sophisticated ways before they are aware of what they are doing or why they are doing it.
 
 This makes it difficult to study the development of the mind in children. Most studies of cognitive development rely on self-reporting, even when studies of children. Because the conscious system develops more slowly than the non-conscious one, self-reports can be misleading.
 
@@ -19,13 +19,13 @@ For example, children three to five years old have demonstrated non-conscious kn
 
 ### Knowing how we will feel
 
-“Whatever our dreams, we all tend to think that we would be significantly happier if they were to come true.”
+> Whatever our dreams, we all tend to think that we would be significantly happier if they were to come true.
 
 To achieve long-term happiness, we have to know the right things to wish for. We have to make the correct affective forecasts, predictions about our emotional reactions to future events.
 
 Affective forecasts are crucial for big decisions: what job to take, who to marry, where to move. It is often not enough to know what our initial reaction to these decisions will be. We’ll also need to know how long our reaction will last. Our affective forecasts often involve a durability bias, a tendency to overestimate the duration of reactions to future emotional events.
 
-“I see undergraduates striving for careers that will pay them lots of money but doom them to mind-numbing daily routines (tax law comes to mind, but that might just be me). The second kind of life is that of a struggling artist, a social worker who loves to make a difference in people’s lives, or, I suppose, a tax attorneys who are really turned on by the latest changes in Roth IRAs. Daily absorption is more important than the paycheck at the end of the month, as long as that paycheck covers our basic needs.”
+> I see undergraduates striving for careers that will pay them lots of money but doom them to mind-numbing daily routines (tax law comes to mind, but that might just be me). The second kind of life is that of a struggling artist, a social worker who loves to make a difference in people’s lives, or, I suppose, a tax attorneys who are really turned on by the latest changes in Roth IRAs. Daily absorption is more important than the paycheck at the end of the month, as long as that paycheck covers our basic needs.
 
 ### Suffering by comparison
 
