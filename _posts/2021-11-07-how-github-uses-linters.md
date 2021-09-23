@@ -41,6 +41,11 @@ Examples
   Linters as tests
     We write code with assertions about the static state of our codebase
     Around a three hundred of these
+    Regex linters (like a find and replace)
+      AllowDeny language: fast/linting/allow_deny_language_test.rb
+      Profanity test: fast/linting/profanity_test.rb
+      Migrating deprecated patterns
+        test/fast/linting/deprecated_boxed_group_usage_test.rb
     Global counters for patterns we want to avoid
       we have a few dozen of these
       test/fast/linting/html_safe_test.rb
@@ -48,17 +53,9 @@ Examples
       this approach can quickly lead to merge conflicts if the count changes a lot
       it has been especially painful when multiple people deploy one PR after another that touches the counter
       So when we ran into this, and migrated to file name registry: https://github.com/github/github/pull/178978
-    Component usage test
-      One improvement we've made is splitting up the counter to instead register a list of file names with violations
-      Discourages viewmodels, requires registering violations: test/fast/linting/component_usage_test.rb
     Tracking additions to files
       Similarly, we have a linter for flagging changes to files we don't want people to edit
       test/fast/linting/hacks_are_frozen_test.rb
-    Regex linters (like a find and replace)
-      AllowDeny language: fast/linting/allow_deny_language_test.rb
-      Profanity test: fast/linting/profanity_test.rb
-      Migrating deprecated patterns
-        test/fast/linting/deprecated_boxed_group_usage_test.rb
     Code-deletion process
       Styles match markup test/fast/linting/styles_match_markup_test.rb
       Unused templates test/fast/linting/unused_templates_test.rb
