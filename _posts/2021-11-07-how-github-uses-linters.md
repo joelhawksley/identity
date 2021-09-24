@@ -85,6 +85,7 @@ Examples
       We still use this technique today! And it has some nice benefits. By making the changes before introducing the automated enforcement, we're able to confirm that we in fact want to enforce the rule at all!
         https://github.com/github/github/pull/23539
         https://github.com/github/github/issues/23397
+      https://github.com/github/github/pull/186008
     Every time I leave a comment on a PR, I'm wondering about whether I can automate it
       Because I can't be sure that I'll be the one reviewing the next PR that might make the same error
       Or honestly, that that I reliably catch a given error 100% of the time I review code
@@ -97,14 +98,13 @@ Examples
       AST-driven auto-correction
         PVC example? linters as part of deprecation lifecyle
         In-editor feedback (timely)
-  Fanning out large refactors to other teams with Areas of Responsibility and Error Budgets
+    Fanning out large refactors to other teams with Areas of Responsibility and Error Budgets
     But it's tricky to write custom rubocops
       I still struggle with nodepatterns
       And really feel like we're missing a simpler abstraction on top of them. I think a lot more people would write custom rubocops if nodepatterns were easier to work with.
-  Accessibility linting with Axe
-  Extracting linters to gems for use across repositories
-    https://github.com/github/rubocop-github
-    PVC built-in linters
+    Extracting linters to gems for use across repositories
+      https://github.com/github/rubocop-github
+      PVC built-in linters
   Low-level measurements
     DB query counts
     Memory allocations
@@ -121,8 +121,6 @@ Examples
     For example, HTML comments https://github.com/github/sentinel/blob/master/config/rulesets/dotcom.yaml#L399
     Allows us to have a form of per-line ownership of files, kind of like codeowners
     for example: https://github.com/github/sentinel/blob/master/config/rulesets/dotcom.yaml#L154
-  DB schema linters wishlist
-    https://github.com/orgs/github/projects/3713/views/1
   Using reporting tools like Datadog to track technical debt
 Conclusion
   We use linters to:
@@ -137,6 +135,9 @@ Conclusion
     But at what cost?
     To what end?
     Writing this talk has given me time to think about why we have linters in the first place.
+    The best code is no code
+    The best feedback is feedback you don't have to make
+    Even as a linter
     In a lot of cases, we are linting for safety
     Most of the ruby today isn't typed
     It's also very dynamic
