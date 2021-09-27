@@ -93,8 +93,6 @@ Examples
     Examples
       We have around 125 custom rubocops
       Don't branch on environment: github/do_not_branch_on_rails_env.rb
-      Links have hrefs: accessibility/link_href.rb
-      BigintUnsigned primary keys: github/use_bigint_unsigned_primary_keys.rb
       AST-driven auto-correction
         PVC example? linters as part of deprecation lifecyle
         In-editor feedback (timely)
@@ -105,12 +103,6 @@ Examples
     Extracting linters to gems for use across repositories
       https://github.com/github/rubocop-github
       PVC built-in linters
-  Low-level measurements
-    DB query counts
-    Memory allocations
-      allocations measurement gem
-      caught changes in allocations when upgrading ruby
-      These things are stable, but I wonder if we could come up with a measurement that approximates execution time? Maybe we could count the number of instructions sent to the VM?
   Non-blocking linters that "nudge" engineers towards best practices
     We have a GitHub app called sentinel
     About a hundred rules
