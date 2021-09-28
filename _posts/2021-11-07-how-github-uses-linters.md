@@ -72,37 +72,19 @@ Examples
       This is an area my team is working a lot on as we focus on making GitHub more accessible
       Our team is small relative to the rest of the company
       But we're able to leverage linters to drive organizational change in a way we never could otherwise.
-    tooltip counter .erb-linters/tooltip_counter.rb
-      helpful message (actionable)
-      autocorrecter adds exception
   Custom Rubocops
     Rubocop was the first linter we added
       Colleague Jon found the PR where he introduced it back in 2014 alongside SCSS lint
       The company had grown to around 150 people and there were no linters at all! There really wasn't a particular event that prompted adding rubocop, but people were using different styles of formatting that made the codebase inconsistent.
-      And he established a practice we still use today: fix first, lint second.
-      When he introduced Rubocop, he only turned on rules that passed.
-      Then, he turned on rules one at a time, committing the necessary fixes before enabling enforcement in CI.
-      We still use this technique today! And it has some nice benefits. By making the changes before introducing the automated enforcement, we're able to confirm that we in fact want to enforce the rule at all!
-        https://github.com/github/github/pull/23539
-        https://github.com/github/github/issues/23397
-      https://github.com/github/github/pull/186008
-    Every time I leave a comment on a PR, I'm wondering about whether I can automate it
-      Because I can't be sure that I'll be the one reviewing the next PR that might make the same error
-      Or honestly, that that I reliably catch a given error 100% of the time I review code
-      Or perhaps I just want to take a vacation!
     Examples
       We have around 125 custom rubocops
       Don't branch on environment: github/do_not_branch_on_rails_env.rb
       AST-driven auto-correction
         PVC example? linters as part of deprecation lifecyle
         In-editor feedback (timely)
-    Fanning out large refactors to other teams with Areas of Responsibility and Error Budgets
     But it's tricky to write custom rubocops
       I still struggle with nodepatterns
       And really feel like we're missing a simpler abstraction on top of them. I think a lot more people would write custom rubocops if nodepatterns were easier to work with.
-    Extracting linters to gems for use across repositories
-      https://github.com/github/rubocop-github
-      PVC built-in linters
   Non-blocking linters that "nudge" engineers towards best practices
     We have a GitHub app called sentinel
     About a hundred rules
@@ -113,7 +95,6 @@ Examples
     For example, HTML comments https://github.com/github/sentinel/blob/master/config/rulesets/dotcom.yaml#L399
     Allows us to have a form of per-line ownership of files, kind of like codeowners
     for example: https://github.com/github/sentinel/blob/master/config/rulesets/dotcom.yaml#L154
-  Using reporting tools like Datadog to track technical debt
 Conclusion
   We use linters to:
     ensure our practices are applied consistently.
@@ -139,11 +120,23 @@ Conclusion
     Linters shouldn't be the end of the road. How can we build systems that are correct and compliant by design?
 
 To-do
-
-mike mcquaid use graphic from https://github.com/github/friction/issues/86?
-call out the work of various hubbers
 modify talk title, intro note about location depending on audience
 
 Parking lot
-  Domain boundary enforcement with Packwerk
-  Intelligent code analysis with CodeQL
+  Linter portability - Manuel / PVC
+  And he established a practice we still use today: fix first, lint second.
+      When he introduced Rubocop, he only turned on rules that passed.
+      Then, he turned on rules one at a time, committing the necessary fixes before enabling enforcement in CI.
+      We still use this technique today! And it has some nice benefits. By making the changes before introducing the automated enforcement, we're able to confirm that we in fact want to enforce the rule at all!
+        https://github.com/github/github/pull/23539
+        https://github.com/github/github/issues/23397
+      https://github.com/github/github/pull/186008
+    Every time I leave a comment on a PR, I'm wondering about whether I can automate it
+      Because I can't be sure that I'll be the one reviewing the next PR that might make the same error
+      Or honestly, that that I reliably catch a given error 100% of the time I review code
+      Or perhaps I just want to take a vacation!
+    Fanning out large refactors to other teams with Areas of Responsibility and Error Budgets
+    Extracting linters to gems for use across repositories
+      https://github.com/github/rubocop-github
+      PVC built-in linters
+    Using reporting tools like Datadog to track technical debt
