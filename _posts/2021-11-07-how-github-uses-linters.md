@@ -121,22 +121,3 @@ Conclusion
 
 To-do
 modify talk title, intro note about location depending on audience
-
-Parking lot
-  Linter portability - Manuel / PVC
-  And he established a practice we still use today: fix first, lint second.
-      When he introduced Rubocop, he only turned on rules that passed.
-      Then, he turned on rules one at a time, committing the necessary fixes before enabling enforcement in CI.
-      We still use this technique today! And it has some nice benefits. By making the changes before introducing the automated enforcement, we're able to confirm that we in fact want to enforce the rule at all!
-        https://github.com/github/github/pull/23539
-        https://github.com/github/github/issues/23397
-      https://github.com/github/github/pull/186008
-    Every time I leave a comment on a PR, I'm wondering about whether I can automate it
-      Because I can't be sure that I'll be the one reviewing the next PR that might make the same error
-      Or honestly, that that I reliably catch a given error 100% of the time I review code
-      Or perhaps I just want to take a vacation!
-    Fanning out large refactors to other teams with Areas of Responsibility and Error Budgets
-    Extracting linters to gems for use across repositories
-      https://github.com/github/rubocop-github
-      PVC built-in linters
-    Using reporting tools like Datadog to track technical debt
