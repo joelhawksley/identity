@@ -12,7 +12,7 @@ _The following is a collection of advice for new developers, especially those fr
 ## Resumes
 
 - One page is plenty.
-- Use measurements when possible, even if they're course-grained. (_10,000_ request per minute, _$2 million budget_)
+- Use measurements when possible, even if they're course-grained. (_10,000 requests per minute_, _$2 million budget_)
 
 ## Phone screens
 
