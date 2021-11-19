@@ -3,7 +3,7 @@ layout: post
 title: Advice for new developers
 ---
 
-_The following is a collection of advice for new developers, especially those from a non-traditional background like mine. It combines a presentation I regularly give at Flatiron School and notes from a panel of managers hiring new developers at [RubyConf 2021](https://rubyconf.org)._
+_A collection of advice for new developers, especially those from a non-traditional background like mine. Based on a talk I regularly give at Flatiron School and notes from a panel of managers hiring new developers at [RubyConf 2021](https://rubyconf.org)._
 
 ## Networking
 
