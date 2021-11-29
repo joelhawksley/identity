@@ -21,6 +21,7 @@ Why
   bundle cache broken by many deploys
   I see all the cool kids having fun on the React playground and I'm jealous
   And I joined them! It was fun. Kind of
+  CSS is easy to delete in react
   But it wasn’t the same. No one could agree on anything. More time spent on tools than serving customers. I missed that about rails
     React is great but we can't rewrite everything
     Almost all of GitHub is still ERB
