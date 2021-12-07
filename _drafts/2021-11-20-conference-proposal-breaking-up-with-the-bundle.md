@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Conference proposal: Breaking the bundle"
+title: "Conference proposal: Breaking up with the bundle"
 ---
 
 ## Abstract
 
-Over the course of 14 years, the GitHub.com CSS bundle grew to over 30,000 lines of custom CSS. It became almost impossible to refactor. Visual regressions were common. In this talk, we'll share an honest picture of our successes and failures as we've worked to break up with our CSS bundle before it breaks us, moving towards a component-driven approach the UI architecture.
+Over the course of 14 years, the GitHub.com CSS bundle grew to over 30,000 lines of custom CSS. It became almost impossible to refactor. Visual regressions were common. In this talk, we'll share an honest picture of our successes and failures as we've worked to break up with our CSS bundle by moving towards a component-driven UI architecture.
 
 ## Details
 
