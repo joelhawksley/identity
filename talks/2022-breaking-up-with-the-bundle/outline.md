@@ -1,11 +1,7 @@
 Intro
-  dramatic telling of css growth over time?
-  history - we created primer, but never finished the work
   We have some lofty goals ahead of us at GitHub
   We want GitHub to look and interact differently
-  "A decade of copy-paste"
-  Custom CSS represents where our systems are falling short. By that measure, they are falling short a lot.
-  Custom CSS is antithetical to the goal of having a design system. It’s a liability to maintain over time. As design and engineering standards change over time, it’s difficult to update.
+  It’s a liability to maintain over time. As design and engineering standards change over time, it’s difficult to update.
   If you make a change and don't know if it broke something, it will break you, eventually. It keeps me up at night
   The cost of changing 4500 views - confidence
   Pit of failure
