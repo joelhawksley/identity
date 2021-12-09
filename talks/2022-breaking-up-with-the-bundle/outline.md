@@ -1,11 +1,7 @@
 Intro
   We have some lofty goals ahead of us at GitHub
   We want GitHub to look and interact differently
-  It’s a liability to maintain over time. As design and engineering standards change over time, it’s difficult to update.
-  If you make a change and don't know if it broke something, it will break you, eventually. It keeps me up at night
-  The cost of changing 4500 views - confidence
   Pit of failure
-  CI never fails for bad design - Visual regressions hard to detect
   Fragility vs. confidence
   So how do we climb out of the pit?
   I'm going to share mostly things that didn't work
