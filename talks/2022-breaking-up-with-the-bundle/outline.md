@@ -1,13 +1,7 @@
 Intro
   We have some lofty goals ahead of us at GitHub
   We want GitHub to look and interact differently
-  Pit of failure
-  Fragility vs. confidence
-  So how do we climb out of the pit?
-  I'm going to share mostly things that didn't work
 
-  CSS Still Sucks - Greg Raiz who even wants the cascade? If we got rid of it things would be better
-  append only CSS
   Global variables are bad, don’t hold CSS to standards we use for other code
   hard to split up CSS and serve only what is needed
   bundle cache broken by many deploys
@@ -35,10 +29,9 @@ Measurement
   Datadog dashboard
   Graphs used by leadership to plan work
     communicating evergreen needs
+  Linting / color modes cleanups to assign team ownership
 
 Things we tried
-  Linting
-  Color modes cleanups
   Bundle splitting / Kris Jan epic
     https://github.com/github/design-infrastructure/issues/1311
   Sidecar CSS
