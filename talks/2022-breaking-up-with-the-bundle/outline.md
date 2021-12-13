@@ -2,6 +2,8 @@ Intro
   We have some lofty goals ahead of us at GitHub
   We want GitHub to look and interact differently
 
+  This talk is as much about what not to do
+
   Global variables are bad, don’t hold CSS to standards we use for other code
   hard to split up CSS and serve only what is needed
   bundle cache broken by many deploys
@@ -16,19 +18,8 @@ Intro
   Components are about correctness. What does it say about our work that we need to take and compare screenshots
     It means a lack of confidence
 
-What
-  What worked and what didn't as we've taken on the bundle
-  How we've communicated our priorities to management
-    I had a bad spider sense about our technical debt. That’s not enough to convince others to help, let alone my manager to give me and others time to work on it. We needed a plan.
-    My hunch was twofold: we had a lot of technical debt and it was continuing to increase with remediation.
-
 Measurement
-  Did this far too late in the process
   Error budget. How to measure anything
-  Custom CSS as measure of system's effectiveness
-  Datadog dashboard
-  Graphs used by leadership to plan work
-    communicating evergreen needs
   Linting / color modes cleanups to assign team ownership
 
 Things we tried
