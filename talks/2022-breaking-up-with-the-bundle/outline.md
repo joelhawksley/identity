@@ -38,6 +38,7 @@ Things we tried
   Extracting components
     Maturity lifecycle
     Axe previews etc
+    cleaning up custom CSS manually is very risky and time consuming
     Implement rules from system in rails
       Button group buttons must all be same size
       Tobias marketing example - props as data vs. children
