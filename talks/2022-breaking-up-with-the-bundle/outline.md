@@ -23,17 +23,6 @@ Measurement
   Linting / color modes cleanups to assign team ownership
 
 Things we tried
-  Sidecar CSS
-    CSS in JS experiment - broccolini tweet
-    CSS modules ruby experiment
-    Failure to inspect output buffer
-      Caching
-        octicon usage - feature flag caching bug
-        critical css
-      how rails templates work
-        what about in python, java, react
-    Declarative shadow DOM with template tag works with JS disabled
-    Can use ViewComponents, or just partials
   CDP CSS diffing
   Extracting components
     Maturity lifecycle
