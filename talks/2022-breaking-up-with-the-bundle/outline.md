@@ -23,8 +23,6 @@ Measurement
   Linting / color modes cleanups to assign team ownership
 
 Things we tried
-  Bundle splitting / Kris Jan epic
-    https://github.com/github/design-infrastructure/issues/1311
   Sidecar CSS
     CSS in JS experiment - broccolini tweet
     CSS modules ruby experiment
@@ -51,7 +49,6 @@ Things we tried
 Big picture
   If you dig deep enough, most problems are human, not technical
   Design systems are more than CSS. They are structure, accessibility,
-  At our scale there are fewer easy problems. Stack overflow becomes less useful. Rails gives us fewer tools. It's lonely.
     Examples without complexity make it difficult to assess potential solutions. TODO apps don't expose the complexity of our scale
 
   There are a lot of potential solutions. It might need more than one solution. A system of solutions.
