@@ -25,7 +25,6 @@ I share specific examples around:
 - Attempting (and failing) to split our CSS bundles by functional area
 - Attempting (and succeeding) to isolate and encapsulate custom CSS
 - Building a new way of testing for visual regressions with snapshot testing of computed styles with the Chrome Devtools Protocol
-- Extracting reusable UI components that allow us to increase our confidence in our UI.
 
 I then conclude the talk with my big-picture takeaway from this work: That ideas should not be conflated with technologies. What makes React great can and should be adopted in the Rails ecosystem.
 
