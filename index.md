@@ -6,7 +6,7 @@ layout: home
 
 ### Now
 
-My wife [Caitlin](https://www.caitlinhawksley.com) and I recently [lost our home](https://www.gofundme.com/manage/help-the-hawksleys-rebuild-literally-everything) in the Marshall fire. We're navigating the pain and trauma with the support of friends and family.
+My wife [Caitlin](https://www.caitlinhawksley.com) and I recently [lost our home](https://www.gofundme.com/f/help-the-hawksleys-rebuild-literally-everything) in the Marshall fire. We're navigating the pain and trauma with the support of friends and family.
 
 ### Work
 
