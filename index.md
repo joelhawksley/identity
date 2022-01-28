@@ -2,11 +2,11 @@
 layout: home
 ---
 
-![Joel Hawksley and dog Captain at Davidson Mesa in Louisville, Colorado](/img/about/joel.jpg)
+![Joel and Caitlin Hawksley at the site of their former home in Louisville, Colorado](/img/about/fire.jpg)
 
-Hi!
+### Now
 
-My name is Joel, and I live in Colorado with my wife [Caitlin](https://www.caitlinhawksley.com) and our Golden Retriever, Captain. We recently [lost our home](https://www.gofundme.com/manage/help-the-hawksleys-rebuild-literally-everything) in the Marshall fire.
+My wife [Caitlin](https://www.caitlinhawksley.com) and I recently [lost our home](https://www.gofundme.com/manage/help-the-hawksleys-rebuild-literally-everything) in the Marshall fire. We're navigating the pain and trauma with the support of friends and family.
 
 ### Work
 
