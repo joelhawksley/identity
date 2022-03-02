@@ -53,14 +53,6 @@ For food packaging, please make sure _all_ excess product has been removed (i.e.
 
 <br/><br/>
 
-![Cough drop packaging](/img/recycle/coughdrops.jpg)
-
-### Cough drop packaging
-
-We collect: All brands of cough and sore throat drop packaging, including drop wrappers.
-
-<br/><br/>
-
 ![Baby and kid clothing](/img/recycle/babyclothes.jpg)
 
 ### Baby and kid clothing
