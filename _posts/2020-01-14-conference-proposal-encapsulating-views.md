@@ -3,7 +3,7 @@ layout: post
 title: "Conference proposal: Encapsulating Views"
 ---
 
-_This conference proposal was accepted for [RailsConf 2020](https://www.youtube.com/watch?v=YVYRus_2KZM) and [RubyConf India 2020](https://rubyconfindia.org/) (cancelled due to COVID-19)._
+_This conference proposal was accepted for [RailsConf 2020](https://www.youtube.com/watch?v=YVYRus_2KZM) and [RubyConf India 2020](https://rubyconfindia.org/) (cancelled due to COVID-19)._ [View slides](/talks/2020/slides.md)
 
 ## Abstract
 

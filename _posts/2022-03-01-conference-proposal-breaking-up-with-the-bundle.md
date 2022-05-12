@@ -3,7 +3,7 @@ layout: post
 title: "Conference proposal: Breaking up with the bundle"
 ---
 
-_This proposal was accepted for [RailsConf 2022](https://railsconf.com)._
+_This proposal was accepted for [RailsConf 2022](https://railsconf.com)._ [View slides](/talks/2022-breaking-up-with-the-bundle/slides.key)
 
 ## Abstract
 

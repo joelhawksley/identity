@@ -3,7 +3,7 @@ layout: post
 title: "Conference proposal: How GitHub uses linters"
 ---
 
-_This proposal was accepted for [RubyConf 2021](https://rubyconf.org)._
+_This proposal was accepted for [RubyConf 2021](https://rubyconf.org)._ [View slides](/talks/2021-how-github-uses-linters/how-github-uses-linters.key)
 
 ## Abstract
 
