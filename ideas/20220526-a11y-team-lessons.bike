@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <ul id="vJxJIuES">
+      <li id="3C">
+        <p>What I learned working with the a11y team</p>
+        <ul>
+          <li id="D-">
+            <p>Intro</p>
+            <ul>
+              <li id="9k">
+                <p>I've spent half of my time this quarter sitting in as a staff engineer on the a11y team.</p>
+              </li>
+              <li id="c1J">
+                <p> I stepped into the role for two reasons: 1) to fill a gap in technical leadership while the team worked to fill a staff role. 2) to build empathy for the challenges we face in making accessible, especially when it comes to Developer Experience. Here are some things I learned along the way.</p>
+              </li>
+            </ul>
+          </li>
+          <li id="Zt">
+            <p>Accountability/focus/goals</p>
+          </li>
+          <li id="SQ">
+            <p>Agile</p>
+          </li>
+          <li id="oiH">
+            <p>Need for charter</p>
+            <ul>
+              <li id="yaS">
+                <p>Heuristic for prioritization</p>
+              </li>
+              <li id="Ls4">
+                <p>Long term context for current work</p>
+              </li>
+              <li id="I47">
+                <p>Maslow's hierarchy</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </body>
+</html>
