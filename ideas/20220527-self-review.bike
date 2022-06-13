@@ -138,13 +138,16 @@
           <li id="AWKo">
             <p>In coordinating with efforts to adopt React at GitHub, I could have approached these situations with a more open mind than I did at the time. I think a lack of context on how and why we're using React is limiting my ability to empathize well with the purpose behind the work that is going on. I see this as an opportunity to participate more in the technical discussions around building UI with React.</p>
           </li>
+          <li id="-lpY">
+            <p>I am aware of how I tend to turn conversations towards the big picture, perhaps too often. I will work to balance my long-term perspective with the need to execute tactically week to week.</p>
+          </li>
         </ul>
       </li>
       <li id="2W">
         <p>Share 2-3 areas that you will focus on over the next six months to drive impact for your team/org.</p>
         <ul>
           <li id="kFYk">
-            <p>I will take up a new focus on behvaiors as we take on the web components area of responsibility in Primer. I will focus on expanding my perspective around how we build UI at GitHub to better understand our work on React projects, better informing engineering decisions I make that should take this work into account, such as ways of reducing duplicative work across PVC and PRC when it makes sense.</p>
+            <p>I will take up a new focus on behaviors as we take on the web components area of responsibility in Primer. I will focus on expanding my perspective around how we build UI at GitHub to better understand our work on React projects, better informing engineering decisions I make that should take this work into account, such as ways of reducing duplicative work across PVC and PRC when it makes sense.</p>
           </li>
           <li id="0eYq">
             <p>I will continue to prioritize the developer experience of using ViewComponents at GitHub, focusing on reducing friction and increasing quality through improved testing techniques for behaviors and accessibility.</p>
