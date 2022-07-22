@@ -53,53 +53,11 @@ For food packaging, please make sure _all_ excess product has been removed (i.e.
 
 <br/><br/>
 
-![Baby and kid clothing](/img/recycle/babyclothes.jpg)
-
-### Baby and kid clothing
-
-We collect: All brands of non-donatable baby and children's clothing.
-
-<br/><br/>
-
-![Febreze aerosol containers](/img/recycle/febreze.jpg)
-
-### Febreze aerosol containers
-
-We collect: Empty, in-tact Febreze aerosol containers.
-
-<br/><br/>
-
 ![Contact lens cases and solution caps](/img/recycle/eyecare.jpg)
 
 ### Contact lens cases and solution caps
 
 We collect: Any brand contact lens case and solution cap. No need to clean materials for collection.
-
-<br/><br/>
-
-![Calbee items we recycle](/img/recycle/calbee.jpg)
-
-### Calbee snack packaging
-
-We collect: All flexible Calbee snack packaging and food wrappers.
-
-Please make sure _all_ excess product has been removed (i.e. leftover food).
-
-<br/><br/>
-
-![Candles we recycle](/img/recycle/candles.jpg)
-
-### Yankee, WoodWick, and Chesapeake Bay fragrance products
-
-We collect: All Newell Brands’ home fragrance products from Yankee Candle, WoodWick, and Chesapeake Bay Candle, including: candles, wax melts and melt cups, diffusers and refills, plug-ins and refills, room sprays, fragrance beads, and auto air fresheners and refills.
-
-<br/><br/>
-
-![Ocean spray items we recycle](/img/recycle/ocean-spray.png)
-
-### Ocean Spray flexible packaging
-
-We collect: All flexible plastic Craisins Dried Cranberries packaging.
 
 <br/><br/>
 
@@ -111,8 +69,16 @@ We collect: All brands of blades and razors (systems and disposable units, and r
 
 <br/><br/>
 
-![Gift cards we recycle](/img/recycle/giftcards.jpg)
+![Performance nutrition products we recycle](/img/recycle/performancenutrition.jpg)
 
-### Gift cards
+### Performance nutrition packets
 
-We collect: All expired/spent gift cards.
+We collect: All brands of performance nutrition packets and packaging, including those for gels, chews, drink mixes, protein bars, and stroopwafels.
+
+<br/><br/>
+
+![Home food storage containers we recycle](/img/recycle/foodstorage.jpg)
+
+### Home food storage containers
+
+We collect: All brands of well-used food storage containers.
