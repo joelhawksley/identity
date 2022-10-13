@@ -10,7 +10,7 @@ My wife [Caitlin](https://www.caitlinhawksley.com) and I recently [lost our home
 
 ### Work
 
-I'm a staff software engineer on the [Design Infrastructure](https://primer.style) team at [GitHub](https://github.com/joelhawksley), leading development of the [ViewComponent](https://github.com/github/view_component) framework and [Primer ViewComponents](https://github.com/primer/view_components) library. I've previously worked at [Galvanize](https://www.galvanize.com/), [Wunder Capital](https://www.wundercapital.com), and [MojoTech](https://www.mojotech.com).
+I'm a staff software engineer at [GitHub](https://github.com/joelhawksley) where I work on user interface architecture and strategy along with leading development of the [ViewComponent](https://github.com/github/view_component) framework. I've previously worked at [Galvanize](https://www.galvanize.com/), [Wunder Capital](https://www.wundercapital.com), and [MojoTech](https://www.mojotech.com).
 
 ![Joel standing on a stage next to a TV on a stand with a presentation slide that says "Breaking up with the bundle"](/img/about/speaking.jpg)
 
