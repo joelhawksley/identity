@@ -73,6 +73,16 @@ I love mentioning this stat every year I give a talk, as it really shows how muc
 
 I think it's important to share this kind of context as it can frame why we make the decisions that we do.
 
+## How I think about accessibility
+
+Anyways, back to the script.
+
+TODO images from https://dev.to/lupitalee/what-is-web-accessibility-2jch, split up into four slides
+
+Explain these images
+
+My most acute trauma symptoms after the fire were a temporary disability. These days, there are some lingering effects that are likely permanent. I'm fortunate that they are minimally uncomfortable at this point.
+
 ## GitHub history 101
 
 To understand how accessibility works at GitHub, I think it's important to start with a little history,mainly because GitHub is a weird company.
@@ -81,16 +91,4 @@ For the first six years GitHub was a company, there were no managers. Visitors t
 
 For years, we operated in what some folks have called a "cooking for chefs" mindset. Since we were developers ourselves, we knew what we'd want GitHub to be like. That meant we could build whatever sounded good to us and reasonably expect our customers to agree. I don't think the manager-less organization structure would have worked for as long as it did if this wasn't the case.
 
-
-
 TODO image of rug from https://readwrite.com/github-meritocracy-rug/
-
-## How I think about accessibility
-
-TODO images from https://dev.to/lupitalee/what-is-web-accessibility-2jch, split up into four slides
-
-Explain these images
-
-My experience was, and still is, a form of cognitive disability.
-
-
