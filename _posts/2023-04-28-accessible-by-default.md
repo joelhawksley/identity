@@ -7,31 +7,37 @@ title: "Accessible by default"
 
 _Warning: This post includes some graphic details of traumatic events._
 
-TODO Photo of Caitlin, Captain and I in front of house from card
+TOINSERT Photo of Caitlin, Captain and I in front of house from card
 
 In the summer of 2020, my wife, dog and I had moved into the home we hoped to raise a family in. Like many of us in the industry, I lived a comfortable life. A life of privilege. We had little to worry about.
 
 That all changed about a year and half later, at the very end of 2021.
 
-TODO Opener image of day of fire
+TOINSERT San Diego beach image
 
-While we were out of Colorado on a road trip for the holidays, I got a text message from a friend in town about a fire evacuation.
+While we were out of Colorado on a road trip for the holidays, I got a text message from a friend on the other side of town. He was being evacuated due to a wild fire in the area.
 
-TODO screenshot of emergency evacuation order
+TOINSERT screenshot of emergency evacuation order
 
-We got the evacuation order a little bit before 3pm.
+A few minutes later, I got the evacuation order. It was a little bit before 3pm.
 
-TODO screenshot of Blink alerts
+TOINSERT screenshot of Blink alerts
 
 Soon after, falling ash triggered our front door security camera, triggering motion alerts every minute. I had to turn them off. I was regretting having backup power for my modem.
 
-TODO another fire photo, entrance to neighborhood?
+TOINSERT awair screenshot
 
-Over the course of an afternoon, the news got increasingly dire. Homes were burning in our town, but we didn't know if ours survived.
+A few minutes later, I checked our home air quality monitor. Things weren't looking good. This particular measurement, PM2.5, was approaching the worst levels ever observed in Beijing! And this was inside my house.
+
+TOINSERT mccaslin photo
+
+An hour later, Kyle Clark posted this image on Twitter. The house on fire was about 100 yards from ours, up wind.
+
+But we never did see any images from inside our neighborhood.
 
 It wasn't until the following morning that I checked twitter and saw a drone video of our neighborhood.
 
-TODO Drone photo/video
+TOINSERT Drone photo/video
 
 Over a hundred homes in our neighborhood burned to the ground, including ours.
 
