@@ -45,7 +45,7 @@ One memory that sticks out to me is realizing two weeks later that I hadn't walk
 
 I noticed other things too. It was harder for me to focus. I got angry easily. I remember struggling to use my password manager on my phone. Things that were easy for me to do before were difficult if not impossible.
 
-What I soon learned was that emotional trauma can cause brain damage. In my case, both temporarily and permanently.
+What I soon learned from a counselor at the Red Cross was that emotional trauma can cause brain damage. In my case, both temporarily and permanently.
 
 This experience has opened my eyes to the privilege I experienced before the fire. It changed the way I view both the world and the work we do in the industry. It inspired me to look for ways to embed empathy into our engineering practices through accessibility-first thinking.
 
@@ -81,11 +81,13 @@ Anyways, back to the script.
 
 TODO images from https://dev.to/lupitalee/what-is-web-accessibility-2jch, split up into four slides
 
-Explain these images
+TODO Explain these images. For example, you might have been situationally disabled carrying a stack of pizza boxes into a building today, unable to use your hands to open the door.
 
-In practice, for the work we do, accessibility means making our applications work with assistive technology. While I won't go into much detail here, we mainly focus on screenreaders, tools that read the screen out loud via keyboard control.
+There are various guidelines and standards for accessibility, such as WCAG, Section 508, APG, and others. Not all of them agree with each other!
 
-My most acute trauma symptoms after the fire were a temporary disability. These days, there are some lingering effects that are likely permanent. I'm fortunate that they are minimally uncomfortable at this point.
+In practice, for the work we do, accessibility means making our applications work with assistive technology. While I won't go into much detail here, we mainly focus on screen readers, tools that read the screen out loud via keyboard control.
+
+And while I can't go into almost any detail, this wouldn't be a talk about accessibility without mentioning that _not_ having an accessible application is a legal risk, and often a significant one.
 
 ### GitHub history 101
 
@@ -301,6 +303,26 @@ TODO insert image of curb cuts
 
 In the real world, a good example of this is curb cuts: while originally intended for wheelchair users, they also benefit stroller pushers and to be honest, those of us who would rather not lift our feet up so high!
 
+TODO insert SSO screenshot
+
+In the software world, this might mean adding a SSO option to our app so that people with disabilities can avoid CAPTCHAs, which are notoriously inaccessible.
+
 By building accessibility practices into the way we build software, we're embedding empathy into our work.
 
 WCAG while it takes work, should just be a starting point. Compliance does not mean usability. Only by building for the users with the greatest needs in mind will we create a world where they can succeed alongside the rest of their peers.
+
+But perhaps the bigger lesson here is that accessibility is just an example of a larger class of blind spots we have as able, wealthy, first-world developers. This reminds me of one of my favorite quotes, from Donald Rumsfeld:
+
+> We also know there are known unknowns; that is to say we know there are some things we do not know. But there are also unknown unknowns—the ones we don't know we don't know. And if one looks throughout the history [...] it is the latter category that tends to be the difficult ones.
+
+Applying this way of thinking has opened my mind to other similar issues. Take browser performance for example: at GitHub, we are issued powerful Apple laptops and cell phones. They enable us to be about as productive as an computer could help us be.
+
+But they give us a false sense of reality: even among our customer base that skews towards users of more powerful hardware, the experience we have using our products is not the same as our customers'.
+
+TODO insert JS benchmark comparison
+
+This is even an issue with request latency! Most GitHub traffic is served from the US east coast, which means that our mostly US-based staff does not experience the lag time our customers in, say, Australia, do.
+
+So how do we look out for these blind spots? How do you find unknown unknowns? By putting yourself in the shoes of others.
+
+So here's what you can do, when it comes to accessibility: use Axe or a similar automated tool. Go without a pointing device for a day. Try a screen reader. And if you can, spend time observing the experience people with disabilities have with what you build.
