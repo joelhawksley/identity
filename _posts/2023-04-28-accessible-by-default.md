@@ -43,7 +43,7 @@ TODO photo of night walk
 
 One memory that sticks out to me is realizing two weeks later that I hadn't walked Captain since the first. I literally hadn't even thought to do something that I used to do three or four times a day before.
 
-I noticed other things too. It was harder for me to focus. I got angry easily. I remember struggling to use my password manager on my phone. Things that were easy for me to do before were difficult if not impossible.
+I noticed other things too. It was harder for me to focus. I got angry easily. I remember struggling to use my password manager on my phone. Things that were easy for me to do before were difficult if not impossible. I remember even having a hard time solving CAPTCHAs.
 
 What I soon learned from a counselor at the Red Cross was that emotional trauma can cause brain damage. In my case, both temporarily and permanently.
 
@@ -98,17 +98,6 @@ For the first six years GitHub was a company, there were no managers. Visitors t
 TODO image of rug from https://readwrite.com/github-meritocracy-rug/
 
 For years, we operated in what some folks have called a "cooking for chefs" mindset. Since we were developers ourselves, we knew what we'd want GitHub to be like. That meant we could build whatever sounded good to us and reasonably expect our customers to agree. I don't think the manager-less organization structure would have worked for as long as it did if this wasn't the case.
-
-### The problem space
-
-If you take nothing else away from this talk, it should be that bad accessibility rarely breaks CI. Very rarely do any of our standard practices lead to accessible experiences.
-
-Even when we do have automated accessibilty checks, they are far from perfect. Depending on who you ask, between 30 and 50 percent of accessibility issues can be caught with automation.
-
-For example, we can automatically check that images have alternative text, but we can't check that the alternative text actually describes the image correctly.
-
-There are more subtle issues too. Designers use gestalt techniques such as proximity and scale to convey meaning, information that isn't consumable for people that are visually impaired.
-
 ### GitHub's accessibility goals
 
 One of our tenets at GitHub is that we are the "home for all developers." When it comes to accessibility, our goal is pretty simple: Full and equal participation of people with disabilities in the development process. We believe that access to technology is a fundamental human right. That everyone deserves to have the opportunity to create, innovate, and collaborate while contributing to our digital future.
@@ -125,7 +114,17 @@ Because of this scale and how quickly our products are growing, manually checkin
 
 To achieve our goals, we need good tools. Here are a couple we use for accessibility: Axe, Previews, and our Forms Framework.
 
-### Axe
+### Automated scanning
+
+If you take nothing else away from this talk, it should be that bad accessibility rarely breaks CI. Very rarely do any of our standard practices lead to accessible experiences.
+
+Even when we do have automated accessibilty checks, they are far from perfect. Depending on who you ask, between 30 and 50 percent of accessibility issues can be caught with automation.
+
+For example, we can automatically check that images have alternative text, but we can't check that the alternative text actually describes the image correctly.
+
+There are more subtle issues too. Designers use gestalt techniques such as proximity and scale to convey meaning, information that isn't consumable for people that are visually impaired.
+
+That all being said, automated scanning can be pretty useful.
 
 Our primary tool is Axe, an automated accessibility scanner. We use Axe across our development lifecycle.
 
@@ -138,6 +137,8 @@ We also run it in production for GitHub staff members who opt-in with a user set
 We use it in our end-to-end browser test suite that runs against every production deploy.
 
 And perhaps most importantly, we use it extensively to test our UI components in isolation.
+
+TODO custom ruleset
 
 ### Previews
 
@@ -261,24 +262,6 @@ So that's some of the tooling work we've done.
 
 As we've rolled out an a11y-first approach to UI development, we've learned a lot along the way.
 
-### Reuse
-
-When it comes to our broader strategy, we've learned that we need to focus on ways of making it only possible to build UI that is accessible. We do this in what has become the standard practice in the industry: components!
-
-Components are just UI abstractions. Reusable pieces.
-
-For our UI teams, this means that our primary success metric is how much our components are used. The more they are used, the less teams need to reinvent accessible patterns.
-
-TODO add datadog explainer of some sort
-
-In practice, we end up needing to focus on two priorities: coverage, the ability for our components to be used to build all of GitHub, and adoptions, whether they are actually used to do so. Both are important but different disciplines.
-
-### Expertise
-
-a11y challenges the notion of full stack development, especially at this level of compliance.
-
-They allow us to spend more time making fewer lines of UI code better. They allow us to keep high standards without expecting everyone to be an expert. Our components have significant, thorough test coverage that would be hard to justify for UI code that is only used once.
-
 ### Intractability
 
 In some cases, we've run into UI patterns that simply weren't accessible in any way, sometimes to the point of needing to have an entire page or even an entire workflow redesigned from scratch.
@@ -289,7 +272,23 @@ TODO insert screenshot of github projects
 
 Other things like drag and drop are especially difficult. Can you think of how you'd move sort a card in this UI with just your keyboard? How about move it to another column?
 
-### Accessibility first
+### Reuse
+
+When it comes to our broader strategy, we've learned that we need to focus on ways of making it only possible to build UI that is accessible. We do this in what has become the standard practice in the industry: components!
+
+Components are just UI abstractions. Reusable pieces.
+
+For our UI teams, this means that our primary success metric is how much our components are used. The more they are used, the less teams need to reinvent accessible patterns.
+
+In fact, I'd argue that we'd _never_ be able to make GitHub accessible without leaning heavily on reused components. It would otherwise be more work than we'd ever be able to finish.
+
+TODO add datadog explainer of some sort
+
+In practice, we end up needing to focus on two priorities: coverage, the ability for our components to be used to build all of GitHub, and adoptions, whether they are actually used to do so. Both are important but different disciplines.
+
+Coming from our perspective of having thousands of pages to make accessible, we've seen that it is significantly easier to build accessible experiences if accessibility is the first design priority.
+
+TODO redo this section
 
 How complicated they should be is an ever-evolving question. Should they be simple, just encapsulating a button? Or should they be more complex, constructing an entire form?
 
@@ -297,7 +296,11 @@ What's been most enlightening about our experience has been that focusing on acc
 
 TODO add example of nameplate and avatar
 
-Coming from our perspective of having thousands of pages to make accessible, we've seen that it is significantly easier to build accessible experiences if accessibility is the first design priority.
+### Expertise
+
+a11y challenges the notion of full stack development, especially at this level of compliance.
+
+They allow us to spend more time making fewer lines of UI code better. They allow us to keep high standards without expecting everyone to be an expert. Our components have significant, thorough test coverage that would be hard to justify for UI code that is only used once.
 
 ## Conclusion
 
@@ -309,11 +312,11 @@ In the real world, a good example of this is curb cuts: while originally intende
 
 TODO insert SSO screenshot
 
-In the software world, this might mean adding a SSO option to our app so that people with disabilities can avoid CAPTCHAs, which are notoriously inaccessible.
+In the software world, this might mean adding a SSO option to our app so that people with disabilities can avoid CAPTCHAs, which are notoriously inaccessible. I really loved SSO when I was in shock after the fire!
+
+WCAG, while it takes work, should just be a starting point. Compliance does not mean usability. Only by building for the users with the greatest needs in mind will we create a world where they can succeed alongside the rest of their peers.
 
 By building accessibility practices into the way we build software, we're embedding empathy into our work.
-
-WCAG while it takes work, should just be a starting point. Compliance does not mean usability. Only by building for the users with the greatest needs in mind will we create a world where they can succeed alongside the rest of their peers.
 
 But perhaps the bigger lesson here is that accessibility is just an example of a larger class of blind spots we have as able, wealthy, first-world developers. This reminds me of one of my favorite quotes, from Donald Rumsfeld:
 
@@ -327,6 +330,6 @@ TODO insert JS benchmark comparison
 
 This is even an issue with request latency! Most GitHub traffic is served from the US east coast, which means that our mostly US-based staff does not experience the lag time our customers in, say, Australia, do.
 
-So how do we look out for these blind spots? How do you find unknown unknowns? By putting yourself in the shoes of others.
+So how do we look out for these blind spots? How do you find unknown unknowns?
 
-So here's what you can do, when it comes to accessibility: use Axe or a similar automated tool in your developer workflows. Go without a pointing device for a day. Try a screen reader. And if you can, spend time observing the experience people with disabilities have with what you build.
+By putting yourself in the shoes of others, the more different from you the better.
