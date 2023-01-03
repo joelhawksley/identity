@@ -283,7 +283,11 @@ They allow us to spend more time making fewer lines of UI code better. They allo
 
 In some cases, we've run into UI patterns that simply weren't accessible in any way, sometimes to the point of needing to have an entire page or even an entire workflow redesigned from scratch.
 
-Some patterns aren’t accessible and should be avoided: https://github.com/github/primer/issues/713#issuecomment-1111002165
+Some patterns aren’t accessible and should be avoided: https://github.com/github/primer/issues/713#issuecomment-1111002165 TODO elaborate
+
+TODO insert screenshot of github projects
+
+Other things like drag and drop are especially difficult. Can you think of how you'd move sort a card in this UI with just your keyboard? How about move it to another column?
 
 ### Accessibility first
 
@@ -325,4 +329,4 @@ This is even an issue with request latency! Most GitHub traffic is served from t
 
 So how do we look out for these blind spots? How do you find unknown unknowns? By putting yourself in the shoes of others.
 
-So here's what you can do, when it comes to accessibility: use Axe or a similar automated tool. Go without a pointing device for a day. Try a screen reader. And if you can, spend time observing the experience people with disabilities have with what you build.
+So here's what you can do, when it comes to accessibility: use Axe or a similar automated tool in your developer workflows. Go without a pointing device for a day. Try a screen reader. And if you can, spend time observing the experience people with disabilities have with what you build.
