@@ -39,25 +39,27 @@ It wasn't until the following morning that I checked twitter and saw a drone vid
 
 TOINSERT Drone photo/video
 
-Over a hundred homes in our neighborhood burned to the ground, including ours.
+Over a hundred homes in our neighborhood burned to the ground, including ours. It was a few days before we were able to see it for ourselves.
 
-TODO photo of caitlin and I in front of house
+TOINSERT photo of caitlin and I in front of house
 
-For the first time, I saw the world through the eyes of trauma, panic, overwhelm. Our lives were turned upside down.
+For the first time, I saw the world through the eyes of trauma.
 
-TODO photo of night walk
+TOINSERT dog walk image
 
-One memory that sticks out to me is realizing two weeks later that I hadn't walked Captain since the first. I literally hadn't even thought to do something that I used to do three or four times a day before.
+One memory that sticks out to me is realizing two weeks later that I hadn't walked Captain since the fire. I literally hadn't even thought to do something that I used to do three or four times a day before.
 
 I noticed other things too. It was harder for me to focus. I got angry easily. I remember struggling to use my password manager on my phone. Things that were easy for me to do before were difficult if not impossible. I remember even having a hard time solving CAPTCHAs.
 
 What I soon learned from a counselor at the Red Cross was that emotional trauma can cause brain damage. In my case, both temporarily and permanently.
 
-This experience has opened my eyes to the privilege I experienced before the fire. It changed the way I view both the world and the work we do in the industry. It inspired me to look for ways to embed empathy into our engineering practices through accessibility-first thinking.
+This experience has opened my eyes to the privilege I experienced before the fire. It changed the way I view the world and the work we do in the industry.
 
-## Table of contents
+So that's what I'm going to talk about today: accessibility. It has many definitions in this context, but I like the one from [interaction-design.org](https://www.interaction-design.org/literature/topics/accessibility):
 
-I'm going to share how we're taking this approach to improve the experience of using GitHub for people with disabilities. I'll start by describing the accessibility problem space, share some interesting tooling work, and some lessons we've learned along the way.
+> Accessibility is the concept of whether a product or service can be used by everyone—however they encounter it
+
+I'm going to share how we're taking this approach to improve the experience of using GitHub for people with disabilities. I'll start by describing the accessibility problem space, share some interesting tooling work, and how we approach our accessibility strategy.
 
 ## Who am I?
 
@@ -65,7 +67,7 @@ I'm a staff engineer at GitHub. I work on various company-wide UI-related initia
 
 When I share details of what it's like to work at GitHub, I like to start by giving a rough idea of the scale of our company.
 
-As of December, we have about 4,000 employees. GitHub continues to primarily be built as a monolithic Ruby on Rails application, at least when it comes to serving customer-facing traffic. There are about 1,380 controllers in our codebase.
+As of December, we have about 4,000 employees. GitHub continues to primarily be built as a monolithic Ruby on Rails application, at least when it comes to serving customer-facing traffic. There are about 1,400 controllers in our codebase.
 
 ```
 find . -name "*controller.rb" | wc -l
@@ -79,6 +81,10 @@ find . -name "*controller.rb" | wc -l
 
 I love mentioning this stat every year I give a talk, as it really shows how much we continue to grow our monolith. We've added about 350 controllers in the past year! This is to a code base that is 15 years old and millions of lines of Ruby.
 
+TOINSERT ERB growth graph
+
+I love this graph of our lines of ERB over time since our first commit. That is quite a curve!
+
 I think it's important to share this kind of context as it can frame why we make the decisions that we do.
 
 ## How I think about accessibility
@@ -88,6 +94,8 @@ Anyways, back to the script.
 TODO images from https://dev.to/lupitalee/what-is-web-accessibility-2jch, split up into four slides
 
 TODO Explain these images. For example, you might have been situationally disabled carrying a stack of pizza boxes into a building today, unable to use your hands to open the door.
+
+I was temporarily disabled when I couldn't complete CAPTCHAs due to being panicked in the trauma of the fire.
 
 There are various guidelines and standards for accessibility, such as WCAG, Section 508, APG, and others. Not all of them agree with each other!
 
