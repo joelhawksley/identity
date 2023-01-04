@@ -167,35 +167,6 @@ TODO insert screenshot of github projects
 
 Can you think of how you'd move sort a card in this UI with just your keyboard? How about move it to another column? It actually is possible to make this UI accessible, but automated scanning won’t be able to tell you how.
 
-### Previews
-
-TODO add lookbook screenshot
-
-When we build our UI components, we write previews for them. A preview is an example of the component being rendered in isolation. So for a button component, we might have a preview for each color scheme option.
-
-We also use these previews in our tests! In ViewComponent TODO add example code etc
-
-What's been fascinating about this workflow has been how much it has blurred the lines between our development and test environments.
-
-I first came up with the idea for working this way when I realized that our test setup and seeds code had a lot of overlap. TODO add example code
-
-What we've ended up doing is consolidating our test cases into previews. We write a preview while designing our components, then use render_preview or visit_preview in our tests. This has a couple advantages:
-
-1) It makes UI tests easier to understand, since you can often just look at the preview and see what is broken. TODO add note about playwright steps?
-2) It makes UI components discoverable. At our scale, it's sometimes hard for one team to know what another is building. Sometimes the same thing gets built twice by multiple teams! We use Lookbook and Storybook to organize our previews into a component directory of sorts that can be browsed in local development. I'm hoping we can share it in production some day!
-3) It aids collaboration with non-technical stakeholders. Since lookbook runs as part of our Rails app, we can use review apps to share our work with other engineers, PMs, and PWD consultants for accessibility reviews.
-4) It couples our tests to our examples. By reusing our test cases as our documentation, there is an incentive to write test cases that exercise our UI code in practical ways. It also ensures that our examples actually work! It was amazing to me the first time we converted our examples to previews and found that a significant fraction of them raised exceptions when rendered! In fact, we are quickly moving away from having documentation sites for components at all, instead leaning on Lookbook for all examples.
-5) We can write regression tests with documentation for a11y bugs we catch along the way, Axe can catch less than half of bugs.
-6) Most importantly, it allows us to embed accessibility scanning deep into our workflows. In our browser tests, we override every interaction method (such as visit, click, etc) to perform the action and then run an Axe scan (`assert_axe_clean`), failing if there are any results. We display these errors inside Lookbook as well.
-
-This is a great example of how the Rails ecosystem can benefit from adapting ideas from other languages and frameworks.
-
-#### Lesson: Expertise
-
-a11y challenges the notion of full stack development, especially at this level of compliance.
-
-They allow us to spend more time making fewer lines of UI code better. They allow us to keep high standards without expecting everyone to be an expert. Our components have significant, thorough test coverage that would be hard to justify for UI code that is only used once.
-
 ### Forms Framework
 
 Another critical tool in our accessibility work has been our custom-built forms framework.
@@ -312,6 +283,35 @@ TODO redo this section
 How complicated they should be is an ever-evolving question. Should they be simple, just encapsulating a button? Or should they be more complex, constructing an entire form?
 
 What's been most enlightening about our experience has been that focusing on accessibility has helped us answer a lot of tricky questions like this one. Our current best answer is that components should be optimized for helping developers build accessible experiences. In general, that means we should build components that are complex enough to ensure that they are accessible by default.
+
+### Previews
+
+TODO add lookbook screenshot
+
+When we build our UI components, we write previews for them. A preview is an example of the component being rendered in isolation. So for a button component, we might have a preview for each color scheme option.
+
+We also use these previews in our tests! In ViewComponent TODO add example code etc
+
+What's been fascinating about this workflow has been how much it has blurred the lines between our development and test environments.
+
+I first came up with the idea for working this way when I realized that our test setup and seeds code had a lot of overlap. TODO add example code
+
+What we've ended up doing is consolidating our test cases into previews. We write a preview while designing our components, then use render_preview or visit_preview in our tests. This has a couple advantages:
+
+1) It makes UI tests easier to understand, since you can often just look at the preview and see what is broken. TODO add note about playwright steps?
+2) It makes UI components discoverable. At our scale, it's sometimes hard for one team to know what another is building. Sometimes the same thing gets built twice by multiple teams! We use Lookbook and Storybook to organize our previews into a component directory of sorts that can be browsed in local development. I'm hoping we can share it in production some day!
+3) It aids collaboration with non-technical stakeholders. Since lookbook runs as part of our Rails app, we can use review apps to share our work with other engineers, PMs, and PWD consultants for accessibility reviews.
+4) It couples our tests to our examples. By reusing our test cases as our documentation, there is an incentive to write test cases that exercise our UI code in practical ways. It also ensures that our examples actually work! It was amazing to me the first time we converted our examples to previews and found that a significant fraction of them raised exceptions when rendered! In fact, we are quickly moving away from having documentation sites for components at all, instead leaning on Lookbook for all examples.
+5) We can write regression tests with documentation for a11y bugs we catch along the way, Axe can catch less than half of bugs.
+6) Most importantly, it allows us to embed accessibility scanning deep into our workflows. In our browser tests, we override every interaction method (such as visit, click, etc) to perform the action and then run an Axe scan (`assert_axe_clean`), failing if there are any results. We display these errors inside Lookbook as well.
+
+This is a great example of how the Rails ecosystem can benefit from adapting ideas from other languages and frameworks.
+
+#### Lesson: Expertise
+
+a11y challenges the notion of full stack development, especially at this level of compliance.
+
+They allow us to spend more time making fewer lines of UI code better. They allow us to keep high standards without expecting everyone to be an expert. Our components have significant, thorough test coverage that would be hard to justify for UI code that is only used once.
 
 ## Conclusion
 
