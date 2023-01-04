@@ -135,37 +135,37 @@ To achieve our goals, we need good tools. Here are a couple we use for accessibi
 
 If you take nothing else away from this talk, it should be that bad accessibility rarely breaks CI. Very rarely do any of our standard practices lead to accessible experiences.
 
-Even when we do have automated accessibilty checks, they are far from perfect. Depending on who you ask, between 30 and 50 percent of accessibility issues can be caught with automation.
+Even when we do have automated accessibility checks, they are far from perfect. Depending on who you ask, between 30 and 50 percent of accessibility issues can be caught with automation.
 
-For example, we can automatically check that images have alternative text, but we can't check that the alternative text actually describes the image correctly.
+For example, we can automatically check that images have alternative text for screen readers to consume, but we can't check that the alternative text actually describes the image correctly.
 
-There are more subtle issues too. Designers use gestalt techniques such as proximity and scale to convey meaning, information that isn't consumable for people that are visually impaired.
+TOINSERT gestalt
+
+There are more subtle issues too. Designers use gestalt techniques such as proximity (such as grouping items into two columns) to convey meaning, information that isn't consumable for people that are visually impaired.
 
 That all being said, automated scanning can be pretty useful.
 
-Our primary tool is Axe, an automated accessibility scanner. We use Axe across our development lifecycle.
+Our primary tool is Axe, an automated accessibility scanner.
 
-TODO add axe explainer
+TOINSERT Axe-meetup
 
-We turn on axe by default in our local development environment, highlighting issues in red on the page and logging them in the console.
+Axe can be run in a couple of different ways. As a browser plugin, you can view violations in the Chrome Devtools.
+
+But the most effective thing I think we’ve done is to just turn it on for staff. We turn on axe by default in our local development environment, highlighting issues in red on the page and logging them in the console.
 
 We also run it in production for GitHub staff members who opt-in with a user setting.
 
 We use it in our end-to-end browser test suite that runs against every production deploy.
 
-And perhaps most importantly, we use it extensively to test our UI components in isolation.
-
-TODO custom ruleset
+We also write custom Axe rules, such as enforcing that our tooltips that appear on hover only contain text, as they are especially inaccessible if they contain links.
 
 #### Intractability
 
-In some cases, we've run into UI patterns that simply weren't accessible in any way, sometimes to the point of needing to have an entire page or even an entire workflow redesigned from scratch.
-
-Some patterns aren’t accessible and should be avoided: https://github.com/github/primer/issues/713#issuecomment-1111002165 TODO elaborate
+In some cases, we've run into UI patterns that simply weren't accessible in any way, sometimes to the point of needing to have an entire page or even an entire workflow redesigned from scratch. Other things like drag and drop are especially difficult.
 
 TODO insert screenshot of github projects
 
-Other things like drag and drop are especially difficult. Can you think of how you'd move sort a card in this UI with just your keyboard? How about move it to another column?
+Can you think of how you'd move sort a card in this UI with just your keyboard? How about move it to another column? It actually is possible to make this UI accessible, but automated scanning won’t be able to tell you how.
 
 ### Previews
 
