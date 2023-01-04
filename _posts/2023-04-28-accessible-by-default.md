@@ -175,7 +175,7 @@ TODO insert screenshot of original rails demo from DHH
 
 Forms are a core competency of Rails. If we go back to the original "build a blog in 15 minutes" demo from DHH, most of the demo is form building!
 
-TODO insert screenshot of hotwire demo from dhh
+TODO rails-hotwire
 
 And that's still true! 15 TODO some-odd years later, the hotwire demo is also mostly form building. Obviously this is something that Rails should be excellent at. (Hotwire/Turbo isn't without its own [accessiblity issues](https://github.com/hotwired/turbo/issues/774), either)
 
@@ -189,10 +189,11 @@ Here is an example straight from the [Action View Form Helpers guides](https://g
   <%= form.text_field :query %>
   <%= form.submit "Search" %>
 <% end %>
+
 ```
 
 ```html
-<form action="/search" method="get" accept-charset="UTF-8" >
+<form action="/search" method="get" accept-charset="UTF-8">
   <label for="query">Search for:</label>
   <input id="query" name="query" type="text" />
   <input name="commit" type="submit" value="Search" data-disable-with="Search" />
@@ -225,11 +226,11 @@ Our example code does this correctly, but there's a problem: it's easy not to do
 
 TODO insert book cover image
 
-One of my favorite engineering books is A Philosophy of Software Design by John Ousterhout. While working on the problem of accessible forms I was reminded of chapter 10, which is titled "Define Errors Out of Existence."
+One of my favorite engineering books is A Philosophy of Software Design. While working on the problem of accessible forms I was reminded of chapter 10, which is titled "Define Errors Out of Existence."
 
 The premise is in the title: we should construct our software to make invalid states impossible!
 
-So about a year ago we realized that we needed to do this for forms. Luckily for me, we had just hired a new engineer on our team who was eager for a fun problem to solve, so I asked him: what would it look like to make our Rails forms accessible by default?
+About a year ago we realized that we needed to do this for how we build forms. Luckily for me, we had just hired a new engineer on our team who was eager for a fun problem to solve, so I asked him: what would it look like to make our Rails forms accessible by default?
 
 And that's where our forms framework was born. Cameron set off to architect a form builder that avoided common accessibility bugs.
 
