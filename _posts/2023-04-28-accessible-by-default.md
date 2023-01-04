@@ -273,28 +273,89 @@ TOINSERT avatar pvc
 
 For example, in our design system we have an Avatar component. Often, it links to a user’s profile page.
 
+TOINSERT pvc timeline
 
+However, we tend to use the avatar component next to a text link to the user’s profile. Sometimes we’d use a hover card for one or both items.
+
+This combination can result in the user’s name being read out loud multiple times in a row for a screen reader. It’s not ideal.
+
+So in order to make this common pattern accessible, we made a new component called nameplate, containing both an avatar and a text link. We then made sure the combination was exactly as it should be for screen readers.
 
 ### Previews
 
-TODO add lookbook screenshot
+TOINSERT mailer-preview
 
-When we build our UI components, we write previews for them. A preview is an example of the component being rendered in isolation. So for a button component, we might have a preview for each color scheme option.
+You might be familiar with using Rails ActionMailer Previews to develop and test HTML emails. It's a nice, isolated development environment.
 
-We also use these previews in our tests! In ViewComponent TODO add example code etc
+TOINSERT button-preview
+
+When we build our UI components, we write previews for them. A preview is an example of the component being rendered in isolation.
+
+```ruby
+class ButtonPreview < ViewComponent::Preview
+  def danger
+    render(Primer::Beta::Button.new(scheme: :danger, size: :medium) do
+      "Button"
+    end
+  end
+end
+```
+
+In their simplest form, UI previews look a lot like mailer previews, which themselves resemble controllers.
+
+TOINSERT button previews list
+
+So for a button component, we might have a preview for each color scheme option.
+
+```ruby
+class PrimerButtonComponentTest < Minitest::Test
+  def test_renders_danger
+    render_preview(:danger)
+
+    assert_selector(".btn-danger")
+  end
+end
+```
+
+We also use these previews in our tests! Using the `render_preview` helper, we can render a preview inside our component unit tests. For a browser test, we call `visit_preview` instead!
 
 What's been fascinating about this workflow has been how much it has blurred the lines between our development and test environments.
 
-I first came up with the idea for working this way when I realized that our test setup and seeds code had a lot of overlap. TODO add example code
+I first came up with the idea for working this way when I realized that our test setup and seeds code had a lot of overlap.
+
+```ruby
+module Primer
+  module Alpha
+    class NavListTest < Minitest::Test
+      def test_sub_items
+        render_preview(:default)
+
+        # ...
+      end
+
+      def test_groups
+        render_preview(:groups)
+
+        # ...
+      end
+    end
+  end
+end
+```
 
 What we've ended up doing is consolidating our test cases into previews. We write a preview while designing our components, then use render_preview or visit_preview in our tests. This has a couple advantages:
 
-1) It makes UI tests easier to understand, since you can often just look at the preview and see what is broken. TODO add note about playwright steps?
-2) It makes UI components discoverable. At our scale, it's sometimes hard for one team to know what another is building. Sometimes the same thing gets built twice by multiple teams! We use Lookbook and Storybook to organize our previews into a component directory of sorts that can be browsed in local development. I'm hoping we can share it in production some day!
-3) It aids collaboration with non-technical stakeholders. Since lookbook runs as part of our Rails app, we can use review apps to share our work with other engineers, PMs, and PWD consultants for accessibility reviews.
-4) It couples our tests to our examples. By reusing our test cases as our documentation, there is an incentive to write test cases that exercise our UI code in practical ways. It also ensures that our examples actually work! It was amazing to me the first time we converted our examples to previews and found that a significant fraction of them raised exceptions when rendered! In fact, we are quickly moving away from having documentation sites for components at all, instead leaning on Lookbook for all examples.
-5) We can write regression tests with documentation for a11y bugs we catch along the way, Axe can catch less than half of bugs.
-6) Most importantly, it allows us to embed accessibility scanning deep into our workflows. In our browser tests, we override every interaction method (such as visit, click, etc) to perform the action and then run an Axe scan (`assert_axe_clean`), failing if there are any results. We display these errors inside Lookbook as well.
+TOINSERT button-inspect
+
+It makes UI tests easier to understand, since you can often just look at the preview and see what is broken. If I misspell the selector in a test, it's going to fail. Instead of trying to boot the test in a browser or dig through the rendered HTML, I can just navigate to the preview and inspect the state in Chrome.
+
+
+It makes UI components discoverable. At our scale, it's sometimes hard for one team to know what another is building. Sometimes the same thing gets built twice by multiple teams! We use Lookbook to organize our previews into a component directory of sorts that can be browsed in local development. I'm hoping we can share it in production some day!
+
+1) It aids collaboration with non-technical stakeholders. Since lookbook runs as part of our Rails app, we can use review apps to share our work with other engineers, PMs, and PWD consultants for accessibility reviews.
+2) It couples our tests to our examples. By reusing our test cases as our documentation, there is an incentive to write test cases that exercise our UI code in practical ways. It also ensures that our examples actually work! It was amazing to me the first time we converted our examples to previews and found that a significant fraction of them raised exceptions when rendered! In fact, we are quickly moving away from having documentation sites for components at all, instead leaning on Lookbook for all examples.
+3) We can write regression tests with documentation for a11y bugs we catch along the way, Axe can catch less than half of bugs.
+4) Most importantly, it allows us to embed accessibility scanning deep into our workflows. In our browser tests, we override every interaction method (such as visit, click, etc) to perform the action and then run an Axe scan (`assert_axe_clean`), failing if there are any results. We display these errors inside Lookbook as well.
 
 This is a great example of how the Rails ecosystem can benefit from adapting ideas from other languages and frameworks.
 
@@ -339,6 +400,8 @@ By putting yourself in the shoes of others, the more different from you the bett
 
 TODO
 And while I can't go into almost any detail, this wouldn't be a talk about accessibility without mentioning that _not_ having an accessible application is a legal risk, and often a significant one.
+
+TODO add note about playwright steps?
 
 #### REUSE?
 
