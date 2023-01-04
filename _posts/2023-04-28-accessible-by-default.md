@@ -79,9 +79,9 @@ TOINSERT voiceover
 
 In practice, for the work we do, accessibility means making our applications work with assistive technology. While I won't go into much detail here, we mainly focus on screen readers, tools that read the screen out loud via keyboard control.
 
-And while I can't go into almost any detail, this wouldn't be a talk about accessibility without mentioning that _not_ having an accessible application is a legal risk, and often a significant one.
+For example, when reading this GitHub profile page, voiceover announces each section of the page as the user navigates with their keyboard.
 
-I'm going to share how we're taking this approach to improve the experience of using GitHub for people with disabilities, using scanning, previews, and forms.
+Today, I'm going to share how we're taking this approach to improve the experience of using GitHub for users of assistive technology like screen readers, using automated scanning, preview driven development, and a custom form builder.
 
 ## Who am I?
 
@@ -90,16 +90,6 @@ I'm a staff engineer at GitHub. I work on various company-wide UI-related initia
 When I share details of what it's like to work at GitHub, I like to start by giving a rough idea of the scale of our company.
 
 As of December, we have about 4,000 employees. GitHub continues to primarily be built as a monolithic Ruby on Rails application, at least when it comes to serving customer-facing traffic. There are about 1,400 controllers in our codebase.
-
-```
-find . -name "*controller.rb" | wc -l
-    1029
-```
-
-```
-find . -name "*controller.rb" | wc -l
-    1379
-```
 
 I love mentioning this stat every year I give a talk, as it really shows how much we continue to grow our monolith. We've added about 350 controllers in the past year! This is to a code base that is 15 years old and millions of lines of Ruby.
 
@@ -113,18 +103,25 @@ I think it's important to share this kind of context as it can frame why we make
 
 To understand how accessibility works at GitHub, I think it's important to start with a little history, mainly because GitHub is a weird company.
 
-For the first six years GitHub was a company, there were no managers. Visitors to our San Francisco headquarters were greeted in a replica of the oval office from the white house. On the floor was a rug that read "the united meritocracy of GitHub."
+TOINSERT oval office image
 
-TODO image of rug from https://readwrite.com/github-meritocracy-rug/
+For the first six years GitHub was a company, there were no managers. Visitors to our San Francisco headquarters were greeted in a replica of the oval office from the white house.
+
+TOINSERT meritocracy rug
+
+On the floor was a rug that read "the united meritocracy of GitHub."
 
 For years, we operated in what some folks have called a "cooking for chefs" mindset. Since we were developers ourselves, we knew what we'd want GitHub to be like. That meant we could build whatever sounded good to us and reasonably expect our customers to agree. I don't think the manager-less organization structure would have worked for as long as it did if this wasn't the case.
+
+But this approach had its downsides. I know of cases where we more or less ignored customer requests because we couldn't find a team to work on them, even if they were losing us large sales.
+
+Thankfully, a lot has changed since then.
+
 ### GitHub's accessibility goals
 
-One of our tenets at GitHub is that we are the "home for all developers." When it comes to accessibility, our goal is pretty simple: Full and equal participation of people with disabilities in the development process. We believe that access to technology is a fundamental human right. That everyone deserves to have the opportunity to create, innovate, and collaborate while contributing to our digital future.
+TOINSERT octocats
 
-TODO add diagram of letter grades
-
-We measure our progress towards this goal on a letter grade scale. TODO explain letter grades.
+Today, one of our tenets is that we are the "home for all developers." When it comes to accessibility, our goal is pretty simple: Full and equal participation of people with disabilities in the development process. We believe that access to technology is a fundamental human right. That everyone deserves to have the opportunity to create, innovate, and collaborate while contributing to our digital future.
 
 These are big goals! Especially for a surface area of thousands of unique user-facing pages.
 
@@ -347,3 +344,7 @@ This is even an issue with request latency! Most GitHub traffic is served from t
 So how do we look out for these blind spots? How do you find unknown unknowns?
 
 By putting yourself in the shoes of others, the more different from you the better.
+
+
+TODO
+And while I can't go into almost any detail, this wouldn't be a talk about accessibility without mentioning that _not_ having an accessible application is a legal risk, and often a significant one.
