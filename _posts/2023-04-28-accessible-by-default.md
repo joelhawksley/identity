@@ -263,27 +263,17 @@ What's most important to highlight here is that there is now a single method to 
 
 In effect, we've just made that Axe error difficult if not impossible to violate. While it's likely not possible to automate our way out of every possible accessibility violation, it's nice to have a few less issues to worry about.
 
-#### Lesson: Reuse
+#### Accessible Abstractions
 
-When it comes to our broader strategy, we've learned that we need to focus on ways of making it only possible to build UI that is accessible. We do this in what has become the standard practice in the industry: components!
+What's been most enlightening about our experience has been that focusing on accessibility has helped us answer a lot of tricky questions around building UI abstractions.
 
-Components are just UI abstractions. Reusable pieces.
+Our current best answer is that components should be optimized for helping developers build accessible experiences. In general, that means we should build components that are complex enough to ensure that they are accessible by default.
 
-For our UI teams, this means that our primary success metric is how much our components are used. The more they are used, the less teams need to reinvent accessible patterns.
+TOINSERT avatar pvc
 
-In fact, I'd argue that we'd _never_ be able to make GitHub accessible without leaning heavily on reused components. It would otherwise be more work than we'd ever be able to finish.
+For example, in our design system we have an Avatar component. Often, it links to a user’s profile page.
 
-TODO add datadog explainer of some sort
 
-In practice, we end up needing to focus on two priorities: coverage, the ability for our components to be used to build all of GitHub, and adoptions, whether they are actually used to do so. Both are important but different disciplines.
-
-Coming from our perspective of having thousands of pages to make accessible, we've seen that it is significantly easier to build accessible experiences if accessibility is the first design priority.
-
-TODO redo this section
-
-How complicated they should be is an ever-evolving question. Should they be simple, just encapsulating a button? Or should they be more complex, constructing an entire form?
-
-What's been most enlightening about our experience has been that focusing on accessibility has helped us answer a lot of tricky questions like this one. Our current best answer is that components should be optimized for helping developers build accessible experiences. In general, that means we should build components that are complex enough to ensure that they are accessible by default.
 
 ### Previews
 
@@ -349,3 +339,24 @@ By putting yourself in the shoes of others, the more different from you the bett
 
 TODO
 And while I can't go into almost any detail, this wouldn't be a talk about accessibility without mentioning that _not_ having an accessible application is a legal risk, and often a significant one.
+
+#### REUSE?
+
+How complicated they should be is an ever-evolving question. Should they be simple, just encapsulating a button? Or should they be more complex, constructing an entire form?
+
+
+When it comes to our broader strategy, we've learned that we need to focus on ways of making it only possible to build UI that is accessible. We do this in what has become the standard practice in the industry: components!
+
+Components are just UI abstractions. Reusable pieces.
+
+For our UI teams, this means that our primary success metric is how much our components are used. The more they are used, the less teams need to reinvent accessible patterns.
+
+In fact, I'd argue that we'd _never_ be able to make GitHub accessible without leaning heavily on reused components. It would otherwise be more work than we'd ever be able to finish.
+
+TODO add datadog explainer of some sort
+
+In practice, we end up needing to focus on two priorities: coverage, the ability for our components to be used to build all of GitHub, and adoptions, whether they are actually used to do so. Both are important but different disciplines.
+
+Coming from our perspective of having thousands of pages to make accessible, we've seen that it is significantly easier to build accessible experiences if accessibility is the first design priority.
+
+TODO redo this section
