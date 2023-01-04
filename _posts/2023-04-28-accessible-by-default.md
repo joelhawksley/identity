@@ -349,77 +349,48 @@ TOINSERT button-inspect
 
 It makes UI tests easier to understand, since you can often just look at the preview and see what is broken. If I misspell the selector in a test, it's going to fail. Instead of trying to boot the test in a browser or dig through the rendered HTML, I can just navigate to the preview and inspect the state in Chrome.
 
+It makes UI components discoverable. At our scale, it's sometimes hard for one team to know what another is building. Sometimes the same thing gets built twice by multiple teams!
 
-It makes UI components discoverable. At our scale, it's sometimes hard for one team to know what another is building. Sometimes the same thing gets built twice by multiple teams! We use Lookbook to organize our previews into a component directory of sorts that can be browsed in local development. I'm hoping we can share it in production some day!
+TOINSERT lookbook
 
-1) It aids collaboration with non-technical stakeholders. Since lookbook runs as part of our Rails app, we can use review apps to share our work with other engineers, PMs, and PWD consultants for accessibility reviews.
-2) It couples our tests to our examples. By reusing our test cases as our documentation, there is an incentive to write test cases that exercise our UI code in practical ways. It also ensures that our examples actually work! It was amazing to me the first time we converted our examples to previews and found that a significant fraction of them raised exceptions when rendered! In fact, we are quickly moving away from having documentation sites for components at all, instead leaning on Lookbook for all examples.
-3) We can write regression tests with documentation for a11y bugs we catch along the way, Axe can catch less than half of bugs.
-4) Most importantly, it allows us to embed accessibility scanning deep into our workflows. In our browser tests, we override every interaction method (such as visit, click, etc) to perform the action and then run an Axe scan (`assert_axe_clean`), failing if there are any results. We display these errors inside Lookbook as well.
+We use Lookbook to organize our previews into a component directory of sorts that can be browsed in local development. This tool is pretty similar to Storybook for React, but it’s built from the ground up for ViewComponents using Hotwire!
+
+It also couples our tests to our examples. By reusing our test cases as our documentation, there is an incentive to write test cases that exercise our UI code in practical ways. It also ensures that our examples actually work! It was amazing to me the first time we converted our examples to previews and found that a significant fraction of them raised exceptions when rendered! In fact, we are quickly moving away from having documentation sites for components at all, instead leaning on Lookbook for all examples.
+
+TOINSET lookbook-a11y
+
+As we’ve added it to our Lookbook configuration!
+
+Which means that we can build components in isolation with live accessibility feedback.
 
 This is a great example of how the Rails ecosystem can benefit from adapting ideas from other languages and frameworks.
-
-#### Lesson: Expertise
-
-a11y challenges the notion of full stack development, especially at this level of compliance.
-
-They allow us to spend more time making fewer lines of UI code better. They allow us to keep high standards without expecting everyone to be an expert. Our components have significant, thorough test coverage that would be hard to justify for UI code that is only used once.
 
 ## Conclusion
 
 Universal design is the idea that we should build products, experiences and environments that work for all people regardless of age, ability, or other factors.
 
-TODO insert image of curb cuts
+TOINSERT curb cut
 
 In the real world, a good example of this is curb cuts: while originally intended for wheelchair users, they also benefit stroller pushers and to be honest, those of us who would rather not lift our feet up so high!
 
-TODO insert SSO screenshot
+TOINSERT SSO screenshot
 
 In the software world, this might mean adding a SSO option to our app so that people with disabilities can avoid CAPTCHAs, which are notoriously inaccessible. I really loved SSO when I was in shock after the fire!
-
-WCAG, while it takes work, should just be a starting point. Compliance does not mean usability. Only by building for the users with the greatest needs in mind will we create a world where they can succeed alongside the rest of their peers.
-
-By building accessibility practices into the way we build software, we're embedding empathy into our work.
 
 But perhaps the bigger lesson here is that accessibility is just an example of a larger class of blind spots we have as able, wealthy, first-world developers. This reminds me of one of my favorite quotes, from Donald Rumsfeld:
 
 > We also know there are known unknowns; that is to say we know there are some things we do not know. But there are also unknown unknowns—the ones we don't know we don't know. And if one looks throughout the history [...] it is the latter category that tends to be the difficult ones.
 
-Applying this way of thinking has opened my mind to other similar issues. Take browser performance for example: at GitHub, we are issued powerful Apple laptops and cell phones. They enable us to be about as productive as an computer could help us be.
+Applying this way of thinking has opened my mind to other similar issues. Take browser performance for example: at GitHub, we are issued powerful Apple laptops and cell phones. They enable us to be about as productive as a computer could help us be.
+
+TOINSERT js-speed-rankings
 
 But they give us a false sense of reality: even among our customer base that skews towards users of more powerful hardware, the experience we have using our products is not the same as our customers'.
 
-TODO insert JS benchmark comparison
+TOINSERT world network map
 
 This is even an issue with request latency! Most GitHub traffic is served from the US east coast, which means that our mostly US-based staff does not experience the lag time our customers in, say, Australia, do.
 
-So how do we look out for these blind spots? How do you find unknown unknowns?
+So how do we look out for these blind spots? How do you find unknown unknowns? We can embed empathy into our engineering practices.
 
-By putting yourself in the shoes of others, the more different from you the better.
-
-
-TODO
-And while I can't go into almost any detail, this wouldn't be a talk about accessibility without mentioning that _not_ having an accessible application is a legal risk, and often a significant one.
-
-TODO add note about playwright steps?
-
-#### REUSE?
-
-How complicated they should be is an ever-evolving question. Should they be simple, just encapsulating a button? Or should they be more complex, constructing an entire form?
-
-
-When it comes to our broader strategy, we've learned that we need to focus on ways of making it only possible to build UI that is accessible. We do this in what has become the standard practice in the industry: components!
-
-Components are just UI abstractions. Reusable pieces.
-
-For our UI teams, this means that our primary success metric is how much our components are used. The more they are used, the less teams need to reinvent accessible patterns.
-
-In fact, I'd argue that we'd _never_ be able to make GitHub accessible without leaning heavily on reused components. It would otherwise be more work than we'd ever be able to finish.
-
-TODO add datadog explainer of some sort
-
-In practice, we end up needing to focus on two priorities: coverage, the ability for our components to be used to build all of GitHub, and adoptions, whether they are actually used to do so. Both are important but different disciplines.
-
-Coming from our perspective of having thousands of pages to make accessible, we've seen that it is significantly easier to build accessible experiences if accessibility is the first design priority.
-
-TODO redo this section
+By putting yourself in the shoes of others, the more different from yours the better.
