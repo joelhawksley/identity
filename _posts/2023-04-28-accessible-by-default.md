@@ -59,7 +59,29 @@ So that's what I'm going to talk about today: accessibility. It has many definit
 
 > Accessibility is the concept of whether a product or service can be used by everyone—however they encounter it
 
-I'm going to share how we're taking this approach to improve the experience of using GitHub for people with disabilities. I'll start by describing the accessibility problem space, share some interesting tooling work, and how we approach our accessibility strategy.
+In the past, I imagined that disabled people were mostly just those using wheelchairs or blind people using canes. I’ve since learned how disabilities come in many different forms.
+
+One framework for describing disabilities is situational, temporary, and permanent.
+
+TOINSERT touch image
+
+For example, a permanent touch disability would be having one arm, a temporary touch disability could be having a broken arm, and a situational touch disability could be holding a baby (or carrying a box of pizzas into a meetup!).
+
+TOINSERT hear image
+
+A permanent hearing disability is deafness, temporary might be an ear infection, and situational working in a loud environment.
+
+I was temporarily disabled when I couldn't complete CAPTCHAs due to being panicked in the trauma of the fire.
+
+There are various guidelines and standards for accessibility, such as WCAG, Section 508, APG, and others. Not all of them agree with each other!
+
+TOINSERT voiceover
+
+In practice, for the work we do, accessibility means making our applications work with assistive technology. While I won't go into much detail here, we mainly focus on screen readers, tools that read the screen out loud via keyboard control.
+
+And while I can't go into almost any detail, this wouldn't be a talk about accessibility without mentioning that _not_ having an accessible application is a legal risk, and often a significant one.
+
+I'm going to share how we're taking this approach to improve the experience of using GitHub for people with disabilities, using scanning, previews, and forms.
 
 ## Who am I?
 
@@ -86,22 +108,6 @@ TOINSERT ERB growth graph
 I love this graph of our lines of ERB over time since our first commit. That is quite a curve!
 
 I think it's important to share this kind of context as it can frame why we make the decisions that we do.
-
-## How I think about accessibility
-
-Anyways, back to the script.
-
-TODO images from https://dev.to/lupitalee/what-is-web-accessibility-2jch, split up into four slides
-
-TODO Explain these images. For example, you might have been situationally disabled carrying a stack of pizza boxes into a building today, unable to use your hands to open the door.
-
-I was temporarily disabled when I couldn't complete CAPTCHAs due to being panicked in the trauma of the fire.
-
-There are various guidelines and standards for accessibility, such as WCAG, Section 508, APG, and others. Not all of them agree with each other!
-
-In practice, for the work we do, accessibility means making our applications work with assistive technology. While I won't go into much detail here, we mainly focus on screen readers, tools that read the screen out loud via keyboard control.
-
-And while I can't go into almost any detail, this wouldn't be a talk about accessibility without mentioning that _not_ having an accessible application is a legal risk, and often a significant one.
 
 ### GitHub history 101
 
@@ -154,6 +160,16 @@ And perhaps most importantly, we use it extensively to test our UI components in
 
 TODO custom ruleset
 
+#### Intractability
+
+In some cases, we've run into UI patterns that simply weren't accessible in any way, sometimes to the point of needing to have an entire page or even an entire workflow redesigned from scratch.
+
+Some patterns aren’t accessible and should be avoided: https://github.com/github/primer/issues/713#issuecomment-1111002165 TODO elaborate
+
+TODO insert screenshot of github projects
+
+Other things like drag and drop are especially difficult. Can you think of how you'd move sort a card in this UI with just your keyboard? How about move it to another column?
+
 ### Previews
 
 TODO add lookbook screenshot
@@ -176,6 +192,12 @@ What we've ended up doing is consolidating our test cases into previews. We writ
 6) Most importantly, it allows us to embed accessibility scanning deep into our workflows. In our browser tests, we override every interaction method (such as visit, click, etc) to perform the action and then run an Axe scan (`assert_axe_clean`), failing if there are any results. We display these errors inside Lookbook as well.
 
 This is a great example of how the Rails ecosystem can benefit from adapting ideas from other languages and frameworks.
+
+#### Lesson: Expertise
+
+a11y challenges the notion of full stack development, especially at this level of compliance.
+
+They allow us to spend more time making fewer lines of UI code better. They allow us to keep high standards without expecting everyone to be an expert. Our components have significant, thorough test coverage that would be hard to justify for UI code that is only used once.
 
 ### Forms Framework
 
@@ -270,23 +292,9 @@ end
 
 What's most important to highlight here is that there is now a single method to create a text field with a label, not two. Under the hood, we generate both the input and label tags, linking them correctly so that Axe 4.4 is satisfied.
 
-So that's some of the tooling work we've done.
+In effect, we've just made that Axe error difficult if not impossible to violate. While it's likely not possible to automate our way out of every possible accessibility violation, it's nice to have a few less issues to worry about.
 
-## Lessons
-
-As we've rolled out an a11y-first approach to UI development, we've learned a lot along the way.
-
-### Intractability
-
-In some cases, we've run into UI patterns that simply weren't accessible in any way, sometimes to the point of needing to have an entire page or even an entire workflow redesigned from scratch.
-
-Some patterns aren’t accessible and should be avoided: https://github.com/github/primer/issues/713#issuecomment-1111002165 TODO elaborate
-
-TODO insert screenshot of github projects
-
-Other things like drag and drop are especially difficult. Can you think of how you'd move sort a card in this UI with just your keyboard? How about move it to another column?
-
-### Reuse
+#### Lesson: Reuse
 
 When it comes to our broader strategy, we've learned that we need to focus on ways of making it only possible to build UI that is accessible. We do this in what has become the standard practice in the industry: components!
 
@@ -307,14 +315,6 @@ TODO redo this section
 How complicated they should be is an ever-evolving question. Should they be simple, just encapsulating a button? Or should they be more complex, constructing an entire form?
 
 What's been most enlightening about our experience has been that focusing on accessibility has helped us answer a lot of tricky questions like this one. Our current best answer is that components should be optimized for helping developers build accessible experiences. In general, that means we should build components that are complex enough to ensure that they are accessible by default.
-
-TODO add example of nameplate and avatar
-
-### Expertise
-
-a11y challenges the notion of full stack development, especially at this level of compliance.
-
-They allow us to spend more time making fewer lines of UI code better. They allow us to keep high standards without expecting everyone to be an expert. Our components have significant, thorough test coverage that would be hard to justify for UI code that is only used once.
 
 ## Conclusion
 
