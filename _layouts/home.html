@@ -16,7 +16,7 @@ layout: default
   {% assign sorted = site.projects | sort: 'position' | reverse %}
   {% for project in sorted %}
     <li>
-      <img src="{{project.image}}" />
+      <img src="{{project.image}}" alt="{{project.alt}}" />
       <div style="display: flex; justify-content: space-between;">
         <h3>{{ project.name }}</h3>
         <span class="period">{{ project.period }}</span>

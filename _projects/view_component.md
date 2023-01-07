@@ -1,6 +1,7 @@
 ---
 name: ViewComponent
 image: "/img/projects/view_component.png"
+alt: "A screenshot of the GitHub.com repository page for the ViewComponent project"
 period: "2018-present"
 position: 3
 ---

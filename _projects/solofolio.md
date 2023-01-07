@@ -1,6 +1,7 @@
 ---
 name: SoloFolio
 image: "/img/projects/solofolio.jpg"
+alt: "Screenshot of Erika Schultz's portfolio landing page with a grid of images from various projects"
 period: "2008-present"
 position: 1
 ---
