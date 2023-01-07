@@ -2,17 +2,11 @@
 layout: home
 ---
 
-![Joel and Caitlin Hawksley at the site of their former home in Louisville, Colorado](/img/about/fire.jpg)
-
-### Now
-
-My wife [Caitlin](https://www.caitlinhawksley.com) and I recently [lost our home](https://www.gofundme.com/f/help-the-hawksleys-rebuild-literally-everything) in the Marshall fire. We're navigating the pain and trauma with the support of friends and family.
+![Joel standing on a stage next to a TV on a stand with a presentation slide that says "Breaking up with the bundle"](/img/about/speaking.jpg)
 
 ### Work
 
 I'm a staff software engineer at [GitHub](https://github.com/joelhawksley), working on user interface architecture and strategy. I also lead development of the [ViewComponent](https://github.com/github/view_component) framework. I've previously worked at [Galvanize](https://www.galvanize.com/), [Wunder Capital](https://www.wundercapital.com), and [MojoTech](https://www.mojotech.com).
-
-![Joel standing on a stage next to a TV on a stand with a presentation slide that says "Breaking up with the bundle"](/img/about/speaking.jpg)
 
 ### Career
 
