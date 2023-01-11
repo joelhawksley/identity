@@ -15,11 +15,11 @@ That all changed about a year and half later, at the very end of 2021.
 
 TOINSERT San Diego beach image
 
-While we were out of Colorado on a road trip for the holidays, I got a text message from a friend on the other side of town. He was being evacuated due to a wild fire in the area.
+We were on a road trip to San Diego for Christmas, enjoying some time away from home.
 
 TOINSERT screenshot of emergency evacuation order
 
-A few minutes later, I got the evacuation order. It was a little bit before 3pm.
+On the first day of our drive home, I got a text message to evacuate our home in Louisville. It was a little bit before 3pm.
 
 TOINSERT screenshot of Blink alerts
 
@@ -31,7 +31,7 @@ A few minutes later, I checked our home air quality monitor. Things weren't look
 
 TOINSERT mccaslin photo
 
-An hour later, Kyle Clark posted this image on Twitter. The house on fire was about 100 yards from ours, up wind.
+About an hour later, I came across this image on Twitter. The house on fire was about 100 yards from ours, up wind.
 
 But we never did see any images from inside our neighborhood.
 
@@ -80,6 +80,10 @@ TOINSERT voiceover
 In practice, for the work we do, accessibility means making our applications work with assistive technology. While I won't go into much detail here, we mainly focus on screen readers, tools that read the screen out loud via keyboard control.
 
 For example, when reading this GitHub profile page, voiceover announces each section of the page as the user navigates with their keyboard.
+
+TOINSERT a11y tree
+
+Effectively, screen readers turn web pages into a tree structure that is navigated by keyboard. You can actually view this tree structure in Chrome dev tools under Accessibility.
 
 Today, I'm going to share how we're taking this approach to improve the experience of using GitHub for users of assistive technology like screen readers, using automated scanning, preview driven development, and a custom form builder.
 
@@ -166,6 +170,8 @@ In some cases, we've run into UI patterns that simply weren't accessible in any 
 TODO insert screenshot of github projects
 
 Can you think of how you'd move sort a card in this UI with just your keyboard? How about move it to another column? It actually is possible to make this UI accessible, but automated scanning won’t be able to tell you how.
+
+Despite all of those downsides, Axe is a great starting point. Making your app axe clean will make it more accessible. We generally start with making a page Axe clean before doing more labor-intensive work, but that might be a good talk for next year!
 
 ### Forms Framework
 
@@ -265,9 +271,7 @@ In effect, we've just made that Axe error difficult if not impossible to violate
 
 #### Accessible Abstractions
 
-What's been most enlightening about our experience has been that focusing on accessibility has helped us answer a lot of tricky questions around building UI abstractions.
-
-Our current best answer is that components should be optimized for helping developers build accessible experiences. In general, that means we should build components that are complex enough to ensure that they are accessible by default.
+What's been most enlightening about our experience has been that focusing on accessibility has helped us decide which components to build.
 
 TOINSERT avatar pvc
 
