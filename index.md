@@ -16,7 +16,7 @@ I've spoken at RailsConf ([2019](https://youtu.be/y5Z5a6QdA-M), [2020](https://y
 
 ### Mentorship
 
-I am a firm believer in the power of peer mentoring. In addition to being a [Big Brother](https://biglittlecolorado.org/), I regularly support several aspiring engineers in their pursuit of a career in software.
+I am a firm believer in the power of peer mentoring. In addition to being a [Big Brother](https://biglittlecolorado.org/), I regularly support several aspiring engineers in their pursuit of a career in software. I've also volunteered as a guide at RailsConf for several years.
 
 ### Photography
 
