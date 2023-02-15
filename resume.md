@@ -13,7 +13,7 @@ Email: joel@hawksley.org
 2021-Present, Remote
 
 - Served as company-wide UI architect.
-- Represented GitHub at RailsConf, RubyConf, and numerous industry podcasts.
+- Represented GitHub at RailsConf, RubyConf, and on numerous industry podcasts.
 
 ### Senior Software Engineer, GitHub
 
