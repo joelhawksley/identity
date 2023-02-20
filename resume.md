@@ -17,7 +17,7 @@ Action-oriented, pragmatic technical leader that cultivates innovation and drive
 - Served as company-wide UI architect, guiding architectural decisions and defining metrics for cross-organization engineering programs
 - Established yearly vision, quarterly strategy and monthly work plans across six engineering teams
 - Represented GitHub at RailsConf, RubyConf, and on numerous industry podcasts
-- Lead and participated in learning activities around design and development practices
+- Led and participated in learning activities around design and development practices
 - Built and grew skill sets of more junior developers, sponsoring >dozen promotions
 - Evaluated 3rd-party vendors
 
