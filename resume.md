@@ -78,7 +78,7 @@ Action-oriented, pragmatic technical leader that cultivates innovation and drive
 
 ### SoloFolio
 
-2008 - Present
+2008-Present
 
 - SaaS portfolio website builder for photographers
 - Implemented in WordPress and re-platformed to Ruby on Rails
@@ -87,7 +87,7 @@ Action-oriented, pragmatic technical leader that cultivates innovation and drive
 
 ### Timeframe
 
-2015 - Present
+2015-Present
 
 - Digital artwork application for displaying weather and calendar information on e-paper, projection, and LCD displays
 - Architected for low maintenance and high resiliency
