@@ -69,7 +69,8 @@ Action-oriented, pragmatic technical leader that cultivates innovation and drive
 ## Community Involvement
 
 - Presenter at RailsConf 2019, 2020, 2021 and 2022, Brighton Ruby 2022, RubyConf 2021, RubyDay 2021, RubyConf Taiwan 2019
-- Guest on Remote Ruby, Ruby on Rails, Ruby Blend, Code with Jason and Ruby Rogues podcasts.
+- Guest on Remote Ruby, Ruby on Rails, Ruby Blend, Code with Jason and Ruby Rogues podcasts
+- Contributor to Rails core
 - Active member of Boulder Ruby Meetup since 2016
 - Big Brothers Big Sisters mentor since 2017
 - Mentor of dozens of aspiring software engineers
