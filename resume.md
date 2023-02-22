@@ -6,7 +6,7 @@ layout: default
 
 Email: joel@hawksley.org
 
-Action-oriented, pragmatic technical leader that cultivates innovation and drives results
+Action-oriented, pragmatic technical leader who cultivates innovation and drives results
 
 ## Experience
 
