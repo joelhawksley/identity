@@ -8,6 +8,25 @@ Email: joel@hawksley.org
 
 Action-oriented, pragmatic technical leader who cultivates innovation and drives results
 
+## What I'm looking for
+
+My ideal role would combine architecture, mentorship, and technical contribution in roughly equal parts.
+
+## Technical skills
+
+- Expert in Ruby and Rails
+- Extensive experience in relational databases (MySQL, Postgres)
+- Working knowledge of React, Angular
+
+## Community Involvement
+
+- Presenter at RailsConf 2019, 2020, 2021 and 2022, Brighton Ruby 2022, RubyConf 2021, RubyDay 2021, RubyConf Taiwan 2019
+- Guest on Remote Ruby, Ruby on Rails, Ruby Blend, Code with Jason and Ruby Rogues podcasts
+- Contributor to Rails core
+- Active member of Boulder Ruby Meetup since 2016
+- Big Brothers Big Sisters mentor since 2017
+- Mentor of dozens of aspiring software engineers in the community
+
 ## Experience
 
 ### Staff Software Engineer, GitHub
@@ -65,15 +84,6 @@ Action-oriented, pragmatic technical leader who cultivates innovation and drives
 ### Staff Photographer, The Southern Illinoisan
 
 2012, Carbondale, Illinois
-
-## Community Involvement
-
-- Presenter at RailsConf 2019, 2020, 2021 and 2022, Brighton Ruby 2022, RubyConf 2021, RubyDay 2021, RubyConf Taiwan 2019
-- Guest on Remote Ruby, Ruby on Rails, Ruby Blend, Code with Jason and Ruby Rogues podcasts
-- Contributor to Rails core
-- Active member of Boulder Ruby Meetup since 2016
-- Big Brothers Big Sisters mentor since 2017
-- Mentor of dozens of aspiring software engineers
 
 ## Projects
 
