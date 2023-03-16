@@ -24,8 +24,9 @@ My ideal role would combine architecture, mentorship, and technical contribution
 - Guest on Remote Ruby, Ruby on Rails, Ruby Blend, Code with Jason and Ruby Rogues podcasts
 - Contributor to Rails core
 - Active member of Boulder Ruby Meetup since 2016
-- Big Brothers Big Sisters mentor since 2017
 - Mentor of dozens of aspiring software engineers in the community
+- Big Brothers Big Sisters mentor since 2017
+- Local Board of Adjustment member since 2021
 
 ## Experience
 
