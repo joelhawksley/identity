@@ -3,6 +3,8 @@ layout: post
 title: "Conference proposal: Accessible by default"
 ---
 
+_This proposal was accepted for [RailsConf 2023](https://railsconf.org)._ [Download slides](/talks/2023-accessible-by-default/slides.key) [View blog post version](/2023/04/21/accessible-by-default.html)
+
 ## Abstract
 
 It's one thing to build a new application that meets the latest accessibility standards, but it's another thing to update an existing application to meet them. In this talk, we'll share how we're using automated accessibility scanning, preview-driven development, and an accessibility-first form builder to make GitHub's 15-year-old, 1,400-controller Ruby on Rails monolith accessible.

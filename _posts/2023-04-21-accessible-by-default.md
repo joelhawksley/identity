@@ -7,29 +7,31 @@ title: "Accessible by default"
 
 _Warning: This post includes some graphic details of traumatic events._
 
-TOINSERT Photo of Caitlin, Captain and I in front of house from card
+_The following is an approximate transcript of my RailsConf 2023 talk, Accessible by Default._
+
+![Family sits with their dog in the lawn in front of their home](/img/posts/2023-04-24-accessible-by-default/family-before.jpg)
 
 In the summer of 2020, my wife, dog and I had moved into the home we hoped to raise a family in. Like many of us in the industry, I lived a comfortable life. A life of privilege. We had little to worry about.
 
 That all changed about a year and half later, at the very end of 2021.
 
-TOINSERT San Diego beach image
+![Silhouetted woman on a beach throws a stick towards a dog while the sun sets](/img/posts/2023-04-24-accessible-by-default/san-diego.png)
 
 We were on a road trip to San Diego for Christmas, enjoying some time away from home.
 
-TOINSERT screenshot of emergency evacuation order
+![Text message evacuation order](/img/posts/2023-04-24-accessible-by-default/evacuation.jpg)
 
 On the first day of our drive home, I got a text message to evacuate our home in Louisville. It was a little bit before 3pm.
 
-TOINSERT screenshot of Blink alerts
+![Motion notifications showing images of front porch](/img/posts/2023-04-24-accessible-by-default/blink.jpg)
 
 Soon after, falling ash triggered our front door security camera, triggering motion alerts every minute. I had to turn them off. I was regretting having backup power for my modem.
 
-TOINSERT awair screenshot
+![iOS widget showing low air quality numbers](/img/posts/2023-04-24-accessible-by-default/awair.png)
 
 A few minutes later, I checked our home air quality monitor. Things weren't looking good. This particular measurement, PM2.5, was approaching the worst levels ever observed in Beijing! And this was inside my house.
 
-TOINSERT mccaslin photo
+![A house fully engulfed in flames](/img/posts/2023-04-24-accessible-by-default/mccaslin.jpg)
 
 About an hour later, I came across this image on Twitter. The house on fire was about 100 yards from ours, up wind.
 
@@ -37,15 +39,15 @@ But we never did see any images from inside our neighborhood.
 
 It wasn't until the following morning that I checked twitter and saw a drone video of our neighborhood.
 
-TOINSERT Drone photo/video
+![Aerial photo of hundreds of ash footprints taken before dawn](/img/posts/2023-04-24-accessible-by-default/neighborhood-drone.jpg)
 
-Over a hundred homes in our neighborhood burned to the ground, including ours. It was a few days before we were able to see it for ourselves.
+Over a hundred homes in our neighborhood burned to the ground, including ours.
 
-TOINSERT photo of caitlin and I in front of house
+![A couple stands in front of a burned down house](/img/posts/2023-04-24-accessible-by-default/family-after.jpg)
 
-For the first time, I saw the world through the eyes of trauma.
+It was a few days before we were able to see it for ourselves.
 
-TOINSERT dog walk image
+![First-person view of walking a dog](/img/posts/2023-04-24-accessible-by-default/walk.jpg)
 
 One memory that sticks out to me is realizing two weeks later that I hadn't walked Captain since the fire. I literally hadn't even thought to do something that I used to do three or four times a day before.
 
@@ -63,11 +65,11 @@ In the past, I imagined that disabled people were mostly just those using wheelc
 
 One framework for describing disabilities is situational, temporary, and permanent.
 
-TOINSERT touch image
+![Line drawing symbols for touch disability examples](/img/posts/2023-04-24-accessible-by-default/touch.png)
 
 For example, a permanent touch disability would be having one arm, a temporary touch disability could be having a broken arm, and a situational touch disability could be holding a baby (or carrying a box of pizzas into a meetup!).
 
-TOINSERT hear image
+![Line drawing symbols for hearing disability examples](/img/posts/2023-04-24-accessible-by-default/hear.png)
 
 A permanent hearing disability is deafness, temporary might be an ear infection, and situational working in a loud environment.
 
@@ -75,13 +77,13 @@ I was temporarily disabled when I couldn't complete CAPTCHAs due to being panick
 
 There are various guidelines and standards for accessibility, such as WCAG, Section 508, APG, and others. Not all of them agree with each other!
 
-TOINSERT voiceover
+![Screenshot of voiceover screen reader scanning a GitHub profile page](/img/posts/2023-04-24-accessible-by-default/voiceover.png)
 
 In practice, for the work we do, accessibility means making our applications work with assistive technology. While I won't go into much detail here, we mainly focus on screen readers, tools that read the screen out loud via keyboard control.
 
 For example, when reading this GitHub profile page, voiceover announces each section of the page as the user navigates with their keyboard.
 
-TOINSERT a11y tree
+![Screenshot of chrome accessibility tree of a GitHub profile page](/img/posts/2023-04-24-accessible-by-default/a11y-tree-chrome.png)
 
 Effectively, screen readers turn web pages into a tree structure that is navigated by keyboard. You can actually view this tree structure in Chrome dev tools under Accessibility.
 
@@ -97,7 +99,7 @@ As of December, we have about 4,000 employees. GitHub continues to primarily be 
 
 I love mentioning this stat every year I give a talk, as it really shows how much we continue to grow our monolith. We've added about 350 controllers in the past year! This is to a code base that is 15 years old and millions of lines of Ruby.
 
-TOINSERT ERB growth graph
+![Graph showing ERB lines of code growing at an increasing rate to nearly 400k lines today](/img/posts/2023-04-24-accessible-by-default/erb-growth.png)
 
 I love this graph of our lines of ERB over time since our first commit. That is quite a curve!
 
@@ -107,11 +109,11 @@ I think it's important to share this kind of context as it can frame why we make
 
 To understand how accessibility works at GitHub, I think it's important to start with a little history, mainly because GitHub is a weird company.
 
-TOINSERT oval office image
+![Picture of old GitHub HQ entryway made to closely resemble the oval office from the white house](/img/posts/2023-04-24-accessible-by-default/oval-office.jpg)
 
 For the first six years GitHub was a company, there were no managers. Visitors to our San Francisco headquarters were greeted in a replica of the oval office from the white house.
 
-TOINSERT meritocracy rug
+![Picture of united meritocracy of github rug](/img/posts/2023-04-24-accessible-by-default/meritocracy.webp)
 
 On the floor was a rug that read "the united meritocracy of GitHub."
 
@@ -123,7 +125,7 @@ Thankfully, a lot has changed since then.
 
 ### GitHub's accessibility goals
 
-TOINSERT octocats
+![Sketches of various diverse octocat figures](/img/posts/2023-04-24-accessible-by-default/octocats.webp)
 
 Today, one of our tenets is that we are the "home for all developers." When it comes to accessibility, our goal is pretty simple: Full and equal participation of people with disabilities in the development process. We believe that access to technology is a fundamental human right. That everyone deserves to have the opportunity to create, innovate, and collaborate while contributing to our digital future.
 
@@ -143,7 +145,7 @@ Even when we do have automated accessibility checks, they are far from perfect. 
 
 For example, we can automatically check that images have alternative text for screen readers to consume, but we can't check that the alternative text actually describes the image correctly.
 
-TOINSERT gestalt
+![Diagram of dots showing a single cluster on one side and a pair of clusters on the other side](/img/posts/2023-04-24-accessible-by-default/gestalt.png)
 
 There are more subtle issues too. Designers use gestalt techniques such as proximity (such as grouping items into two columns) to convey meaning, information that isn't consumable for people that are visually impaired.
 
@@ -151,7 +153,7 @@ That all being said, automated scanning can be pretty useful.
 
 Our primary tool is Axe, an automated accessibility scanner.
 
-TOINSERT Axe-meetup
+![Screenshot of axe scanner running on meetup.com homepage with 48 errors](/img/posts/2023-04-24-accessible-by-default/axe-meetup.png)
 
 Axe can be run in a couple of different ways. As a browser plugin, you can view violations in the Chrome Devtools.
 
@@ -167,7 +169,7 @@ We also write custom Axe rules, such as enforcing that our tooltips that appear 
 
 In some cases, we've run into UI patterns that simply weren't accessible in any way, sometimes to the point of needing to have an entire page or even an entire workflow redesigned from scratch. Other things like drag and drop are especially difficult.
 
-TODO insert screenshot of github projects
+![Screenshot of GitHub projects kanban board](/img/posts/2023-04-24-accessible-by-default/projects.png)
 
 Can you think of how you'd move sort a card in this UI with just your keyboard? How about move it to another column? It actually is possible to make this UI accessible, but automated scanning won’t be able to tell you how.
 
@@ -177,11 +179,11 @@ Despite all of those downsides, Axe is a great starting point. Making your app a
 
 Another critical tool in our accessibility work has been our custom-built forms framework.
 
-TODO insert screenshot of original rails demo from DHH
+![screenshot of original rails demo from DHH](/img/posts/2023-04-24-accessible-by-default/rails-15-minutes.png)
 
 Forms are a core competency of Rails. If we go back to the original "build a blog in 15 minutes" demo from DHH, most of the demo is form building!
 
-TODO rails-hotwire
+![screenshot of hotwire demo from DHH](/img/posts/2023-04-24-accessible-by-default/rails-hotwire.png)
 
 And that's still true! 15 TODO some-odd years later, the hotwire demo is also mostly form building. Obviously this is something that Rails should be excellent at. (Hotwire/Turbo isn't without its own [accessiblity issues](https://github.com/hotwired/turbo/issues/774), either)
 
@@ -224,13 +226,13 @@ This was generated by two separate method calls:
 <%= form.text_field :query %>
 ```
 
-This example is great because it is accessible! Specifically, passes Axe rule 4.4, [Form <input> elements must have labels](https://dequeuniversity.com/rules/axe/4.4/label), which reads:
+This example is great because it is accessible! Specifically, passes Axe rule 4.4, [Form input elements must have labels](https://dequeuniversity.com/rules/axe/4.4/label), which reads:
 
 > Programmatically associate labels with all form controls. The recommended method for most circumstances is to use the label element and an explicit association using the for and id attributes. [...]
 
 Our example code does this correctly, but there's a problem: it's easy not to do this. As the Axe rule states, all of our form controls need labels. Yet Rails at best gives us an option to provide them.
 
-TODO insert book cover image
+![Book cover showing scramble lines above, straight lines below](/img/posts/2023-04-24-accessible-by-default/philosophy-software.jpg)
 
 One of my favorite engineering books is A Philosophy of Software Design. While working on the problem of accessible forms I was reminded of chapter 10, which is titled "Define Errors Out of Existence."
 
@@ -273,11 +275,11 @@ In effect, we've just made that Axe error difficult if not impossible to violate
 
 What's been most enlightening about our experience has been that focusing on accessibility has helped us decide which components to build.
 
-TOINSERT avatar pvc
+![Screenshot of Primer avatar component in lookbook tool](/img/posts/2023-04-24-accessible-by-default/pvc-avatar.png)
 
 For example, in our design system we have an Avatar component. Often, it links to a user’s profile page.
 
-TOINSERT pvc timeline
+![Screenshot of avatar component used in a timeline event](/img/posts/2023-04-24-accessible-by-default/avatar-timeline.png)
 
 However, we tend to use the avatar component next to a text link to the user’s profile. Sometimes we’d use a hover card for one or both items.
 
@@ -287,11 +289,11 @@ So in order to make this common pattern accessible, we made a new component call
 
 ### Previews
 
-TOINSERT mailer-preview
+![Screenshot of rails mailer preview](/img/posts/2023-04-24-accessible-by-default/mailer-preview.png)
 
 You might be familiar with using Rails ActionMailer Previews to develop and test HTML emails. It's a nice, isolated development environment.
 
-TOINSERT button-preview
+![Screenshot of button component preview in Lookbook tool](/img/posts/2023-04-24-accessible-by-default/button-preview.png)
 
 When we build our UI components, we write previews for them. A preview is an example of the component being rendered in isolation.
 
@@ -307,7 +309,7 @@ end
 
 In their simplest form, UI previews look a lot like mailer previews, which themselves resemble controllers.
 
-TOINSERT button previews list
+![Screenshot of list of button previews](/img/posts/2023-04-24-accessible-by-default/previews-list.png)
 
 So for a button component, we might have a preview for each color scheme option.
 
@@ -349,19 +351,19 @@ end
 
 What we've ended up doing is consolidating our test cases into previews. We write a preview while designing our components, then use render_preview or visit_preview in our tests. This has a couple advantages:
 
-TOINSERT button-inspect
+![Screenshot of button component being inspected by chrome devtools](/img/posts/2023-04-24-accessible-by-default/button-inspect.png)
 
 It makes UI tests easier to understand, since you can often just look at the preview and see what is broken. If I misspell the selector in a test, it's going to fail. Instead of trying to boot the test in a browser or dig through the rendered HTML, I can just navigate to the preview and inspect the state in Chrome.
 
 It makes UI components discoverable. At our scale, it's sometimes hard for one team to know what another is building. Sometimes the same thing gets built twice by multiple teams!
 
-TOINSERT lookbook
+![Screenshot of Lookbook tool](/img/posts/2023-04-24-accessible-by-default/lookbook.png)
 
 We use Lookbook to organize our previews into a component directory of sorts that can be browsed in local development. This tool is pretty similar to Storybook for React, but it’s built from the ground up for ViewComponents using Hotwire!
 
 It also couples our tests to our examples. By reusing our test cases as our documentation, there is an incentive to write test cases that exercise our UI code in practical ways. It also ensures that our examples actually work! It was amazing to me the first time we converted our examples to previews and found that a significant fraction of them raised exceptions when rendered! In fact, we are quickly moving away from having documentation sites for components at all, instead leaning on Lookbook for all examples.
 
-TOINSET lookbook-a11y
+![Screenshot of Lookbook accessibility scan tab](/img/posts/2023-04-24-accessible-by-default/lookbook-a11y.png)
 
 As we’ve added it to our Lookbook configuration!
 
@@ -373,11 +375,11 @@ This is a great example of how the Rails ecosystem can benefit from adapting ide
 
 Universal design is the idea that we should build products, experiences and environments that work for all people regardless of age, ability, or other factors.
 
-TOINSERT curb cut
+![Picture of a wheelchair user above an uncut curb, shot from street level](/img/posts/2023-04-24-accessible-by-default/curb-cut.jpg)
 
 In the real world, a good example of this is curb cuts: while originally intended for wheelchair users, they also benefit stroller pushers and to be honest, those of us who would rather not lift our feet up so high!
 
-TOINSERT SSO screenshot
+![Screenshot of single sign on with multiple oauth providers](/img/posts/2023-04-24-accessible-by-default/single-sign-on.png)
 
 In the software world, this might mean adding a SSO option to our app so that people with disabilities can avoid CAPTCHAs, which are notoriously inaccessible. I really loved SSO when I was in shock after the fire!
 
@@ -387,11 +389,11 @@ But perhaps the bigger lesson here is that accessibility is just an example of a
 
 Applying this way of thinking has opened my mind to other similar issues. Take browser performance for example: at GitHub, we are issued powerful Apple laptops and cell phones. They enable us to be about as productive as a computer could help us be.
 
-TOINSERT js-speed-rankings
+![List of mobile devices by JS performance benchmark results. The first android device is far down the list](/img/posts/2023-04-24-accessible-by-default/speed-tests.jpg)
 
 But they give us a false sense of reality: even among our customer base that skews towards users of more powerful hardware, the experience we have using our products is not the same as our customers'.
 
-TOINSERT world network map
+![Map diagram of internet links across continents](/img/posts/2023-04-24-accessible-by-default/latency-map.png)
 
 This is even an issue with request latency! Most GitHub traffic is served from the US east coast, which means that our mostly US-based staff does not experience the lag time our customers in, say, Australia, do.
 
