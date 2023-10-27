@@ -3,7 +3,7 @@ layout: post
 title: "Conference proposal: Accessible by default"
 ---
 
-_This proposal was accepted for [RailsConf 2023](https://railsconf.org) and [Rocky Mountain Ruby 2023](https://youtube.com/watch?v=8tR3LJ2cEsE)._ [Download slides](/talks/2023-accessible-by-default/slides.key) [View blog post version](/2023/04/21/accessible-by-default.html)
+_This proposal was accepted for [RailsConf 2023](https://youtu.be/4j2zlvE_Yj8?si=5oNefsQWqyUyWMMa) and [Rocky Mountain Ruby 2023](https://youtube.com/watch?v=8tR3LJ2cEsE)._ [Download slides](/talks/2023-accessible-by-default/slides.key) [View blog post version](/2023/04/21/accessible-by-default.html)
 
 ## Abstract
 
