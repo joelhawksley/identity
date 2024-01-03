@@ -35,11 +35,11 @@ We collect: Natural and synthetic wine bottle corks.
 
 ![Stationery items we recycle](/img/recycle/stationery.png)
 
-### Stationery supplies
+### Pens, pencils, and markers
 
-We collect: All brands of _empty_ writing instruments, glue sticks, watercolor dispensers, paint sets, and packaging for all of these items.
+We collect: All brands of _empty_ pens, pencils, and markers.
 
-Please note that white-out and free ink markers are not accepted.
+Please note that we no longer collect all other art supplies.
 
 <br/><br/>
 
@@ -74,11 +74,3 @@ We collect: All brands of blades and razors (systems and disposable units, and r
 ### Performance nutrition packets
 
 We collect: All brands of performance nutrition packets and packaging, including those for gels, chews, drink mixes, protein bars, and stroopwafels.
-
-<br/><br/>
-
-![Home food storage containers we recycle](/img/recycle/foodstorage.jpg)
-
-### Home food storage containers
-
-We collect: All brands of well-used food storage containers.
