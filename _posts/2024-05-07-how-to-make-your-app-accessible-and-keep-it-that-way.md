@@ -3,7 +3,7 @@ layout: post
 title: "How to make your application accessible (and keep it that way!)"
 ---
 
-_The following is an approximate transcript of my RailsConf 2024 talk, How to make your application accessible (and keep it that way!)._
+_The following is an approximate transcript of my RailsConf 2024 and Rocky Mountain Ruby 2024 talk, How to make your application accessible (and keep it that way!)._
 
 One of the things I love the most about the Ruby community is how caring and welcoming we are. While programmers are often stereotyped as out of touch, I’m so proud of how we’ve come to value inclusivity.
 
