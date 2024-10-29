@@ -6,4 +6,4 @@ period: "2013-present"
 position: 2
 ---
 
-Wanting to minimize use of my phone around the house, I built Timeframe, an e-paper calendar and weather display.
+Wanting to minimize use of my phone around the house, I built [Timeframe](https://github.com/joelhawksley/timeframe), an e-paper calendar and weather display. I'm currently working to migrate it to be a Home Assistant add-on, which will require [changes](https://github.com/home-assistant/core/pull/128900) to Home Assistant.
