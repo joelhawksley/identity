@@ -124,8 +124,46 @@
       .projects img {
         border: 1px solid lightgray;
       }
+
+      .presentation {
+        margin-bottom: 2rem;
+      }
+
+      table.slides tr {
+        margin-bottom: 20px;
+      }
+
+      table.slides td {
+        padding: 10px;
+        vertical-align: top;
+        width: 50%;
+        border-top: 1px solid grey;
+      }
+
+      @media(max-width: 700px) {
+        table.slides tr {
+          display: block;
+          margin-bottom: 40px;
+        }
+        table.slides td {
+          display: block;
+          width: initial;
+        }
+      }
+
+      table.slides img {
+        max-width: 100%;
+      }
+
+      footer {
+        border-top: 1px solid #ccc;
+      }
+      footer p {
+        text-align: center;
+        font-size: 0.8rem;
+      }
     </style>
-    <link rel="stylesheet" href="/github.css">
+    <link rel="stylesheet" href="./github.css">
   </head>
   <body>
     <header style="font-size:1rem;margin:0 0 4rem;line-height:1;padding-top:2rem;">
