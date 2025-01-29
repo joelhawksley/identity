@@ -1,0 +1,27 @@
+---
+layout: default
+---
+{{ content }}
+<h2>Writing</h2>
+<ul class="posts">
+  {% for post in site.posts %}
+    <li>
+      <time>{{ post.date | date: "%Y-%m-%d" }}</time>
+      <a href="{{ post.url }}">{{ post.title }} </a>
+    </li>
+  {% endfor %}
+</ul>
+<h2>Projects</h2>
+<ul class="projects">
+  {% assign sorted = site.projects | sort: 'position' | reverse %}
+  {% for project in sorted %}
+    <li>
+      <img src="{{project.image}}" alt="{{project.alt}}" />
+      <div style="display: flex; justify-content: space-between;">
+        <h3>{{ project.name }}</h3>
+        <span class="period">{{ project.period }}</span>
+      </div>
+      {{ project.content | markdownify }}
+    </li>
+  {% endfor %}
+</ul>
