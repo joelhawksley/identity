@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{% if page.title %}{{ page.title }} - {% endif %}Joel Hawksley</title>
+    <meta name="description" content="Joel Hawksley is a software engineer based in Colorado.">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <meta content="Joel Hawksley" name="author">
+    <meta content=#fff name=theme-color>
+    <meta content="width=device-width,minimum-scale=1" name=viewport>
+    <meta content="hawksley.org" property="og:site_name">
+    <meta content="joel@hawksley.org" property="og:email">
+    <meta content=blog property=og:type>
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
+    <style>
+      :root {
+        --mono-font: San Francisco Mono, Monaco, "Consolas", "Lucida Console", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+        --sans-font: -apple-system, BlinkMacSystemFont, "avenir next", avenir,helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif
+      }
+
+      body {
+        margin: 0 auto;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        line-height: 1.6;
+        font-size: 1rem;
+        font-family: var(--sans-font);
+        max-width: 40rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      h1, h2, h4 {
+        margin-bottom: .5rem;
+        line-height: 1.25;
+        font-weight: 600;
+      }
+
+      h1 {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        padding-bottom: 0;
+        margin-top: 2rem;
+      }
+
+      h3 {
+        font-size: 1rem;
+        margin-bottom: 0;
+      }
+
+      blockquote {
+        border-left: 5px solid lightgray;
+        margin-inline-start: 0;
+        padding-inline-start: 1.5rem;
+        font-style: italic;
+      }
+
+      h4 {
+        font-size: 1rem;
+      }
+
+      img {
+        width: 100%;
+        max-width: 40rem;
+      }
+
+      nav {
+        margin-left: .75rem;
+        margin-bottom: 2rem;
+      }
+
+      p {
+        margin-top: 0;
+      }
+
+      nav a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 0 .25rem;
+      }
+
+      .highlight {
+        white-space: break-spaces;
+      }
+
+      time {
+        font-variant-numeric: tabular-nums;
+      }
+
+      time.subhead {
+        margin-bottom: 1em;
+        display: inline-block;
+      }
+
+      ul.projects, ul.posts {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .posts li {
+        margin: 0.1rem 0;
+      }
+
+      .projects h3 {
+        margin: 0;
+      }
+
+      .projects .period {
+        opacity: 0.6;
+        font-size: 0.8rem;
+      }
+
+      .projects li {
+        margin: 1rem 0 3rem;
+      }
+
+      .projects img {
+        border: 1px solid lightgray;
+      }
+
+      .presentation {
+        margin-bottom: 2rem;
+      }
+
+      table.slides {
+        border: none;
+        border-collapse: collapse;
+      }
+
+      table.slides tr {
+        margin-bottom: 20px;
+      }
+
+      table.slides td {
+        vertical-align: top;
+        width: 50%;
+        border-top: 1px solid grey;
+      }
+
+      table.slides td.note {
+        padding: 10px 0 10px 10px;
+      }
+
+      @media(max-width: 700px) {
+        table.slides tr {
+          display: block;
+          margin-bottom: 40px;
+        }
+        table.slides td {
+          display: block;
+          width: initial;
+        }
+
+        table.slides td.note {
+          padding: 10px 0;
+        }
+      }
+
+      table.slides img {
+        max-width: 100%;
+      }
+
+      footer {
+        border-top: 1px solid #ccc;
+      }
+
+      footer p {
+        text-align: center;
+        font-size: 0.8rem;
+      }
+    </style>
+    <link rel="stylesheet" href="./code.css">
+  </head>
+  <body>
+    <header style="font-size:1rem;margin:0 0 4rem;line-height:1;padding-top:2rem;">
+      <span style="font-weight:bold;text-decoration:none;color:black;">Joel Hawksley</span> /
+      <a href="mailto:joel@hawksley.org">joel@hawksley.org</a>
+      {% if page.layout != "home" %}
+        / <a href="/">&#8592;home</a>
+      {% endif %}
+    </header>
+    {{ content }}
+    <footer style="font-size: .8rem; margin-bottom: 2rem;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley | <a href="/feed.xml" target="_blank">RSS</a></footer>
+  </body>
+</html>
