@@ -6,7 +6,7 @@ layout: home
 
 ### Work
 
-I'm a staff software engineer at [GitHub](https://github.com/joelhawksley). I also lead development of the [ViewComponent](https://github.com/github/view_component) framework. I've previously worked at [Galvanize](https://www.galvanize.com/), [Wunder Capital](https://www.wundercapital.com), and [MojoTech](https://www.mojotech.com).
+I'm a staff software engineer at [GitHub](https://github.com/joelhawksley) on the Ruby Architecture team. I also lead development of the [ViewComponent](https://github.com/github/view_component) framework. I've previously worked at [Galvanize](https://www.galvanize.com/), [Wunder Capital](https://www.wundercapital.com), and [MojoTech](https://www.mojotech.com).
 
 ### Career
 
