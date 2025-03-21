@@ -3,7 +3,7 @@ layout: post
 title: Lessons from 5 years of UI architecture at GitHub
 ---
 
-_Slides from my 2025 talk, as presented at SF Ruby. I also presented a variant of this talk at Boulder Ruby and Vancouver Ruby._
+_Slides from my 2025 talk, as presented at SF Ruby. I also presented a variant of this talk at Boulder Ruby, Vancouver Ruby, Geneva.rb, and Toronto Ruby._
 
 <div class="presentation">
   <table class="slides" cellspacing="0" cellpadding="0">
