@@ -69,6 +69,14 @@ We collect: All brands of blades and razors (systems and disposable units, and r
 
 <br/><br/>
 
+![Squeezable snack plastic pouches and caps we recycle](/img/recycle/pouches.png)
+
+### Squeezable snack plastic pouches and caps
+
+We collect: All brands of single-use squeezable snack plastic pouches and caps.
+
+<br/><br/>
+
 ![Performance nutrition products we recycle](/img/recycle/performancenutrition.jpg)
 
 ### Performance nutrition packets
