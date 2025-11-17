@@ -20,25 +20,45 @@ How I got here
   At my next job, a startup, I was hired at and remained at Senior.
   A year later, I left for another startup. My title was also Senior. Six months later, I was promoted to Lead Engineer. There were maybe two dozen engineers and as a Lead, I reported to the VP of engineering. I had one engineer who reported to me.
   6 months after that, I joined GitHub as a no-prefix "engineer", ostensibly going down two levels, but for decent pay increase. GitHub had a few hundred (maybe ~300) engineers at the time. We had a total of eight engineering levels: Intern, 1/2/3, Senior, Staff, Principal, and Distinguished. Our system remains more or less the same today with ~1,000 engineers.
+  Mention Levels.fyi
 Table of contents
-  I'll start by trying to define the role, then share a collection of habits I believe are critical to thriving as staff.
+  I'll start by trying to define the role with examples from my experience, then share a collection of habits I believe are critical to thriving as staff.
 Defining the role
   Before I get to far, a quick survey: how many people here would call themselves Junior? Senior? Staff plus?
   What makes a engineer staff? Well, it's not senior. And it's not principal. Perhaps it's best to use the term staff+ to encompass the roles beyond senior. In my experience, the staff level is _beyond_ terminal, in that it's totally OK to never go beyond Senior for your entire career.
 
   Scope, breadth vs. depth
+  Longer time horizon, cross-team
 Habits
   Align with archetypes
     Use the archetypes to align with your manager
     I've struggled with this
+    Archetype example
+      Right Hand
+        Manager leave coverage
+      Solver
+        ViewComponent
+      Tech Lead
+        A11y
+      Architect
+        Primer ViewComponents
+    Really about making sure you and your manager agree about what your job is. True of all levels.
   Predict the future
+    Keep up on trends internally and externally. hacker newsletter, ruby news, a11y news when I was working in a11y
+    Opportunity is unevenly distributed across time/teams
   Speak truth to power
     As an IC, I've often had moments where I felt like leadership didn't care enough about what I cared about. Whether it was code quality, tech debt, software craftsmanship.
 
     Check and balance on product by surfacing and justifying engineering-driven priorities.
+    Use of stats
+      Example: mining request data
   Disambiguate, then delegate
     Solving ambiguity through research, proofs of concept, reading papers, connecting with industry peers
   Keep a journal
+  Build conceptual consensus
+    Not consensus. Shared mental models. bruce - what is the problem here? how will we know we've solved it?
+  Generate energy
+    ViewComponent migration project was a big part of my staff packet
 
 
 
