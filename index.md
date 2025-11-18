@@ -2,11 +2,11 @@
 layout: home
 ---
 
-![Joel standing on a stage next to a TV on a stand with a presentation slide that says "Breaking up with the bundle"](/img/about/speaking.jpg)
+![Joel standing on a stage next to a projection screen with the GitHub logo. There are about 100 people in the audience"](/img/about/speaking.jpg)
 
-### Work
+### Now
 
-I'm a staff software engineer at [GitHub](https://github.com/joelhawksley) on the Ruby Architecture team. I also lead development of the [ViewComponent](https://github.com/github/view_component) framework. I've previously worked at [Galvanize](https://www.galvanize.com/), [Wunder Capital](https://www.wundercapital.com), and [MojoTech](https://www.mojotech.com).
+I'm a staff software engineer at [GitHub](https://github.com/joelhawksley), focusing on the health of our Ruby on Rails monolith. I also lead development of the [ViewComponent](https://github.com/github/view_component) framework.
 
 ### Career
 
