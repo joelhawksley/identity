@@ -62,3 +62,6 @@ Habits
 
 
 
+promotions through mentoring
+hiring - served as hiring manager
+contractors
