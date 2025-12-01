@@ -3,9 +3,17 @@ layout: post
 title: 7 Habits of a Thriving Staff Engineer
 ---
 
+Beyond Senior: Life at Staff
+Beyond Senior: Considering the staff path
+
 _A transcript of my 2026 talk, as presented at Boulder Ruby._
 
+Abstract
+  You’re at senior, but you’re hungry for more. What’s next? In this talk, we’ll attempt to define the staff-plus role and help you decide if it's for you.
+
 Intro
+  For many software engineers, the senior role is a crossroads. At many companies, it's the highest you can go as an individual contributor. You basically have one option for promotion: management. But it doesn't have to be this way. There is another path: staff-plus. Your journey as an individual contributor doesn't have to stop at senior.
+
   A little over a year ago, Jesse from Stripe gave a talk here about what it means to be a senior engineer. At the time, I took a mental note about doing a similar talk for the staff level.
 
   This past year, I took paternity leave to bond with our second child. In my time away from work, I spoke at Rocky Mountain Ruby. It was great to see many of you there! At the speaker dinner the night before the conference, I was chatting with Becki about our jobs as staff engineers and we quickly realized how different they were!
@@ -16,10 +24,10 @@ Intro
 
   Of course, what I'm sharing here is just my opinion and not that of GitHub's or any of my previous employers.
 How I got here
-  I started my software career at MojoTech (a software consultancy) first as a level-one apprentice. From there, I promoted to "developer", no prefix. Another year later, I was promoted to "lead developer," which was more or less Senior. There were no levels beyond that.
-  At my next job, a startup, I was hired at and remained at Senior.
-  A year later, I left for another startup. My title was also Senior. Six months later, I was promoted to Lead Engineer. There were maybe two dozen engineers and as a Lead, I reported to the VP of engineering. I had one engineer who reported to me.
-  6 months after that, I joined GitHub as a no-prefix "engineer", ostensibly going down two levels, but for decent pay increase. GitHub had a few hundred (maybe ~300) engineers at the time. We had a total of eight engineering levels: Intern, 1/2/3, Senior, Staff, Principal, and Distinguished. Our system remains more or less the same today with ~1,000 engineers.
+  I got into software engineering through the side door. After a short but thrilling career as a news photographer, I started my career at MojoTech (a software consultancy) first as a level-one apprentice, making about $70k. From there, I promoted to "developer", no prefix, making about $85k. Another year later, I was promoted to "lead developer," which was more or less Senior, making about $110k. There were no levels beyond that.
+  At my next job, a startup, I was hired at and remained at Senior, but made $136k.
+  A year later, I left for another startup. My title was also Senior, making $166k. Six months later, I was promoted to Lead Engineer. There were maybe two dozen engineers and as a Lead, I reported to the VP of engineering. I had one engineer who reported to me.
+  6 months after that, I joined GitHub as a no-prefix "engineer", ostensibly going down two levels, but for decent pay increase, to $210k. GitHub had a few hundred (maybe ~300) engineers at the time. We had a total of eight engineering levels: Intern, 1/2/3, Senior, Staff, Principal, and Distinguished. Our system remains more or less the same today with ~1,000 engineers. Since then, I've been promoted to senior ($275k) and staff ($345k)
   Mention Levels.fyi
 Table of contents
   I'll start by trying to define the role with examples from my experience, then share a collection of habits I believe are critical to thriving as staff.
@@ -32,6 +40,7 @@ Defining the role
 Habits
   Align with archetypes
     Use the archetypes to align with your manager
+    "Any time im doubting myself or feeling down", shouldn't feel bad about not being the other ones
     I've struggled with this
     Archetype example
       Right Hand
@@ -47,21 +56,54 @@ Habits
     Keep up on trends internally and externally. hacker newsletter, ruby news, a11y news when I was working in a11y
     Opportunity is unevenly distributed across time/teams
   Speak truth to power
-    As an IC, I've often had moments where I felt like leadership didn't care enough about what I cared about. Whether it was code quality, tech debt, software craftsmanship.
+    As an IC, I've often had moments where I felt like leadership didn't care enough about what I cared about. Whether it was code quality, tech debt, software craftsmanship. Advocate outside team/discipline. Come with data or lead someone down the same path, see if they have the same conclusion. Ask questions that you already have answer to, see if they agree.
 
     Check and balance on product by surfacing and justifying engineering-driven priorities.
     Use of stats
       Example: mining request data
   Disambiguate, then delegate
-    Solving ambiguity through research, proofs of concept, reading papers, connecting with industry peers
+    CSS modules example - knew we wanted to leave styled components, decided to use CSS modules. Tasked with migrating all components and dotcom code without breaking anything. Delegated work to others in phases and chunks
+    Solving ambiguity through research, proofs of concept, reading papers, trying new technologies (CSS layers) connecting with industry peers
   Keep a journal
   Build conceptual consensus
     Not consensus. Shared mental models. bruce - what is the problem here? how will we know we've solved it?
   Generate energy
+    Keeping the rhythm
+    Organizing complex moving parts of large migrations
     ViewComponent migration project was a big part of my staff packet
 
+Get asked to weigh in on things a lot, need to be careful pulling rank. Sometimes management wants you to break a tie
 
+With so many different archetypes, it's really easy to feel like you aren't doing enough
 
-promotions through mentoring
+Able to be relied on to deliver
+  responsive
+  dark mode
+
+Up or out pressure
+
+Early or late promo
+  some people don't press for it
+    at some point you become so senior that it's unfair for new seniors to have the same title
+
+Good reviews
+  "wealth of knowledge"
+    should learn something in interviews
+
+Unequal opportunity
+  Better project leads to better perf
+  Risky to take promo if only short term need
+  Team might not need staff work
+  Or even company
+
+Good perf
+  Hit a lucky spot with CSS modules
+
+Bad perf
+  Very few critiques
+
+promotions through mentoring and pairing on regular basis examples
 hiring - served as hiring manager
 contractors
+Read all performance reviews for references and anecdotes
+"invented rope"
