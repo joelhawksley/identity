@@ -68,30 +68,24 @@ Defining the role
 
   A Solver "digs deep into arbitrarily complex problems and finds an appropriate path forward. Some focus on a given area for long periods. Others bounce from hotspot to hotspot as guided by organizational leadership." My initial work on ViewComponent was this. I worked with Aaron Patterson to develop a novel solution and wrote the upstream patch in Rails to make it work without a monkey patch.
 
-  A Right Hand "extends an executive’s attention, borrowing their scope and authority to operate particularly complex organizations. They provide additional leadership bandwidth to leaders of large-scale organizations." This is a role I've fallen into a lot. For example, I wrote the initial draft of my director's quarterly/semester/yearly/multi-year plans, surfacing ideas proposed by IC engineers in our organization. I spent half a year doing this for the Accessibility effort at GitHub. It can also mean mediating technical disagreements between engineers.
+  A Right Hand "extends an executive’s attention, borrowing their scope and authority to operate particularly complex organizations. They provide additional leadership bandwidth to leaders of large-scale organizations." This is a role I've fallen into a lot. For example, I wrote the initial draft of my director's quarterly/semester/yearly/multi-year plans, surfacing ideas proposed by IC engineers in our organization. I spent half a year doing this for the Accessibility effort at GitHub. For example, I was given the ambiguous task of defining our strategy for prioritizing which parts of our application to audit and remediate first. I used our data warehouse to produce a report showing the distribution of traffic across our 2,000+ pages, highlighting which pages were used by the average user in a given week. We identified a few dozen product areas and prioritized working with those teams.
 
-
+  So that's how I see the role. More scope, playing a particular archetype. Sounds pretty fun, right? I think so. Now here are some habits that have helped me along the way.
 Habits
   Align with archetypes
-    Use the archetypes to align with your manager
-    "Any time im doubting myself or feeling down", shouldn't feel bad about not being the other ones
-    I've struggled with this
-    Really about making sure you and your manager agree about what your job is. True of all levels.
-  Predict the future
-    Keep up on trends internally and externally. hacker newsletter, ruby news, a11y news when I was working in a11y
-    Opportunity is unevenly distributed across time/teams
-  Speak truth to power
-    As an IC, I've often had moments where I felt like leadership didn't care enough about what I cared about. Whether it was code quality, tech debt, software craftsmanship. Advocate outside team/discipline. Come with data or lead someone down the same path, see if they have the same conclusion. Ask questions that you already have answer to, see if they agree.
+    I like to use the archetypes to align with my manager to make sure our expectations are the same for a given project. I think this is true of all levels, really. We should be regularly validating that our manager agrees with how we think about our work. Something I've struggled with along these lines is seeing other staff engineers do impressive things in other archetypes and feeling like an imposter for not being like them. This is nearly always the case, as there is rarely a business need for two staff engineers that do the same thing.
 
-    Check and balance on product by surfacing and justifying engineering-driven priorities.
-    Use of stats
-      Example: mining request data
+    It also speaks to a conundrum I've seen many seniors looking for promotion struggle with: there has to be a business need for a staff role. So if you're on a team with other staff engineers, it's generally harder than if no one else is staff. I'll be the first to admit that it was to my advantage to be the first staff engineer under my promoting director. Either, there might not be any staff-level work in your area, or even your company!
+  Predict the future
+    Part of having impact at a breadth and depth beyond senior is looking towards the future. What are the internal trends (technical and non-technical) that could affect our part of the company? What about external trends? Are there new technologies we should experiment with? What is our competition doing technically that could make our customers want to use their product? To avoid drinking from the firehose that is Twitter/Bluesky/Hacker News, I subscribe to the Hacker Newsletter, Ruby Weekly, and other topic-specific newsletters (such as accessibility news). This was especially important when working on accessibility as the legal landscape is constantly evolving in that area.
+  Speak truth to power
+    As an IC, I've often had moments where I felt like leadership didn't care enough about what I cared about. Whether it was code quality, tech debt, software craftsmanship. I see part of our job as staff engineers as representing the technical concerns of the engineering discipline to people in power outside of engineering. To be a check and balance on the product discipline by surfacing and justifying engineering-driven priorities. How to do this depends greatly on the situation, but using data is a way of creating a shared understanding of a problem.
   Disambiguate, then delegate
+    Build conceptual consensus
+    Not consensus. Shared mental models. bruce - what is the problem here? how will we know we've solved it?
     CSS modules example - knew we wanted to leave styled components, decided to use CSS modules. Tasked with migrating all components and dotcom code without breaking anything. Delegated work to others in phases and chunks
     Solving ambiguity through research, proofs of concept, reading papers, trying new technologies (CSS layers) connecting with industry peers
   Keep a journal
-  Build conceptual consensus
-    Not consensus. Shared mental models. bruce - what is the problem here? how will we know we've solved it?
   Generate energy
     Keeping the rhythm
     Organizing complex moving parts of large migrations
