@@ -94,14 +94,3 @@ Habits
     In meetings, this can mean pushing for clear definitions of problems, proposed solutions, and success criteria. For example, I was given the ambiguous task of defining our strategy for prioritizing which parts of our application to audit and remediate first. I used our data warehouse to produce a report showing the distribution of traffic across our 2,000+ pages, highlighting which pages were used by the average user in a given week. We identified a few dozen product areas and prioritized working with those teams.
   Deliver success
     We lean on staff engineers to come through when we need it most. Whether something has to ship on time, a critical project is stalled, or a service is failing SLA in novel way, we rely on staff engineers to solve our trickiest problems. This pressure is not for everyone! I've only had a couple projects like this in my time here, but they have all been a thrill. For Jon, examples of critical projects include migrating all of GitHub.com to be responsive and implementing dark mode, all with minimal regressions. Delivering success is the path to being promoted to staff. Do enough impactful things, and at some point you become so senior that it's unfair for new seniors to have the same title.
-
-Inflation-adjusted numbers (fall 2025):
-Apprentice making about $70k
-Developer making about $85k
-Lead Dev making about $110k
-Wunder senior, but made $136k
-Galvanize senior, making $166k
-GitHub mid, $210k
-GitHub senior, $275k
-GitHub staff, $345k
-
