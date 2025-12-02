@@ -12,7 +12,7 @@ Abstract
   You’re at senior, but you’re hungry for more. What’s next? In this talk, we’ll attempt to define the staff-plus role and help you decide if it's for you.
 
 Intro
-  For many software engineers, the senior role is a crossroads. At many companies, it's the highest you can go as an individual contributor. You basically have one option for promotion: management. But it doesn't have to be this way. There is another path: staff-plus. Your journey as an individual contributor doesn't have to stop at senior.
+  For many software engineers, the senior role is a crossroads. At many companies, it's the highest you can go as an individual contributor. You basically have one option for promotion: management. But it doesn't have to be this way. Your journey as an individual contributor doesn't have to stop at senior. There is another path: staff-plus.
 
   A little over a year ago, Jesse from Stripe gave a talk here about what it means to be a senior engineer. At the time, I took a mental note about doing a similar talk for the staff level.
 
@@ -23,16 +23,22 @@ Intro
   I've been a staff engineer for four years now. I am regularly asked: What is your job? How do I get promoted to staff? Do I want to be a staff engineer? Today I'm going to attempt to answer those questions, based on my experience and conversations I've had with other staff engineers inside and outside GitHub. My selfish goal is that you'll poke tons of holes in everything I have to say so that you can help me improve my practice!
 
   Of course, what I'm sharing here is just my opinion and not that of GitHub's or any of my previous employers.
-How I got here
-  I got into software engineering through the side door. After a short but thrilling career as a news photographer, I started my career at MojoTech (a software consultancy) first as a level-one apprentice, making about $70k. From there, I promoted to "developer", no prefix, making about $85k. Another year later, I was promoted to "lead developer," which was more or less Senior, making about $110k. There were no levels beyond that.
-  At my next job, a startup, I was hired at and remained at Senior, but made $136k.
-  A year later, I left for another startup. My title was also Senior, making $166k. Six months later, I was promoted to Lead Engineer. There were maybe two dozen engineers and as a Lead, I reported to the VP of engineering. I had one engineer who reported to me.
-  6 months after that, I joined GitHub as a no-prefix "engineer", ostensibly going down two levels, but for decent pay increase, to $210k. GitHub had a few hundred (maybe ~300) engineers at the time. We had a total of eight engineering levels: Intern, 1/2/3, Senior, Staff, Principal, and Distinguished. Our system remains more or less the same today with ~1,000 engineers. Since then, I've been promoted to senior ($275k) and staff ($345k)
-  Mention Levels.fyi
-Table of contents
-  I'll start by trying to define the role with examples from my experience, then share a collection of habits I believe are critical to thriving as staff.
-Defining the role
+
   Before I get to far, a quick survey: how many people here would call themselves Junior? Senior? Staff plus?
+Table of contents
+  How I got to staff
+  Attempt to define role
+    I'll start by trying to define the role with examples from my experience,
+  Tips and tricks
+    then share a collection of habits I believe are critical to thriving as staff.
+How I got here
+  I got into software engineering through the side door. After a short but thrilling career as a news photographer, I started my career at MojoTech (a software consultancy) first as a level-one apprentice. From there, I promoted to "developer", no prefix. Another year later, I was promoted to "lead developer," which was more or less Senior. There were no levels beyond that.
+  At my next job, a startup, I was hired at and remained at Senior.
+  A year later, I left for another startup. My title was also Senior. Six months later, I was promoted to Lead Engineer. There were maybe two dozen engineers and as a Lead, I reported to the VP of engineering. I had one engineer who reported to me.
+  6 months after that, I joined GitHub as a no-prefix "engineer", ostensibly going down two levels, but for decent pay increase. GitHub had a few hundred (maybe ~300) engineers at the time. We had a total of eight engineering levels: Intern, 1/2/3, Senior, Staff, Principal, and Distinguished. Our system remains more or less the same today with ~1,000 engineers.
+  My path to a staff role at GitHub started a couple of months into the job. I had the idea for ViewComponent and I pitched it to my manager Zaid, who gave me 20% time to pursue it. After a few months, I had a working prototype, which was the basis of my first presentation at Boulder Ruby!
+  A year and a half after I joined, I was promoted to senior in large part due to the ViewComponent project. While at an all-company offsite, I pitched Diana, the leader of the design systems organization, on building out our design system in ViewComponent. A few months later, I asked to join her team to work on ViewComponent full time, which was granted. That year was 2020. As the summer rolled around, there was a request for proposals for projects to address technical debt in our monolith, and I proposed having folks build and adopt ViewComponents for our design system to increase the consistency and quality of our user interfaces. I ended up leading a "virtual team" of about a dozen engineers for half the year, building and adopting ViewComponents. The following spring, I was promoted to staff for this work, about three years after joining GitHub.
+Defining the role
   What makes a engineer staff? Well, it's not senior. And it's not principal. Perhaps it's best to use the term staff+ to encompass the roles beyond senior. In my experience, the staff level is _beyond_ terminal, in that it's totally OK to never go beyond Senior for your entire career.
 
   Scope, breadth vs. depth
@@ -107,3 +113,14 @@ hiring - served as hiring manager
 contractors
 Read all performance reviews for references and anecdotes
 "invented rope"
+Mention Levels.fyi
+
+Inflation-adjusted numbers (fall 2025):
+Apprentice making about $70k
+Developer making about $85k
+Lead Dev making about $110k
+Wunder senior, but made $136k
+Galvanize senior, making $166k
+GitHub mid, $210k
+GitHub senior, $275k
+GitHub staff, $345k
