@@ -41,7 +41,12 @@ How I got here
 Defining the role
   What makes a engineer staff? Well, it's not senior. And it's not principal. Perhaps it's best to use the term staff+ to encompass the roles beyond senior. In my experience, the staff level is _beyond_ terminal, in that it's totally OK to never go beyond Senior for your entire career.
 
-  Scope, breadth vs. depth
+  In general, staff engineers work at a broader _scope_ than senior engineers, in breadth or depth.
+
+  While a senior engineer typically works at the team level, a staff engineer might work on problems that span multiple teams, potentially across different organizations. They might even report to a director instead of a team-level manager.
+
+
+
   Longer time horizon, cross-team
 Habits
   Align with archetypes
