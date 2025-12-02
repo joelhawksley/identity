@@ -37,7 +37,7 @@ How I got here
   A year later, I left for another startup. My title was also Senior. Six months later, I was promoted to Lead Engineer. There were maybe two dozen engineers and as a Lead, I reported to the VP of engineering. I had one engineer who reported to me.
   6 months after that, I joined GitHub as a no-prefix "engineer", ostensibly going down two levels, but for decent pay increase. GitHub had a few hundred (maybe ~300) engineers at the time. We had a total of eight engineering levels: Intern, 1/2/3, Senior, Staff, Principal, and Distinguished. Our system remains more or less the same today with ~1,000 engineers.
   My path to a staff role at GitHub started a couple of months into the job. I had the idea for ViewComponent and I pitched it to my manager Zaid, who gave me 20% time to pursue it. After a few months, I had a working prototype, which was the basis of my first presentation at Boulder Ruby!
-  A year and a half after I joined, I was promoted to senior in large part due to the ViewComponent project. While at an all-company offsite, I pitched Diana, the leader of the design systems organization, on building out our design system in ViewComponent. A few months later, I asked to join her team to work on ViewComponent full time, which was granted. That year was 2020. As the summer rolled around, there was a request for proposals for projects to address technical debt in our monolith, and I proposed having folks build and adopt ViewComponents for our design system to increase the consistency and quality of our user interfaces. I ended up leading a "virtual team" of about a dozen engineers for half the year, building and adopting ViewComponents. The following spring, I was promoted to staff for this work, about three years after joining GitHub.
+  A year and a half after I joined, I was promoted to senior in large part due to the ViewComponent project. While at an all-company offsite, I pitched Diana, the leader of the design systems organization, on building out our design system in ViewComponent. A few months later, I asked to join her team to work on ViewComponent full time, which was granted. That year was 2020. As the summer rolled around, there was a request for proposals for projects to address technical debt in our monolith, and I proposed having folks build and adopt ViewComponents for our design system to increase the consistency and quality of our user interfaces. I ended up leading a "virtual team" of about a dozen engineers for half the year, building and adopting ViewComponents. The following spring, I was promoted to staff for this work, about three years after joining GitHub. I have since reported to six different directors in the past five years.
 Defining the role
   What makes a engineer staff? Well, it's not senior. And it's not principal. Perhaps it's best to use the term staff+ to encompass the roles beyond senior. In my experience, the staff level is _beyond_ terminal, in that it's totally OK to never go beyond Senior for your entire career.
 
@@ -45,9 +45,24 @@ Defining the role
 
   While a senior engineer typically works at the team level, a staff engineer might work on problems that span multiple teams, potentially across different organizations. They might even report to a director instead of a team-level manager.
 
+  Or, they might go deep. One analogy we use for technical depth at GitHub is about rope:
 
+|   |   |
+|---|---|
+|Junior         |Learns about rope                                  |
+|Mid            |Can tie basic knots                                |
+|Senior         |Calculates rope strength, knows a lot about knots  |
+|Staff          |Understands rope making                            |
+|Principal      |Knows more about rope than you ever will           |
+|Distinguished  |Invented Nylon                                     |
 
-  Longer time horizon, cross-team
+> https://rewards.aon.com/en-us/insights/compensation-101/how-much-to-pay-rewards-program-design
+
+  Or, they go long. They might work on problems that take months or even years to solve.
+
+  Perhaps the best definition of the staff+ role is the archetypes from Will Larson's Staff Engineer: Right Hand, Solver, Tech Lead, and Architect.
+
+  A Right Hand "extends an executive’s attention, borrowing their scope and authority to operate particularly complex organizations. They provide additional leadership bandwidth to leaders of large-scale organizations." This is a role I've fallen into a lot. Some Right Hand projects have included covering for one of my Director's managers' paternity leave, doing 1:1s with their reports, serving as a hiring manager,
 Habits
   Align with archetypes
     Use the archetypes to align with your manager
