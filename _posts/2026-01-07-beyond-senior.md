@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 7 Habits of a Thriving Staff Engineer
+title: Beyond Senior: Considering the staff+ path
 ---
 
 Beyond Senior: Life at Staff
@@ -31,15 +31,16 @@ Table of contents
     I'll start by trying to define the role with examples from my experience,
   Tips and tricks
     then share a collection of habits I believe are critical to thriving as staff.
+
 How I got here
   I got into software engineering through the side door. After a short but thrilling career as a news photographer, I started my career at MojoTech (a software consultancy) first as a level-one apprentice. From there, I promoted to "developer", no prefix. Another year later, I was promoted to "lead developer," which was more or less Senior. There were no levels beyond that.
   At my next job, a startup, I was hired at and remained at Senior.
   A year later, I left for another startup. My title was also Senior. Six months later, I was promoted to Lead Engineer. There were maybe two dozen engineers and as a Lead, I reported to the VP of engineering. I had one engineer who reported to me.
-  6 months after that, I joined GitHub as a no-prefix "engineer", ostensibly going down two levels, but for decent pay increase. GitHub had a few hundred (maybe ~300) engineers at the time. We had a total of eight engineering levels: Intern, 1/2/3, Senior, Staff, Principal, and Distinguished. Our system remains more or less the same today with ~1,000 engineers.
+  6 months after that, I joined GitHub as a no-prefix "engineer", ostensibly going down two levels, but for decent pay increase. GitHub had a few hundred (maybe ~300) engineers at the time. We had a total of eight engineering levels: Intern, 1/2/3, Senior, Staff, Principal, and Distinguished (Mention Levels.fyi). Our system remains more or less the same today with ~1,000 engineers.
   My path to a staff role at GitHub started a couple of months into the job. I had the idea for ViewComponent and I pitched it to my manager Zaid, who gave me 20% time to pursue it. After a few months, I had a working prototype, which was the basis of my first presentation at Boulder Ruby!
-  A year and a half after I joined, I was promoted to senior in large part due to the ViewComponent project. While at an all-company offsite, I pitched Diana, the leader of the design systems organization, on building out our design system in ViewComponent. A few months later, I asked to join her team to work on ViewComponent full time, which was granted. That year was 2020. As the summer rolled around, there was a request for proposals for projects to address technical debt in our monolith, and I proposed having folks build and adopt ViewComponents for our design system to increase the consistency and quality of our user interfaces. I ended up leading a "virtual team" of about a dozen engineers for half the year, building and adopting ViewComponents. The following spring, I was promoted to staff for this work, about three years after joining GitHub. I have since reported to six different directors in the past five years.
+  A year and a half after I joined, I was promoted to senior in large part due to the ViewComponent project. While at an all-company offsite, I pitched Diana, the leader of the design systems organization, on building out our design system in ViewComponent. A few months later, I asked to join her team to work on ViewComponent full time, which was granted. That year was 2020. As the summer rolled around, there was a request for proposals for projects to address technical debt in our monolith, and I proposed having folks build and adopt ViewComponents for our design system to increase the consistency and quality of our user interfaces. I ended up leading a "virtual team" of about a dozen engineers for half the year, building and adopting ViewComponents. The following spring, I was promoted to staff for this work, about three years after joining GitHub. I have since reported to six different directors in the past five years,
 Defining the role
-  What makes a engineer staff? Well, it's not senior. And it's not principal. Perhaps it's best to use the term staff+ to encompass the roles beyond senior. In my experience, the staff level is _beyond_ terminal, in that it's totally OK to never go beyond Senior for your entire career.
+  What makes a engineer staff? Well, it's not senior. And it's not principal. Perhaps it's best to use the term staff+ to encompass the roles beyond senior. In my experience, the staff level is _beyond_ terminal, in that it's totally OK to never go beyond Senior for your entire career. At least at our company, I've yet to hear about someone at Senior being pressured to be promoted.
 
   In general, staff engineers work at a broader _scope_ than senior engineers, in breadth or depth.
 
@@ -68,65 +69,31 @@ Defining the role
 
   A Solver "digs deep into arbitrarily complex problems and finds an appropriate path forward. Some focus on a given area for long periods. Others bounce from hotspot to hotspot as guided by organizational leadership." My initial work on ViewComponent was this. I worked with Aaron Patterson to develop a novel solution and wrote the upstream patch in Rails to make it work without a monkey patch.
 
-  A Right Hand "extends an executive’s attention, borrowing their scope and authority to operate particularly complex organizations. They provide additional leadership bandwidth to leaders of large-scale organizations." This is a role I've fallen into a lot. For example, I wrote the initial draft of my director's quarterly/semester/yearly/multi-year plans, surfacing ideas proposed by IC engineers in our organization. I spent half a year doing this for the Accessibility effort at GitHub. For example, I was given the ambiguous task of defining our strategy for prioritizing which parts of our application to audit and remediate first. I used our data warehouse to produce a report showing the distribution of traffic across our 2,000+ pages, highlighting which pages were used by the average user in a given week. We identified a few dozen product areas and prioritized working with those teams.
+  A Right Hand "extends an executive’s attention, borrowing their scope and authority to operate particularly complex organizations. They provide additional leadership bandwidth to leaders of large-scale organizations." This is a role I've fallen into a lot. For example, I wrote the initial draft of my director's quarterly/semester/yearly/multi-year plans, surfacing ideas proposed by IC engineers in our organization. I also worked on proposals for opening new engineering roles, hiring contractors, and worked with third-party vendors to evaluate potential new tools and services.
 
   So that's how I see the role. More scope, playing a particular archetype. Sounds pretty fun, right? I think so. Now here are some habits that have helped me along the way.
 Habits
   Align with archetypes
     I like to use the archetypes to align with my manager to make sure our expectations are the same for a given project. I think this is true of all levels, really. We should be regularly validating that our manager agrees with how we think about our work. Something I've struggled with along these lines is seeing other staff engineers do impressive things in other archetypes and feeling like an imposter for not being like them. This is nearly always the case, as there is rarely a business need for two staff engineers that do the same thing.
 
-    It also speaks to a conundrum I've seen many seniors looking for promotion struggle with: there has to be a business need for a staff role. So if you're on a team with other staff engineers, it's generally harder than if no one else is staff. I'll be the first to admit that it was to my advantage to be the first staff engineer under my promoting director. Either, there might not be any staff-level work in your area, or even your company!
+    It also speaks to a conundrum I've seen many seniors looking for promotion struggle with: there has to be a business need for a staff role. So if you're on a team with other staff engineers, it's generally harder than if no one else is staff. I'll be the first to admit that it was to my advantage to be the first staff engineer under my promoting director. This can feel unfair, and it is! At some point, you need to do staff-level work to be promoted. There might not be any in your area, or even your company!
   Predict the future
-    Part of having impact at a breadth and depth beyond senior is looking towards the future. What are the internal trends (technical and non-technical) that could affect our part of the company? What about external trends? Are there new technologies we should experiment with? What is our competition doing technically that could make our customers want to use their product? To avoid drinking from the firehose that is Twitter/Bluesky/Hacker News, I subscribe to the Hacker Newsletter, Ruby Weekly, and other topic-specific newsletters (such as accessibility news). This was especially important when working on accessibility as the legal landscape is constantly evolving in that area.
+    Part of having impact at a breadth and depth beyond senior is looking towards the future. What are the internal trends (technical and non-technical) that could affect our part of the company? What about external trends? Are there new technologies we should experiment with? What is our competition doing technically that could make our customers want to use their product? To avoid drinking from the firehose that is Twitter/Bluesky/Hacker News, I subscribe to the Hacker Newsletter, Ruby Weekly, and other topic-specific newsletters (such as accessibility news). This was especially important when working on accessibility as the legal landscape is constantly evolving in that area. Successful staff engineers are often cited by colleagues as sources of knowledge. This even comes up in interviews: we look for staff engineer candidates to teach us something new during technical interviews.
   Speak truth to power
     As an IC, I've often had moments where I felt like leadership didn't care enough about what I cared about. Whether it was code quality, tech debt, software craftsmanship. I see part of our job as staff engineers as representing the technical concerns of the engineering discipline to people in power outside of engineering. To be a check and balance on the product discipline by surfacing and justifying engineering-driven priorities. How to do this depends greatly on the situation, but using data is a way of creating a shared understanding of a problem.
+
+    Sometimes this is literally what you are assigned to do. I find myself being asked to weigh in on things a lot, often to settle a disagreement. It can be a risky proposition. You don't want to parachute in and act like you know it all.
   Disambiguate, then delegate
-    Build conceptual consensus
-    Not consensus. Shared mental models. bruce - what is the problem here? how will we know we've solved it?
-    CSS modules example - knew we wanted to leave styled components, decided to use CSS modules. Tasked with migrating all components and dotcom code without breaking anything. Delegated work to others in phases and chunks
-    Solving ambiguity through research, proofs of concept, reading papers, trying new technologies (CSS layers) connecting with industry peers
+    I believe that a good staff+ engineer is continuously looking to downgrade the level of ambiguity in their work, with the goal of handing it off to someone else. Any time I'm handed a new problem, I ask myself: what will it take to have a senior or even a whole team work on this? Often, it comes through exploration of the space, perhaps through research, proofs of concept, reading papers, trying new technologies, and connecting with industry peers.
+
+    For example, my colleague Jon was tasked with finding a replacement for our usage of Styled Components. He looked to see what others in the industry were doing, tried some new technologies (CSS Layers), and did several proofs of concept before leading a team of a half dozen engineers to make the migration to CSS Modules.
   Keep a journal
   Generate energy
-    Keeping the rhythm
-    Organizing complex moving parts of large migrations
-    ViewComponent migration project was a big part of my staff packet
-
-Get asked to weigh in on things a lot, need to be careful pulling rank. Sometimes management wants you to break a tie
-
-With so many different archetypes, it's really easy to feel like you aren't doing enough
-
-Able to be relied on to deliver
-  responsive
-  dark mode
-
-Up or out pressure
-
-Early or late promo
-  some people don't press for it
-    at some point you become so senior that it's unfair for new seniors to have the same title
-
-Good reviews
-  "wealth of knowledge"
-    should learn something in interviews
-
-Unequal opportunity
-  Better project leads to better perf
-  Risky to take promo if only short term need
-  Team might not need staff work
-  Or even company
-
-Good perf
-  Hit a lucky spot with CSS modules
-
-Bad perf
-  Very few critiques
-
-promotions through mentoring and pairing on regular basis examples
-hiring - served as hiring manager
-contractors
-Read all performance reviews for references and anecdotes
-"invented rope"
-Mention Levels.fyi
+    We expect staff+ engineers to be a source of creative energy. Succeeding in such a large scope of impact is very difficult if you can't inspire people to do the work. For example, when I was working on migrating our monolith to ViewComponent, at good chunk of my daily responsibilities were around motivating others, whether through pairing, hosting office hours, or writing case studies of our work's impact.
+  Create clarity
+    In meetings, this can mean pushing for clear definitions of problems, proposed solutions, and success criteria. For example, I was given the ambiguous task of defining our strategy for prioritizing which parts of our application to audit and remediate first. I used our data warehouse to produce a report showing the distribution of traffic across our 2,000+ pages, highlighting which pages were used by the average user in a given week. We identified a few dozen product areas and prioritized working with those teams.
+  Deliver success
+    We lean on staff engineers to come through when we need it most. Whether something has to ship on time, a critical project is stalled, or a service is failing SLA in novel way, we rely on staff engineers to solve our trickiest problems. This pressure is not for everyone! I've only had a couple projects like this in my time here, but they have all been a thrill. For Jon, examples of critical projects include migrating all of GitHub.com to be responsive and implementing dark mode, all with minimal regressions. Delivering success is the path to being promoted to staff. Do enough impactful things, and at some point you become so senior that it's unfair for new seniors to have the same title.
 
 Inflation-adjusted numbers (fall 2025):
 Apprentice making about $70k
@@ -137,3 +104,4 @@ Galvanize senior, making $166k
 GitHub mid, $210k
 GitHub senior, $275k
 GitHub staff, $345k
+
