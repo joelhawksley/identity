@@ -60,23 +60,22 @@ Defining the role
 
   Or, they go long. They might work on problems that take months or even years to solve.
 
-  Perhaps the best definition of the staff+ role is the archetypes from Will Larson's Staff Engineer: Right Hand, Solver, Tech Lead, and Architect.
+  Perhaps the best definition of the staff+ role is the archetypes from Will Larson's Staff Engineer: Tech Lead, Architect, Solver, Right Hand.
 
-  A Right Hand "extends an executive’s attention, borrowing their scope and authority to operate particularly complex organizations. They provide additional leadership bandwidth to leaders of large-scale organizations." This is a role I've fallen into a lot. Some Right Hand projects have included covering for one of my Director's managers' paternity leave, doing 1:1s with their reports, serving as a hiring manager,
+  A Tech Lead "guides the approach and execution of a particular team. They partner closely with a single manager, but sometimes they partner with two or three managers within a focused area. Some companies also have a Tech Lead Manager role, which is similar to the Tech Lead archetype but exists on the engineering manager ladder and includes people management responsibilities." I've done this four times now at GitHub, each time covering for the absence of one of my Director's managers'. I've taken the Tech Lead Manager role, doing 1:1s with reports, serving as a hiring manager, and even helping with yearly reviews.
+
+  An Architect "is responsible for the direction, quality, and approach within a critical area. They combine in-depth knowledge of technical constraints, user needs, and organization level leadership." Most of my work on ViewComponent at GitHub has fallen into this bucket.
+
+  A Solver "digs deep into arbitrarily complex problems and finds an appropriate path forward. Some focus on a given area for long periods. Others bounce from hotspot to hotspot as guided by organizational leadership." My initial work on ViewComponent was this. I worked with Aaron Patterson to develop a novel solution and wrote the upstream patch in Rails to make it work without a monkey patch.
+
+  A Right Hand "extends an executive’s attention, borrowing their scope and authority to operate particularly complex organizations. They provide additional leadership bandwidth to leaders of large-scale organizations." This is a role I've fallen into a lot. For example, I wrote the initial draft of my director's quarterly/semester/yearly/multi-year plans, surfacing ideas proposed by IC engineers in our organization. I spent half a year doing this for the Accessibility effort at GitHub. It can also mean mediating technical disagreements between engineers.
+
+
 Habits
   Align with archetypes
     Use the archetypes to align with your manager
     "Any time im doubting myself or feeling down", shouldn't feel bad about not being the other ones
     I've struggled with this
-    Archetype example
-      Right Hand
-        Manager leave coverage
-      Solver
-        ViewComponent
-      Tech Lead
-        A11y
-      Architect
-        Primer ViewComponents
     Really about making sure you and your manager agree about what your job is. True of all levels.
   Predict the future
     Keep up on trends internally and externally. hacker newsletter, ruby news, a11y news when I was working in a11y
