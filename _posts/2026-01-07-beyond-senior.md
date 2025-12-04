@@ -118,7 +118,7 @@ Part of having impact at a breadth and depth beyond senior is looking towards th
 
 To avoid drinking from the firehose that is Twitter/Bluesky/Hacker News, I subscribe to the Hacker Newsletter, Ruby Weekly, and other topic-specific newsletters (such as accessibility news). This was especially important when working on accessibility as the legal landscape is constantly evolving in that area. Successful staff engineers are often cited by colleagues as sources of knowledge. This even comes up in interviews: we look for staff engineer candidates to teach us something new during technical interviews.
 
-### Speak truth to power
+### Check and balance
 
 As an IC, I've often had moments where I felt like leadership didn't care enough about what I cared about, whether it was code quality, tech debt, or software craftsmanship. I see part of our job as staff engineers as representing the technical concerns of the engineering discipline to people in power outside of engineering. To be a check and balance on the product discipline by surfacing and justifying engineering-driven priorities. How to do this depends greatly on the situation, but using data is a way of creating a shared understanding of a problem.
 
@@ -148,4 +148,10 @@ For Jon, examples of critical projects include migrating all of GitHub.com to be
 
 ## Conclusion
 
-So that's how I got to staff, how I define the role, and some tricks for thriving in it. What do you think?
+So that's how I got to staff, how I define the role, and some tricks for thriving in it.
+
+Ultimately, the staff role is not for everyone. It's a very different job from being a senior engineer.
+
+If you're interested but not sure, it might be worth asking your manager for an opportunity to try out one of the archetypes for a project. Maybe they need someone to cover for paternity leave, a temporary tech lead, or have an interesting area of research.
+
+For me, it was definitely the right decision to go for the promotion. I have thrived in the ambiguity of the role and really appreciate the flexibility it's given me to take a lot of different paths over the years.
