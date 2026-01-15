@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Beyond Senior\: Consider the staff path!
+title: "Beyond Senior: Consider the staff path!"
 ---
 
 _A transcript of my 2026 talk, as presented at Boulder Ruby._

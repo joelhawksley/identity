@@ -2,7 +2,11 @@
 layout: home
 ---
 
-![Joel standing on a stage next to a projection screen with the GitHub logo. There are about 100 people in the audience"](/img/about/speaking.jpg)
+<p>
+  <img src="/img/about/speaking.jpg" alt="Joel standing on a stage next to a projection screen with the GitHub logo. There are about 100 people in the audience">
+
+  <small><i>Speaking at Rocky Mountain Ruby 2025</i></small>
+</p>
 
 ### Now
 
