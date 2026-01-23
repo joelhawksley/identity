@@ -108,7 +108,7 @@ It also speaks to a conundrum I've seen many seniors looking for promotion strug
 
 ### Keep a public journal
 
-A couple of years ago I adapted Julia Evans' [brag doc](https://jvns.ca/blog/brag-documents/) idea into a daily, internally-visible journal of what I worked on and what I listened to/read/watched. I was first motivated to do this to keep a record for self-reviews, but I quickly found that it was a helpful tool for guiding my focus towards things _worth writing down_, a.k.a. impactful work! I've also gotten feedback that it has helped others in the organizations I work in understand my role.
+A couple of years ago I adapted Julia Evans' [brag doc](https://jvns.ca/blog/brag-documents/) idea into a daily, internally-visible journal of what I worked on and what I listened to/read/watched. I was first motivated to do this to keep a record for self-reviews, but I quickly found that it was a helpful tool for guiding my focus towards things _worth writing down_, a.k.a. impactful work! It's so easy to get bogged down in activity that has no impact. I've also gotten feedback that it has helped others in the organizations I work in understand my role. 
 
 ### Predict the future
 
@@ -136,7 +136,7 @@ More generally, this can mean being the person in meetings who pushes for clear 
 
 ### Generate energy
 
-We expect staff engineers to be a source of creative energy. Succeeding in such a large scope of impact is very difficult if you can't inspire others to join you on your quest. For example, when I was working on migrating our monolith to ViewComponent, a good chunk of my daily responsibilities were around motivating others, whether through pairing, hosting office hours, or writing case studies of our work's impact.
+Part of generating energy is taking the lead and initiating work, not waiting to be told what to do or given projects to work on. We expect staff engineers to be a source of creative energy. Succeeding in such a large scope of impact is very difficult if you can't inspire others to join you on your quest. For example, when I was working on migrating our monolith to ViewComponent, a good chunk of my daily responsibilities were around motivating others, whether through pairing, hosting office hours, or writing case studies of our work's impact.
 
 Another big part of generating energy is building up others around you. As staff is a terminal role, there is an expectation that you won’t be hogging the opportunities to look good. In many cases, it’s the opposite! A big difference between senior and staff is how much you’re expected to focus on getting _other_ people promoted, through mentoring and leveling up those around you. For example, I regularly help seniors write up internal and external blog posts on interesting problems they have solved. 
 
@@ -150,4 +150,12 @@ A metaphor I like to use for this aspect is skiing: on a typical day, I ski blue
 
 ## Conclusion
 
+So that's how I got to staff, what forms my job takes, and ways I've found to thrive in the role.
+
+But I have a secret to tell you: basically none of what I shared today is limited to being a staff engineer. Your path to staff should begin with these behaviors long before you go up for promotion. 
+
 I hope that some of what I’ve shared today will be useful to you in your practice, no matter your level. The staff engineering job isn’t for everyone. And it doesn’t need to be! It’s just fine to stay at Senior or move into management. But I think you should consider a path towards Staff in your career. I’ve found my years in the role to be the most fulfilling of my time as a software engineer. It might just be for you, too.
+
+## Thanks
+
+Thanks to [Sean](https://github.com/attamusc), [Jon](https://github.com/jonrohan), [Matt](https://github.com/mclark) and [Marty](https://github.com/mghaught) for help writing this talk and to the dozens of folks who asked questions when I presented it. 
