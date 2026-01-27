@@ -49,4 +49,4 @@ Having struggled to separate work from life as a remote worker, I’ve gotten in
 
 Keep an internally public, daily journal of snippets describing the impact of your work, written with the intention of adding them to your performance review.
 
-Thanks to [Tim](https://github.com/timtyrrell), [Jon](https://github.com/jonrohan), [Matt](https://github.com/mclark) and [Siddharth](https://github.com/siddharth) for helping with this post and to the folks at Boulder Ruby whose discussion after my talk [earlier this month](https://hawksley.org/2026/01/14/beyond-senior.html) inspired it. 
+_Thanks to [Tim](https://github.com/timtyrrell), [Jon](https://github.com/jonrohan), [Matt](https://github.com/mclark) and [Siddharth](https://github.com/siddharth) for helping with this post and to the folks at Boulder Ruby whose discussion after my talk [earlier this month](https://hawksley.org/2026/01/14/beyond-senior.html) inspired it._
