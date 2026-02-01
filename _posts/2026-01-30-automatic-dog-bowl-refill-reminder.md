@@ -21,4 +21,4 @@ I ended up attaching it to the wall behind our dog bowls using a velcro Command 
 
 ![Leak sensor installed above dog bowl](/img/posts/2026-01-30-automatic-dog-bowl-refill-reminder/sensor-above-bowl.jpg)
 
-After about four months, the battery has depleted by about 25%. Not bad!
+After about four months, the battery has depleted by about 25%. Not bad! But most importantly, our dog doesn't have to wait long for me to fill his bowl any more.
