@@ -5,7 +5,7 @@ title: "Automatic dog bowl refill reminder"
 
 _**TL;DR:** Use a leak sensor without an alarm to detect when water in a dog bowl drops below a certain level._
 
-Back in 2018, I installed an auto-refilling water bowl for our dog, using something similar to https://www.leedstone.com/p/little-giant-automatic-waterer/, mounting it on the wall in our laundry room. It worked well, but there was something disconcerting about having a water line under pressure, so when we moved to our new home, we didn’t take the auto-refilling bowl with us.
+Back in 2018, I installed an auto-refilling water bowl for our dog, mounting it on the wall in our laundry room. It worked well, but there was something disconcerting about having a water line under pressure, so when we moved to our new home, we didn’t take the auto-refilling bowl with us.
 
 ![Dog waterer in laundry room](/img/posts/2026-01-30-automatic-dog-bowl-refill-reminder/waterer.jpg)
 
