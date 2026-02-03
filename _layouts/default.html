@@ -188,5 +188,14 @@
     </header>
     {{ content }}
     <footer style="font-size: .8rem; margin-bottom: 2rem;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley | <a href="/feed.xml" target="_blank">RSS</a></footer>
+    <script src="/js/mermaid.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', async function() {
+        mermaid.initialize({startOnLoad:true});
+        await mermaid.run({
+          querySelector: '.language-mermaid',
+        });
+      });
+    </script>
   </body>
 </html>
