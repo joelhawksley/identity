@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Reliable, enhanced Snoo notifications with Home Assistant"
+description: "Use a power monitoring outlet to trigger Snoo notifications independent from the cloud."
 ---
 
 _**TL;DR:** Use a power monitoring outlet to trigger Snoo notifications independent from the cloud._

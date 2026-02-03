@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Keep a work journal"
+description: "Keep an internally public, daily journal of snippets describing the impact of your work, written with the intention of adding them to your performance review."
 ---
 
 _**TL;DR**: Keep an internally public, daily journal of snippets describing the impact of your work, written with the intention of adding them to your performance review._

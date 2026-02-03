@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Beyond Senior: Consider the staff path!"
+description: "You’re at senior, but you’re hungry for more. What’s next? In this talk, we’ll attempt to define the staff role and help you decide if it's a good fit for your career."
 ---
 
 _A transcript of my 2026 talk, as presented at Boulder Ruby._
