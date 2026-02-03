@@ -1,0 +1,44 @@
+name: Crosspost to Social Media
+
+on:
+  # Run on schedule to catch new posts
+  schedule:
+    - cron: '0 9 * * *'  # Every day at 09:00 UTC
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  crosspost:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Crosspost new blog posts
+        uses: tgagor/action-crosspost@v1
+        with:
+          # Start with dry-run: true to test, then set to false
+          dry-run: true
+          feed-url: https://hawksley.org/feed.xml
+          since: '2'
+          since-unit: 'month'
+          message: |
+            {description}
+            {url}
+
+            {tags}
+
+          # Bluesky
+          bluesky-identifier: ${{ secrets.BLUESKY_HANDLE }}
+          bluesky-password: ${{ secrets.BLUESKY_PASSWORD }}
+
+          # X (Twitter)
+          twitter-api-consumer-key: ${{ secrets.TWITTER_API_CONSUMER_KEY }}
+          twitter-api-consumer-secret: ${{ secrets.TWITTER_API_CONSUMER_SECRET }}
+          twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+          twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+
+          # LinkedIn
+          linkedin-access-token: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+
+          # Mastodon
+          # mastodon-access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          # mastodon-host: ${{ secrets.MASTODON_HOST }}
