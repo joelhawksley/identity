@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>{% if page.title %}{{ page.title }} - {% endif %}Joel Hawksley</title>
-    <meta name="description" content="Joel Hawksley is a software engineer based in Colorado.">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}Joel Hawksley</title>">
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
