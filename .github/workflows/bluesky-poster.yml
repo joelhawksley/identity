@@ -1,0 +1,50 @@
+name: Post to Bluesky
+
+on:
+  # Run when new content is pushed to main
+  push:
+    branches:
+      - main
+    paths:
+      - '_posts/**'
+  # Run on schedule to catch any missed posts
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/bluesky/requirements.txt
+
+      - name: Run Bluesky poster
+        env:
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+        run: python scripts/bluesky/post_to_bluesky.py
+
+      - name: Commit posted entries
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add scripts/bluesky/posted_entries.json
+          git diff --staged --quiet || git commit -m "Update Bluesky posted entries"
+          git push
