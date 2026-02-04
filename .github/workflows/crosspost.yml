@@ -32,10 +32,10 @@ jobs:
           bluesky-host: ${{ secrets.BLUESKY_HOST }}
 
           # X (Twitter)
-          twitter-api-consumer-key: ${{ secrets.TWITTER_API_CONSUMER_KEY }}
-          twitter-api-consumer-secret: ${{ secrets.TWITTER_API_CONSUMER_SECRET }}
-          twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
-          twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          # twitter-api-consumer-key: ${{ secrets.TWITTER_API_CONSUMER_KEY }}
+          # twitter-api-consumer-secret: ${{ secrets.TWITTER_API_CONSUMER_SECRET }}
+          # twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+          # twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 
           # LinkedIn
           # linkedin-access-token: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
