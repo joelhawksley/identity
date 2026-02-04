@@ -20,8 +20,8 @@ jobs:
         with:
           dry-run: false
           feed-url: https://hawksley.org/feed.xml
-          since: '2'
-          since-unit: 'month'
+          since: '1'
+          since-unit: 'day'
           message: |
             {description}
             {url}
@@ -32,14 +32,14 @@ jobs:
           bluesky-host: ${{ secrets.BLUESKY_HOST }}
 
           # X (Twitter)
-          # twitter-api-consumer-key: ${{ secrets.TWITTER_API_CONSUMER_KEY }}
-          # twitter-api-consumer-secret: ${{ secrets.TWITTER_API_CONSUMER_SECRET }}
-          # twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
-          # twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          twitter-api-consumer-key: ${{ secrets.TWITTER_API_CONSUMER_KEY }}
+          twitter-api-consumer-secret: ${{ secrets.TWITTER_API_CONSUMER_SECRET }}
+          twitter-access-token-key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+          twitter-access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 
           # LinkedIn
-          # linkedin-access-token: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          linkedin-access-token: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
 
           # Mastodon
-          # mastodon-access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-          # mastodon-host: ${{ secrets.MASTODON_HOST }}
+          mastodon-access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          mastodon-host: ${{ secrets.MASTODON_HOST }}
