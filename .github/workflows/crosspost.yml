@@ -20,7 +20,6 @@ jobs:
         with:
           # Start with dry-run: true to test, then set to false
           dry-run: true
-          ignore-empty-workdir: true
           feed-url: https://hawksley.org/feed.xml
           since: '2'
           since-unit: 'month'
