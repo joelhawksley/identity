@@ -39,5 +39,5 @@ jobs:
           linkedin-access-token: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
 
           # Mastodon
-          # mastodon-access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-          # mastodon-host: ${{ secrets.MASTODON_HOST }}
+          mastodon-access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          mastodon-host: ${{ secrets.MASTODON_HOST }}
