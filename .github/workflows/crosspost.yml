@@ -28,6 +28,7 @@ jobs:
           # Bluesky
           bluesky-identifier: ${{ secrets.BLUESKY_HANDLE }}
           bluesky-password: ${{ secrets.BLUESKY_PASSWORD }}
+          bluesky-host: ${{ secrets.BLUESKY_HOST }}
 
           # X (Twitter)
           twitter-api-consumer-key: ${{ secrets.TWITTER_API_CONSUMER_KEY }}
