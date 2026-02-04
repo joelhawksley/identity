@@ -18,8 +18,7 @@ jobs:
       - name: Crosspost new blog posts
         uses: tgagor/action-crosspost@v1
         with:
-          # Start with dry-run: true to test, then set to false
-          dry-run: true
+          dry-run: false
           feed-url: https://hawksley.org/feed.xml
           since: '2'
           since-unit: 'month'
