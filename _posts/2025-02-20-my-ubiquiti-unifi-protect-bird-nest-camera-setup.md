@@ -1,6 +1,7 @@
 ---
 layout: post
 title: My Ubiquiti Unifi Protect bird nest camera setup
+excerpt: Open up a Unifi G5 Bullet camera to adjust the manual focus distance for usage in close quarters, such as a bird nest.
 ---
 
 <video controls>
