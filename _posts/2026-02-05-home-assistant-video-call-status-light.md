@@ -10,11 +10,11 @@ description: “TL;DR:** Use the Home Assistant MacOS app to control smart light
 
 _**TL;DR:** Use the Home Assistant MacOS app to control smart lights based on video call status._
 
-In order to focus completely on my work, I often wear noise cancelling headphones, making it difficult to hear a knock on the door. I’m also in meetings quite a bit, when a door knock is less welcome. While I try to keep my calendar up to date so my wife knows when I’m on a call, I’ll occasionally have ad-hoc conversations for pairing, etc.
+I often wear noise cancelling headphones to help me focus, but they make it difficult to hear a knock on the door. I’m also in meetings quite a bit, when a door knock is less welcome. While I try to keep my calendar up to date so my wife knows when I’m on a call, I’ll occasionally have ad-hoc conversations for pairing, etc.
 
-I recently set up a system to indicate whether I am listening to music or on a video call, using Zigbee night lights from Third Reality, one in the hallway outside my office door and another inside the door in my office so I can know what the hallway light is set to.
+I recently set up a system to indicate whether I am listening to music or on a video call, using Zigbee night lights from Third Reality, one in the hallway and another in my office so I can know what the hallway light is set to.
 
-In Home Assistant, I created a helper called `Office audio state` returning `input`, `output`, or `off` using sensor data from the Home Assistant app running on my personal and work laptops (be sure to replace the sensor names with yours):
+In Home Assistant, I created a helper called `Office audio state` using sensor data from the Home Assistant app running on my personal and work laptops. It returns `input`, `output`, or `off` (be sure to replace the sensor names with yours):
 
 {% raw %}
 ```jinja
@@ -36,7 +36,7 @@ description: ""
 triggers:
   - trigger: state
     entity_id:
-      - sensor.joelhawksley_audio_state
+      - sensor.office_audio_state
     for:
       hours: 0
       minutes: 0
@@ -68,12 +68,10 @@ actions:
               entity_id: scene.upstairs_hallway_night_light_yellow
         else:
           - type: turn_off
-            device_id: 3dc9a44855f7e46888f1c137990de9a8
-            entity_id: 068da579d67f52febf9b5e19a09841e1
+            entity_id: 068da57
             domain: light
           - type: turn_off
-            device_id: 77b1714316849f1f830c7b7744010682
-            entity_id: 46e8791366840c4c8038c1e6edeff267
+            entity_id: 46e8791
             domain: light
 mode: single
 ```
