@@ -16,15 +16,17 @@ I recently set up a system to indicate whether I am listening to music or on a v
 
 In Home Assistant, I created a helper called `Office audio state` returning `input`, `output`, or `off` using sensor data from the Home Assistant app running on my personal and work laptops (be sure to replace the sensor names with yours):
 
+{% raw %}
 ```yaml
-{\% if states("binary_sensor.joelhawksley_audio_input_in_use_2") == "on" or states("binary_sensor.joel_audio_input_in_use") == "on" \%}
+{% if states("binary_sensor.joelhawksley_audio_input_in_use") == "on" or states("binary_sensor.joel_audio_input_in_use") == "on" %}
 input
-{\% elif states("binary_sensor.joelhawksley_audio_output_in_use_2") == "on" or states("binary_sensor.joely_audio_output_in_use") == "on" \%}
+{% elif states("binary_sensor.joelhawksley_audio_output_in_use") == "on" or states("binary_sensor.joel_audio_output_in_use") == "on" %}
 output
-{\% else \%}
+{% else %}
 off
-{\% endif \%}
+{% endif %}
 ```
+{% endraw %}
 
 I then have an automation listening to changes to the helper (debounced for 5 seconds to avoid false triggers from momentary changes) and switching between scenes on the lights (blue for video call, yellow for listening, off otherwise):
 
