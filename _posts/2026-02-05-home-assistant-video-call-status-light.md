@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Home Assistant video call status light"
-description: “TL;DR:** Use the Home Assistant MacOS app to control smart lights based on video call status.”
+description: "TL;DR: Use the Home Assistant MacOS app to control smart lights based on video call status."
 ---
 
 <video autoplay muted loop playsinline controls style="width:100%">
