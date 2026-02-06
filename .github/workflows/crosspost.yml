@@ -3,7 +3,7 @@ name: Crosspost to Social Media
 on:
   # Run on schedule to catch new posts
   schedule:
-    - cron: '0 9 * * *'  # Every day at 09:00 UTC
+    - cron: '0 6 * * *'  # Every day at 06:00 UTC
   # Allow manual triggering
   workflow_dispatch:
 
@@ -20,7 +20,7 @@ jobs:
         with:
           dry-run: false
           feed-url: https://hawksley.org/feed.xml
-          since: '1'
+          since: '2'
           since-unit: 'day'
           message: |
             {description}
