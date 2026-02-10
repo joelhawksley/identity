@@ -16,6 +16,13 @@
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
     <link rel="me" href="https://ruby.social/@joelhawksley">
     <link rel="stylesheet" href="/code.css">
+    {% assign og_image = page.image | default: site.default_image %}
+
+    {% if og_image %}
+      <meta property="og:image" content="{{ og_image | absolute_url }}">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:image" content="{{ og_image | absolute_url }}">
+    {% endif %}
     <style>
       :root {
         --mono-font: San Francisco Mono, Monaco, "Consolas", "Lucida Console", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;

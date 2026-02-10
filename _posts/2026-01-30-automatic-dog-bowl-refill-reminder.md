@@ -2,6 +2,7 @@
 layout: post
 title: "Automatic dog bowl refill reminder"
 description: "TL;DR: Use a leak sensor without an alarm to detect when water in a dog bowl drops below a certain level."
+image: /img/posts/2026-01-30-automatic-dog-bowl-refill-reminder/sensor-above-bowl.jpg
 ---
 
 _**TL;DR:** Use a leak sensor without an alarm to detect when water in a dog bowl drops below a certain level._
