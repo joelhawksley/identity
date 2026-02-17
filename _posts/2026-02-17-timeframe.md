@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "How I built Timeframe, our family e-paper dashboard system"
-description: "How I built Timeframe, our family e-paper dashboard system over the past decade:"
+title: "How I built Timeframe, our family e-paper dashboard"
+description: "Over the past decade, I've worked to build the perfect family dashboard system for our home, called Timeframe:"
 image: /img/posts/2026-02-17-timeframe/nook-wide.jpg
 ---
 
