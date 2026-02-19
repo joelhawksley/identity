@@ -1,0 +1,6 @@
+yt-dlp>=2024.1.0
+inaSpeechSegmenter>=0.7.8
+google-api-python-client>=2.100.0
+google-auth-oauthlib>=1.1.0
+google-auth-httplib2>=0.1.1
+numpy>=1.24.0
