@@ -10,7 +10,10 @@ Copy the contents of token.json into the YOUTUBE_OAUTH_TOKEN_JSON GitHub secret.
 
 from google_auth_oauthlib.flow import InstalledAppFlow
 
-SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
+SCOPES = [
+    "https://www.googleapis.com/auth/youtube.upload",
+    "https://www.googleapis.com/auth/youtube.readonly",
+]
 
 
 def main():

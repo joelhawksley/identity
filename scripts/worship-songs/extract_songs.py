@@ -1,10 +1,13 @@
 """
 Extract songs from a church live stream and upload as a private YouTube video.
 
-1. Downloads the latest live stream from the church YouTube channel
+1. Downloads live streams from the church YouTube channel
 2. Uses audio analysis to detect music segments (hymns/songs)
 3. Extracts and concatenates those segments
 4. Uploads the result as a private video
+
+Tracks processed streams in processed_streams.json to avoid re-processing.
+On each run, processes all unprocessed streams from the last 6 months.
 """
 
 import argparse
@@ -14,7 +17,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import librosa
@@ -32,22 +35,76 @@ MIN_MUSIC_DURATION = 60  # Ignore music segments shorter than 60 seconds
 MERGE_GAP = 10  # Merge music segments separated by less than 10 seconds
 PADDING = 2  # Add 2 seconds of padding around each segment
 
-SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
+SCOPES = [
+    "https://www.googleapis.com/auth/youtube.upload",
+    "https://www.googleapis.com/auth/youtube.readonly",
+]
 
 
 # ---------------------------------------------------------------------------
-# Step 1: Find and download the latest live stream
+# Already-uploaded detection (via YouTube API)
 # ---------------------------------------------------------------------------
 
-def get_latest_livestream_url(channel_url: str) -> tuple[str, str]:
-    """Return (video_url, video_title) of the most recent live stream."""
-    print("Searching for latest live stream...")
+def get_uploaded_titles(youtube) -> set[str]:
+    """
+    Fetch titles of all videos on the authenticated user's channel.
+
+    Returns a set of titles for quick lookup.
+    """
+    print("Fetching existing uploads from your YouTube channel...")
+
+    # Get the authenticated user's upload playlist
+    channels = youtube.channels().list(part="contentDetails", mine=True).execute()
+    if not channels.get("items"):
+        print("WARNING: Could not fetch channel info. Assuming no prior uploads.")
+        return set()
+
+    uploads_playlist = (
+        channels["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
+    )
+
+    titles = set()
+    next_page = None
+
+    while True:
+        request = youtube.playlistItems().list(
+            part="snippet",
+            playlistId=uploads_playlist,
+            maxResults=50,
+            pageToken=next_page,
+        )
+        response = request.execute()
+
+        for item in response.get("items", []):
+            titles.add(item["snippet"]["title"])
+
+        next_page = response.get("nextPageToken")
+        if not next_page:
+            break
+
+    print(f"Found {len(titles)} existing uploads")
+    return titles
+
+
+# ---------------------------------------------------------------------------
+# Step 1: Find and download live streams
+# ---------------------------------------------------------------------------
+
+def get_recent_livestreams(channel_url: str, months: int = 6) -> list[tuple[str, str, str]]:
+    """
+    Return a list of (video_id, title, upload_date) for live streams
+    from the last `months` months, oldest first.
+    """
+    print(f"Fetching live streams from the last {months} months...")
+    cutoff = datetime.now() - timedelta(days=months * 30)
+    cutoff_str = cutoff.strftime("%Y%m%d")
+
     result = subprocess.run(
         [
             "yt-dlp",
             "--flat-playlist",
-            "--playlist-end", "15",
-            "--print", "%(id)s\t%(title)s",
+            "--print", "%(id)s\t%(title)s\t%(upload_date)s",
+            "--dateafter", cutoff_str,
             f"{channel_url}/streams",
         ],
         capture_output=True,
@@ -58,13 +115,21 @@ def get_latest_livestream_url(channel_url: str) -> tuple[str, str]:
     lines = result.stdout.strip().splitlines()
     if not lines:
         print("No live streams found on the channel.")
-        sys.exit(1)
+        return []
 
-    video_id, title = lines[0].split("\t", 1)
-    url = f"https://www.youtube.com/watch?v={video_id}"
-    print(f"Latest live stream: {title}")
-    print(f"URL: {url}")
-    return url, title
+    streams = []
+    for line in lines:
+        parts = line.split("\t", 2)
+        if len(parts) >= 2:
+            video_id = parts[0]
+            title = parts[1]
+            upload_date = parts[2] if len(parts) == 3 else "unknown"
+            streams.append((video_id, title, upload_date))
+
+    # Reverse so oldest is first (catch up in chronological order)
+    streams.reverse()
+    print(f"Found {len(streams)} live streams in the last {months} months")
+    return streams
 
 
 def download_video(url: str, output_path: str) -> str:
@@ -430,40 +495,96 @@ def upload_to_youtube(video_path: str, title: str, description: str) -> str:
 # Main
 # ---------------------------------------------------------------------------
 
-def main():
-    parser = argparse.ArgumentParser(description="Extract worship songs from a church live stream.")
-    parser.add_argument("--debug", action="store_true", help="Skip YouTube upload; save output to current directory")
-    args = parser.parse_args()
+def process_stream(
+    video_id: str, title: str, workdir: str, debug: bool
+) -> bool:
+    """Process a single stream. Returns True if successful."""
+    url = f"https://www.youtube.com/watch?v={video_id}"
+    print(f"\n{'='*60}")
+    print(f"Processing: {title}")
+    print(f"URL: {url}")
+    print(f"{'='*60}")
 
-    with tempfile.TemporaryDirectory() as workdir:
-        # Step 1: Find and download latest live stream
-        url, stream_title = get_latest_livestream_url(CHANNEL_URL)
-        raw_video = os.path.join(workdir, "livestream.mp4")
+    try:
+        raw_video = os.path.join(workdir, f"{video_id}.mp4")
         download_video(url, raw_video)
 
-        # Step 2: Detect music/song segments
         segments = detect_music_segments(raw_video)
 
-        # Step 3: Extract and concatenate songs
-        songs_video = os.path.join(workdir, "songs.mp4")
+        songs_video = os.path.join(workdir, f"{video_id}_songs.mp4")
         extract_songs(raw_video, segments, songs_video)
 
-        if args.debug:
-            output_file = "songs_debug.mp4"
+        if debug:
+            output_file = f"songs_debug_{video_id}.mp4"
             shutil.copy2(songs_video, output_file)
             print(f"Debug mode: saved to {output_file} (skipping upload)")
         else:
-            # Step 4: Upload to YouTube
             today = datetime.now().strftime("%B %d, %Y")
-            upload_title = f"Worship Songs - {stream_title}"
+            upload_title = f"Worship Songs - {title}"
             upload_description = (
-                f"Songs extracted from: {stream_title}\n"
+                f"Songs extracted from: {title}\n"
                 f"Source: {url}\n"
                 f"Extracted on: {today}\n"
             )
             upload_to_youtube(songs_video, upload_title, upload_description)
 
-    print("Done!")
+        # Clean up downloaded files to save disk space
+        for f in [raw_video, songs_video]:
+            if os.path.exists(f):
+                os.remove(f)
+
+        return True
+
+    except Exception as e:
+        print(f"ERROR processing {video_id}: {e}")
+        return False
+
+
+def make_upload_title(stream_title: str) -> str:
+    """Generate the upload title for a given stream title."""
+    return f"Worship Songs - {stream_title}"
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Extract worship songs from church live streams.")
+    parser.add_argument("--debug", action="store_true", help="Skip YouTube upload; save output to current directory")
+    parser.add_argument("--months", type=int, default=6, help="How many months back to check (default: 6)")
+    args = parser.parse_args()
+
+    # Fetch all streams from the last N months
+    streams = get_recent_livestreams(CHANNEL_URL, months=args.months)
+    if not streams:
+        return
+
+    # Check which have already been uploaded (by matching title)
+    if args.debug:
+        uploaded_titles = set()
+        print("Debug mode: skipping uploaded-title check")
+    else:
+        youtube = get_youtube_service()
+        uploaded_titles = get_uploaded_titles(youtube)
+
+    to_process = [
+        (vid, title, date)
+        for vid, title, date in streams
+        if make_upload_title(title) not in uploaded_titles
+    ]
+
+    if not to_process:
+        print("All recent streams have already been processed.")
+        return
+
+    print(f"\n{len(to_process)} stream(s) to process ({len(streams) - len(to_process)} already done)")
+
+    with tempfile.TemporaryDirectory() as workdir:
+        for video_id, title, upload_date in to_process:
+            success = process_stream(video_id, title, workdir, args.debug)
+            if success:
+                print(f"Successfully processed {video_id}.")
+            else:
+                print(f"Skipping {video_id} due to error.")
+
+    print(f"\nDone! Processed {len(to_process)} stream(s).")
 
 
 if __name__ == "__main__":
