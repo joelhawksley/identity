@@ -189,12 +189,12 @@
     </style>
   </head>
   <body>
-    <header style="font-size:1rem;margin:0 0 4rem;line-height:1;padding-top:2rem;">
-      <span style="font-weight:bold;text-decoration:none;color:black;">Joel Hawksley</span> /
-      <a href="mailto:joel@hawksley.org">joel@hawksley.org</a>
-      {% if page.layout != "home" %}
-        / <a href="/">&#8592;home</a>
-      {% endif %}
+    <header style="font-size:1rem;margin:0 0 4rem;line-height:1.4;padding-top:2rem;display:flex;align-items:center;gap:.75rem;">
+      <a href="/" style="display:flex;"><img src="/img/about/joel.jpg" alt="Joel Hawksley" style="width:3.25rem;height:3.25rem;border-radius:50%;object-fit:cover;"></a>
+      <div style="line-height:1.3;">
+        <div style="font-weight:bold;"><a href="/" style="color:black;text-decoration:none;">Joel Hawksley</a></div>
+        <div><a href="mailto:joel@hawksley.org">joel@hawksley.org</a></div>
+      </div>
     </header>
     {{ content }}
     <footer style="font-size: .8rem; margin-bottom: 2rem;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley | <a href="/feed.xml" target="_blank">RSS</a></footer>
