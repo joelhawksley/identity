@@ -1,0 +1,7 @@
+PreCommit:
+  CheckImageMetadata:
+    enabled: true
+    description: 'Check images for metadata'
+    required_executable: 'ruby'
+    command: ['ruby', 'scripts/check_image_metadata.rb']
+    include: '**/*.{jpg,jpeg,png,gif,webp,tiff,tif,bmp}'
