@@ -43,7 +43,7 @@ The 32" screen used an outdated lower-contrast panel and its resolution was too 
 
 The Visionect displays required running custom closed-source software, either as a SaaS or locally with Docker. I opted for a local installation on the Raspberry Pi already running the Rails backend. I had my best results _pushing_ images to the Visionect displays every five minutes in a recurring background job. It used IMGKit to generate a PNG and send it to the Visionect API, logic I extracted into [visionect-ruby](https://github.com/joelhawksley/visionect-ruby). This setup proved to be incredibly reliable, without a single failure for months at a time. 
 
-### First customer pilot
+## First customer pilot
 
 Visiting friends often asked how they could have a similar system in their home. Three years after the initial prototype, I did my first market test with a potential customer. At their request, I experimented with different formats, including a month view on the 13" screen:
 
@@ -51,7 +51,7 @@ Visiting friends often asked how they could have a similar system in their home.
 
 Unfortunately, the customer didn't see enough value to justify the $1000 price tag (in 2019!) for the 13" device, let alone anything I'd charge for a subscription service. At around the same time, Visionect started charging a $7/mo per-device fee to run their backend software on premises with Docker, after years of it being free to use. I'd have needed to charge $10/month, if not more, for a single screen! 
 
-### An unexpected pivot
+## An unexpected pivot
 
 In late 2021, the [Marshall Fire](https://en.wikipedia.org/wiki/Marshall_Fire) destroyed our home along with ~1,000 others. Our homeowner's insurance gave us two years to rebuild, so we set off to redesign our home from the ground up. 
 

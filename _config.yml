@@ -1,6 +1,3 @@
-collections:
-  projects:
-
 plugins:
   - jekyll-feed
 title: Joel Hawksley
