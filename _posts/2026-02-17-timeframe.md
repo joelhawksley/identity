@@ -7,6 +7,8 @@ image: /img/posts/2026-02-17-timeframe/nook-wide.jpg
 
 _**TL;DR:** Over the past decade, I've worked to build the perfect family dashboard system for our home, called [Timeframe](https://github.com/joelhawksley/timeframe). Combining calendar, weather, and smart home data, it's become an important part of our daily lives._
 
+_See [https://news.ycombinator.com/item?id=47113728](https://news.ycombinator.com/item?id=47113728) for a lively discussion of this post._
+
 ![Timeframe display in phone nook](/img/posts/2026-02-17-timeframe/nook-wide.jpg)
 
 When Caitlin and I got married a decade ago, we set an intention to have a healthy relationship with technology in our home. We kept our bedroom free of any screens, charging our devices elsewhere overnight. But we missed our calendar and weather apps.
