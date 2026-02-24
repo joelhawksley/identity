@@ -18,7 +18,7 @@ jobs:
       - name: Crosspost new blog posts
         uses: joelhawksley/action-crosspost@images
         with:
-          dry-run: true
+          dry-run: false
           feed-url: https://hawksley.org/feed.xml
           since: '2'
           since-unit: 'day'
