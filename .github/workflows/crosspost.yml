@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Crosspost new blog posts
-        uses: joelhawksley/action-crosspost@images
+        uses: tgagor/action-crosspost@main
         with:
           dry-run: false
           feed-url: https://hawksley.org/feed.xml
