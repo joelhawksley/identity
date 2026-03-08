@@ -24,7 +24,7 @@ I've appeared on the [Dead Code](https://shows.acast.com/dead-code/episodes/pois
 
 I've made several contributions to the Home Assistant ecosystem, including [support for folders on Apple Watch](https://github.com/home-assistant/iOS/pull/4376), [filtering of declined calendar events](https://github.com/home-assistant/core/pull/128900), and [extending the returned forecast window for WeatherKit](https://github.com/home-assistant/core/pull/164494).
 
-I built my first SaaS product, a [portfolio website platform for visual artists](https://www.solofolio.net/), while in high school. I’ve since rewritten it in Ruby on Rails, using it as a testbed for new technologies I want to learn, such as React.
+I built my first SaaS product, a [portfolio website platform for visual artists](https://www.solofolio.net/), while I was in high school. I’ve since rewritten it in Ruby on Rails, using it as a testbed for new technologies I want to learn, such as React.
 
 ## Mentorship
 

@@ -3,17 +3,17 @@
   <head>
     <title>{% if page.title %}{{ page.title }} - {% endif %}Joel Hawksley</title>
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
     <meta content="Joel Hawksley" name="author">
     <meta content=#fff name=theme-color>
-    <meta content="width=device-width,minimum-scale=1" name=viewport>
     <meta content="hawksley.org" property="og:site_name">
     <meta content="joel@hawksley.org" property="og:email">
     <meta content=blog property=og:type>
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
+    <link rel="icon" type="image/jpeg" href="/img/about/joel.jpg">
     <link rel="me" href="https://ruby.social/@joelhawksley">
     <link rel="stylesheet" href="/code.css">
     {% assign og_image = page.image | default: site.default_image %}
@@ -99,6 +99,11 @@
         word-break: break-all;
       }
 
+      ul.posts {
+        list-style: none;
+        padding-left: 0;
+      }
+
       time {
         font-variant-numeric: tabular-nums;
       }
@@ -171,7 +176,8 @@
       </div>
     </header>
     {{ content }}
-    <footer style="font-size: .8rem; margin-bottom: 2rem;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley | <a href="/feed.xml" target="_blank">RSS</a></footer>
+    <footer style="font-size: .8rem; margin-bottom: 2rem;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley | <a href="/feed.xml" target="_blank" rel="noopener">RSS</a></footer>
+    {% if page.layout == 'post' %}
     <script src="/js/mermaid.min.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', async function() {
@@ -181,5 +187,6 @@
         });
       });
     </script>
+    {% endif %}
   </body>
 </html>
