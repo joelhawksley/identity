@@ -2,11 +2,7 @@
 layout: home
 ---
 
-<p>
-  <img src="/img/about/speaking.jpg" alt="Joel standing on a stage next to a projection screen with the GitHub logo. There are about 100 people in the audience">
-
-  <small><i>Speaking at Rocky Mountain Ruby 2025</i></small>
-</p>
+{% include figure.html src="/img/about/speaking.jpg" alt="Joel standing on a stage next to a projection screen with the GitHub logo. There are about 100 people in the audience" caption="Speaking at Rocky Mountain Ruby 2025" %}
 
 ## Now
 
