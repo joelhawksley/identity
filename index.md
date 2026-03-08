@@ -10,7 +10,7 @@ layout: home
 
 ## Now
 
-I'm a staff software engineer at [GitHub](https://github.com/joelhawksley), focusing on the health of our Ruby on Rails monolith. I also lead development of the [ViewComponent](https://github.com/github/view_component) framework.
+I'm a staff software engineer at [GitHub](https://github.com/joelhawksley), focusing on the health of our Ruby on Rails monolith. I also lead development of the [ViewComponent](https://github.com/github/view_component) framework. I live with my wife and two sons outside of Boulder, Colorado.
 
 ## Career
 
