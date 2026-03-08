@@ -13,7 +13,7 @@ We recycle the following kinds of items at our home. Feel free to bring them by!
 
 We collect: All brands of oral care waste, including toothpaste tubes and caps, toothbrushes, toothbrush and toothpaste tube outer packaging, floss containers, and floss picks.
 
-<br/><br/>
+---
 
 ![Beauty items we recycle](/img/recycle/beauty.jpg)
 
@@ -23,7 +23,7 @@ We collect: Deodorant tubes, hair gel tubes and caps, hair spray bottles and tri
 
 Please make sure _all_ excess product has been removed. Do not include aerosol cans, perfume bottles, nail polish bottles, nail polish remover bottles, electronic items such as blow dryers and straighteners, any bio-medical or bio-hazardous waste or any contents of packaging such as nail polish, lotion, soap, or ointments.
 
-<br/><br/>
+---
 
 ![Wine corks we recycle](/img/recycle/corks.jpg)
 
@@ -31,7 +31,7 @@ Please make sure _all_ excess product has been removed. Do not include aerosol c
 
 We collect: Natural and synthetic wine bottle corks.
 
-<br/><br/>
+---
 
 ![Stationery items we recycle](/img/recycle/stationery.png)
 
@@ -41,7 +41,7 @@ We collect: All brands of _empty_ pens, pencils, and markers.
 
 Please note that we no longer collect all other art supplies.
 
-<br/><br/>
+---
 
 ![Kroger flexible packaging](/img/recycle/kroger.jpg)
 
@@ -51,7 +51,7 @@ We collect: Flexible plastic packaging from Simple Truth, Private Selection, Kro
 
 For food packaging, please make sure _all_ excess product has been removed (i.e. leftover food).
 
-<br/><br/>
+---
 
 ![Contact lens cases and solution caps](/img/recycle/eyecare.jpg)
 
@@ -59,7 +59,7 @@ For food packaging, please make sure _all_ excess product has been removed (i.e.
 
 We collect: Any brand contact lens case and solution cap. No need to clean materials for collection.
 
-<br/><br/>
+---
 
 ![Razors and blades we recycle](/img/recycle/gillette.jpg)
 
@@ -67,7 +67,7 @@ We collect: Any brand contact lens case and solution cap. No need to clean mater
 
 We collect: All brands of blades and razors (systems and disposable units, and replaceable-blade cartridge units), rigid plastic packaging, and flexible plastic bag packaging.
 
-<br/><br/>
+---
 
 ![Squeezable snack plastic pouches and caps we recycle](/img/recycle/pouches.png)
 
@@ -75,7 +75,7 @@ We collect: All brands of blades and razors (systems and disposable units, and r
 
 We collect: All brands of single-use squeezable snack plastic pouches and caps.
 
-<br/><br/>
+---
 
 ![Performance nutrition products we recycle](/img/recycle/performancenutrition.jpg)
 

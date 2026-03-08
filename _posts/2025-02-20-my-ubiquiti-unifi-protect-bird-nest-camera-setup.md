@@ -4,15 +4,16 @@ title: My Ubiquiti Unifi Protect bird nest camera setup
 excerpt: Open up a Unifi G5 Bullet camera to adjust the manual focus distance for usage in close quarters, such as a bird nest.
 ---
 
-<video controls>
+<video controls aria-label="Close-up video of a bird nest in a corbel, captured by the Unifi camera">
   <source width="320" height="240" src="/img/posts/2025-02-20-my-ubiquiti-unifi-protect-bird-nest-camera-setup/nest_redo.mp4" type="video/mp4">
+  Your browser does not support the video element.
 </video>
 
-### TL;DR
+## TL;DR
 
 Open up a [Unifi G5 Bullet](https://store.ui.com/us/en/products/uvc-g5-bullet) camera to adjust the manual focus distance for usage in close quarters, such as a bird nest.
 
-### Background
+## Background
 
 Before our house burned down in the Marshall Fire, we had a few families of house finches that nested in the pine tree outside of my office window. Their comings and goings were a nice form of entertainment while working from home. 
 
@@ -24,7 +25,7 @@ As the finishing touches went on the house, we realized that we were creating th
 
 While we didn't want to deter all nesting, we had our builder close off all but the four that sit above windows on the main floor of the house. And sure enough, we were right! The finches took up the new spot with much delight, nesting in two of the four last spring.
 
-### Setting up a nest camera
+## Setting up a nest camera
 
 Unfortunately the nests were basically impossible to observe, which I'm sure the finches appreciated. We wanted to give them their space but still be able to see the action, so I looked into setting up a camera for one of the nesting spots.
 

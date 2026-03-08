@@ -103,8 +103,9 @@ In the month since adding the helper, it reminded me twice when I'd have otherwi
 
 Since moving into our new home, we've come to rely on the real-time functionality much more significantly. Effectively, we've turned the top-left corner of the displays into a status indicator for the house. For example, it shows what doors are open/unlocked:
 
-<video autoplay muted loop playsinline controls style="width:100%">
+<video autoplay muted loop playsinline controls style="width:100%" aria-label="Timeframe display updating in real time to show which doors are open or unlocked">
   <source src="/img/posts/2026-02-17-timeframe/door-status.mp4" type="video/mp4">
+  Your browser does not support the video element.
 </video>
 
 Or whether the laundry is done:

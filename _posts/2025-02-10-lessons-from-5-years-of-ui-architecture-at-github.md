@@ -6,7 +6,7 @@ title: Lessons from 5 years of UI architecture at GitHub
 _Slides from my 2025 talk, as presented at SF Ruby. I also presented a variant of this talk at Boulder Ruby, Vancouver Ruby, Geneva.rb, and Toronto Ruby._
 
 <div class="presentation">
-  <table class="slides" cellspacing="0" cellpadding="0">
+  <table class="slides" role="presentation" cellspacing="0" cellpadding="0">
     <tr>
       <td class="slide">
         <img src="/img/posts/2025-02-10-lessons-from-5-years-of-ui-architecture-at-github/slides.001.jpeg" />

@@ -212,9 +212,34 @@
         text-decoration: none;
         font-weight: bold;
       }
+
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+
+      .skip-link:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0.5rem 1rem;
+        background: #000;
+        color: #fff;
+        z-index: 100;
+      }
+
+      a:focus-visible, button:focus-visible {
+        outline: 2px solid #005fcc;
+        outline-offset: 2px;
+      }
     </style>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
       <a href="/" class="avatar-link"><img src="/img/about/joel.jpg" alt="Joel Hawksley" class="avatar"></a>
       <div class="info">
@@ -222,8 +247,10 @@
         <div><a href="mailto:joel@hawksley.org">joel@hawksley.org</a></div>
       </div>
     </header>
-    {{ content }}
-    <footer style="font-size: .8rem; margin-bottom: 2rem;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley | <a href="/feed.xml" target="_blank" rel="noopener">RSS</a></footer>
+    <main id="main-content">
+      {{ content }}
+    </main>
+    <footer style="font-size: .8rem; margin-bottom: 2rem;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley | <a href="/feed.xml" target="_blank" rel="noopener" aria-label="RSS feed (opens in a new tab)">RSS</a></footer>
     {% if page.layout == 'post' %}
     <script src="/js/mermaid.min.js"></script>
     <script>

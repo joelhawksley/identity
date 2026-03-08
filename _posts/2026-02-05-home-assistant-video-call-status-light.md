@@ -4,8 +4,9 @@ title: "Home Assistant video call status light"
 description: "TL;DR: Use the Home Assistant MacOS app to control smart lights based on video call status."
 ---
 
-<video autoplay muted loop playsinline controls style="width:100%">
+<video autoplay muted loop playsinline controls style="width:100%" aria-label="Demonstration of office status light changing color when joining a video call">
   <source src="/img/posts/2026-02-05-home-assistant-video-call-status-light/office-call-light-720.mp4" type="video/mp4">
+  Your browser does not support the video element.
 </video>
 
 _**TL;DR:** Use the Home Assistant MacOS app to control smart lights based on video call status._
