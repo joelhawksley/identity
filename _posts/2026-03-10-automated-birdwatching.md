@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Automatic bird identification with Home Assistant on Timeframe
+title: Automatic bird identification with Home Assistant
 description: "I use Birdnet-Go to identify bird calls using the audio from my Ubiquiti cameras, displaying the most interesting bird detected in the past day on my Timeframe displays:"
 image: /img/posts/2026-03-10-automated-birdwatching/most-interesting.jpg
 ---
