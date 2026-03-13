@@ -20,7 +20,7 @@ jobs:
         with:
           dry-run: false
           feed-url: https://hawksley.org/feed.xml
-          since: '100'
+          since: '36'
           since-unit: 'hour'
           message: |
             {description}
