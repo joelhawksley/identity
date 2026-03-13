@@ -9,7 +9,7 @@ on:
 
 jobs:
   crosspost:
-    runs-on: ubuntu-latest
+    runs-on:   ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -20,7 +20,7 @@ jobs:
         with:
           dry-run: false
           feed-url: https://hawksley.org/feed.xml
-          since: '36'
+          since: '100'
           since-unit: 'hour'
           message: |
             {description}
