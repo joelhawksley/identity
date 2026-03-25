@@ -27,7 +27,7 @@ My ideal role would combine architecture, mentorship, and technical contribution
 - Active member of Boulder Ruby Meetup since 2016
 - Mentor of dozens of aspiring software engineers in the community
 - Big Brothers Big Sisters mentor since 2017
-- Louisville, Colorado Board of Adjustment boardmember since 2021
+- Louisville, Colorado Board of Adjustment board member from 2021-2023
 
 ## Experience
 
@@ -35,6 +35,7 @@ My ideal role would combine architecture, mentorship, and technical contribution
 
 2021-Present, Remote
 
+- Led accessibility engineering program, defining a data-driven high-level strategy for critical company initiative
 - Served as company-wide UI architect, guiding architectural decisions and defining metrics for cross-organization engineering programs
 - Established yearly vision, quarterly strategy and monthly work plans across six engineering teams
 - Represented GitHub at RailsConf, RubyConf, and on numerous industry podcasts
@@ -86,6 +87,10 @@ My ideal role would combine architecture, mentorship, and technical contribution
 ### Staff Photographer, The Southern Illinoisan
 
 2012, Carbondale, Illinois
+
+### Intern Photographer
+
+The Seattle Times, The Grand Rapids Press, The Davey Tree Expert Company
 
 ## Projects
 
