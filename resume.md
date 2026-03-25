@@ -103,7 +103,6 @@ My ideal role would combine architecture, mentorship, and technical contribution
 2015-Present
 
 - Digital artwork application for displaying weather and calendar information on e-paper, projection, and LCD displays
-- Architected for low maintenance and high resiliency
 
 ## Education
 
@@ -113,3 +112,7 @@ My ideal role would combine architecture, mentorship, and technical contribution
 
 - Gold medal winner, Sports Portfolio - College Photographer of the Year 2011
 - Founding staff photographer for athletic department, grew team to four
+
+## Training
+
+Certified in Lutron RA3 system design, programming, commissioning, and servicing
