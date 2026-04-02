@@ -110,9 +110,32 @@
         padding: 0 .25rem;
       }
 
-      .highlight {
+      div.highlight {
+        border: 1px solid #ccc;
+        padding: 0.75rem;
+        border-radius: 4px;
+        margin-bottom: 1em;
+      }
+
+      .highlight pre {
         white-space: pre-wrap;
         word-break: break-all;
+        margin: 0;
+        border: none;
+        padding: 0;
+      }
+
+      code {
+        background-color: rgba(175, 184, 193, 0.2);
+        padding: 0.2em 0.4em;
+        border-radius: 6px;
+        word-break: break-all;
+      }
+
+      div.highlight code {
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
       }
 
       ul.posts {
