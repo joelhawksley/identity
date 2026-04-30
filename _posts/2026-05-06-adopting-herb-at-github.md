@@ -146,7 +146,11 @@ In the meantime, we have a custom CI check that force-compiles all vendored `.er
 
 ### Performance impact
 
+With the linter passing and our test suite green, we were ready to go to production. As a final verification step, we turned on Herb [in a production cluster](https://github.com/github/performance-engineering/issues/1945) we isolate for measuring the performance impact of code changes.
 
+While we saw no impact on runtime performance, we unfortunately saw a significant increase in our boot time, from two minutes to almost three. After some investigation, we identified the cause: Herb takes much longer to compile templates than Erubi does.
+
+Depending on the size of the template, Herb is about an order of magnitude slower than Erubi:
 
 | Template | Size  | Erubi   | Herb       | Added   | Ratio |
 |----------|-------|---------|------------|---------|-------|
@@ -155,42 +159,19 @@ In the meantime, we have a custom CI check that force-compiles all vendored `.er
 | Medium   | 1 KB  | 24.4 µs | 365.6 µs   | +341 µs | 15.0x |
 | Large    | 3 KB  | 81.7 µs | 1,059.7 µs | +978 µs | 13.0x |
 
-Herb is 7–15x slower to compile than Erubi, scaling roughly linearly with template size
+In a typical Rails application, a template is compiled from ERB to Ruby when it is rendered for the first time in a process. Subsequent renders hit a cache. Switching to Herb meaningfully increases this cold render overhead, which can become an issue in applications with many templates that are regularly deployed, as the cache must be re-established every the application boots.
 
-this is exactly the reason why we need to validate these kinds of upstream Rails changes ahead of them landing. 
+In GitHub.com, we use library called [ActionView::Precompiler](https://github.com/jhawthorn/actionview_precompiler/) to warm this cache at boot time, which is why we saw our app take longer to boot (ViewComponent also compiles templates at boot time, also contributing to the slowdown). The precompiler also saves significant memory (around 500mb per container) due to the Copy-on-Write memory usage characteristics of forking servers.
 
-After seeing the negative impacts of Herb on our ActionView::Precompiler times, I realized I should probably measure ViewComponent precompilation too (we have 2262 in the monolith), which also happens at boot time.
+While we've explored a few solutions to the issue, such as a build-time cache similar to Bootsnap, we're currently blocked on using Herb in production until it's resolved. Marco thinks we can optimize Herb to avoid this issue, as Herb hasn't seen much perfromance optimization yet.
 
-With Herb: 9.10s
-Without Herb: 3.45s
-
-While it's not the worst to go from 3.5 to 9 seconds, it's yet more of an argument for the build-time compilation I'm proposing in ReActionView.
-
-Cold render impact, we already use actionview precompiler
-
-Precompiler slow down
-ViewComponent slow down
-Cold render problem, issues outstanding
-
-A LUC (Live User Canary) test confirmed that while Herb had no impact on request latency (validating the hypothesis), it increased ViewPrecompiler.precompile time from ~15s to ~60s in production — an unacceptable addition to deploy times.
-
-In a Codespace benchmark:
-
-Erubi: 11.8s average
-Herb: 22.6s average (+91%)
-This single finding blocked production deployment for weeks and triggered a multi-pronged engineering effort:
-
-An ActionView::Precompiler cache (abandoned — too hacky)
-A Herb-level build cache (invalid due to ReActionView config changes)
-A ReActionView-level build cache (successful: 13.2s, on par with Erubi)
-The team ultimately decided to wait to ship to production until the caching solution was accepted upstream, rather than deploying a fork.
-
-Mention Rails upstream PR This PR should help us move towards unblocking the Herb performance improvements necessary to get to prod: https://github.com/rails/rails/pull/57234.
+In the meantime, I've opened a long-overdue PR to [upstream ActionView::Precompiler into Rails](https://github.com/rails/rails/pull/57234). As an added benefit, having Rails applications precompile templates at boot time will raise Herb parsing errors before they can cause runtime issues.
 
 ### Even GitHub doesn't use all of Erubi
 
-ERB is the worst version of Hyrum's law. 
-The Erubi test suite has 108 tests. Github passed CI with herb on, but 8 erubi tests failed (https://github.com/marcoroth/herb/pull/1548). Even at our scale, we do not use all of the features of Erubi.
+But more work remains. The Erubi test suite has 108 tests. Even after all of our work to pass the linter and our test suite, 8 of thsoe 
+
+ Github passed CI with herb on, but 8 erubi tests failed (https://github.com/marcoroth/herb/pull/1548). Even at our scale, we do not use all of the features of Erubi.
 
 ## What's next
 
