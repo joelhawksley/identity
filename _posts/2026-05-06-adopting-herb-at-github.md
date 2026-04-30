@@ -1,15 +1,15 @@
 ---
 layout: post
 title: "Adopting Herb at GitHub"
-description: "We've spent the past few months integrating Herb into the GitHub.com monolith. It caught numerous bugs, allowed us to migrate off the effectively-archived erb_lint, and X. In this talk, I'll share how you can see similar benefts in your codebase today and help improve the project ahead of its 1.0 release."
+description: "We've spent the past few months integrating Herb into the GitHub.com monolith. It caught numerous bugs missed by our existing tooling, allowed us to migrate off the effectively-archived erb_lint, and X. In this talk, I'll share how you can see similar benefts in your codebase today and help improve the project ahead of its 1.0 release."
 image: TODO
 ---
 
-_A transcript of my spring 2026 lightning talk, as presented at Boulder Ruby._
+_A transcript of a spring 2026 lightning talk, as presented at Boulder Ruby._
 
 _Bio: Joel is a staff software engineer at GitHub, working on the health of the GitHub.com Rails monolith._
 
-_Abstract: We've spent the past few months integrating Herb into the GitHub.com monolith. It caught numerous bugs, allowed us to migrate off the effectively-archived erb_lint, and X. In this talk, I'll share how you can see similar benefts in your codebase today and help improve the project ahead of its 1.0 release._
+_Abstract: I've spent the past few months integrating Herb into the GitHub.com monolith. It caught numerous bugs, allowed us to migrate off the effectively-archived erb_lint, and X. In this talk, I'll share how you can see similar benefts in your codebase today and help improve the project ahead of its 1.0 release._
 
 Before I get started, how many people here have heard of Herb?
 
@@ -17,27 +17,27 @@ For those that haven't, Herb is `An ecosystem of powerful and seamless developer
 
 Marco has been on a world-wide speaking tour presenting his work on the project. Last I checked, he had [seven talks on Ruby Events](https://www.rubyevents.org/profiles/marcoroth) already this year! I'd encourage you to check them out to learn more about the project.
 
-Today, I'm going to share our experience adopting Herb at GitHub and why you should do the same in your codebase. I'll also share a few things you'll wish you never knew about ERB.
+Today, I'm going to share our experience adopting Herb at GitHub and why I think you should do the same in your codebase. I'll also share a few things you'll wish you never knew about ERB.
 
 ## Why we are adopting Herb
 
-Herb may replace Erubi in the next major Rails release, as a backwards-compatible replacement. As GitHub is almost certainly the most prolific renderer of ERB in the world, Marco asked us to help validate Herb before it lands in Rails.
+The Rails core is interested in having Herb replace Erubi. As GitHub is almost certainly the most prolific renderer of ERB in the world, Marco asked us to help validate Herb before it lands in Rails.
 
-How prolific? We have around about a half million lines of ERB across about 10,000 files, so about 50 lines/file on average. Despite building most of our new UI in React, we still added 350 files with over 15,000 lines of ERB in the past year, twice as much as we did in the year prior.
+How prolific? We have around about a half million lines of ERB across about 10,000 files, so about 50 lines/file on average. Despite building most of our new UI in React, we still added 350 files with over 15,000 lines of ERB in 2025, twice as much as we did in 2024.
 
-While the Herb test suite is quite thorough, there was no substitute for testing it against a real, large-scale codebase. So that's what we've been doing since December.
+While the Herb test suite is quite thorough, there was no substitute for testing it against a real, large-scale codebase. So that's what I've been doing since December.
 
 ## Our process
 
-When we started out, Herb could not parse all of our ERB, in part due to errors in our ERB and shortcomings in the Herb parser. Those two categories of issues would prove to be the ongoing framing for the work, with our goal of meeting in the middle, where our errors were resolved and Herb could parse every `.html.erb` in our codebase.
+When I started out, Herb could not parse all of our ERB, due to both errors in our ERB and shortcomings in the Herb parser.
 
-Our test was simple. We aimed to pass `npx @herb-tools/linter` with only the `parser-no-errors` rule enabled. The first time we ran the linter, less than 75% of our ERB files passed. We had 2,768 files to fix! Thankfully, the bugs Herb caught in our codebase were mostly benign.
+The first milestone was simple. I aimed to pass `npx @herb-tools/linter` with only the `parser-no-errors` rule enabled. The first time I ran the linter, less than 75% of our ERB files passed. I had 2,768 files to fix! Thankfully, the bugs Herb caught in our codebase were mostly benign.
 
 ## Bugs found by Herb
 
 ### Invalid HTML
 
-It found piles of missing closing tags. As it turns out, browsers are pretty tolerant of bad HTML and will effectively close unclosed tags for you:
+Herb found piles of missing closing tags. As it turns out, browsers are pretty tolerant of bad HTML and will effectively close unclosed tags for you:
 
 ```html+erb
 <p>Hello World! <%# missing </p> %>
@@ -46,7 +46,6 @@ It found piles of missing closing tags. As it turns out, browsers are pretty tol
 ```html+erb
 </div
 ```
-
 
 There were also similarly many cases where the closing tags for elements or ERB blocks were swapped:
 
@@ -71,7 +70,7 @@ In other cases, we did things in ERB that are difficult to translate into an AST
 <% end %>
 ```
 
-Which we fixed by switching to:
+Which I fixed by switching to:
 
 ```html+erb
 <% content = capture do %>
@@ -85,13 +84,13 @@ Which we fixed by switching to:
 <% end %>
 ```
 
-We had about 150 cases like this, which you might think would have been pretty painful to refactor. And you would have been right a year ago! But with the recent Claude Opus models, we've had a basically 100% success rate of one-shot fixes simply by pasting in the Herb error. Herb does of course have a `--fix` option as well, but for the cases where it doesn't, AI has done a very effective job.
-
 Herb has since added support for this pattern in https://github.com/marcoroth/herb/pull/1153, but I think this is a case where the refactored code is just better anyways.
+
+We had about 150 cases like this, which you might think would have been pretty painful to refactor. And you would have been right a year ago! But with the recent Claude Opus models, I've had a basically 100% success rate of one-shot fixes simply by pasting in the Herb error. Herb does of course have a `--fix` option as well, but for the cases where it doesn't, AI has done a very effective job.
 
 ### Invalid ruby
 
-But some of the bugs were quite serious. We caught invalid Ruby in quite a few places:
+But some of the bugs were quite serious. Herb caught invalid Ruby in quite a few places:
 
 ```html+erb
 <% if x.y? && x.z? && %>
@@ -101,15 +100,15 @@ But some of the bugs were quite serious. We caught invalid Ruby in quite a few p
 <% if x? do %>
 ```
 
-### Validating fixes
-
-Manual validation, Blind renderer, etc
+This was pretty surprising to me as we run `erb_lint` on all of our files and have a pretty decent test suite. But we never ran these lines outside of production. Since Herb uses Prism to actually parse the Ruby in ERB files, it caught the issues right away.
 
 ## Bugs found in Herb
 
-ERB is the worst version of Hyrum's law. Our test suite revealed a couple bugs in Herb.
+After passing the linter, I turned to getting our test suite to pass, which revealed a couple bugs in Herb:
 
 ### Whitespace bugs
+
+We caught a [few whitespace bugs](https://github.com/marcoroth/herb/pull/1361).
 
 For example, the following template:
 
@@ -125,13 +124,9 @@ hello
 world
 ```
 
-Link: https://github.com/marcoroth/herb/pull/1361
-
-There were a few other similar whitespace edge cases. https://github.com/marcoroth/herb/pull/1366 https://github.com/marcoroth/herb/pull/1553 https://github.com/marcoroth/herb/pull/1554
-
 ### Invalid Ruby
 
-In another case, when a comment is on the same line as an `end` produced invalid ruby.
+In another, more serious [case](https://github.com/marcoroth/herb/pull/1363), when a comment was on the same line as an `end`, Herb produced invalid Ruby.
 
 ```html+erb
 <%= render Foo.new do %>
@@ -139,22 +134,37 @@ In another case, when a comment is on the same line as an `end` produced invalid
 <% end # comment %>
 ```
 
-https://github.com/marcoroth/herb/pull/1363
+This bug in particular put me in a cold sweat. As I mentioned earlier, we do not run every line of Ruby in CI. As Rails does not compile templates until they are needed at runtime, this kind of bug would be a runtime exception. This is as much an issue with Herb as it is with Rails, as Rails blindly trusts the output of ActionView handlers such as Herb to provide valid Ruby.
 
-TODO explain why this is super bad and rails should handle it
-Still have to verify to be confident shipping
+While I think we need to add safety measures for this issue to Rails, Marco [added](https://github.com/marcoroth/herb/pull/1259) Ruby validation to `herb analyze`.
 
 ### Vendored templates
 
-Herb, unlike Erubi, can throw runtime exceptions when encountering ERB it couldn't parse, including ERB from vendored gems not under GitHub's control. If a gem shipped invalid ERB (by Herb's standards), it could crash production at request time.
+The invalid Ruby issue becomes much trickier when it comes to ERB provided by gems, such as Primer ViewComponents and dashboard engines from tools like good_job. Currently, all `herb` CLI commands, including `analyze` and the linter, ignore the vendor directory. If a gem includes ERB Herb cannot parse, it could crash production at request time. I've filed [a bug for this issue](https://github.com/marcoroth/herb/pull/1508).
 
-This was particularly dangerous because GitHub vendors hundreds of gems, many containing ERB templates. Gem authors wouldn't know their ERB was "invalid" under the new parser. The failure mode is a 500 error, not a graceful degradation. 
-
-The mitigation was a CI check that force-compiles all vendored `.erb` files at build time, catching incompatibilities before they reach production. 
-
-TODO PRs to upstream, graphql-ruby https://github.com/rmosolgo/graphql-ruby/pull/5497, primer viewcomponents https://github.com/primer/view_components/pull/3850
+In the meantime, we have a custom CI check that force-compiles all vendored `.erb` files at build time, catching incompatibilities before they reach production. I've also wrote PRs to fix Herb-incompatible ERB in [graphql-ruby](https://github.com/rmosolgo/graphql-ruby/pull/5497) and [Primer ViewComponents](https://github.com/primer/view_components/pull/3850).
 
 ### Performance impact
+
+
+
+| Template | Size  | Erubi   | Herb       | Added   | Ratio |
+|----------|-------|---------|------------|---------|-------|
+| Tiny     | 58 B  | 3.9 µs  | 28.3 µs    | +24 µs  | 7.2x  |
+| Small    | 250 B | 10.4 µs | 116.1 µs   | +106 µs | 11.2x |
+| Medium   | 1 KB  | 24.4 µs | 365.6 µs   | +341 µs | 15.0x |
+| Large    | 3 KB  | 81.7 µs | 1,059.7 µs | +978 µs | 13.0x |
+
+Herb is 7–15x slower to compile than Erubi, scaling roughly linearly with template size
+
+this is exactly the reason why we need to validate these kinds of upstream Rails changes ahead of them landing. 
+
+After seeing the negative impacts of Herb on our ActionView::Precompiler times, I realized I should probably measure ViewComponent precompilation too (we have 2262 in the monolith), which also happens at boot time.
+
+With Herb: 9.10s
+Without Herb: 3.45s
+
+While it's not the worst to go from 3.5 to 9 seconds, it's yet more of an argument for the build-time compilation I'm proposing in ReActionView.
 
 Cold render impact, we already use actionview precompiler
 
@@ -175,10 +185,22 @@ A Herb-level build cache (invalid due to ReActionView config changes)
 A ReActionView-level build cache (successful: 13.2s, on par with Erubi)
 The team ultimately decided to wait to ship to production until the caching solution was accepted upstream, rather than deploying a fork.
 
+Mention Rails upstream PR This PR should help us move towards unblocking the Herb performance improvements necessary to get to prod: https://github.com/rails/rails/pull/57234.
+
 ### Even GitHub doesn't use all of Erubi
 
-The Erubi test suite has 108 tests. Github passed CI with herb on, but 8 erubi tests failed (https://github.com/marcoroth/herb/pull/1548). Even at our scale, we do not use all of the features of Erubi. 
+ERB is the worst version of Hyrum's law. 
+The Erubi test suite has 108 tests. Github passed CI with herb on, but 8 erubi tests failed (https://github.com/marcoroth/herb/pull/1548). Even at our scale, we do not use all of the features of Erubi.
+
+## What's next
+
+Dropping ERBLint/ERBLint-github as rules are upstreamed
+Adopting more lint rules
+inlining render calls
+Transpiling to react
 
 ## Wrapping up
+
+Really impressed with Marco's work, rapid improvement. Confident it will be a great fit for Rails core, etc.
 
 Give Herb a try! I have no hesitation recommending turning it on for dev and test, where you'll see most of the benefits over Erubi anyways.
