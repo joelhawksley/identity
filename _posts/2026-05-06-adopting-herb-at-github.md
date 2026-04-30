@@ -13,7 +13,7 @@ _Abstract: I've spent the past few months integrating Herb into the GitHub.com m
 
 Before I get started, how many people here have heard of Herb?
 
-For those that haven't, Herb is `An ecosystem of powerful and seamless developer tools for HTML+ERB (HTML + Embedded Ruby) templates.`, created by Marco Roth. The crown jewel of the Herb ecosystem is the Herb parser, which is written in C. Based on Prism, its syntax tree is the basis for all the modern developer experience features you'd expect but were otherwise missing from the ERB stack, like a language server, formatter, etc.
+For those that haven't, Herb is `An ecosystem of powerful and seamless developer tools for HTML+ERB (HTML + Embedded Ruby) templates.`, created by [Marco Roth](https://marcoroth.dev/). The crown jewel of the Herb ecosystem is the Herb parser, which is written in C. Based on Prism, its syntax tree is the basis for all the modern developer experience features you'd expect but were otherwise missing from the ERB stack, like a language server, formatter, etc.
 
 Marco has been on a world-wide speaking tour presenting his work on the project. Last I checked, he had [seven talks on Ruby Events](https://www.rubyevents.org/profiles/marcoroth) already this year! I'd encourage you to check them out to learn more about the project.
 
@@ -146,11 +146,11 @@ In the meantime, we have a custom CI check that force-compiles all vendored `.er
 
 ### Performance impact
 
-With the linter passing and our test suite green, we were ready to go to production. As a final verification step, we turned on Herb [in a production cluster](https://github.com/github/performance-engineering/issues/1945) we isolate for measuring the performance impact of code changes.
+With the linter passing and our test suite green, we were ready to go to production. As a final verification step, we turned on Herb [in a production cluster](https://github.com/github/performance-engineering/issues/1945) we use for measuring the performance impact of code changes.
 
 While we saw no impact on runtime performance, we unfortunately saw a significant increase in our boot time, from two minutes to almost three. After some investigation, we identified the cause: Herb takes much longer to compile templates than Erubi does.
 
-Depending on the size of the template, Herb is about an order of magnitude slower than Erubi:
+Depending on the size of the template, we observed Herb being an order of magnitude slower than Erubi:
 
 | Template | Size  | Erubi   | Herb       | Added   | Ratio |
 |----------|-------|---------|------------|---------|-------|
@@ -159,29 +159,36 @@ Depending on the size of the template, Herb is about an order of magnitude slowe
 | Medium   | 1 KB  | 24.4 µs | 365.6 µs   | +341 µs | 15.0x |
 | Large    | 3 KB  | 81.7 µs | 1,059.7 µs | +978 µs | 13.0x |
 
-In a typical Rails application, a template is compiled from ERB to Ruby when it is rendered for the first time in a process. Subsequent renders hit a cache. Switching to Herb meaningfully increases this cold render overhead, which can become an issue in applications with many templates that are regularly deployed, as the cache must be re-established every the application boots.
+In a typical Rails application, a template is compiled from ERB to Ruby when it is rendered for the first time in a process, with subsequent renders hitting a cache. Switching to Herb meaningfully increases this cold render overhead. This can become an issue in applications with many templates that are regularly deployed, as the cache must be re-populatged every time the application boots.
 
-In GitHub.com, we use library called [ActionView::Precompiler](https://github.com/jhawthorn/actionview_precompiler/) to warm this cache at boot time, which is why we saw our app take longer to boot (ViewComponent also compiles templates at boot time, also contributing to the slowdown). The precompiler also saves significant memory (around 500mb per container) due to the Copy-on-Write memory usage characteristics of forking servers.
+In GitHub.com, we use library called [ActionView::Precompiler](https://github.com/jhawthorn/actionview_precompiler/) to warm this cache at boot time, which is why we saw our app take longer to boot (ViewComponent also compiles templates at boot time,  contributing to the slowdown). The precompiler also saves significant memory (around 500mb per container) due to the Copy-on-Write memory usage characteristics of forking servers.
 
-While we've explored a few solutions to the issue, such as a build-time cache similar to Bootsnap, we're currently blocked on using Herb in production until it's resolved. Marco thinks we can optimize Herb to avoid this issue, as Herb hasn't seen much perfromance optimization yet.
+While we've explored a few solutions to the issue, such as a build-time cache similar to Bootsnap, we're currently blocked on using Herb in production until it's resolved. Marco [thinks we can optimize Herb](https://github.com/marcoroth/reactionview/issues/96#issuecomment-4275244576) to avoid this issue, as Herb hasn't seen much performance optimization yet.
 
-In the meantime, I've opened a long-overdue PR to [upstream ActionView::Precompiler into Rails](https://github.com/rails/rails/pull/57234). As an added benefit, having Rails applications precompile templates at boot time will raise Herb parsing errors before they can cause runtime issues.
+In the meantime, I've opened a long-overdue PR to [upstream ActionView::Precompiler into Rails](https://github.com/rails/rails/pull/57234). As an added benefit, having Rails applications precompile templates at boot time will raise Herb parsing errors before they can cause runtime exceptions.
 
 ### Even GitHub doesn't use all of Erubi
 
-But more work remains. The Erubi test suite has 108 tests. Even after all of our work to pass the linter and our test suite, 8 of thsoe 
+But more work remains. After all of our work to pass the linter and our test suite, 8 of the 108 tests from Erubi are [still failing](https://github.com/marcoroth/herb/pull/1548). Even at our scale, we do not use all of the features of Erubi. That's where you come in! We need you to try out Herb and run it against your codebases, because ERB is maybe the pinnacle of [Hyrum's Law](https://www.hyrumslaw.com/):
 
- Github passed CI with herb on, but 8 erubi tests failed (https://github.com/marcoroth/herb/pull/1548). Even at our scale, we do not use all of the features of Erubi.
+> With a sufficient number of users of an API, it does not matter what you promise in the contract: all observable behaviors of your system will be depended on by somebody.
+
+With ERB being over 20 years old and Erubi nearing a decade, there is likely a lot of code out there that depends on undocumented behavior.
 
 ## What's next
 
-Dropping ERBLint/ERBLint-github as rules are upstreamed
-Adopting more lint rules
-inlining render calls
-Transpiling to react
+So what's next for Herb at GitHub? Beyond the performance blocker, there are a few more areas we hope to see value from the project:
+
+1) We are working to drop our dependency on `erb_lint` and `erb_lint-github`, as Herb has the same rules.
+2) We'll look into turning on more lint rules to improve the quality and safety of our ERB codebase.
+3) Using the Herb AST to transpile ERB to React.
 
 ## Wrapping up
 
-Really impressed with Marco's work, rapid improvement. Confident it will be a great fit for Rails core, etc.
+Overall, I've been really impressed the work Marco and company have done with Herb. It will breathe new life into the Rails frontend story and I look forward to seeing it land in Rails core.
 
-Give Herb a try! I have no hesitation recommending turning it on for dev and test, where you'll see most of the benefits over Erubi anyways.
+In the meantime, give it a try! I have no hesitation recommending turning it on for dev and test, where you'll see most of the benefits over Erubi anyways.
+
+## Thanks
+
+Thanks to my colleagues [@composterinteralia](https://danieljamescolson.com/) and [@hparker](https://hparker.xyz/), who served as my peer reviewers for this project.
