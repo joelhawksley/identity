@@ -37,7 +37,7 @@ The first milestone was simple. I aimed to pass `npx @herb-tools/linter` with on
 
 ### Invalid HTML
 
-Herb found piles of missing closing tags. Browsers are tolerant of bad HTML and will close unclosed tags for you:
+Herb found piles of missing closing tags. Thankfully, browsers are tolerant of bad HTML and will close unclosed tags for you:
 
 ```html+erb
 <p>Hello World! <%# missing </p> %>
