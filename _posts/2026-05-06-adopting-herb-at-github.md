@@ -12,7 +12,7 @@ _Abstract: We've spent the past few months integrating Herb into the GitHub.com 
 
 Before I get started, how many people here have heard of Herb?
 
-For those who haven't, Herb is `An ecosystem of powerful and seamless developer tools for HTML+ERB (HTML + Embedded Ruby) templates.`, created by [Marco Roth](https://marcoroth.dev/). The crown jewel of the Herb ecosystem is the Herb parser, which is written in C. Based on Prism, its syntax tree is the basis for all the modern developer experience features you'd expect but were otherwise missing from the ERB stack, like a language server, formatter, etc.
+For those who haven't, [Herb](https://github.com/marcoroth/herb) is an "ecosystem of powerful and seamless developer tools for HTML+ERB (HTML + Embedded Ruby) templates" created by [Marco Roth](https://marcoroth.dev/). The crown jewel of the Herb ecosystem is the Herb parser, which is written in C. Based on Prism, its syntax tree is the basis for all the modern developer experience features you'd expect but were otherwise missing from the ERB stack, like a language server, formatter, etc.
 
 Marco has been on a world-wide speaking tour presenting his work on the project. Last I checked, he had [seven talks on Ruby Events](https://www.rubyevents.org/profiles/marcoroth) already this year! I'd encourage you to check them out to learn more about the project.
 
