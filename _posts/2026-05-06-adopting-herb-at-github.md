@@ -176,9 +176,9 @@ With ERB being over 20 years old and Erubi nearing a decade, there is likely a l
 
 So what's next for Herb at GitHub? Beyond the performance blocker, there are a few more areas we hope to see value from the project:
 
-1) We are working to drop our dependency on `erb_lint` and `erb_lint-github`, as Herb has the same rules.
-2) We'll look into turning on more lint rules to improve the quality and safety of our ERB codebase.
-3) Using the Herb AST to transpile ERB to React.
+- We are working to drop our dependency on `erb_lint` and `erb_lint-github`, as Herb has the same rules.
+- We'll look into turning on more lint rules to improve the quality and safety of our ERB codebase.
+- Using the Herb AST to transpile ERB to React.
 
 ## Wrapping up
 
