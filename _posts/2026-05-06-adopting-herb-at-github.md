@@ -2,7 +2,6 @@
 layout: post
 title: "Adopting Herb at GitHub"
 description: "We've spent the past few months integrating Herb into the GitHub.com monolith. It caught numerous bugs missed by our existing tooling and allowed us to migrate off the effectively-archived erb_lint, but a key performance blocker remains. In this talk, I'll share how you can see similar benefits in your codebase today and help improve the project ahead of its 1.0 release."
-image: TODO
 ---
 
 _A transcript of a spring 2026 lightning talk, as presented at Boulder Ruby._
@@ -104,7 +103,7 @@ This was surprising, as we run `erb_lint` on all of our files and have a pretty 
 
 ## Bugs found in Herb
 
-After passing the linter, I turned to getting our test suite to pass, which revealed a couple of bugs in Herb:
+After passing the Herb linter, I turned to getting our test suite to pass with the Herb engine replacing Erubi. We found a couple of bugs in Herb:
 
 ### Whitespace bugs
 
@@ -185,7 +184,7 @@ So what's next for Herb at GitHub? Beyond the performance blocker, there are a f
 
 Overall, I've been really impressed by the work Marco and company have done with Herb. It will breathe new life into the Rails frontend story and I look forward to seeing it land in Rails core.
 
-In the meantime, give it a try! I have no hesitation recommending turning it on for dev and test, where you'll see most of the benefits over Erubi anyways.
+In the meantime, give it a try! I have no hesitation recommending using it outside of production today, where you'll see most of the benefits over Erubi anyways.
 
 ## Thanks
 
