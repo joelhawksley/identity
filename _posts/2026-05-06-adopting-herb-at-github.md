@@ -38,17 +38,17 @@ The first milestone was simple. I aimed to pass `npx @herb-tools/linter` with on
 
 Herb found piles of missing closing tags. Thankfully, browsers are tolerant of bad HTML and will close unclosed tags for you:
 
-```html+erb
+```erb
 <p>Hello World! <%# missing </p> %>
 ```
 
-```html+erb
+```erb
 </div
 ```
 
 There were also many cases where the closing tags for elements or ERB blocks were swapped:
 
-```html+erb
+```erb
 <% if active? %>
 <span>Hello World!
 <% end %>
@@ -59,7 +59,7 @@ There were also many cases where the closing tags for elements or ERB blocks wer
 
 In other cases, we did things in ERB that are difficult to translate into an AST, such as conditional opening and closing tags:
 
-```html+erb
+```erb
 <% if show_wrapper? %>
   <div class="wrapper">
 <% end %>
@@ -71,7 +71,7 @@ In other cases, we did things in ERB that are difficult to translate into an AST
 
 Which I fixed by switching to:
 
-```html+erb
+```erb
 <% content = capture do %>
   <p>Content</p>
 <% end %>
@@ -91,11 +91,11 @@ We had about 150 cases like this, which you might think would have been pretty p
 
 But some of the bugs were quite serious. Herb caught invalid Ruby in quite a few places:
 
-```html+erb
+```erb
 <% if x.y? && x.z? && %>
 ```
 
-```html+erb
+```erb
 <% if x? do %>
 ```
 
@@ -111,7 +111,7 @@ We caught a [few whitespace bugs](https://github.com/marcoroth/herb/pull/1361).
 
 For example, the following template:
 
-```html+erb
+```erb
 hello<%= -%>
 world
 ```
@@ -127,7 +127,7 @@ world
 
 In another, more serious [case](https://github.com/marcoroth/herb/pull/1363), when a comment was on the same line as an `end`, Herb produced invalid Ruby.
 
-```html+erb
+```erb
 <%= render Foo.new do %>
   hello
 <% end # comment %>
@@ -188,4 +188,4 @@ In the meantime, give it a try! I have no hesitation recommending using it outsi
 
 ## Thanks
 
-Thanks to my colleagues [@composterinteralia](https://danieljamescolson.com/) and [@hparker](https://hparker.xyz/), who served as my peer reviewers for this project.
+Thanks to my colleagues [@composterinteralia](https://danieljamescolson.com/) and [@hparker](https://hparker.xyz/) who served as my peer reviewers for this project, and to [@marcoroth](https://marcoroth.dev/) for reviewing this post.
