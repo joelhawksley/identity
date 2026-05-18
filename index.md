@@ -26,6 +26,10 @@ I built my first SaaS product, a [portfolio website platform for visual artists]
 
 I'm a strong believer in the power of peer mentoring. In addition to being a [Big Brother](https://biglittlecolorado.org/), I regularly coach several aspiring engineers in their pursuit of a career in software.
 
+## Community organizing
+
+[The Art of Neighboring](https://www.artofneighboring.com/) inspired me to organize community block parties. After the Marshall Fire, I worked with [Marshall Together](https://marshalltogether.com/) to donate block party trailers to the [Town of Superior](https://www.superiorcolorado.gov/Community/Recreation/Block-Party-Trailer) and the [City of Louisville](https://www.louisvilleco.gov/local-government/government/departments/city-clerk-s-office/special-events/block-party-trailer-application).
+
 ## Photography
 
 I previously worked as a photojournalist at several newspapers, including [The Roanoke Times](https://roanoke.com/) and [The Seattle Times](https://www.seattletimes.com/). Since then, I've contracted for [The New York Times](https://www.nytimes.com) and [The Wall Street Journal](https://www.wsj.com). I now focus on travel and nature in my [personal work](https://www.hawksleyvisuals.com).
