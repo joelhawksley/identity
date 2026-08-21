@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
     <meta content="Joel Hawksley" name="author">
-    <meta content=#fff name=theme-color>
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
     <meta content="hawksley.org" property="og:site_name">
     <meta content="joel@hawksley.org" property="og:email">
     <meta content=blog property=og:type>
@@ -25,11 +26,43 @@
     {% endif %}
     <style>
       :root {
+        color-scheme: light dark;
         --mono-font: San Francisco Mono, Monaco, "Consolas", "Lucida Console", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
-        --sans-font: -apple-system, BlinkMacSystemFont, "avenir next", avenir,helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif
+        --sans-font: -apple-system, BlinkMacSystemFont, "avenir next", avenir,helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+        --color-canvas: #fff;
+        --color-fg: #1f2328;
+        --color-fg-muted: #59636e;
+        --color-link: #0969da;
+        --color-link-visited: #8250df;
+        --color-border: #d0d7de;
+        --color-canvas-subtle: #f6f8fa;
+        --color-code-bg: rgba(175, 184, 193, 0.2);
+        --color-media-border: rgba(0, 0, 0, 0.5);
+        --color-focus: #0969da;
+        --color-on-emphasis: #fff;
+        --color-emphasis: #1f2328;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --color-canvas: #0d1117;
+          --color-fg: #f0f6fc;
+          --color-fg-muted: #9198a1;
+          --color-link: #4493f8;
+          --color-link-visited: #be8fff;
+          --color-border: #3d444d;
+          --color-canvas-subtle: #151b23;
+          --color-code-bg: rgba(101, 108, 118, 0.2);
+          --color-media-border: rgba(255, 255, 255, 0.5);
+          --color-focus: #1f6feb;
+          --color-on-emphasis: #fff;
+          --color-emphasis: #25292e;
+        }
       }
 
       body {
+        background-color: var(--color-canvas);
+        color: var(--color-fg);
         margin: 0 auto;
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
@@ -64,7 +97,7 @@
       }
 
       blockquote {
-        border-left: 5px solid lightgray;
+        border-left: 5px solid var(--color-border);
         margin-inline-start: 0;
         padding-inline-start: 1.5rem;
         font-style: italic;
@@ -77,7 +110,7 @@
       img, video, iframe {
         width: 100%;
         max-width: 40rem;
-        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0 0 0 1px var(--color-media-border);
       }
 
       figure {
@@ -91,7 +124,7 @@
 
       figcaption {
         font-size: 0.85rem;
-        color: #555;
+        color: var(--color-fg-muted);
         margin-top: 0.4rem;
       }
 
@@ -110,8 +143,17 @@
         padding: 0 .25rem;
       }
 
+      a {
+        color: var(--color-link);
+      }
+
+      a:visited {
+        color: var(--color-link-visited);
+      }
+
       div.highlight {
-        border: 1px solid #ccc;
+        background-color: var(--color-canvas-subtle);
+        border: 1px solid var(--color-border);
         padding: 0.75rem;
         border-radius: 4px;
         margin-bottom: 1em;
@@ -126,7 +168,7 @@
       }
 
       code {
-        background-color: rgba(175, 184, 193, 0.2);
+        background-color: var(--color-code-bg);
         padding: 0.2em 0.4em;
         border-radius: 6px;
         word-break: break-all;
@@ -167,28 +209,16 @@
       table:not(.slides) th,
       table:not(.slides) td {
         padding: 6px 13px;
-        border: 1px solid #d0d7de;
+        border: 1px solid var(--color-border);
       }
 
       table:not(.slides) th {
         font-weight: 600;
-        background-color: #f6f8fa;
+        background-color: var(--color-canvas-subtle);
       }
 
       table:not(.slides) tr:nth-child(2n) {
-        background-color: #f6f8fa;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        table:not(.slides) th,
-        table:not(.slides) td {
-          border-color: #3d444d;
-        }
-
-        table:not(.slides) th,
-        table:not(.slides) tr:nth-child(2n) {
-          background-color: #161b22;
-        }
+        background-color: var(--color-canvas-subtle);
       }
 
       table.slides {
@@ -230,14 +260,8 @@
         max-width: 100%;
       }
 
-      @media (prefers-color-scheme: dark) {
-        img, video, iframe {
-          box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-        }
-      }
-
       footer {
-        border-top: 1px solid #ccc;
+        border-top: 1px solid var(--color-border);
         margin-top: 1rem;
         padding: 1rem 0;
       }
@@ -273,7 +297,7 @@
       }
 
       header .name a {
-        color: black;
+        color: var(--color-fg);
         text-decoration: none;
         font-weight: bold;
       }
@@ -292,13 +316,13 @@
         width: auto;
         height: auto;
         padding: 0.5rem 1rem;
-        background: #000;
-        color: #fff;
+        background: var(--color-emphasis);
+        color: var(--color-on-emphasis);
         z-index: 100;
       }
 
       a:focus-visible, button:focus-visible {
-        outline: 2px solid #005fcc;
+        outline: 2px solid var(--color-focus);
         outline-offset: 2px;
       }
     </style>
@@ -320,10 +344,25 @@
     <script src="/js/mermaid.min.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', async function() {
-        mermaid.initialize({startOnLoad:true});
-        await mermaid.run({
-          querySelector: '.language-mermaid',
-        });
+        const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const diagrams = Array.from(document.querySelectorAll('.language-mermaid'));
+        const sources = new Map(diagrams.map((diagram) => [diagram, diagram.textContent]));
+
+        async function renderMermaid() {
+          diagrams.forEach((diagram) => {
+            diagram.textContent = sources.get(diagram);
+            diagram.removeAttribute('data-processed');
+          });
+
+          mermaid.initialize({
+            startOnLoad: false,
+            theme: colorScheme.matches ? 'dark' : 'default',
+          });
+          await mermaid.run({nodes: diagrams});
+        }
+
+        await renderMermaid();
+        colorScheme.addEventListener('change', renderMermaid);
       });
     </script>
     {% endif %}
