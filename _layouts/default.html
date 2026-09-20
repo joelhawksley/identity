@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>{% if page.title %}{{ page.title }} - {% endif %}Joel Hawksley</title>
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <title>{% if page.title %}{{ page.title | replace: '‘', "'" | replace: '’', "'" | replace: '“', '"' | replace: '”', '"' | escape }} - {% endif %}Joel Hawksley</title>
+    <meta name="description" content="{% if page.description %}{{ page.description | replace: '‘', "'" | replace: '’', "'" | replace: '“', '"' | replace: '”', '"' | escape }}{% else %}{{ site.description | replace: '‘', "'" | replace: '’', "'" | replace: '“', '"' | replace: '”', '"' | escape }}{% endif %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -13,7 +13,7 @@
     <meta content="hawksley.org" property="og:site_name">
     <meta content="joel@hawksley.org" property="og:email">
     <meta content=blog property=og:type>
-    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title | replace: '‘', "'" | replace: '’', "'" | replace: '“', '"' | replace: '”', '"' | escape }}" href="/feed.xml">
     <link rel="icon" type="image/jpeg" href="/img/about/joel.jpg">
     <link rel="me" href="https://ruby.social/@joelhawksley">
     <link rel="stylesheet" href="/code.css">
@@ -153,6 +153,12 @@
         margin-top: 0;
       }
 
+      hr {
+        border: 0;
+        border-top: 1px solid var(--color-border);
+        margin: 1.5rem 0;
+      }
+
       nav a {
         text-decoration: none;
         display: inline-block;
@@ -277,9 +283,9 @@
       }
 
       footer {
-        border-top: 1px solid var(--color-border);
-        margin-top: 1rem;
-        padding: 1rem 0;
+        font-size: .8rem;
+        margin: 3rem 0 0;
+        padding: 3rem 0 2rem;
       }
 
       footer p {
@@ -353,9 +359,9 @@
       </div>
     </header>
     <main id="main-content">
-      {{ content }}
+      {{ content | replace: '‘', "'" | replace: '’', "'" | replace: '“', '"' | replace: '”', '"' }}
     </main>
-    <footer style="font-size: .8rem; margin-bottom: 2rem;">&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley | <a href="/feed.xml" target="_blank" rel="noopener" aria-label="RSS feed (opens in a new tab)">RSS</a></footer>
+    <footer>&copy; 2004-{{ 'now' | date: "%Y" }} Joel Hawksley | <a href="/feed.xml" target="_blank" rel="noopener" aria-label="RSS feed (opens in a new tab)">RSS</a></footer>
     {% if page.layout == 'post' %}
     <script src="/js/mermaid.min.js"></script>
     <script>
