@@ -3,7 +3,7 @@ layout: post
 title: "Conference proposal: Rethinking the View Layer with Components"
 ---
 
-_This conference proposal was accepted for [RailsConf 2019](https://www.youtube.com/watch?v=y5Z5a6QdA-M) and [RubyConf Taiwan 2019](https://www.youtube.com/watch?v=MGAs0QALAiM)._ [View slides](/talks/2019/slides.md)
+_This conference proposal was accepted for [RailsConf 2019](https://www.youtube.com/watch?v=y5Z5a6QdA-M) ([archived](/archive/videos/y5Z5a6QdA-M.mp4)) and [RubyConf Taiwan 2019](https://www.youtube.com/watch?v=MGAs0QALAiM) ([archived](/archive/videos/MGAs0QALAiM.mp4))._ [View slides](/talks/2019/slides.md)
 
 ## Abstract
 

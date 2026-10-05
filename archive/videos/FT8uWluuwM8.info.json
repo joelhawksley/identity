@@ -1,0 +1,10 @@
+{
+  "id": "FT8uWluuwM8",
+  "title": "Encapsulating Views by Joel Hawksley",
+  "description": "Unlike models and controllers, Rails views are not encapsulated. This makes them hard to reason about and difficult to test, leading us to use abstractions such as presenters and decorators. In this talk, we\u2019ll explore the inner workings of how Rails compiles and executes views today, the lessons we\u2019ve learned building encapsulated views at GitHub over the past year, and how you can do the same with the support for 3rd-party component frameworks coming in Rails 6.1.",
+  "upload_date": "20210218",
+  "duration": 4241,
+  "webpage_url": "https://www.youtube.com/watch?v=FT8uWluuwM8",
+  "channel": "Boulder Ruby",
+  "view_count": 57
+}

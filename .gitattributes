@@ -1,0 +1,2 @@
+archive/videos/*.mp4 filter=lfs diff=lfs merge=lfs -text
+archive/podcasts/*.mp3 filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,257 @@
+{
+  "generated_at": "2026-10-05",
+  "description": "Archive manifest for externally-hosted videos and podcast appearances referenced in index.md and _posts/, downloaded for long-term preservation.",
+  "videos": [
+    {
+      "slug": "y5Z5a6QdA-M",
+      "title": "RailsConf 2019",
+      "source_url": "https://www.youtube.com/watch?v=y5Z5a6QdA-M",
+      "file": "archive/videos/y5Z5a6QdA-M.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "YVYRus_2KZM",
+      "title": "RailsConf 2020",
+      "source_url": "https://www.youtube.com/watch?v=YVYRus_2KZM",
+      "file": "archive/videos/YVYRus_2KZM.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "QoetqsBCsbE",
+      "title": "RailsConf 2021",
+      "source_url": "https://www.youtube.com/watch?v=QoetqsBCsbE",
+      "file": "archive/videos/QoetqsBCsbE.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "21QG19Zy_g0",
+      "title": "RailsConf 2022",
+      "source_url": "https://www.youtube.com/watch?v=21QG19Zy_g0",
+      "file": "archive/videos/21QG19Zy_g0.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "4j2zlvE_Yj8",
+      "title": "RailsConf 2023",
+      "source_url": "https://www.youtube.com/watch?v=4j2zlvE_Yj8",
+      "file": "archive/videos/4j2zlvE_Yj8.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "ZRUn-yRH0ks",
+      "title": "RailsConf 2024",
+      "source_url": "https://www.youtube.com/watch?v=ZRUn-yRH0ks",
+      "file": "archive/videos/ZRUn-yRH0ks.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "vynyFGOZOZ8",
+      "title": "RubyConf",
+      "source_url": "https://www.youtube.com/watch?v=vynyFGOZOZ8",
+      "file": "archive/videos/vynyFGOZOZ8.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "CyN1pdmBCtc",
+      "title": "RubyDay IT",
+      "source_url": "https://www.youtube.com/watch?v=CyN1pdmBCtc",
+      "file": "archive/videos/CyN1pdmBCtc.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "MGAs0QALAiM",
+      "title": "RubyConf Taiwan",
+      "source_url": "https://www.youtube.com/watch?v=MGAs0QALAiM",
+      "file": "archive/videos/MGAs0QALAiM.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "8tR3LJ2cEsE",
+      "title": "Rocky Mountain Ruby 2023",
+      "source_url": "https://www.youtube.com/watch?v=8tR3LJ2cEsE",
+      "file": "archive/videos/8tR3LJ2cEsE.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "9e2CsMMLf4U",
+      "title": "Rocky Mountain Ruby 2024",
+      "source_url": "https://www.youtube.com/watch?v=9e2CsMMLf4U",
+      "file": "archive/videos/9e2CsMMLf4U.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "4ck9ZUXwuio",
+      "title": "Rocky Mountain Ruby 2025",
+      "source_url": "https://www.youtube.com/watch?v=4ck9ZUXwuio",
+      "file": "archive/videos/4ck9ZUXwuio.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "FT8uWluuwM8",
+      "title": "Boulder Ruby 2020",
+      "source_url": "https://www.youtube.com/watch?v=FT8uWluuwM8",
+      "file": "archive/videos/FT8uWluuwM8.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "JvnpWJWZd3o",
+      "title": "Boulder Ruby 2021",
+      "source_url": "https://www.youtube.com/watch?v=JvnpWJWZd3o",
+      "file": "archive/videos/JvnpWJWZd3o.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "LLt1ctv6SVM",
+      "title": "Boulder Ruby 2022",
+      "source_url": "https://www.youtube.com/watch?v=LLt1ctv6SVM",
+      "file": "archive/videos/LLt1ctv6SVM.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "x-Xt49oT2yw",
+      "title": "Boulder Ruby 2023",
+      "source_url": "https://www.youtube.com/watch?v=x-Xt49oT2yw",
+      "file": "archive/videos/x-Xt49oT2yw.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "ywyZdCs9xCY",
+      "title": "Boulder Ruby 2024",
+      "source_url": "https://www.youtube.com/watch?v=ywyZdCs9xCY",
+      "file": "archive/videos/ywyZdCs9xCY.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "-AVY6V71c0g",
+      "title": "Boulder Ruby 2026",
+      "source_url": "https://www.youtube.com/watch?v=-AVY6V71c0g",
+      "file": "archive/videos/-AVY6V71c0g.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "Dh5xte_r3Wg",
+      "title": "Boulder Ruby 2026 Lightning Talk",
+      "source_url": "https://www.youtube.com/watch?v=Dh5xte_r3Wg",
+      "file": "archive/videos/Dh5xte_r3Wg.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "Y4cTn5DTUFc",
+      "title": "ChicagoRuby 2026",
+      "source_url": "https://www.youtube.com/watch?v=Y4cTn5DTUFc",
+      "file": "archive/videos/Y4cTn5DTUFc.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "v-mrsmxVy5U",
+      "title": "Open Source Friday",
+      "source_url": "https://www.youtube.com/watch?v=v-mrsmxVy5U",
+      "file": "archive/videos/v-mrsmxVy5U.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "WedG8LKO6ks",
+      "title": "Zoom teleprompter demo reference (my-zoom-teleprompter-setup post)",
+      "source_url": "https://www.youtube.com/watch?v=WedG8LKO6ks",
+      "file": "archive/videos/WedG8LKO6ks.mp4",
+      "status": "archived"
+    },
+    {
+      "slug": "Wkzg8sNkm8Y",
+      "title": "Smart Home Solver demo (smart-home-solver post)",
+      "source_url": "https://www.youtube.com/watch?v=Wkzg8sNkm8Y",
+      "file": "archive/videos/Wkzg8sNkm8Y.mp4",
+      "status": "archived"
+    }
+  ],
+  "podcasts": [
+    {
+      "slug": "dead-code-poison-pills",
+      "show": "Dead Code",
+      "episode": "Poison Pills (with Joel Hawksley)",
+      "source_url": "https://shows.acast.com/dead-code/episodes/poison-pills-with-joel-hawksley",
+      "file": "archive/podcasts/dead-code-poison-pills.mp3",
+      "status": "archived"
+    },
+    {
+      "slug": "drbragg-episode-53",
+      "show": "Code and the Coding Coders who Code it",
+      "episode": "Episode 53 - Joel Hawksley",
+      "source_url": "https://podcast.drbragg.dev/episodes/episode-53-joel-hawksley/",
+      "file": null,
+      "status": "NEEDS MANUAL FIX: page's embedded player points to a different buzzsprout episode (\"Episode 8 RailsConf Home Edition Podcast Panel\"), likely a bug on the show's site. Could not confirm correct audio automatically."
+    },
+    {
+      "slug": "maintainable-fm-frontend-complexity",
+      "show": "Maintainable",
+      "episode": "Joel Hawksley: The Hidden Costs of Frontend Complexity",
+      "source_url": "https://maintainable.fm/episodes/joel-hawksley-the-hidden-costs-of-frontend-complexity",
+      "file": "archive/podcasts/maintainable-fm-frontend-complexity.mp3",
+      "status": "archived"
+    },
+    {
+      "slug": "remote-ruby-125-viewcomponents",
+      "show": "Remote Ruby",
+      "episode": "ViewComponents and the Future of Assets with Joel Hawksley",
+      "source_url": "https://remoteruby.transistor.fm/125",
+      "file": "archive/podcasts/remote-ruby-125-viewcomponents.mp3",
+      "status": "archived (original URL 404s; resolved via show RSS feed by title match)"
+    },
+    {
+      "slug": "rubyonrails-276-introducing-avc",
+      "show": "Ruby on Rails Podcast",
+      "episode": "276: Introducing ActionView::Component with Joel Hawksley",
+      "source_url": "https://www.therubyonrailspodcast.com/276",
+      "file": "archive/podcasts/rubyonrails-276-introducing-avc.mp3",
+      "status": "archived"
+    },
+    {
+      "slug": "rubyonrails-519-accessibility",
+      "show": "Ruby on Rails Podcast",
+      "episode": "Joel Hawksley on Web Accessibility",
+      "source_url": "https://www.therubyonrailspodcast.com/519",
+      "file": "archive/podcasts/rubyonrails-519-accessibility.mp3",
+      "status": "archived"
+    },
+    {
+      "slug": "radiopublic-ruby-blend",
+      "show": "The Ruby Blend",
+      "episode": "(season 1 episode referenced in index.md)",
+      "source_url": "https://radiopublic.com/the-ruby-blend-WDewaV/s1!9aab9",
+      "file": null,
+      "status": "NEEDS MANUAL FIX: radiopublic.com no longer resolves (service appears discontinued). Need to find this show's new host/RSS feed."
+    },
+    {
+      "slug": "codewithjason-088",
+      "show": "Code with Jason",
+      "episode": "088: ViewComponent with Joel Hawksley of GitHub",
+      "source_url": "https://www.codewithjason.com/podcast/9478227-088-viewcomponent-with-joel-hawksley-of-github/",
+      "file": "archive/podcasts/codewithjason-088.mp3",
+      "status": "archived"
+    },
+    {
+      "slug": "codewithjason-130",
+      "show": "Code with Jason",
+      "episode": "130: ViewComponent with Joel Hawksley, Staff Engineer at GitHub",
+      "source_url": "https://www.codewithjason.com/podcast/9936046-130-viewcomponent-with-joel-hawksley-staff-engineer-at-github/",
+      "file": "archive/podcasts/codewithjason-130.mp3",
+      "status": "archived"
+    },
+    {
+      "slug": "codewithjason-233",
+      "show": "Code with Jason",
+      "episode": "233: Joel Hawksley, Staff Engineer at GitHub",
+      "source_url": "https://www.codewithjason.com/podcast/15763617-233-joel-hawksley-staff-engineer-at-github",
+      "file": "archive/podcasts/codewithjason-233.mp3",
+      "status": "archived"
+    },
+    {
+      "slug": "devchat-ruby-rogues-461",
+      "show": "Ruby Rogues",
+      "episode": "RR 461: Rethinking the View Layer with Components with Joel Hawksley",
+      "source_url": "https://devchat.tv/ruby-rogues/rr-461-rethinking-the-view-layer-with-components-with-joel-hawksley/",
+      "file": null,
+      "status": "NEEDS MANUAL FIX: devchat.tv did not resolve/connect from this environment (DNS/connect timeout). May be temporarily down or blocked; retry later or find alternate RSS feed."
+    }
+  ]
+}

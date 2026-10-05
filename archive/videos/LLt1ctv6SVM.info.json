@@ -1,0 +1,10 @@
+{
+  "id": "LLt1ctv6SVM",
+  "title": "Breaking up the bundle by Joel Hawksley",
+  "description": "Over the course of 14 years, the GitHub.com CSS bundle grew to over 40,000 lines of custom CSS. It became almost impossible to refactor. Visual regressions were common. In this talk, we'll share an honest picture of our successes and failures as we've worked to break up with our CSS bundle by moving towards a component-driven UI architecture.\n\nBio: Joel is a staff engineer on the Design Infrastructure team at GitHub, leading the development of the Primer ViewComponents library and the ViewComponent framework.",
+  "upload_date": "20221204",
+  "duration": 3063,
+  "webpage_url": "https://www.youtube.com/watch?v=LLt1ctv6SVM",
+  "channel": "Boulder Ruby",
+  "view_count": 84
+}

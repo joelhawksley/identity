@@ -1,0 +1,10 @@
+{
+  "id": "21QG19Zy_g0",
+  "title": "RailsConf 2022 - Breaking up with the bundle by Joel Hawksley",
+  "description": "Breaking up with the bundle by Joel Hawksley\n\nOver the course of 14 years, the GitHub.com CSS bundle grew to over 40,000 lines of custom CSS. It became almost impossible to refactor. Visual regressions were common. In this talk, we'll share an honest picture of our successes and failures as we've worked to break up with our CSS bundle by moving towards a component-driven UI architecture.\n\n_____________________________________________________________\n\nCloud 66 - Deploy your Rails code directly from your repo to any cloud in minutes. Cloud 66 offers the convenience of Heroku, but on any cloud and in any region, with persistent storage, custom network configuration, zero downtime deployments, blue/green and canary releases, WAF, and more.\n\nGet $100 Cloud 66 Free Credits with the code: RailsConf2022\n($100 Cloud 66 Free Credits, for the new user only, valid till 31st December 2022)\n\nCloud 66: https://cloud66.com/frameworks/rails?utm_source=e&utm_medium=d&utm_campaign=ytRailsConf-22",
+  "upload_date": "20220718",
+  "duration": 1841,
+  "webpage_url": "https://www.youtube.com/watch?v=21QG19Zy_g0",
+  "channel": "Ruby Central",
+  "view_count": 3583
+}

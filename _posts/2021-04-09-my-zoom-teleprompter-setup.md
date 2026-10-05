@@ -94,5 +94,5 @@ Getting the signal chain right takes some work. I use an [audio mixer]([linked b
 ## Resources
 
 - [Using a Nikon D750 as a webcam or for live streaming](https://www.jeffgeerling.com/blog/2020/using-nikon-d750-webcam-or-live-streaming)
-- [Entire Youtube Studio Setup ON ONE DESK!](https://youtu.be/WedG8LKO6ks?t=336) (How to mount a ball head to a monitor arm)
+- [Entire Youtube Studio Setup ON ONE DESK!](https://youtu.be/WedG8LKO6ks?t=336) ([archived](/archive/videos/WedG8LKO6ks.mp4)) (How to mount a ball head to a monitor arm)
 - [How to Set up a Mix Minus for Recording Skype](https://thepodcastersstudio.com/how-to-setup-a-mix-minus/)
