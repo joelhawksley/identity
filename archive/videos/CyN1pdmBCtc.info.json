@@ -1,0 +1,10 @@
+{
+  "id": "CyN1pdmBCtc",
+  "title": "ViewComponents in the Real World - Joel Hawksley - rubyday 2021",
+  "description": "ViewComponents in the Real World - Joel Hawksley - rubyday 2021\n\nWith the release of 6.1, Rails added support for rendering objects that respond to 'render_in', a feature extracted from the GitHub application. This change enabled the development of ViewComponent, a framework for building reusable, testable & encapsulated view components. In this talk, we\u2019ll share what we\u2019ve learned scaling to hundreds of ViewComponents in our application, open sourcing a library of ViewComponents, and nurturing a thriving community around the project, both internally and externally.\n\nThe ninth edition of the Italian Ruby conference, for the third time organised by GrUSP, took place online on April 7th 2021. \n\nSpeaker and details on https://2021.rubyday.it/",
+  "upload_date": "20230210",
+  "duration": 3409,
+  "webpage_url": "https://www.youtube.com/watch?v=CyN1pdmBCtc",
+  "channel": "GrUSP",
+  "view_count": 92
+}

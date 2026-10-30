@@ -1,0 +1,10 @@
+{
+  "id": "Dh5xte_r3Wg",
+  "title": "Herb at Github - Joel Hawksley",
+  "description": "\u200bDescription:\n\u200bWe've spent the past few months integrating Herb into the GitHub.com monolith. It caught numerous bugs missed by our existing tooling and allowed us to migrate off the effectively-archived erb_lint, but a key performance blocker remains. In this talk, I'll share how you can see similar benefits in your codebase today and help improve the project ahead of its 1.0 release.\n\n\u200bBio:\n\u200bJoel is a staff software engineer at GitHub, working on the health of the GitHub.com Rails monolith.",
+  "upload_date": "20260511",
+  "duration": 1180,
+  "webpage_url": "https://www.youtube.com/watch?v=Dh5xte_r3Wg",
+  "channel": "Boulder Ruby",
+  "view_count": 337
+}

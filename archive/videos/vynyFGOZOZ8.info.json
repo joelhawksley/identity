@@ -1,0 +1,10 @@
+{
+  "id": "vynyFGOZOZ8",
+  "title": "RubyConf 2021 - How GitHub uses linters by Joel Hawksley",
+  "description": "How GitHub uses linters by Joel Hawksley\n\nThe GitHub code base is growing at over 25% every year through contributions from over 1000 engineers, clocking in at 1.7+ million lines of Ruby. In this talk, we'll share how we use linters to keep our codebase healthy by ensuring best practices are applied consistently, feedback loops are as short as possible, and code reviews bring the most value, all without creating too much friction.",
+  "upload_date": "20211222",
+  "duration": 1872,
+  "webpage_url": "https://www.youtube.com/watch?v=vynyFGOZOZ8",
+  "channel": "Ruby Central",
+  "view_count": 610
+}

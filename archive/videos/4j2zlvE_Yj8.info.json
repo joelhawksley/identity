@@ -1,0 +1,10 @@
+{
+  "id": "4j2zlvE_Yj8",
+  "title": "RailsConf 2023 - Accessible by default by Joel Hawksley",
+  "description": "It's one thing to build a new application that meets the latest accessibility standards, but it's another thing to update an existing application to meet them. In this talk, we'll share how we're using automated accessibility scanning, preview-driven development, and an accessibility-first form builder to make GitHub's 15-year-old, 1,400-controller Ruby on Rails monolith accessible.",
+  "upload_date": "20230714",
+  "duration": 2491,
+  "webpage_url": "https://www.youtube.com/watch?v=4j2zlvE_Yj8",
+  "channel": "Ruby Central",
+  "view_count": 812
+}

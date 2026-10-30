@@ -1,0 +1,10 @@
+{
+  "id": "v-mrsmxVy5U",
+  "title": "Encapsulating Ruby on Rails views - Open Source Friday",
+  "description": "With the recent release of version 6.1, Ruby on Rails now supports the rendering of objects that respond to render_in, a change we introduced to the framework. It may be small (the two pull requests were less than a dozen lines), but this change has enabled us to develop a framework for building encapsulated views called ViewComponent.\n\nhttps://github.blog/2020-12-15-encapsulating-ruby-on-rails-views/\nhttps://github.com/github/view_component\n\n0:00 - Start\n1:18 - What is a Rails ViewComponent\n5:20 - What inspired this?\n8:11 - Adoption at GitHub\n10:53 - How does interact with design systems?\n17:08 - Who else is using this?\n23:48 - Contributions in the wild\n26:42 - CSS in JS\n35:00 - Rails open source conventions\n\nAs always, feel free to leave us a comment below and don't forget to subscribe: http://bit.ly/subgithub\n\nThanks!\n\nConnect with us.\nFacebook: http://fb.com/github\nTwitter: http://twitter.com/github\nLinkedIn: http://linkedin.com/company/github\n\nAbout GitHub\nGitHub is the best place to share code with friends, co-workers, classmates, and complete strangers. Millions of people use GitHub to build amazing things together. For more info, go to http://github.com",
+  "upload_date": "20210518",
+  "duration": 2312,
+  "webpage_url": "https://www.youtube.com/watch?v=v-mrsmxVy5U",
+  "channel": "GitHub",
+  "view_count": 1977
+}

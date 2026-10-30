@@ -1,0 +1,10 @@
+{
+  "id": "y5Z5a6QdA-M",
+  "title": "RailsConf 2019 - Rethinking the View Layer with Components by Joel Hawksley",
+  "description": "RailsConf 2019 - Rethinking the View Layer with Components by Joel Hawksley\n\n_______________________________________________________________________________________________\n\nCloud 66 - Pain Free Rails Deployments\nCloud 66 for Rails acts like your in-house DevOps team to build, deploy and maintain your Rails applications on any cloud or server.\n\nGet $100 Cloud 66 Free Credits with the code: RailsConf-19\n($100 Cloud 66 Free Credits, for the new user only, valid till 31st December 2019)\n\nLink to the website: https://cloud66.com/rails?utm_source=-&utm_medium=-&utm_campaign=RailsConf19\nLink to sign up: https://app.cloud66.com/users/sign_in?utm_source=-&utm_medium=-&utm_campaign=RailsConf19\n_______________________________________________________________________________________________\n\nWhile most of Rails has evolved over time, the view layer hasn\u2019t changed much. At GitHub, we are incorporating the lessons of the last decade into a new paradigm: components. This approach has enabled us to leverage traditional object-oriented techniques to test our views in isolation, avoid side-effects, refactor with confidence, and perhaps most importantly, make our views first-class citizens in Rails.\n\n#railsconf #confreaks",
+  "upload_date": "20190520",
+  "duration": 2272,
+  "webpage_url": "https://www.youtube.com/watch?v=y5Z5a6QdA-M",
+  "channel": "Confreaks",
+  "view_count": 11947
+}
