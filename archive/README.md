@@ -27,6 +27,20 @@ their original external link, e.g.:
 
 ## Recovered podcast appearances
 
+- **Code and the Coding Coders who Code it — Episode 53 - Joel Hawksley**
+  ([archived audio](podcasts/drbragg-episode-53.mp3)): recovered from the
+  [Buzzsprout RSS feed](https://feeds.buzzsprout.com/1927628.rss), published
+  July 2, 2025. The page's player selects the correct episode; only its Twitter
+  player metadata points to Episode 8. After initial HTTP 403 responses, a
+  browser-style request succeeded:
+
+  ```bash
+  curl --fail --location \
+    --referer 'https://www.buzzsprout.com/' --user-agent 'Mozilla/5.0' \
+    'https://www.buzzsprout.com/1927628/episodes/17437317-episode-53-joel-hawksley.mp3?client_source=small_player' \
+    -o archive/podcasts/drbragg-episode-53.mp3
+  ```
+
 - **The Ruby Blend — Episode 9: ViewComponent at GitHub with Joel Hawksley**
   ([archived audio](podcasts/radiopublic-ruby-blend.mp3)): recovered from the
   [Transistor RSS archive](https://feeds.transistor.fm/the-ruby-blend), published
@@ -36,7 +50,7 @@ their original external link, e.g.:
   [Spreaker RSS feed](https://www.spreaker.com/show/6102073/episodes/feed), published
   June 9, 2020.
 
-Both downloads were matched against their RSS episode titles and audio title tags.
+All three downloads were matched against their RSS episode titles and audio title tags.
 The manifest records the feed and enclosure URLs so the recovery is repeatable.
 
 The Ruby Rogues source contains a malformed MP3 packet, but decoding continues
@@ -46,16 +60,8 @@ than editing the recording.
 
 ## Known gaps (as of 2026-10-30)
 
-**Code and the Coding Coders who Code it — Episode 53** still needs its audio
-downloaded. The [official RSS feed](https://feeds.buzzsprout.com/1927628.rss)
-confirms "Episode 53 - Joel Hawksley," published July 2, 2025, as Buzzsprout
-episode **17437317**. The page's actual player selects the correct episode;
-only its Twitter player metadata incorrectly points to Episode 8.
-
-The [correct audio enclosure](https://www.buzzsprout.com/1927628/episodes/17437317-episode-53-joel-hawksley.mp3)
-redirects to `audio.buzzsprout.com`, which returned **HTTP 403** for both playback
-and download links on October 30, 2026. Retry that enclosure later or request
-the recording from the host. No audio is archived for this episode yet.
+None of the three previously missing podcast recordings remain unarchived.
+The Ruby Rogues source-quality issue is documented above.
 
 See `manifest.json` for the full machine-readable status of every item.
 

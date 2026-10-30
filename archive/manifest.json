@@ -179,10 +179,10 @@
       "episode": "Episode 53 - Joel Hawksley",
       "source_url": "https://podcast.drbragg.dev/episodes/episode-53-joel-hawksley/",
       "feed_url": "https://feeds.buzzsprout.com/1927628.rss",
-      "audio_url": "https://www.buzzsprout.com/1927628/episodes/17437317-episode-53-joel-hawksley.mp3",
-      "file": null,
-      "status": "needs-manual-check",
-      "notes": "Correct episode confirmed by title in the show's RSS feed (published July 2, 2025, Buzzsprout episode 17437317). The page's player also selects this episode; only its Twitter player metadata points to Episode 8. Both playback and download URLs redirect to audio.buzzsprout.com, which returned HTTP 403 on 2026-10-30. Retry the enclosure URL or request the audio from the host."
+      "audio_url": "https://www.buzzsprout.com/1927628/episodes/17437317-episode-53-joel-hawksley.mp3?client_source=small_player",
+      "file": "archive/podcasts/drbragg-episode-53.mp3",
+      "status": "archived",
+      "notes": "Correct episode confirmed by title in the show's RSS feed (published July 2, 2025, Buzzsprout episode 17437317) and downloaded audio title tag. The page's player selects the correct episode; only its Twitter player metadata points to Episode 8. After earlier HTTP 403 responses, the small-player URL downloaded successfully using curl with --referer https://www.buzzsprout.com/ and --user-agent Mozilla/5.0. Download size matches the RSS enclosure length (39567731 bytes)."
     },
     {
       "slug": "maintainable-fm-frontend-complexity",
