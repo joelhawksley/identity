@@ -81,9 +81,9 @@ archived file path (or `null`), and a status string. Use clear status values
 like `archived`, `needs-manual-check`, or `unreachable` so gaps are visible
 at a glance.
 
-## 5. Link archived copies from the content
+## 5. Link archived copies from posts
 
-In `index.md` / `_posts/*.md`, add an `([archived](/archive/...))` link
+In `_posts/*.md`, add an `([archived](/archive/...))` link
 immediately after each original external link (site-root-relative path, since
 posts live at varying directory depths):
 
@@ -95,6 +95,9 @@ For HTML `<iframe>` embeds, add a plain sentence/link below the embed instead.
 
 Leave the original external link in place — the archived copy is a backup,
 not a replacement, so the live/canonical source is still the first click.
+
+Do not modify `index.md` when archiving media. Its appearances are indexed in
+`archive/manifest.json` instead.
 
 ## 6. Document gaps
 

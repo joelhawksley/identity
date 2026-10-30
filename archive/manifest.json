@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05",
+  "generated_at": "2026-10-30",
   "description": "Archive manifest for externally-hosted videos and podcast appearances referenced in index.md and _posts/, downloaded for long-term preservation.",
   "videos": [
     {
@@ -178,8 +178,11 @@
       "show": "Code and the Coding Coders who Code it",
       "episode": "Episode 53 - Joel Hawksley",
       "source_url": "https://podcast.drbragg.dev/episodes/episode-53-joel-hawksley/",
+      "feed_url": "https://feeds.buzzsprout.com/1927628.rss",
+      "audio_url": "https://www.buzzsprout.com/1927628/episodes/17437317-episode-53-joel-hawksley.mp3",
       "file": null,
-      "status": "NEEDS MANUAL FIX: page's embedded player points to a different buzzsprout episode (\"Episode 8 RailsConf Home Edition Podcast Panel\"), likely a bug on the show's site. Could not confirm correct audio automatically."
+      "status": "needs-manual-check",
+      "notes": "Correct episode confirmed by title in the show's RSS feed (published July 2, 2025, Buzzsprout episode 17437317). The page's player also selects this episode; only its Twitter player metadata points to Episode 8. Both playback and download URLs redirect to audio.buzzsprout.com, which returned HTTP 403 on 2026-10-30. Retry the enclosure URL or request the audio from the host."
     },
     {
       "slug": "maintainable-fm-frontend-complexity",
@@ -216,10 +219,13 @@
     {
       "slug": "radiopublic-ruby-blend",
       "show": "The Ruby Blend",
-      "episode": "(season 1 episode referenced in index.md)",
+      "episode": "Episode 9: ViewComponent at GitHub with Joel Hawksley",
       "source_url": "https://radiopublic.com/the-ruby-blend-WDewaV/s1!9aab9",
-      "file": null,
-      "status": "NEEDS MANUAL FIX: radiopublic.com no longer resolves (service appears discontinued). Need to find this show's new host/RSS feed."
+      "feed_url": "https://feeds.transistor.fm/the-ruby-blend",
+      "audio_url": "https://media.transistor.fm/731f37fb/760b8ea5.mp3",
+      "file": "archive/podcasts/radiopublic-ruby-blend.mp3",
+      "status": "archived",
+      "notes": "Recovered from the show's Transistor RSS archive by guest and episode title (published April 16, 2020). The downloaded audio's title tag also identifies Episode 9 and Joel Hawksley."
     },
     {
       "slug": "codewithjason-088",
@@ -250,8 +256,11 @@
       "show": "Ruby Rogues",
       "episode": "RR 461: Rethinking the View Layer with Components with Joel Hawksley",
       "source_url": "https://devchat.tv/ruby-rogues/rr-461-rethinking-the-view-layer-with-components-with-joel-hawksley/",
-      "file": null,
-      "status": "NEEDS MANUAL FIX: devchat.tv did not resolve/connect from this environment (DNS/connect timeout). May be temporarily down or blocked; retry later or find alternate RSS feed."
+      "feed_url": "https://www.spreaker.com/show/6102073/episodes/feed",
+      "audio_url": "https://dts.podtrac.com/redirect.mp3/api.spreaker.com/download/episode/58847556/stream.mp3",
+      "file": "archive/podcasts/devchat-ruby-rogues-461.mp3",
+      "status": "archived",
+      "notes": "Recovered from the show's Spreaker RSS feed by episode number and title (published June 9, 2020). The downloaded audio's title tag also identifies RR 461 and Joel Hawksley. Preserved the source download verbatim: it contains a malformed MP3 packet, but decoding continues through the end (50:16). The RSS enclosure, direct host URL, and official API download returned identical bytes."
     }
   ]
 }

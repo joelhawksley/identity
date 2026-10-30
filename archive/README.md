@@ -15,29 +15,47 @@ matter for the historical record.
 Files in `videos/*.mp4` and `podcasts/*.mp3` are tracked with **Git LFS** (see
 `.gitattributes`). Run `git lfs install` once per clone before working with them.
 
-In the source Markdown, each archived item has an `([archived](...))` link
-immediately after its original external link, e.g.:
+In posts, archived items have an `([archived](...))` link immediately after
+their original external link, e.g.:
 
 ```md
 [2019](https://youtu.be/y5Z5a6QdA-M) ([archived](/archive/videos/y5Z5a6QdA-M.mp4))
 ```
 
-## Known gaps (as of 2026-10-05)
+`index.md` intentionally keeps its original links without archive links. Use
+`manifest.json` to find archived copies of appearances listed there.
 
-These three podcast appearances referenced in `index.md` could **not** be
-automatically archived and need manual follow-up:
+## Recovered podcast appearances
 
-1. **Code and the Coding Coders who Code it — Episode 53** (`podcast.drbragg.dev`):
-   the episode page's embedded player points to the wrong Buzzsprout episode
-   ("Episode 8 - RailsConf Home Edition Podcast Panel"), which looks like a bug
-   on the show's site. Need to contact the host or find the correct enclosure
-   URL from the show's RSS feed.
-2. **The Ruby Blend** (`radiopublic.com`): RadioPublic has shut down and the
-   domain no longer resolves. Need to find this episode via the show's
-   current RSS feed/host or the Wayback Machine.
-3. **Ruby Rogues — RR 461** (`devchat.tv`): the site did not respond (DNS/connect
-   timeout) when attempted. Retry later, or locate the episode via the
-   Top End Devs / devchat.tv RSS feed.
+- **The Ruby Blend — Episode 9: ViewComponent at GitHub with Joel Hawksley**
+  ([archived audio](podcasts/radiopublic-ruby-blend.mp3)): recovered from the
+  [Transistor RSS archive](https://feeds.transistor.fm/the-ruby-blend), published
+  April 16, 2020.
+- **Ruby Rogues — RR 461: Rethinking the View Layer with Components with Joel Hawksley**
+  ([archived audio](podcasts/devchat-ruby-rogues-461.mp3)): recovered from the
+  [Spreaker RSS feed](https://www.spreaker.com/show/6102073/episodes/feed), published
+  June 9, 2020.
+
+Both downloads were matched against their RSS episode titles and audio title tags.
+The manifest records the feed and enclosure URLs so the recovery is repeatable.
+
+The Ruby Rogues source contains a malformed MP3 packet, but decoding continues
+through the end (50:16). The RSS enclosure, direct host URL, and official API
+download all returned identical bytes; the archive preserves those bytes rather
+than editing the recording.
+
+## Known gaps (as of 2026-10-30)
+
+**Code and the Coding Coders who Code it — Episode 53** still needs its audio
+downloaded. The [official RSS feed](https://feeds.buzzsprout.com/1927628.rss)
+confirms "Episode 53 - Joel Hawksley," published July 2, 2025, as Buzzsprout
+episode **17437317**. The page's actual player selects the correct episode;
+only its Twitter player metadata incorrectly points to Episode 8.
+
+The [correct audio enclosure](https://www.buzzsprout.com/1927628/episodes/17437317-episode-53-joel-hawksley.mp3)
+redirects to `audio.buzzsprout.com`, which returned **HTTP 403** for both playback
+and download links on October 30, 2026. Retry that enclosure later or request
+the recording from the host. No audio is archived for this episode yet.
 
 See `manifest.json` for the full machine-readable status of every item.
 
