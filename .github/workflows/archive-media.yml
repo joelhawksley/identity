@@ -1,0 +1,101 @@
+name: Archive media
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: archive-media
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Check for an existing archive pull request
+        id: existing
+        run: |
+          count=$(gh pr list --state open --limit 1000 --json headRefName \
+            --jq '[.[] | select(.headRefName | startswith("automation/archive-media-"))] | length')
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          if [ "$count" != 0 ]; then
+            echo "An archive pull request is already open; review it before the next refresh." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.existing.outputs.count == '0'
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+          lfs: false
+
+      - uses: actions/setup-python@v5
+        if: steps.existing.outputs.count == '0'
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        if: steps.existing.outputs.count == '0'
+        with:
+          node-version: "22"
+
+      - name: Install archiving tools
+        if: steps.existing.outputs.count == '0'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg git-lfs
+          python -m pip install "yt-dlp[default]"
+          git lfs install --local
+
+      - name: Check archiver
+        if: steps.existing.outputs.count == '0'
+        run: python -m unittest discover -s scripts/tests -p 'test_archive_media.py'
+
+      - name: Archive new media
+        if: steps.existing.outputs.count == '0'
+        run: python scripts/archive_media.py
+
+      - name: Open archive pull request
+        if: steps.existing.outputs.count == '0'
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git add archive _posts
+          if git diff --cached --quiet; then
+            echo "No archive changes found." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git diff --cached --check
+          git lfs status
+          # Fail rather than commit binary media outside Git LFS.
+          python - <<'PY'
+          import subprocess
+          paths = subprocess.check_output(
+              ["git", "diff", "--cached", "--name-only", "-z"], text=True
+          ).split("\0")
+          for path in paths:
+              if path.startswith("archive/") and path.endswith((".mp4", ".mp3")):
+                  pointer = subprocess.check_output(["git", "show", f":{path}"])
+                  if not pointer.startswith(b"version https://git-lfs.github.com/spec/v1\n"):
+                      raise SystemExit(f"Not a Git LFS pointer: {path}")
+          PY
+          branch="automation/archive-media-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git switch -c "$branch"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update media archive"
+          gh auth setup-git
+          git push --set-upstream origin "$branch"
+          gh pr create --base "$DEFAULT_BRANCH" --head "$branch" \
+            --title "Update media archive" \
+            --body "Archive newly linked media and update backup links. See archive/manifest.json and archive/README.md for any sources needing manual follow-up." \
+            >> "$GITHUB_STEP_SUMMARY"
