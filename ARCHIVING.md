@@ -6,6 +6,58 @@ rot, platform shutdowns, and takedowns. This document is the reusable
 procedure for refreshing that archive — e.g. after adding new talks or
 podcast appearances to `index.md`.
 
+## Scheduled archiving
+
+The **Archive media** GitHub Actions workflow runs every Monday at 08:00 UTC
+and can also be started from the Actions tab with **Run workflow**. The workflow
+must be on the default branch for its schedule to run. In repository settings,
+under **Actions → General → Workflow permissions**, enable **Allow GitHub Actions
+to create and approve pull requests**. The workflow uses `GITHUB_TOKEN` with
+contents and pull request write permissions; no additional secret is needed.
+It opens pull requests but never approves or merges them.
+
+Each run scans `index.md` and `_posts/**/*.md` for YouTube links (including
+embeds), Vimeo links, likely podcast episode links, known podcast hosts, and
+individual talk pages in the index's speaking list. It does not search the web
+for appearances that aren't linked from the site. Podcast discovery recognizes
+`/podcast/`, `/podcasts/`, `/episodes/`, `/pods/`, and direct MP3/M4A links;
+other URL patterns on new hosts need manual inventory.
+
+The archiver skips files already indexed in the manifest, tries `yt-dlp` for
+new or unresolved sources, caps videos at 720p, and limits newly archived media
+to **250 MiB per run**. Individual downloads have a 15-minute timeout. Files
+over the remaining budget are not committed; temporary downloads can exceed
+that budget while downloading or merging. The workflow avoids downloading
+existing LFS objects, but new uploads still consume the account's LFS quota.
+
+Successful downloads update the manifest and post backup links, leaving
+`index.md` untouched. Failed downloads and podcast players whose titles cannot
+be confidently matched to the episode URL are recorded in the manifest and an
+automated follow-up section in `archive/README.md`. RSS recovery remains a
+manual step below; the workflow never guesses at a replacement episode.
+
+Changes are proposed in a single pull request from an
+`automation/archive-media-*` branch. While that pull request remains open,
+subsequent runs skip work to avoid duplicate downloads and LFS uploads. Merge
+or close it to allow another refresh. Runs with no changes open no pull request.
+Failures appear in Actions logs; unresolved sources produce warnings and are
+retried on subsequent refreshes.
+
+To preview pending sources locally without downloading or changing files:
+
+```bash
+python3 scripts/archive_media.py --dry-run
+```
+
+To run a refresh locally, install the prerequisites below plus Node.js 22+
+for YouTube's JavaScript challenges, then run `python3 scripts/archive_media.py`.
+The workflow installs `yt-dlp[default]` (including its challenge solver) and
+Node.js. Run the archiver's offline tests with:
+
+```bash
+python3 -m unittest discover -s scripts/tests -p 'test_archive_media.py'
+```
+
 ## Prerequisites
 
 ```bash
